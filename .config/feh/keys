@@ -1,0 +1,50 @@
+#Unbind lots of unwanted actions
+close
+toggle_actions
+toggle_caption
+toggle_info
+toggle_menu
+toggle_pointer
+save_filelist
+save_image
+size_to_image
+toggle_auto_zoom
+prev_dir
+next_dir
+orient_3
+orient_1
+flip
+mirror
+reload_plus
+reload_minus
+remove
+scroll_left_page
+scroll_right_page
+scroll_up_page
+scroll_down_page
+render
+toggle_fullscreen
+toggle_keep_vp
+toggle_pause
+
+#Set new combos and unbind conflicting ones
+
+reload_image
+jump_random r
+
+reload_image F5
+
+delete Delete
+
+zoom_fill x
+
+zoom_fit f
+
+toggle_aliasing a
+
+toggle_filenames i
+
+prev_img Left C-Prior BackSpace
+
+next_img Right C-Next space
+

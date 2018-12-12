@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Open Folder Gallery
+Comment=Open folder in feh.
+Exec=feh %F --theme custom
+Selection=s
+Extensions=dir;
+Dependencies=feh;
+EscapeSpaces=true

@@ -1,0 +1,510 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains alot of information
+;
+;==========================================================
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #222
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+temperature-warn = #f50a4d
+alert = #bd2c40
+cancel = ${self.secondary}
+white = #ffffff
+gray = #888888
+dark-gray = #666666
+black = #000000
+blue = #0000ff
+intel-blue = #0071c5
+red = #ff0000
+yellow = #ffff00
+gskill-red = #e60012
+noctua-brown = #632c25
+ramp-full-underline = ${self.black}
+ramp-full-overline = ${self.yellow}
+
+[symbols]
+; Keep all the symbols here, so if an incompatible font is used to edit this file, they're at least properly labeled.
+cancel = ⮴
+check = ✔️
+x = ❌
+power = ⏻
+reboot = ↻
+poweroff = ⭘
+thermometer = 🌡️
+speaker-mute = 🔇
+speaker-low = 🔈
+speaker-medium = 🔉
+speaker-high = 🔊
+clock = 🕒
+computer = 🖥️
+
+media-prev = ⏮️
+media-stop = ⏹️
+media-play = ▶️
+media-pause = ⏸️
+media-next = ⏭️
+
+bar-ramp-0 = ▁
+bar-ramp-1 = ▂
+bar-ramp-2 = ▃
+bar-ramp-3 = ▄
+bar-ramp-4 = ▅
+bar-ramp-5 = ▆
+bar-ramp-6 = ▇
+bar-ramp-7 = █
+
+arrow-ramp-0 = ⬇️
+arrow-ramp-1 = ↘️
+arrow-ramp-2 = ➡️
+arrow-ramp-3 = ↗️
+arrow-ramp-4 = ⬆️
+
+
+[bar/wss]
+width = 1
+offset-x = 100%:-1
+height = 1
+modules-center = i3-min
+override-redirect = true
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+background = ${colors.black}
+foreground = ${self.background}
+[module/i3-min]
+type = internal/i3
+index-sort = true
+enable-click = false
+enable-scroll = true
+wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+[bar/main]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+border-size 100
+height = 13
+fixed-center = true
+
+background = ${colors.black}
+foreground = ${colors.foreground}
+
+overline-size = 1
+line-size = 1
+line-color = #f00
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 0
+module-margin-right = 0
+
+font-0 = Roboto:size=9;0
+font-3 = Source Code Pro:size=9;0
+font-1 = fixed:pixelsize=8;0
+font-2 = symbola:pixelsize=10;0
+
+
+modules-left = date i3
+modules-center = xwindow
+modules-right = pulseaudio updates-arch filesystem temperature memory cpu
+
+tray-position = right
+tray-padding = 2
+tray-maxsize = 12
+; So that I can scroll workspaces with mouse on top right corner.
+tray-offset-x = -2
+tray-scale = 1.0
+
+wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+
+[module/filesystem]
+type = internal/fs
+interval = 30
+
+mount-0 = /
+spacing = 0
+
+format-mounted = <ramp-capacity>
+format-unmounted = <label-unmounted>
+
+label-mounted = %mountpoint%: %percentage_used%% of %total%
+label-unmounted = 
+label-unmounted-foreground = 
+ramp-capacity-0 = ${symbols.bar-ramp-7}
+ramp-capacity-0-underline = ${colors.ramp-full-underline}
+ramp-capacity-0-overline = ${colors.ramp-full-overline}
+ramp-capacity-1 = ${symbols.bar-ramp-6}
+ramp-capacity-2 = ${symbols.bar-ramp-5}
+ramp-capacity-3 = ${symbols.bar-ramp-4}
+ramp-capacity-4 = ${symbols.bar-ramp-3}
+ramp-capacity-5 = ${symbols.bar-ramp-2}
+ramp-capacity-6 = ${symbols.bar-ramp-1}
+ramp-capacity-7 = ${symbols.bar-ramp-0}
+
+[module/updates-arch]
+type = custom/script
+exec = ~/.config/polybar/updates-arch.sh
+interval = 300
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+ws-label = %index%
+ws-padding = 1
+
+label-mode-padding = ${self.ws-padding}
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = ${self.ws-label}
+label-focused-background = ${colors.black}
+label-focused-underline = ${colors.white}
+label-focused-padding = ${self.ws-padding}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = ${self.ws-label}
+label-unfocused-padding = ${self.ws-padding}
+
+; visible = Active workspace on unfocused monitor
+label-visible = ${self.ws-label}
+label-visible-background = ${colors.black}
+label-visible-underline = #444444
+label-visible-padding = ${self.ws-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = ${self.ws-label}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = ${self.ws-padding}
+
+; Separator in between workspaces
+; label-separator = |
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = ${symbols.media-prev}
+icon-stop = ${symbols.media-stop}
+icon-play = ${symbols.media-play}
+icon-pause = ${symbols.media-pause}
+icon-next = ${symbols.media-next}
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+; format = <label> <ramp-load>
+format = <ramp-load> <ramp-coreload>
+label = CPU: %percentage%%
+ramp-load-foreground = ${colors.intel-blue}
+ramp-load-0 = ${symbols.bar-ramp-0}
+ramp-load-1 = ${symbols.bar-ramp-1}
+ramp-load-2 = ${symbols.bar-ramp-2}
+ramp-load-3 = ${symbols.bar-ramp-3}
+ramp-load-4 = ${symbols.bar-ramp-4}
+ramp-load-5 = ${symbols.bar-ramp-5}
+ramp-load-6 = ${symbols.bar-ramp-6}
+ramp-load-7 = ${symbols.bar-ramp-7}
+ramp-load-7-underline = ${colors.ramp-full-underline}
+ramp-load-7-overline = ${colors.ramp-full-overline}
+ramp-coreload-foreground = ${self.ramp-load-foreground}
+ramp-coreload-0 = ${self.ramp-load-0}
+ramp-coreload-1 = ${self.ramp-load-1}
+ramp-coreload-2 = ${self.ramp-load-2}
+ramp-coreload-3 = ${self.ramp-load-3}
+ramp-coreload-4 = ${self.ramp-load-4}
+ramp-coreload-5 = ${self.ramp-load-5}
+ramp-coreload-6 = ${self.ramp-load-6}
+ramp-coreload-7 = ${self.ramp-load-7}
+ramp-coreload-7-underline = ${self.ramp-load-7-underline}
+ramp-coreload-7-overline = ${self.ramp-load-7-overline}
+
+[module/memory]
+type = internal/memory
+interval = 1
+; format = <label> <ramp-used>
+format = <ramp-used>
+label = RAM: %percentage_used%%
+
+ramp-used-foreground = ${colors.gskill-red}
+ramp-used-0 = ${symbols.bar-ramp-0}
+ramp-used-1 = ${symbols.bar-ramp-1}
+ramp-used-2 = ${symbols.bar-ramp-2}
+ramp-used-3 = ${symbols.bar-ramp-3}
+ramp-used-4 = ${symbols.bar-ramp-4}
+ramp-used-5 = ${symbols.bar-ramp-5}
+ramp-used-6 = ${symbols.bar-ramp-6}
+ramp-used-7 = ${symbols.bar-ramp-7}
+ramp-used-7-underline = ${colors.ramp-full-underline}
+ramp-used-7-overline = ${colors.ramp-full-overline}
+
+[module/temperature]
+type = internal/temperature
+interval = 1
+; for options, run:
+; for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+thermal-zone = 0
+
+; Display warning label at this temperature.
+warn-temperature = 80
+
+; Show C/F
+units = false
+
+format = <ramp>
+format-warn = <label-warn> <ramp>
+format-warn-underline = ${colors.red}
+format-warn-overline = ${colors.red}
+
+label = %temperature-c%
+label-warn = HIGH TEMPERATURE: %temperature-c%
+label-warn-foreground = ${colors.red}
+
+ramp-foreground = ${colors.noctua-brown}
+#for i in range(81):
+#    print("ramp-{} = ${{symbols.bar-ramp-{}}}".format(i, max((i//10)-1,0)))
+ramp-0 = ${symbols.bar-ramp-0}
+ramp-1 = ${symbols.bar-ramp-0}
+ramp-2 = ${symbols.bar-ramp-0}
+ramp-3 = ${symbols.bar-ramp-0}
+ramp-4 = ${symbols.bar-ramp-0}
+ramp-5 = ${symbols.bar-ramp-0}
+ramp-6 = ${symbols.bar-ramp-0}
+ramp-7 = ${symbols.bar-ramp-0}
+ramp-8 = ${symbols.bar-ramp-0}
+ramp-9 = ${symbols.bar-ramp-0}
+ramp-10 = ${symbols.bar-ramp-0}
+ramp-11 = ${symbols.bar-ramp-0}
+ramp-12 = ${symbols.bar-ramp-0}
+ramp-13 = ${symbols.bar-ramp-0}
+ramp-14 = ${symbols.bar-ramp-0}
+ramp-15 = ${symbols.bar-ramp-0}
+ramp-16 = ${symbols.bar-ramp-0}
+ramp-17 = ${symbols.bar-ramp-0}
+ramp-18 = ${symbols.bar-ramp-0}
+ramp-19 = ${symbols.bar-ramp-0}
+ramp-20 = ${symbols.bar-ramp-1}
+ramp-21 = ${symbols.bar-ramp-1}
+ramp-22 = ${symbols.bar-ramp-1}
+ramp-23 = ${symbols.bar-ramp-1}
+ramp-24 = ${symbols.bar-ramp-1}
+ramp-25 = ${symbols.bar-ramp-1}
+ramp-26 = ${symbols.bar-ramp-1}
+ramp-27 = ${symbols.bar-ramp-1}
+ramp-28 = ${symbols.bar-ramp-1}
+ramp-29 = ${symbols.bar-ramp-1}
+ramp-30 = ${symbols.bar-ramp-2}
+ramp-31 = ${symbols.bar-ramp-2}
+ramp-32 = ${symbols.bar-ramp-2}
+ramp-33 = ${symbols.bar-ramp-2}
+ramp-34 = ${symbols.bar-ramp-2}
+ramp-35 = ${symbols.bar-ramp-2}
+ramp-36 = ${symbols.bar-ramp-2}
+ramp-37 = ${symbols.bar-ramp-2}
+ramp-38 = ${symbols.bar-ramp-2}
+ramp-39 = ${symbols.bar-ramp-2}
+ramp-40 = ${symbols.bar-ramp-3}
+ramp-41 = ${symbols.bar-ramp-3}
+ramp-42 = ${symbols.bar-ramp-3}
+ramp-43 = ${symbols.bar-ramp-3}
+ramp-44 = ${symbols.bar-ramp-3}
+ramp-45 = ${symbols.bar-ramp-3}
+ramp-46 = ${symbols.bar-ramp-3}
+ramp-47 = ${symbols.bar-ramp-3}
+ramp-48 = ${symbols.bar-ramp-3}
+ramp-49 = ${symbols.bar-ramp-3}
+ramp-50 = ${symbols.bar-ramp-4}
+ramp-51 = ${symbols.bar-ramp-4}
+ramp-52 = ${symbols.bar-ramp-4}
+ramp-53 = ${symbols.bar-ramp-4}
+ramp-54 = ${symbols.bar-ramp-4}
+ramp-55 = ${symbols.bar-ramp-4}
+ramp-56 = ${symbols.bar-ramp-4}
+ramp-57 = ${symbols.bar-ramp-4}
+ramp-58 = ${symbols.bar-ramp-4}
+ramp-59 = ${symbols.bar-ramp-4}
+ramp-60 = ${symbols.bar-ramp-5}
+ramp-61 = ${symbols.bar-ramp-5}
+ramp-62 = ${symbols.bar-ramp-5}
+ramp-63 = ${symbols.bar-ramp-5}
+ramp-64 = ${symbols.bar-ramp-5}
+ramp-65 = ${symbols.bar-ramp-5}
+ramp-66 = ${symbols.bar-ramp-5}
+ramp-67 = ${symbols.bar-ramp-5}
+ramp-68 = ${symbols.bar-ramp-5}
+ramp-69 = ${symbols.bar-ramp-5}
+ramp-70 = ${symbols.bar-ramp-6}
+ramp-71 = ${symbols.bar-ramp-6}
+ramp-72 = ${symbols.bar-ramp-6}
+ramp-73 = ${symbols.bar-ramp-6}
+ramp-74 = ${symbols.bar-ramp-6}
+ramp-75 = ${symbols.bar-ramp-6}
+ramp-76 = ${symbols.bar-ramp-6}
+ramp-77 = ${symbols.bar-ramp-6}
+ramp-78 = ${symbols.bar-ramp-6}
+ramp-79 = ${symbols.bar-ramp-6}
+ramp-80 = ${symbols.bar-ramp-7}
+ramp-max-fanspeed-underline = ${colors.ramp-full-underline}
+ramp-max-fanspeed-overline = ${colors.ramp-full-overline}
+ramp-75-underline = ${self.ramp-max-fanspeed-underline}
+ramp-75-overline = ${self.ramp-max-fanspeed-overline}
+ramp-76-underline = ${self.ramp-max-fanspeed-underline}
+ramp-76-overline = ${self.ramp-max-fanspeed-overline}
+ramp-77-underline = ${self.ramp-max-fanspeed-underline}
+ramp-77-overline = ${self.ramp-max-fanspeed-overline}
+ramp-78-underline = ${self.ramp-max-fanspeed-underline}
+ramp-78-overline = ${self.ramp-max-fanspeed-overline}
+ramp-79-underline = ${self.ramp-max-fanspeed-underline}
+ramp-79-overline = ${self.ramp-max-fanspeed-overline}
+ramp-80-underline = ${self.ramp-max-fanspeed-underline}
+ramp-80-overline = ${self.ramp-max-fanspeed-overline}
+
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 3
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-prefix = ${symbols.check}
+format-connected-underline = #9f78e1
+label-connected = %essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = ${symbols.bar-ramp-0}
+ramp-signal-1 = ${symbols.bar-ramp-2}
+ramp-signal-2 = ${symbols.bar-ramp-4}
+ramp-signal-3 = ${symbols.bar-ramp-6}
+ramp-signal-4 = ${symbols.bar-ramp-7}
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = enp0s31f6
+interval = 3
+
+format-connected-underline = #55aa55
+format-connected-prefix = ${symbols.check}
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 1
+date = 
+date-alt = "%m/%d (%a)"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+label = %time% %date%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+
+; format-volume = <label-volume><ramp-volume>
+format-volume = <label-volume>
+label-volume = %percentage%
+label-volume-foreground = ${root.foreground}
+
+label-muted = MUTED
+; label-muted = ${symbols.speaker-mute}
+
+; ramp-volume-0 = ${symbols.speaker-low}
+; ramp-volume-1 = ${symbols.speaker-medium}
+; ramp-volume-2 = ${symbols.speaker-high}
+
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false
+
+format-spacing = 0
+
+label-open = ${symbols.power}
+label-open-font = 2
+label-open-foreground = ${colors.secondary}
+label-close = ${symbols.cancel}
+label-close-foreground = ${colors.cancel}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = ${symbols.reboot}
+menu-0-0-exec = menu-open-1
+menu-0-1 = ${symbols.poweroff}
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = ${symbols.cancel}
+menu-1-0-foreground = ${colors.cancel}
+menu-1-0-exec = menu-open-0
+menu-1-1 = ${symbols.reboot}
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = ${symbols.poweroff}
+menu-2-0-exec = sudo poweroff
+menu-2-1 = ${symbols.cancel}
+menu-2-1-foreground = ${colors.cancel}
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
