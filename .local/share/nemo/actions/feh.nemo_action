@@ -1,7 +1,7 @@
 [Nemo Action]
 Name=Open Folder Gallery
 Comment=Open folder in feh, starting at the selected image.
-Exec=feh %P --start-at %F --theme custom
+Exec=feh --start-at %F --theme custom
 Selection=s
 Mimetypes=image/png;image/jpeg;image/bmp;image/tiff;image/webp;
 Dependencies=feh;
