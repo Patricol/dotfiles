@@ -95,8 +95,17 @@ fi
 
 PS1='[\u@\h \W]\$ '
 
-/home/patricol/.bin/add_ssh_key allshares &> /dev/null
-/home/patricol/.bin/add_ssh_key gdrive &> /dev/null
+# Don't move this to a separate script; caused issues.
+function add_ssh_key() {
+	if [ ! -z "$1" ]; then
+		chmod 600 ~/.ssh/"$1"
+		eval `keychain --eval "$1"`
+	fi
+}
+
+eval $(ssh-agent) > /dev/null
+add_ssh_key allshares &> /dev/null
+add_ssh_key gdrive &> /dev/null
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 
