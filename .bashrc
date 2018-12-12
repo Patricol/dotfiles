@@ -3,10 +3,7 @@
 # for examples
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+[[ $- != *i* ]] && return
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -104,6 +101,7 @@ PS1='[\u@\h \W]\$ '
 source /usr/share/doc/pkgfile/command-not-found.bash
 
 export EDITOR=vim
+
 RUN_FORTUNE=false
 if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a $RUN_FORTUNE == "true" ]; then
     fortune | cowsay

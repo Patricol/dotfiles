@@ -28,7 +28,10 @@ set $def_border pixel 1
 default_border $def_border
 default_floating_border $def_border
 
-font pango:monospace 8
+for_window [class=.*] border $def_border
+#adds border to things like GTK calculator and Chromium
+
+font pango:Source Code Pro 8
 
 # class                 border  backgr. text    indicator child_border
 # A client which currently has the focus
@@ -136,8 +139,10 @@ bindsym $mod+$shift+r restart
 # alt page up and page down
 
 
+set $xkill exec --no-startup-id xkill
 # kill focused window
 bindsym $mod+$shift+q kill
+bindsym --release $mod+$ctrl+$shift+q $xkill
 bindsym $alt+F4 kill
 
 bindsym $mod+x split toggle
