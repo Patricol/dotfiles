@@ -119,3 +119,8 @@ fi
 PATH=$PATH:~/.bin
 
 export QT_QPA_PLATFORMTHEME=qt5ct
+
+powerline-daemon -q
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+. /usr/share/powerline/bindings/bash/powerline.sh
