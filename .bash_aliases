@@ -99,3 +99,5 @@ alias cdback='cd -'
 alias cdhome='cd ~'
 #dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
+
+alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
