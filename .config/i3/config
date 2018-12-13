@@ -191,9 +191,9 @@ bindsym $mod+$shift+Up move up
 bindsym $mod+$shift+Right move right
 
 
-
-bindsym $mod+r mode "resize"
-mode "resize" {
+# capitalize modes so they look better in polybar. (font sizing etc.)
+bindsym $mod+r mode "RESIZE"
+mode "RESIZE" {
         set $big 10 px or 10 ppt
         set $small 1 px or 1 ppt
         set $sw resize shrink width
