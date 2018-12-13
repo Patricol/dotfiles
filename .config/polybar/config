@@ -687,7 +687,6 @@ interval = 1
 format = <label>
 ; format-prefix = ${symbols.clock}
 
-
 label = %time% %date%
 label-font = ${fonts.monospace-fill}
 
@@ -695,7 +694,6 @@ time = "%H:%M"
 time-alt = "%H:%M:%S"
 date = 
 date-alt = "%a %m-%d "
-
 
 
 [module/pulseaudio]
