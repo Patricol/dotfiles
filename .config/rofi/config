@@ -143,7 +143,7 @@ rofi.kb-row-last:                    Shift+End
 ! rofi.me-accept-entry:                MouseDPrimary
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
-rofi.theme: /home/patricol/.config/rofi/themes/custom.rasi
+rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
 rofi.scroll-method: 1
 rofi.show-match: false
 rofi.show-icons: true

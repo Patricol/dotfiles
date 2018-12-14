@@ -101,3 +101,5 @@ alias cdhome='cd ~'
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
+alias material='wal -g -f ~/.config/wal/colorschemes/dark/custom-material.json'
+alias nomaterial='wal -g -f ~/.config/wal/colorschemes/dark/default.json'
