@@ -1,23 +1,19 @@
-" Special
-let wallpaper  = "{wallpaper}"
-let background = "{background}"
-let foreground = "{foreground}"
-let cursor     = "{cursor}"
-
-" Colors
-let color0  = "{color0}"
-let color1  = "{color1}"
-let color2  = "{color2}"
-let color3  = "{color3}"
-let color4  = "{color4}"
-let color5  = "{color5}"
-let color6  = "{color6}"
-let color7  = "{color7}"
-let color8  = "{color8}"
-let color9  = "{color9}"
-let color10 = "{color10}"
-let color11 = "{color11}"
-let color12 = "{color12}"
-let color13 = "{color13}"
-let color14 = "{color14}"
-let color15 = "{color15}"
+#!/bin/sh
+[ "${{TERM:-none}}" = "linux" ] && \
+    printf '%b' '\e]P0{color0.strip}
+                 \e]P1{color1.strip}
+                 \e]P2{color2.strip}
+                 \e]P3{color3.strip}
+                 \e]P4{color4.strip}
+                 \e]P5{color5.strip}
+                 \e]P6{color6.strip}
+                 \e]P7{color7.strip}
+                 \e]P8{color8.strip}
+                 \e]P9{color9.strip}
+                 \e]PA{color10.strip}
+                 \e]PB{color11.strip}
+                 \e]PC{color12.strip}
+                 \e]PD{color13.strip}
+                 \e]PE{color14.strip}
+                 \e]PF{color15.strip}
+                 \ec'

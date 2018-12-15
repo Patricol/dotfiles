@@ -1,15 +1,15 @@
 {
 	"name": "Default color scheme for shell prompts",
 	"groups": {
-		"hostname":         { "fg": "brightyellow", "bg": "mediumorange", "attrs": [] },
-		"environment":      { "fg": "white", "bg": "darkestgreen", "attrs": [] },
-		"mode":             { "fg": "darkestgreen", "bg": "brightgreen", "attrs": ["bold"] },
-		"attached_clients": { "fg": "white", "bg": "darkestgreen", "attrs": [] }
+		"hostname":         { "fg": "wal-grayscale-darkest", "bg": "wal-accent-lighter", "attrs": [] },
+		"environment":      { "fg": "powerline-minor-mode-fg", "bg": "powerline-minor-mode-bg", "attrs": [] },
+		"mode":             { "fg": "powerline-minor-mode-fg", "bg": "powerline-minor-mode-bg", "attrs": ["bold"] },
+		"attached_clients": { "fg": "powerline-minor-mode-fg", "bg": "powerline-minor-mode-bg", "attrs": [] }
 	},
 	"mode_translations": {
 		"vicmd": {
 			"groups": {
-				"mode": {"fg": "darkestcyan", "bg": "white", "attrs": ["bold"]}
+				"mode": {"fg": "wal-cyan", "bg": "wal-grayscale-brightest", "attrs": ["bold"]}
 			}
 		}
 	}

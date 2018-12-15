@@ -56,14 +56,4 @@ color13: the second darkest grayscale in the colorscheme
 color14: the third brightest grayscale in the colorscheme
 color15: the brightest grayscale in the colorscheme
 
-others:
-electric
-material
-brown
-orange
-
-alerts should be jarring; they shouldn't fit in with the rest of the colors.
-
-I'm generally one for monochrome with accent colors. having a lot of good base colors in the first row lets me use them for accenting certain types of things; and I need 1,7,8,15 for monochrome, leaving me 9-14
-
-I need another almost-white, so I can have 3 shades of text that are readable on black. use 14 for that.
+warnings should be jarring; they shouldn't fit in with the rest of the colors. Their use is limited to things like very high CPU temperatures; not normal operation.

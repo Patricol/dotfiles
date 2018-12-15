@@ -95,4 +95,5 @@ POWERLINE_BASH_SELECT=1
 . /usr/share/powerline/bindings/bash/powerline.sh
 
 (cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
+source ~/.cache/wal/colors-tty.sh || true
+
