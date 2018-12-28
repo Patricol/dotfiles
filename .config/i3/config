@@ -12,7 +12,7 @@ exec_always --no-startup-id systemctl --user start blueman-applet.service
 exec_always --no-startup-id systemctl --user start udiskie.service
 exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
 
-
+set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service network-manager-applet.service blueman-applet.service udiskie.service indicator-sound-switcher.service
 
 
 
@@ -30,6 +30,8 @@ default_floating_border $def_border
 
 for_window [class=.*] border $def_border
 #adds border to things like GTK calculator and Chromium
+
+for_window [title="Authy" class="Chromium"] floating enable
 
 font pango:Source Code Pro 8
 
@@ -145,6 +147,7 @@ bindsym $mod+$shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+$shift+r restart
 
+bindsym $mod+$shift+u $stop_services
 
 # add something to alt tab
 # alt page up and page down

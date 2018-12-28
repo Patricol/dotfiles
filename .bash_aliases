@@ -44,12 +44,23 @@ function ftypei() {
 	find . -type f -name "*.$1" -exec file {} \;
 }
 function drf() {
-	sudo docker pull $1
 	sudo docker run --rm -it $@
 }
-alias drfa='drf alpine /bin/sh'
-alias drfarch='drf patricol/arch /bin/bash'
-alias alpine='sudo docker run --rm -it alpine /bin/sh'
+function dpf() {
+	sudo docker pull $@
+}
+function dprf() {
+	#Can only use when no options are provided before the container name; fix that later.
+	dpf $1
+	drf $@
+}
+alias drfa='dprf alpine /bin/sh'
+alias drfarch='dprf patricol/arch /bin/bash'
+alias drfgui='dpf patricol/terminal:latest && drf -p 3389:3389 patricol/terminal:latest'
+alias alpine='drfa'
+
+
+
 function rgrep() {
 	grep -r $@
 }

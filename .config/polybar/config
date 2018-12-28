@@ -277,6 +277,7 @@ module-margin-left = 0
 module-margin-right = 0
 
 modules-left = time i3 keyboard
+;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
 modules-right = pulseaudio updates-arch filesystem memory temperature cpu
