@@ -339,3 +339,7 @@ bindsym XF86Calculator		$calculator
 
 # win key only to open rofi
 #bindcode $windows-key-code --release $launcher
+
+
+#exec xsetroot -solid black
+

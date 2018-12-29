@@ -56,10 +56,10 @@ function dprf() {
 }
 alias drfa='dprf alpine /bin/sh'
 alias drfarch='dprf patricol/arch /bin/bash'
-alias drfgui='dpf patricol/terminal:latest && drf -p 3389:3389 patricol/terminal:latest'
+alias drfgui='dpf patricol/terminal:latest && drf -p 3389:3389 patricol/terminal:latest /bin/bash'
 alias alpine='drfa'
 
-
+alias eb='exec bash'
 
 function rgrep() {
 	grep -r $@
