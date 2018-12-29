@@ -8,5 +8,12 @@ One exception is that it's alright to include configs that are entirely manually
 
 Add to a new computer with:
 
-git clone --separate-git-dir=~/.dotfiles-repo git@github.com:Patricol/dotfiles.git ~
+  * git clone --separate-git-dir=~/.dotfiles-repo git@github.com:Patricol/dotfiles.git ~
 
+* OR(?)
+
+  * git clone --bare --branch ADD_BRANCH_NAME_HERE --single-branch git@github.com:Patricol/dotfiles.git $HOME/.dotfiles-repo
+  * alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
+  * dfg checkout
+    * to overwrite existing: dfg checkout -f
+  * dfg config --local status.showUntrackedFiles no
