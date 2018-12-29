@@ -6,14 +6,10 @@ This is mainly for keeping a history of config files I manually edit a lot. Not 
 
 One exception is that it's alright to include configs that are entirely manually created; not through a GUI.
 
-Add to a new computer with:
-
-  * git clone --separate-git-dir=~/.dotfiles-repo git@github.com:Patricol/dotfiles.git ~
-
-* OR(?)
-
-  * git clone --bare --branch ADD_BRANCH_NAME_HERE --single-branch git@github.com:Patricol/dotfiles.git $HOME/.dotfiles-repo
+* Add to a new computer with:
+  * git clone -b ADD_BRANCH_NAME_HERE --bare https://github.com/Patricol/dotfiles.git ~/.dotfiles-repo
   * alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
+  * dfg config --local status.showUntrackedFiles no
   * dfg checkout
     * to overwrite existing: dfg checkout -f
-  * dfg config --local status.showUntrackedFiles no
+
