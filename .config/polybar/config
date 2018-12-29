@@ -276,11 +276,11 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 0
 
-modules-left = time i3 keyboard
+modules-left = work time i3 keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
-modules-right = pulseaudio updates-arch filesystem memory temperature cpu
+modules-right = pulseaudio filesystem memory temperature cpu
 
 tray-position = right
 tray-padding = 2
@@ -309,6 +309,12 @@ content = %{T1} %{T2}1I27 %{T3}2I27 %{T4}3dfgjlpyIQ27 %{T5}4更瘝�
 ; "content" has the same properties as "format-NAME"
 content-background = ${colors.highvis-fg}
 content-foreground = ${colors.background}
+
+[module/work]
+type = custom/text
+; indicates that this is the work account
+content = ${symbols.briefcase}
+content-foreground = ${colors.lowvis-fg}
 
 [module/xwindow]
 type = internal/xwindow
