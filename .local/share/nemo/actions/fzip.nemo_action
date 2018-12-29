@@ -1,8 +1,0 @@
-[Nemo Action]
-Name=Zip Without Compression
-Comment=Zip folder in store mode.
-Exec=/home/patricol/.bin/fzip %F
-Selection=s
-Extensions=dir;
-Dependencies=/home/patricol/.bin/fzip;zip;
-EscapeSpaces=true
