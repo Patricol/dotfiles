@@ -34,6 +34,8 @@ for_window [class=.*] border $def_border
 for_window [title="Authy" class="Chromium"] floating enable
 
 font pango:Source Code Pro 8
+for_window [class=".*"] title_format "<span font='Source Code Pro 10'>%title</span>"
+#This lets me set the title bar size and fontsize separately. need to tweak to get it to apply to everything though.
 
 # class                 border  backgr. text    indicator child_border
 # client.focused: A client which currently has the focus
