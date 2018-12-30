@@ -1,37 +1,31 @@
 # i3 config file (v4)
 # https://i3wm.org/docs/userguide.html#configuring
-
+#make this more mouse friendly for guacamole usage etc.
 
 # AUTOSTART ###################################################################
 
-exec_always --no-startup-id systemctl --user restart polybar-main.service
-exec_always --no-startup-id systemctl --user restart polybar-wss.service
-exec_always --no-startup-id systemctl --user start redshift-gtk.service
-exec_always --no-startup-id systemctl --user start network-manager-applet.service
-exec_always --no-startup-id systemctl --user start blueman-applet.service
-exec_always --no-startup-id systemctl --user start udiskie.service
-exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
+exec_always --no-startup-id startapp
 
-set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service network-manager-applet.service blueman-applet.service udiskie.service indicator-sound-switcher.service
 
 
 
 # APPEARANCE ##################################################################
 
-gaps inner 1
-gaps outer 0
-smart_gaps on
-
 #set $def_border normal 1
 set $def_border pixel 1
 #set $def_border none
-default_border $def_border
-default_floating_border $def_border
+new_window $def_border
+#default_border $def_border
+new_float $def_border
+#default_floating_border $def_border
 
 for_window [class=.*] border $def_border
 #adds border to things like GTK calculator and Chromium
 
 for_window [title="Authy" class="Chromium"] floating enable
+
+#Hide vncconfig window. closing it could prevent copy/paste from working.
+for_window [title="VNC config"] move scratchpad
 
 font pango:Source Code Pro 8
 
@@ -62,6 +56,8 @@ client.unfocused           $background $background $lowvis_fg   $midvis_bo  $bac
 client.urgent              $accent     $accent     $accent_text $midvis_bo  $accent
 client.placeholder         $background $background $lowvis_fg   $midvis_bo  $background
 client.background          $background
+
+exec xsetroot -solid gray
 
 
 
@@ -110,17 +106,17 @@ set $windows-key-code 133
 
 # MOUSE BINDINGS ##############################################################
 
-bindsym $mouse-right floating toggle
-bindsym --whole-window $mod+$mouse-right floating toggle
-
 bindsym --whole-window $mod+$mouse-wheel-click kill
-
 
 # The middle button over a titlebar kills the window
 bindsym --release $mouse-wheel-click kill
 
+# Right click over a titlebar toggles floating
+bindsym $mouse-right floating toggle
+bindsym --whole-window $alt+$mouse-right floating toggle
+
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+floating_modifier $alt
 
 bindsym --whole-window $mod+$mouse-wheel-left	move left
 bindsym --whole-window $mod+$mouse-wheel-down	move down
@@ -138,19 +134,13 @@ bindsym --whole-window $mod+$shift+$mouse-wheel-right	move container to workspac
 
 # KEYBOARD BINDINGS ###########################################################
 
-set $exit_i3			exec --no-startup-id "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
-bindsym $ctrl+$alt+Delete	$exit_i3
-bindsym $mod+$shift+e		$exit_i3
 
 # reload the configuration file
 bindsym $mod+$shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+$shift+r restart
 
-bindsym $mod+$shift+u $stop_services
 
-# add something to alt tab
-# alt page up and page down
 
 
 set $xkill exec --no-startup-id xkill
@@ -291,22 +281,15 @@ bindsym $mod+$shift+$ctrl+0 move container to $ws10; $ws10
 
 # PROGRAM ALIASES #############################################################
 
+set $start_main_app		exec --no-startup-id startapp
 set $launcher			exec rofi -show combi
-set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
-set $lock			exec --no-startup-id i3lock -c 000000 -k --timestr="%H:%M" --timecolor=FFFFFFFF --noinputtext="" --wrongtext="" --veriftext="" -e --datecolor=FFFFFFFF --datestr="%D"
-set $terminal			exec --no-startup-id terminator
-set $files			exec --no-startup-id nemo
+set $terminal			exec --no-startup-id urxvt
 set $chrome			exec chromium
-set $task-manager		exec gnome-system-monitor
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 set $volume-toggle-mute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-set $calculator			exec gnome-calculator
-set $music			exec --no-startup-id gpmdp
-set $notes			exec --no-startup-id standardnotes-desktop
 set $text-editor		exec --no-startup-id atom
-set $facebook-messenger		exec --no-startup-id caprine
 set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
 
 
@@ -316,30 +299,19 @@ set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xcl
 # LAUNCHING HOTKEYS ###########################################################
 
 bindsym $mod+Return		$terminal
+bindsym $mod2+Return		$start_main_app
 bindsym $mod+space		$launcher
 bindsym $mod2+space		$launcher
 bindsym $mod2+r			$launcher
-bindsym $mod2+s			$notes
 bindsym $mod2+a			$text-editor
-bindsym $mod2+f			$facebook-messenger
 bindsym $mod2+c			$chrome
-bindsym $mod2+m			$music
-bindsym $mod2+n			$notes
-bindsym $mod2+Print		$screenshot
-bindsym Print			$screenshot
-bindsym $mod2+l			$lock
 bindsym $mod+$mod2+v		$type-clipboard
-bindsym $mod2+e			$files
-bindsym $ctrl+$shift+Escape	$task-manager
 
 bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
 bindsym XF86AudioLowerVolume    $volume-unmute ; $volume-lower
 bindsym XF86AudioMute    	$volume-toggle-mute
-bindsym XF86Calculator		$calculator
 
 # win key only to open rofi
 #bindcode $windows-key-code --release $launcher
 
-
-#exec xsetroot -solid black
 
