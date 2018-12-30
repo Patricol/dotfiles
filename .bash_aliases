@@ -33,6 +33,7 @@ function ftypei() {
 }
 
 alias eb='exec bash'
+alias be='eb'
 
 function rgrep() {
 	grep -r $@
