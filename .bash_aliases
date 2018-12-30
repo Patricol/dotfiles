@@ -54,10 +54,16 @@ function dprf() {
 	dpf $1
 	drf $@
 }
-alias drfa='dprf alpine /bin/sh'
-alias drfarch='dprf patricol/arch /bin/bash'
-alias drfgui='dpf patricol/terminal:latest && drf -p 3389:3389 patricol/terminal:latest /bin/bash'
+alias drfa='dprf alpine /bin/ash'
+alias drfalpine='drfa'
 alias alpine='drfa'
+alias drfu='dprf ubuntu /bin/bash'
+alias drfubuntu='drfu'
+alias ubuntu='drfu'
+alias drfarch='dprf patricol/arch /bin/bash'
+alias drfar='drfarch'
+alias arch='drfarch'
+alias drfgui='dpf patricol/terminal:latest && drf -p 3389:3389 patricol/terminal:latest /bin/bash'
 
 alias eb='exec bash'
 
