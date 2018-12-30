@@ -24,18 +24,6 @@ alias l='ls -CF'
 
 
 
-alias syu='aurman -Syu'
-function pacs() {
-	aurman -S --repo $@
-}
-function aurs() {
-	aurman -S --aur $@
-}
-alias listexplicitlyinstalled='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort) | sort -n'
-alias listexplicitlyinstalledbysize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
-
-alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
-
 alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
 function ftype() {
 	find . -type f -name "*.$1"
@@ -43,76 +31,19 @@ function ftype() {
 function ftypei() {
 	find . -type f -name "*.$1" -exec file {} \;
 }
-function drf() {
-	sudo docker run --rm -it $@
-}
-function dpf() {
-	sudo docker pull $@
-}
-function dprf() {
-	#Can only use when no options are provided before the container name; fix that later.
-	dpf $1
-	drf $@
-}
-alias drfa='dprf alpine /bin/sh'
-alias drfarch='dprf patricol/arch /bin/bash'
-alias drfgui='dpf patricol/terminal:latest && drf -p 3389:3389 patricol/terminal:latest /bin/bash'
-alias alpine='drfa'
-
 alias eb='exec bash'
 
 function rgrep() {
 	grep -r $@
 }
 
-function docker() {
-	sudo docker $@
-}
-
-function checli() {
-	sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli $@
-}
-
-function checliver() {
-	sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli:$@
-}
-
-alias logs='sudo journalctl -xe'
-
-function mountiso() {
-	sudo mount -o loop $@ /media/iso
-}
-
-alias umountiso='sudo umount /media/iso'
 function fkill() {
 	sudo killall -KILL $@
-}
-
-function merge() {
-	rsync --remove-source-files -abviuAP $@
 }
 
 alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
 
 alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
-
-function extract() {
-	7z x $@
-        # if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
-       # it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
-}
-#anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
-#gzip seems much less resistant to corruption than xz.
-#maybe add functions for creating archives of different types.
-#I do really care about avoiding corruption.
-#zip vs tgz vs txz vs ?
-#txz is best for compression, efficiency etc.
-#extracting individual files from zip is faster. zip is also more ubiquitous.
-
-#function maketxz() {
-#}
-#function makezip() {
-#}
 
 alias cdup='cd ..'
 alias cdu='cdup'
