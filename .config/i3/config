@@ -4,7 +4,9 @@
 
 # AUTOSTART ###################################################################
 
-exec_always --no-startup-id startapp
+exec --no-startup-id startapp
+exec --no-startup-id polybar main -r
+exec --no-startup-id polybar wss -r
 
 
 
