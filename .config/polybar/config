@@ -357,7 +357,7 @@ ramp-capacity-9 = ${symbols.usage-ramp-0}
 [module/updates-arch]
 type = custom/script
 exec = ~/.config/polybar/updates-arch.sh
-interval = 300
+interval = 60
 
 [module/i3]
 type = internal/i3
