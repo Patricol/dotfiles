@@ -63,7 +63,7 @@ alias ubuntu='drfu'
 alias drfarch='dprf patricol/arch /bin/bash'
 alias drfar='drfarch'
 alias arch='drfarch'
-alias drfgui='dpf patricol/terminal:latest && drf -p 3389:3389 patricol/terminal:latest /bin/bash'
+alias drfgui='dpf patricol/terminal:latest && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 patricol/terminal:latest /bin/bash'
 
 alias eb='exec bash'
 
