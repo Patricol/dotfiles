@@ -1,4 +1,4 @@
-rofi.theme: ~/.cache/wal/colors-rofi-light.rasi
+rofi.theme: ~/.cache/wal/rofi-theme.rasi
 rofi.terminal: kitty
 
 rofi.scroll-method: 1
