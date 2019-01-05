@@ -17,7 +17,8 @@ rofi.threads: 0
 rofi.combi-modi: window,drun,run
 rofi.modi: run,drun,combi,window,keys
 rofi.auto-select: false
-rofi.sort: false
+rofi.sort: true
+rofi.sorting-method: levenshtein
 
 
 ! "Background to use for fake transparency. (background or screenshot)" Set from: Default
