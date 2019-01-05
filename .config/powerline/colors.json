@@ -41,6 +41,10 @@
 	},
 	"gradients": {
 		"grayscale": [[0, 13, 8, 14, 7, 15]],
-		"grayscale-safe": [[0, 8, 7, 15]]
+		"grayscale-no-darkest": [[13, 8, 14, 7, 15]],
+		"grayscale-no-brightest": [[0, 13, 8, 14, 7]],
+		"grayscale-safe": [[0, 8, 7, 15]],
+		"grayscale-safe-no-darkest": [[8, 7, 15]],
+		"grayscale-safe-no-brightest": [[0, 8, 7]]
 	}
 }
