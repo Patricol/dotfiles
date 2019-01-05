@@ -7,8 +7,6 @@
 		"window":               {"fg": "wal-bright", "bg": "wal-darkest", "attrs": []},
 		"window:divider":       {"fg": "wal-dark", "bg": "wal-darkest", "attrs": []},
 		"window:current":       {"fg": "wal-brighter", "bg": "wal-accent", "attrs": []},
-		"window_name":          {"fg": "wal-brightest", "bg": "wal-accent", "attrs": ["bold"]},
-		"session":              {"fg": "wal-darkest", "bg": "wal-brighter", "attrs": ["bold"]},
-		"session:prefix":       {"fg": "wal-brighter", "bg": "wal-accent", "attrs": ["bold"]}
+		"window_name":          {"fg": "wal-brightest", "bg": "wal-accent", "attrs": ["bold"]}
 	}
 }
