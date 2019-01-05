@@ -33,12 +33,12 @@
     separatorcolor:             @accent;
     
     text-input-background:      @yellow;
-    text-input-foreground:      @darkest;
-    inactive-button-background:      @darkest;
+    text-input-foreground:      @background;
+    inactive-button-background:      @background;
     inactive-button-foreground:      @lowvis-fg;
     active-button-background:      @blue;
-    active-button-foreground:      @darkest;
-    button-row-background:          @darkest;
+    active-button-foreground:      @background;
+    button-row-background:          @background;
 
     normal-background:           @background;
     urgent-background:           @background;
