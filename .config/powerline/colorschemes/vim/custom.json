@@ -2,89 +2,59 @@
 	"name": "Default color scheme",
 	"groups": {
 		"information:unimportant":  { "fg": "vim-mode-bar-innermore-fg", "bg": "vim-mode-bar-innermore-bg", "attrs": [] },
+		
 		"information:additional":   { "fg": "vim-mode-bar-inner-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
+			"file_name":                "information:additional",
+				"file_name_no_file":        "file_name",
+			"window_title":             "information:additional",
+			"attached_clients":         "information:additional",
+			"current_tag":              "information:additional",
+			"line_percent":             "information:additional",
+				"line_percent_gradient":    "line_percent",
+			"position":                	"information:additional",
+				"position_gradient":        "position",
+		
 		"background":               { "fg": "vim-mode-bar-innermore-fg", "bg": "vim-mode-bar-innermost-bg", "attrs": [] },
 		"background:divider":       { "fg": "vim-mode-bar-innermore-divider-fg", "bg": "vim-mode-bar-innermore-bg", "attrs": [] },
-		"mode":                     { "fg": "vim-dark-text", "bg": "vim-mode-normal-bg", "attrs": ["bold"] },
-		"visual_range":             { "fg": "wal-yellow", "bg": "vim-mode-bar-inner-bg", "attrs": ["bold"] },
-		"modified_indicator":       { "fg": "wal-yellow", "bg": "vim-mode-bar-inner-bg", "attrs": ["bold"] },
+		
+		"wal-modified":       		{ "fg": "vim-dark-text", "bg": "wal-yellow", "attrs": [] },
+			"modified_indicator":       "wal-modified",
+			"branch_dirty":             "wal-modified",
+			"modified_buffers":         "wal-modified",
+			"file_vcs_status_M":        "wal-modified",
 		"paste_indicator":          { "fg": "vim-dark-text", "bg": "wal-cyan", "attrs": ["bold"] },
-		"readonly_indicator":       { "fg": "wal-red", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"branch_dirty":             { "fg": "wal-yellow", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"branch:divider":           { "fg": "vim-mode-bar-inner-divider-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"file_name":                { "fg": "vim-mode-bar-inner-fg", "bg": "vim-mode-bar-inner-bg", "attrs": ["bold"] },
-		"window_title":             { "fg": "vim-mode-bar-inner-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"file_name_no_file":        { "fg": "vim-mode-bar-inner-fg", "bg": "vim-mode-bar-inner-bg", "attrs": ["bold"] },
+		"warning":       			{ "fg": "vim-dark-text", "bg": "wal-warning", "attrs": ["bold"] },
+			"capslock_indicator":       "warning",
+			"readonly_indicator":       "warning",
+		"error":                    { "fg": "vim-dark-text", "bg": "wal-red", "attrs": ["bold"] },
 		"file_vcs_status":          { "fg": "wal-red", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"file_vcs_status_M":        { "fg": "wal-yellow", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
 		"file_vcs_status_A":        { "fg": "wal-green", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"line_percent":             { "fg": "vim-mode-bar-inner-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"line_percent_gradient":    { "fg": "vim-mode-bar-inner-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"position":                 { "fg": "vim-mode-bar-inner-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"position_gradient":        { "fg": "vim-mode-bar-inner-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] },
-		"line_current":             { "fg": "vim-dark-text", "bg": "vim-mode-bar-outer-bg", "attrs": ["bold"] },
-		"line_current_symbol":      { "fg": "vim-dark-text", "bg": "vim-mode-bar-outer-bg", "attrs": [] },
-		"virtcol_current_gradient": { "fg": "vim-dark-text", "bg": "vim-mode-bar-outer-bg", "attrs": [] },
-		"col_current":              { "fg": "vim-dark-text", "bg": "vim-mode-bar-outer-bg", "attrs": [] },
-		"modified_buffers":         { "fg": "wal-yellow", "bg": "vim-mode-bar-innermore-bg", "attrs": [] },
-		"attached_clients":         { "fg": "vim-mode-bar-innermore-fg", "bg": "vim-mode-bar-innermore-bg", "attrs": [] },
-		"error":                    { "fg": "vim-dark-text", "bg": "wal-warning", "attrs": ["bold"] },
-		"warning":                  { "fg": "vim-dark-text", "bg": "wal-red", "attrs": ["bold"] },
-		"current_tag":              { "fg": "vim-mode-bar-innermore-fg", "bg": "vim-mode-bar-innermore-bg", "attrs": [] },
-
-		"tab_nc:modified_indicator": { "fg": "wal-yellow", "bg": "vim-mode-bar-innermore-bg", "attrs": ["bold"] }
+		
+		
+		"mode":                     { "fg": "vim-dark-text", "bg": "vim-mode-normal-bg", "attrs": ["bold"] },
+		"wal-mode-insert": 			{ "fg": "vim-dark-text", "bg": "vim-mode-insert-bg", "attrs": ["bold"] },
+		"wal-mode-visual": 			{ "fg": "vim-dark-text", "bg": "vim-mode-visual-bg", "attrs": ["bold"] },
+		"visual_range":             { "fg": "vim-mode-visual-bg", "bg": "vim-mode-bar-inner-bg", "attrs": ["bold"] },
+		"wal-mode-replace": 		{ "fg": "vim-dark-text", "bg": "vim-mode-replace-bg", "attrs": ["bold"] },
+		
+		
+		"wal-rightmost_block":      "wal-accent",
+			"line_current":             "wal-rightmost_block",
+				"line_current_symbol":      "line_current",
+				"col_current":              "line_current",
+					"virtcol_current": 			"col_current",
+						"virtcol_current_gradient": "virtcol_current",
+		"branch:divider":           "wal-branch:divider"
 	},
 	"mode_translations": {
-		"i": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-insert-bg", "attrs": ["bold"] },
-				"background:divider": { "fg": "vim-mode-bar-innermore-divider-fg", "bg": "vim-mode-bar-innermore-bg", "attrs": [] },
-				"branch:divider":     { "fg": "vim-mode-bar-inner-divider-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] }
-			}
-		},
-		"ic": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-insert-bg", "attrs": ["bold"] },
-				"background:divider": { "fg": "vim-mode-bar-innermore-divider-fg", "bg": "vim-mode-bar-innermore-bg", "attrs": [] },
-				"branch:divider":     { "fg": "vim-mode-bar-inner-divider-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] }
-			}
-		},
-		"ix": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-insert-bg", "attrs": ["bold"] },
-				"background:divider": { "fg": "vim-mode-bar-innermore-divider-fg", "bg": "vim-mode-bar-innermore-bg", "attrs": [] },
-				"branch:divider":     { "fg": "vim-mode-bar-inner-divider-fg", "bg": "vim-mode-bar-inner-bg", "attrs": [] }
-			}
-		},
-		"v": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-visual-bg", "attrs": ["bold"] }
-			}
-		},
-		"V": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-visual-bg", "attrs": ["bold"] }
-			}
-		},
-		"^V": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-visual-bg", "attrs": ["bold"] }
-			}
-		},
-		"R": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-replace-bg", "attrs": ["bold"] }
-			}
-		},
-		"Rc": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-replace-bg", "attrs": ["bold"] }
-			}
-		},
-		"Rx": {
-			"groups": {
-				"mode": { "fg": "vim-dark-text", "bg": "vim-mode-replace-bg", "attrs": ["bold"] }
-			}
-		}
+		"i":  {"groups": {"mode": "wal-mode-insert"}},
+		"ic": {"groups": {"mode": "wal-mode-insert"}},
+		"ix": {"groups": {"mode": "wal-mode-insert"}},
+		"v":  {"groups": {"mode": "wal-mode-visual"}},
+		"V":  {"groups": {"mode": "wal-mode-visual"}},
+		"^V": {"groups": {"mode": "wal-mode-visual"}},
+		"R":  {"groups": {"mode": "wal-mode-replace"}},
+		"Rc": {"groups": {"mode": "wal-mode-replace"}},
+		"Rx": {"groups": {"mode": "wal-mode-replace"}}
 	}
 }
