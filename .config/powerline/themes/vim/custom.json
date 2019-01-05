@@ -21,14 +21,13 @@
 				"priority": 10
 			},
 			{
+				"function": "readonly_indicator",
+				"draw_soft_divider": false
+			},
+			{
 				"function": "branch",
 				"exclude_modes": ["nc"],
 				"priority": 30
-			},
-			{
-				"function": "readonly_indicator",
-				"draw_soft_divider": false,
-				"after": " "
 			},
 			{
 				"function": "file_scheme",
@@ -45,7 +44,6 @@
 			},
 			{
 				"function": "file_vcs_status",
-				"before": " ",
 				"draw_soft_divider": false
 			},
 			{
@@ -119,7 +117,6 @@
 				"function": "virtcol_current",
 				"draw_soft_divider": false,
 				"priority": 20,
-				"before": ":",
 				"width": 3,
 				"align": "l"
 			}
