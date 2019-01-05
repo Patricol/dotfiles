@@ -147,6 +147,7 @@ alias brc='vim ~/.bashrc'
 
 #dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
+alias dfgk='add_ssh_key github_fcdcbda_ssh_key'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 
