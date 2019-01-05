@@ -22,7 +22,9 @@ alias lra='lar'
 alias lr='ls -R'
 alias l='ls -CF'
 
-
+function fscrot() {
+	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
+}
 
 alias syu='aurman -Syu'
 function pacs() {
@@ -30,6 +32,12 @@ function pacs() {
 }
 function aurs() {
 	aurman -S --aur $@
+}
+function aurr() {
+	aurman -R $@
+}
+function pacr() {
+	aurman -R $@
 }
 alias listexplicitlyinstalled='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort) | sort -n'
 alias listexplicitlyinstalledbysize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
@@ -63,7 +71,10 @@ alias ubuntu='drfu'
 alias drfarch='dprf patricol/arch /bin/bash'
 alias drfar='drfarch'
 alias arch='drfarch'
-alias drfgui='dpf patricol/terminal:latest && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 patricol/terminal:latest /bin/bash'
+function drfg() {
+	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $1 /bin/bash
+}
+alias drfgui='drfg patricol/terminal:latest'
 
 alias eb='exec bash'
 
@@ -138,5 +149,15 @@ alias brc='vim ~/.bashrc'
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
-alias material='wal -g -f ~/.config/wal/colorschemes/dark/custom-material.json'
-alias nomaterial='wal -g -f ~/.config/wal/colorschemes/dark/default.json'
+
+function walset() {
+	wal -g -f ~/.config/wal/colorschemes/$1.json
+}
+alias wal-material='walset material'
+alias wal-default='walset default'
+alias wal-distinct='walset debug-distinct'
+alias wal-distinct-flip='walset debug-distinct-flip'
+alias wal-red='walset debug-red'
+alias wal-yellow='walset debug-yellow'
+alias material='wal-material'
+alias nomaterial='wal-default'
