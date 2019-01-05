@@ -1,7 +1,7 @@
 {
 	"name": "Default color scheme for shell prompts",
 	"groups": {
-		"hostname":         { "fg": "wal-darkest", "bg": "wal-accent-lighter", "attrs": [] },
+		"hostname":         { "fg": "powerline-dark-text", "bg": "wal-blue", "attrs": [] },
 		"environment":      { "fg": "powerline-minor-mode-fg", "bg": "powerline-minor-mode-bg", "attrs": [] },
 		"mode":             { "fg": "powerline-minor-mode-fg", "bg": "powerline-minor-mode-bg", "attrs": ["bold"] },
 		"attached_clients": { "fg": "powerline-minor-mode-fg", "bg": "powerline-minor-mode-bg", "attrs": [] }

@@ -16,10 +16,28 @@
 		"wal-darker": 13,
 		"wal-bright": 14,
 		"wal-brightest": 15,
+		
+		
+		"powerline-dark-text": 0,
 		"powerline-widget-bg": 13,
 		"powerline-widget-fg": 7,
 		"powerline-minor-mode-bg": 8,
 		"powerline-minor-mode-fg": 7,
+		"powerline-minor-mode-divider-fg": 13,
+		
+		"vim-mode-bar-innermost-bg": 0,
+		"vim-mode-bar-innermore-bg": 13,
+		"vim-mode-bar-innermore-fg": 15,
+		"vim-mode-bar-innermore-divider-fg": 14,
+		"vim-mode-bar-inner-divider-fg": 14,
+		"vim-mode-bar-inner-fg": 15,
+		"vim-mode-bar-inner-bg": 8,
+		"vim-mode-bar-outer-bg": 15,
+		"vim-mode-normal-bg": 2,
+		"vim-mode-insert-bg": 4,
+		"vim-mode-visual-bg": 3,
+		"vim-mode-replace-bg": 1,
+		"vim-dark-text": 0,
 		
 		"warn-about-unconfigured-color": 5,
 		
@@ -51,7 +69,7 @@
 		"brightestorange": 5,
 		"yellow": 5,
 		"brightyellow": 5,
-		"NOTE-GRAY0-IS-LIGHTEST": 5,
+		"NOTE-GRAY0-IS-DARKEST": 5,
 		"gray0": 5,
 		"gray1": 5,
 		"gray2": 5,
@@ -93,32 +111,32 @@
 		"sub-black": 0,
 		"sub-white": 15,
 		
-		"sub-green": 5,
-		"sub-darkestgreen": 5,
-		"sub-darkgreen": 5,
-		"sub-mediumgreen": 5,
-		"sub-brightgreen": 5,
-		"sub-darkestcyan": 5,
-		"sub-darkcyan": 5,
-		"sub-mediumcyan": 5,
-		"sub-brightcyan": 5,
-		"sub-darkestblue": 5,
-		"sub-darkblue": 5,
-		"sub-red": 5,
-		"sub-darkestred": 5,
-		"sub-darkred": 5,
-		"sub-mediumred": 5,
-		"sub-brightred": 5,
-		"sub-brightestred": 5,
+		"sub-green": 2,
+		"sub-darkestgreen": 12,
+		"sub-darkgreen": 12,
+		"sub-mediumgreen": 2,
+		"sub-brightgreen": 2,
+		"sub-darkestcyan": 6,
+		"sub-darkcyan": 6,
+		"sub-mediumcyan": 6,
+		"sub-brightcyan": 6,
+		"sub-darkestblue": 4,
+		"sub-darkblue": 4,
+		"sub-red": 1,
+		"sub-darkestred": 12,
+		"sub-darkred": 12,
+		"sub-mediumred": 2,
+		"sub-brightred": 1,
+		"sub-brightestred": 1,
 		"sub-darkestpurple": 5,
 		"sub-mediumpurple": 5,
 		"sub-brightpurple": 5,
-		"sub-darkorange": 5,
-		"sub-mediumorange": 5,
-		"sub-brightorange": 5,
-		"sub-brightestorange": 5,
-		"sub-yellow": 5,
-		"sub-brightyellow": 5,
+		"sub-darkorange": 12,
+		"sub-mediumorange": 3,
+		"sub-brightorange": 3,
+		"sub-brightestorange": 3,
+		"sub-yellow": 3,
+		"sub-brightyellow": 3,
 		
 		"sub-gray0": 0,
 		"sub-gray1": 0,
@@ -160,41 +178,27 @@
 		"sub-solarized:green": 5
 	},
 	"gradients": {
-		"grayscale": [
-			[0, 13, 8, 14, 7, 15]
-		],
-		"grayscale-safe": [
-			[0, 8, 7, 15]
-		],
-		"dark_GREEN_Orange_red": [
-			[5, 5]
-		],
-		"GREEN_Orange_red": [
-			[5, 5]
-		],
-		"green_yellow_red": [
-			[5, 5]
-		],
-		"green_yellow_orange_red": [
-			[5, 5]
-		],
-		"yellow_red": [
-			[5, 5]
-		],
-		"yellow_orange_red": [
-			[5, 5]
-		],
-		"blue_red": [
-			[5, 5]
-		],
-		"white_red": [
-			[5, 5]
-		],
-		"dark_green_gray": [
-			[5, 5]
-		],
-		"light_green_gray": [
-			[5, 5]
-		]
+		"grayscale": [[0, 13, 8, 14, 7, 15]],
+		"grayscale-safe": [[0, 8, 7, 15]],
+		"dark_GREEN_Orange_red": [[5, 5]],
+		"GREEN_Orange_red": [[5, 5]],
+		"green_yellow_red": [[5, 5]],
+		"green_yellow_orange_red": [[5, 5]],
+		"yellow_red": [[5, 5]],
+		"yellow_orange_red": [[5, 5]],
+		"blue_red": [[5, 5]],
+		"white_red": [[5, 5]],
+		"dark_green_gray": [[5, 5]],
+		"light_green_gray": [[5, 5]],
+		"sub-dark_GREEN_Orange_red": [[0, 13, 8, 14, 7, 15]],
+		"sub-GREEN_Orange_red": [[0, 13, 8, 14, 7, 15]],
+		"sub-green_yellow_red": [[0, 13, 8, 14, 7, 15]],
+		"sub-green_yellow_orange_red": [[0, 13, 8, 14, 7, 15]],
+		"sub-yellow_red": [[0, 13, 8, 14, 7, 15]],
+		"sub-yellow_orange_red": [[0, 13, 8, 14, 7, 15]],
+		"sub-blue_red": [[0, 13, 8, 14, 7, 15]],
+		"sub-white_red": [[0, 13, 8, 14, 7, 15]],
+		"sub-dark_green_gray": [[0, 13, 8, 14, 7, 15]],
+		"sub-light_green_gray": [[0, 13, 8, 14, 7, 15]]
 	}
 }
