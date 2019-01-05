@@ -98,3 +98,4 @@ source /usr/share/powerline/bindings/bash/powerline.sh
 (cat ~/.cache/wal/sequences &)
 source ~/.cache/wal/colors-tty.sh || true
 
+source <(kitty + complete setup bash)
