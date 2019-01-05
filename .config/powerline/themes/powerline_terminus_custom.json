@@ -19,7 +19,8 @@
 		},
 		"cwd": {
 			"args": {
-				"ellipsis": "┅"
+				"ellipsis": "┅",
+				"dir_shorten_len": 8
 			}
 		},
 
@@ -128,6 +129,17 @@
 				"V_text": "⇕{rows}"
 			}
 		},
+		"powerline.segments.vim.branch": {
+			"args": {
+				"status_colors": true
+			}
+		},
+		"powerline.segments.vim.file_name": {
+			"args": {
+				"display_no_file": true,
+				"no_file_text": "[No file]"
+			}
+		},
 		"powerline.segments.vim.readonly_indicator": {
 			"args": {
 				"text": ""
@@ -138,14 +150,50 @@
 				"text": "+"
 			}
 		},
-
-		"powerline.segments.i3wm.scratchpad": {
+		"powerline.segments.vim.tab_modified_indicator": {
 			"args": {
-				"icons": {
-					"fresh": "●",
-					"changed": "○"
-				}
+				"text": "+"
 			}
+		},
+		"powerline.segments.vim.paste_indicator": {
+			"args": {
+				"text": "PASTE"
+			}
+		},
+		"powerline.segments.vim.plugin.capslock.capslock_indicator": {
+			"args": {
+				"text": "CAPS LOCK"
+			}
+		},
+		"powerline.segments.vim.readonly_indicator": {
+			"args": {
+				"text": "READ ONLY"
+			}
+		},
+		"powerline.segments.vim.file_vcs_status": {
+			"before": " "
+		},
+		"powerline.segments.vim.virtcol_current": {
+			"args": {
+				"gradient": false
+			},
+			"before": ":"
+		},
+		"powerline.segments.vim.position": {
+			"args": {
+				"gradient": false
+			}
+		},
+		"powerline.segments.vim.tab": {
+			"args": {
+				"end": true
+			}
+		},
+		"powerline.segments.vim.bufnr": {
+			"after": ":"
+		},
+		"powerline.segments.vim.tabnr": {
+			"after": ":"
 		}
 	}
 }
