@@ -6,7 +6,8 @@
 		"bell_status":          {"fg": "wal-red", "bg": "wal-darkest", "attrs": []},
 		"window":               {"fg": "wal-bright", "bg": "wal-darkest", "attrs": []},
 		"window:divider":       {"fg": "wal-dark", "bg": "wal-darkest", "attrs": []},
-		"window:current":       {"fg": "wal-brighter", "bg": "wal-accent", "attrs": []},
-		"window_name":          {"fg": "wal-brightest", "bg": "wal-accent", "attrs": ["bold"]}
+		"window:current":       {"fg": "wal-brighter", "bg": "wal-blue", "attrs": []},
+		"window_name":          {"fg": "wal-brightest", "bg": "wal-accent", "attrs": ["bold"]},
+		"attached_clients": 	{"fg": "wal-green", "bg": "wal-brightest", "attrs": []}
 	}
 }

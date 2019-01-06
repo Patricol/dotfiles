@@ -17,27 +17,10 @@
 		"wal-bright": 14,
 		"wal-brightest": 15,
 		
-		
-		"powerline-dark-text": 0,
-		"powerline-widget-bg": 13,
-		"powerline-widget-fg": 7,
-		"powerline-minor-mode-bg": 8,
-		"powerline-minor-mode-fg": 7,
-		"powerline-minor-mode-divider-fg": 13,
-		
-		"vim-mode-bar-innermost-bg": 0,
-		"vim-mode-bar-innermore-bg": 13,
-		"vim-mode-bar-innermore-fg": 15,
-		"vim-mode-bar-innermore-divider-fg": 14,
-		"vim-mode-bar-inner-divider-fg": 14,
-		"vim-mode-bar-inner-fg": 15,
-		"vim-mode-bar-inner-bg": 8,
-		"vim-mode-bar-outer-bg": 15,
 		"vim-mode-normal-bg": 2,
 		"vim-mode-insert-bg": 4,
 		"vim-mode-visual-bg": 3,
 		"vim-mode-replace-bg": 1,
-		"vim-dark-text": 0
 	},
 	"gradients": {
 		"grayscale": [[0, 13, 8, 14, 7, 15]],

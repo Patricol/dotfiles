@@ -1,36 +1,36 @@
 {
 	"groups": {
-		"environment":        "information:unimportant",
-		"file_size":          "information:unimportant",
-		"file_format":        "information:unimportant",
+		"environment":        "vim-unimportant",
+		"file_size":          "vim-unimportant",
+		"file_format":        "vim-unimportant",
 			"file_encoding":      "file_format",
 			"file_type":          "file_format",
 		"branch":             "wal-branch",
 			"branch_clean":       "branch",
 		"file_scheme":        "file_name",
-		"file_directory":     "information:additional",
+		"file_directory":     "vim-additional",
 			"commandt:path":      "file_directory",
 			"tabnr":              "file_directory",
 			"bufnr":              "file_directory",
 			"file_name_empty":    "file_directory",
-		"line_percent":       "information:additional",
+		"line_percent":       "vim-additional",
 		"line_count":         "line_current",
-		"position":           "information:additional",
+		"position":           "vim-additional",
 		"single_tab":         "wal-rightmost_block",
 		"many_tabs":          "single_tab",
-		"winnr":              "information:unimportant",
+		"winnr":              "vim-unimportant",
 		"capslock_indicator": "paste_indicator",
 
 		"csv:column_number": "line_current",
 		"csv:column_name":   "line_current_symbol",
 
-		"tab:background":     "background",
-		"tab:divider":        "background:divider",
+		"tab:background":     "vim-background",
+		"tab:divider":        "vim-background:divider",
 
 		"tab_nc:modified_indicator": "modified_indicator",
 			"buf_nc:modified_indicator": "tab_nc:modified_indicator",
 			"buf_nc_mod:modified_indicator": "tab_nc:modified_indicator",
-		"tab_nc:file_directory":     "information:unimportant",
+		"tab_nc:file_directory":     "vim-unimportant",
 			"tab_nc:file_name":          		"tab_nc:file_directory",
 			"tab_nc:tabnr":              		"tab_nc:file_directory",
 			"buf_nc:file_directory":     		"tab_nc:file_directory",
@@ -41,7 +41,7 @@
 				"buf_nc_mod:bufnr":              "buf_nc_mod:file_directory",
 
 		"commandt:label":      "file_name",
-		"commandt:background": "background",
+		"commandt:background": "vim-background",
 		"commandt:finder":     "file_name"
 	}
 }
