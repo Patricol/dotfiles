@@ -5,6 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -90,12 +91,16 @@ PATH=$PATH:~/.bin
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 
-powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh
-
-(cat ~/.cache/wal/sequences &)
+if [ -z "$SSH_CONNECTION" ]; then
+	(cat ~/.cache/wal/sequences &)
+else
+	export LANG="en_US"
+    export POWERLINE_CONFIG_OVERRIDES="common.default_top_theme=ascii_custom"
+fi
+powerline-daemon -q
 source ~/.cache/wal/colors-tty.sh || true
 
 source <(kitty + complete setup bash)
