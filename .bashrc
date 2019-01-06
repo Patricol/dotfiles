@@ -97,10 +97,13 @@ source /usr/share/powerline/bindings/bash/powerline.sh
 if [ -z "$SSH_CONNECTION" ]; then
 	(cat ~/.cache/wal/sequences &)
 else
-	export LANG="en_US"
-    export POWERLINE_CONFIG_OVERRIDES="common.default_top_theme=ascii_custom"
+	#export LANG="en_US"
+    #export LANG="en_US.UTF-8"
+    #changing LANG messes up powerline in vim, even when the daemon is started correctly.
+    export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
 fi
-powerline-daemon -q
+#need to start powerline-daemon with unicode LANG regardless
+LANG="en_US.UTF-8" powerline-daemon -q
 source ~/.cache/wal/colors-tty.sh || true
 
 source <(kitty + complete setup bash)

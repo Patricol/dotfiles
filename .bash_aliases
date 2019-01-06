@@ -4,13 +4,26 @@
 # enable color aliases of ls if supported
 if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
+    
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    
+    alias diff='diff --color=auto'
+    
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+function man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
 
 # some more ls aliases
 alias ll='ls -AlhF'
@@ -77,6 +90,7 @@ function drfg() {
 alias drfgui='drfg patricol/terminal:latest'
 
 alias eb='exec bash'
+alias ebnrc='exec bash --norc --noprofile'
 
 function rgrep() {
 	grep -r $@
@@ -162,4 +176,14 @@ alias wal-red='walset debug-red'
 alias wal-yellow='walset debug-yellow'
 alias material='wal-material'
 alias nomaterial='wal-default'
-alias rpl='powerline-daemon -qr'
+alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
+
+
+function tif() {
+    #test if statement
+    if [ $@ ]; then
+        echo "True"
+    else
+        echo "False"
+    fi
+}
