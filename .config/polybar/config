@@ -301,7 +301,7 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 0
 
-modules-left = time i3 keyboard
+modules-left = time i3-icons keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
@@ -456,17 +456,28 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 pin-workspaces = false
 
-ws-icon-0 = 1;%{T5}瞧%{T-}
-ws-icon-1 = 2;%{T5}爵%{T-}
-ws-icon-2 = 3;%{T5}犯%{T-}
-ws-icon-3 = 4;%{T5}猪%{T-}
-ws-icon-4 = 5;%{T5}瑱%{T-}
-ws-icon-5 = 6;%{T5}甆%{T-}
-ws-icon-6 = 7;%{T5}画%{T-}
-ws-icon-7 = 8;%{T5}瘝%{T-}
-ws-icon-8 = 9;%{T5}%{T-}
-ws-icon-9 = 10;%{T5}%{T-}
-ws-icon-default = %{T5}%{T-}
+;ws-icon-0 = 1;%{T5}瞧%{T-}
+;ws-icon-1 = 2;%{T5}爵%{T-}
+;ws-icon-2 = 3;%{T5}犯%{T-}
+;ws-icon-3 = 4;%{T5}猪%{T-}
+;ws-icon-4 = 5;%{T5}瑱%{T-}
+;ws-icon-5 = 6;%{T5}甆%{T-}
+;ws-icon-6 = 7;%{T5}画%{T-}
+;ws-icon-7 = 8;%{T5}瘝%{T-}
+;ws-icon-8 = 9;%{T5}%{T-}
+;ws-icon-9 = 10;%{T5}%{T-}
+;ws-icon-default = %{T5}%{T-}
+ws-icon-0 = 1;%{T5}%{T-}
+ws-icon-1 = 2;%{T5}%{T-}
+ws-icon-2 = 3;%{T5}%{T-}
+ws-icon-3 = 4;%{T5}%{T-}
+ws-icon-4 = 5;%{T5}%{T-}
+ws-icon-5 = 6;%{T5}%{T-}
+ws-icon-6 = 7;%{T5}%{T-}
+ws-icon-7 = 8;%{T5}%{T-}
+ws-icon-8 = 9;%{T5}%{T-}
+ws-icon-9 = 10;%{T5}%{T-}
+ws-icon-default = %{T5}%{T-}
 
 ws-label = %icon%
 
@@ -491,13 +502,13 @@ label-focused-spacing = ${self.ws-spacing}
 
 ; unfocused = Inactive workspace on any monitor
 label-unfocused = ${self.ws-label}
+label-unfocused-foreground = ${colors.lowvis-fg}
 label-unfocused-padding = ${self.ws-padding}
 label-unfocused-margin = ${self.ws-margin}
 label-unfocused-spacing = ${self.ws-spacing}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = ${self.ws-label}
-label-visible-foreground = ${colors.lowvis-fg}
 label-visible-padding = ${self.ws-padding}
 label-visible-margin = ${self.ws-margin}
 label-visible-spacing = ${self.ws-spacing}
