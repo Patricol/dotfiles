@@ -12,7 +12,10 @@
 	"spaces": 1,
 	"segment_data": {
 		"branch": {
-			"before": " "
+			"before": " ",
+			"args": {
+				"status_colors": true
+			}
 		},
 		"stash": {
 			"before": "ST "
@@ -127,11 +130,6 @@
 				"v_text_oneline": "↔{vcols}",
 				"v_text_multiline": "↕{rows}",
 				"V_text": "⇕{rows}"
-			}
-		},
-		"powerline.segments.vim.branch": {
-			"args": {
-				"status_colors": true
 			}
 		},
 		"powerline.segments.vim.file_name": {
