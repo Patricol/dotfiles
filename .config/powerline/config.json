@@ -1,8 +1,7 @@
 {
 	"common": {
 		"term_truecolor": false,
-		"default_top_theme": "powerline_terminus_custom",
-		"ambiwidth": 1
+		"default_top_theme": "powerline_terminus_custom"
 	},
 	"ext": {
 		"shell": {
