@@ -241,6 +241,7 @@ dark-text = 2
 monospace-fill = 3
 sans-non-mono = 4
 window-title = ${self.sans-non-mono}
+dark-material-numbers = 10
 
 [bar/main]
 
@@ -253,7 +254,7 @@ font-size-base = 10
 ; Later set these up to scale with DPI; so that I don't have to manually change any values etc.
 
 ; Chosen as font for spacing. Should be something with almost no characters; because I want everything but the spacing to default to another font. Can change spacing size by changing this font's size.
-font-0 = Misc Fixed:pixelsize=1:antialias=true;0
+font-0 = Misc Fixed:pixelsize=2:antialias=true;0
 
 ; For dark text on lighter background; make it leave a pixel space above and below but otherwise fill the height.
 ; only need to consider A-Z0-9, but can ignore Q, so that's the same as just considering I.
@@ -280,6 +281,8 @@ font-7 = Material Design Icons:pixelsize=14:antialias=true;3
 ;font-7 = Material Design Icons:pixelsize=28:antialias=true;7
 font-8 = Material Design Icons:pixelsize=11:antialias=true;2
 ;font-8 = Material Design Icons:pixelsize=23:antialias=true;5
+font-9 = Material Design Icons:pixelsize=22:antialias=true;5
+;font-9 = Material Design Icons:pixelsize=46:antialias=true;10
 
 
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -327,7 +330,7 @@ source-code-pro-test-chars = dfgjlpyIQ27
 source-sans-pro-test-chars = dfgjlpyIQ27
 
 ;T1 is just for spacing.
-content = %{T1} %{T2}1I27 %{T3}2I27 %{T4}3dfgjlpyIQ27 %{T5}4更瘝 %{T6}5浪 %{T7}6 %{T8}7 %{T9}8 %{T-}
+content = %{T1} %{T2}1I27 %{T3}2I27 %{T4}3dfgjlpyIQ27 %{T5}4更瘝 %{T6}5浪 %{T7}6 %{T8}7 %{T9}8 %{T10}91234567890 %{T-}
 ; "content" has the same properties as "format-NAME"
 content-background = ${colors.highvis-fg}
 content-foreground = ${colors.bg}
@@ -392,7 +395,8 @@ wrapping-scroll = false
 pin-workspaces = false
 
 ws-label = %index%
-ws-label-font = ${fonts.dark-text}
+ws-label-font = ${fonts.dark-material-numbers}
+
 ws-padding = 1
 ws-margin = 0
 ws-spacing = 0
@@ -440,6 +444,70 @@ label-urgent-spacing = ${self.ws-spacing}
 
 ; Separator in between workspaces
 ; label-separator = |
+
+
+[module/i3-icons]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+ws-icon-0 = 1;%{T5}瞧%{T-}
+ws-icon-1 = 2;%{T5}爵%{T-}
+ws-icon-2 = 3;%{T5}犯%{T-}
+ws-icon-3 = 4;%{T5}猪%{T-}
+ws-icon-4 = 5;%{T5}瑱%{T-}
+ws-icon-5 = 6;%{T5}甆%{T-}
+ws-icon-6 = 7;%{T5}画%{T-}
+ws-icon-7 = 8;%{T5}瘝%{T-}
+ws-icon-8 = 9;%{T5}%{T-}
+ws-icon-9 = 10;%{T5}%{T-}
+ws-icon-default = %{T5}%{T-}
+
+ws-label = %icon%
+
+ws-padding = 1
+ws-margin = 0
+ws-spacing = 0
+
+; for modes like resize
+label-mode = %mode%
+label-mode-font = ${fonts.dark-text}
+label-mode-padding = 2
+label-mode-margin = 2
+label-mode-foreground = ${colors.bg}
+label-mode-background = ${colors.accent}
+
+; focused = Active workspace on focused monitor
+label-focused = ${self.ws-label}
+label-focused-foreground = ${colors.accent}
+label-focused-padding = ${self.ws-padding}
+label-focused-margin = ${self.ws-margin}
+label-focused-spacing = ${self.ws-spacing}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = ${self.ws-label}
+label-unfocused-padding = ${self.ws-padding}
+label-unfocused-margin = ${self.ws-margin}
+label-unfocused-spacing = ${self.ws-spacing}
+
+; visible = Active workspace on unfocused monitor
+label-visible = ${self.ws-label}
+label-visible-foreground = ${colors.lowvis-fg}
+label-visible-padding = ${self.ws-padding}
+label-visible-margin = ${self.ws-margin}
+label-visible-spacing = ${self.ws-spacing}
+
+; urgent = Workspace with urgency hint set
+label-urgent = ${self.ws-label}
+label-urgent-background = ${colors.accent}
+label-urgent-padding = ${self.ws-padding}
+label-urgent-margin = ${self.ws-margin}
+label-urgent-spacing = ${self.ws-spacing}
 
 
 [module/mpd]
