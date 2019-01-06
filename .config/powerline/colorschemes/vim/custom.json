@@ -1,11 +1,11 @@
 {
 	"name": "Default color scheme",
 	"groups": {
-		"mode":                     { "fg": "vim-darkest", "bg": "vim-mode-normal-bg", "attrs": ["bold"] },
-		"vim-mode-insert": 			{ "fg": "vim-darkest", "bg": "vim-mode-insert-bg", "attrs": ["bold"] },
-		"vim-mode-visual": 			{ "fg": "vim-darkest", "bg": "vim-mode-visual-bg", "attrs": ["bold"] },
-		"visual_range":             { "fg": "vim-mode-visual-bg", "bg": "wal-dark", "attrs": ["bold"] },
-		"vim-mode-replace": 		{ "fg": "vim-darkest", "bg": "vim-mode-replace-bg", "attrs": ["bold"] },
+		"mode":                     { "fg": "wal-darkest", "bg": "wal-green", "attrs": ["bold"] },
+		"vim-mode-insert": 			{ "fg": "wal-darkest", "bg": "wal-blue", "attrs": ["bold"] },
+		"vim-mode-visual": 			{ "fg": "wal-darkest", "bg": "wal-yellow", "attrs": ["bold"] },
+		"visual_range":             { "fg": "wal-yellow", "bg": "wal-dark", "attrs": ["bold"] },
+		"vim-mode-replace": 		{ "fg": "wal-darkest", "bg": "wal-red", "attrs": ["bold"] },
 		
 		"file_vcs_status":          "wal-red",
 		"file_vcs_status_A":        "wal-green",
