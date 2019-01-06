@@ -23,7 +23,6 @@
 				"dir_shorten_len": 8
 			}
 		},
-
 		"line_current_symbol": {
 			"contents": ""
 		},
@@ -83,7 +82,8 @@
 					"windy":         "WINDY",
 					"not_available": "NA",
 					"unknown":       "UKN"
-				}
+				},
+				"temp_format": "{temp:.0f} C"
 			}
 		},
 		"powerline.segments.common.time.fuzzy_time": {
@@ -142,7 +142,7 @@
 		},
 		"powerline.segments.vim.readonly_indicator": {
 			"args": {
-				"text": ""
+				"text": "READ ONLY"
 			}
 		},
 		"powerline.segments.vim.modified_indicator": {
@@ -163,11 +163,6 @@
 		"powerline.segments.vim.plugin.capslock.capslock_indicator": {
 			"args": {
 				"text": "CAPS LOCK"
-			}
-		},
-		"powerline.segments.vim.readonly_indicator": {
-			"args": {
-				"text": "READ ONLY"
 			}
 		},
 		"powerline.segments.vim.file_vcs_status": {
