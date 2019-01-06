@@ -79,6 +79,8 @@ client.placeholder         $background $background $bright     $dark     $backgr
 client.background          $background
 
 
+exec_always --no-startup-id xsetroot -solid "$background"
+
 
 
 # BEHAVIOR ####################################################################
@@ -354,7 +356,4 @@ bindsym XF86Calculator		$calculator
 
 # win key only to open rofi
 #bindcode $windows-key-code --release $launcher
-
-
-#exec xsetroot -solid black
 
