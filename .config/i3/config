@@ -294,7 +294,7 @@ bindsym $mod+$shift+$ctrl+0 move container to $ws10; $ws10
 set $launcher			exec rofi -show combi
 set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
 set $lock			exec --no-startup-id i3lock -c 000000 -k --timestr="%H:%M" --timecolor=FFFFFFFF --noinputtext="" --wrongtext="" --veriftext="" -e --datecolor=FFFFFFFF --datestr="%D"
-set $terminal			exec --no-startup-id terminator
+set $terminal			exec --no-startup-id kitty
 set $files			exec --no-startup-id nemo
 set $chrome			exec chromium
 set $task-manager		exec gnome-system-monitor
