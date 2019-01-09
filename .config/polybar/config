@@ -335,6 +335,12 @@ content = %{T1} %{T2}1I27 %{T3}2I27 %{T4}3dfgjlpyIQ27 %{T5}4更瘝�
 content-background = ${colors.highvis-fg}
 content-foreground = ${colors.bg}
 
+[module/work]
+type = custom/text
+; indicates that this is the work account
+content = ${symbols.briefcase}
+content-foreground = ${colors.lowvis-fg}
+
 [module/xwindow]
 type = internal/xwindow
 label = %title%

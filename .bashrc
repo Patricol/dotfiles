@@ -112,3 +112,7 @@ LANG="en_US.UTF-8" powerline-daemon -q
 source ~/.cache/wal/colors-tty.sh || true
 
 source <(kitty + complete setup bash)
+
+# run this regularly, but not here:
+#dfg remote update &> /dev/null &
+

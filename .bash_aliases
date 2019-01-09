@@ -90,6 +90,7 @@ function drfg() {
 alias drfgui='drfg patricol/terminal:latest'
 
 alias eb='exec bash'
+alias be='eb'
 alias ebnrc='exec bash --norc --noprofile'
 
 function rgrep() {
