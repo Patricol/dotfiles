@@ -126,6 +126,7 @@ function merge() {
 alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
 
 alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
+alias colorst='msgcat --color=test'
 
 function extract() {
 	7z x $@
@@ -156,12 +157,15 @@ alias cls='clear && ls'
 alias cl='cls'
 alias x='exit'
 
-alias bal='vim ~/.bash_aliases'
-alias brc='vim ~/.bashrc'
+#open vim to bottom of file.
+alias vimbottom='vim "+ normal GA"'
+
+alias bal='vimbottom ~/.bash_aliases'
+alias brc='vimbottom ~/.bashrc'
 
 #dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
-alias dfgk='add_ssh_key github_fcdcbda_ssh_key'
+alias dfgk='add_ssh_key github_fcdcbda'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 
