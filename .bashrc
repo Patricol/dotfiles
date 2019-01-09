@@ -100,7 +100,12 @@ else
 	#export LANG="en_US"
     #export LANG="en_US.UTF-8"
     #changing LANG messes up powerline in vim, even when the daemon is started correctly.
-    export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
+    echo ""
+fi
+if [ "$TERM" == "linux" ] || [ ! -z "$SSH_CONNECTION" ]; then
+	export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
+else
+	export POWERLINE_CONFIG_OVERRIDES=''
 fi
 #need to start powerline-daemon with unicode LANG regardless
 LANG="en_US.UTF-8" powerline-daemon -q
