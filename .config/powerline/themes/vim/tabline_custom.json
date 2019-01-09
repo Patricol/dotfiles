@@ -12,7 +12,6 @@
 					},
 					{
 						"function": "tabnr",
-						"after": " ",
 						"priority": 5
 					},
 					{
@@ -21,9 +20,6 @@
 					},
 					{
 						"function": "file_name",
-						"args": {
-							"display_no_file": true
-						},
 						"priority": 10
 					},
 					{
@@ -33,10 +29,7 @@
 				]
 			},
 			{
-				"function": "tab",
-				"args": {
-					"end": true
-				}
+				"function": "tab"
 			},
 			{
 				"type": "segment_list",
@@ -45,7 +38,6 @@
 				"segments": [
 					{
 						"function": "bufnr",
-						"after": " ",
 						"priority": 5
 					},
 					{
@@ -54,9 +46,6 @@
 					},
 					{
 						"function": "file_name",
-						"args": {
-							"display_no_file": true
-						},
 						"priority": 10
 					},
 					{

@@ -1,23 +1,51 @@
+rofi.theme: ~/.cache/wal/rofi-theme.rasi
+rofi.terminal: kitty
+
+rofi.scroll-method: 1
+rofi.show-match: false
+rofi.show-icons: true
+! rofi.drun-icon-theme
+rofi.matching: fuzzy
+rofi.levenshtein-sort: true
+rofi.tokenize: true
+rofi.monitor: -4
+! rofi.dpi
+rofi.window-format: {w:0} {t:40} {c:0}
+rofi.drun-match-fields: name,generic,categories
+rofi.sidebar-mode: true
+rofi.threads: 0
+rofi.combi-modi: window,drun,run
+rofi.modi: run,drun,combi,window,keys
+rofi.auto-select: false
+rofi.sort: true
+rofi.sorting-method: levenshtein
+
+
 ! "Background to use for fake transparency. (background or screenshot)" Set from: Default
 ! rofi.fake-background:                screenshot
 ! "Window Format. w (desktop name), t (title), n (name), r (role), c (class) *DEPRECATED*" Set from: Default
-! rofi.window-format:                  {w}    {i}{c}   {t}
+rofi.window-format: {w:0} {t:40} {c:0}
 ! "Max history size (WARNING: can cause slowdowns when set to high)." Set from: Default
 ! rofi.max-history-size:               25
 ! "Hide the prefix mode prefix on the combi view." Set from: Default
 ! rofi.combi-hide-mode-prefix:         false
+
 ! "The display name of this browser" Set from: Default
-! rofi.display-window:                 
+rofi.display-window: windows
 ! "The display name of this browser" Set from: Default
-! rofi.display-run:                    
+rofi.display-run: run
 ! "The display name of this browser" Set from: Default
-! rofi.display-ssh:                    
+rofi.display-ssh: ssh
 ! "The display name of this browser" Set from: Default
-! rofi.display-drun:                   
+rofi.display-drun: drun
 ! "The display name of this browser" Set from: Default
-! rofi.display-combi:                  
+rofi.display-combi: combo
 ! "The display name of this browser" Set from: Default
-! rofi.display-keys:                   
+rofi.display-keys: hotkeys
+
+
+! Keybindings
+
 ! "Paste primary selection" Set from: Default
 rofi.kb-primary-paste:               
 rofi.kb-secondary-paste:             Control+v
@@ -41,12 +69,12 @@ rofi.kb-accept-entry:                Return,KP_Enter
 ! rofi.kb-accept-alt:                  Shift+Return
 ! "Delete entry from history" Set from: Default
 ! rofi.kb-delete-entry:                Shift+Delete
-rofi.kb-mode-next:                   Shift+Right,Control+Tab
-rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab
+rofi.kb-mode-next:                   Shift+Right,Control+Tab,Control+Page_Down
+rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Control+Page_Up
 ! "Go to the previous column" Set from: Default
-! rofi.kb-row-left:                    Control+Page_Up
+rofi.kb-row-left:
 ! "Go to the next column" Set from: Default
-! rofi.kb-row-right:                   Control+Page_Down
+rofi.kb-row-right:
 ! "Select previous entry" Set from: Default
 ! rofi.kb-row-up:                      Up,Control+p,ISO_Left_Tab
 ! "Select next entry" Set from: Default
@@ -143,24 +171,3 @@ rofi.kb-row-last:                    Shift+End
 ! rofi.me-accept-entry:                MouseDPrimary
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
-rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
-rofi.scroll-method: 1
-rofi.show-match: false
-rofi.show-icons: true
-! rofi.drun-icon-theme
-#rofi.matching: fuzzy
-rofi.levenshtein-sort: true
-rofi.tokenize: true
-rofi.monitor: -4
-! rofi.dpi
-rofi.terminal: kitty
-rofi.window-format: {w:0} {t:40} {c:0}
-rofi.drun-match-fields: name,generic,categories
-! rofi.fake-background
-! rofi.sidebar-mode: true
-rofi.threads: 0
-rofi.combi-modi: window,drun,run
-rofi.modi: run,drun,combi,window,keys
-rofi.auto-select: false
-rofi.sort: false
-rofi.display-combi: ?

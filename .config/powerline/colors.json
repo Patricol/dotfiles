@@ -1,130 +1,28 @@
 {
 	"colors": {
-		"wal-grayscale-darkest": 0,
+		"wal-darkest": 0,
 		"wal-red": 1,
 		"wal-green": 2,
 		"wal-yellow": 3,
 		"wal-blue": 4,
 		"wal-pink": 5,
 		"wal-cyan": 6,
-		"wal-grayscale-2nd-brightest": 7,
-		"wal-grayscale-3rd-darkest": 8,
+		"wal-brighter": 7,
+		"wal-dark": 8,
 		"wal-accent": 9,
 		"wal-accent-lighter": 10,
 		"wal-warning": 11,
 		"wal-brown": 12,
-		"wal-grayscale-2nd-darkest": 13,
-		"wal-grayscale-3rd-brightest": 14,
-		"wal-grayscale-brightest": 15,
-		"powerline-widget-bg": 13,
-		"powerline-widget-fg": 7,
-		"powerline-minor-mode-bg": 8,
-		"powerline-minor-mode-fg": 7,
-		
-		"warn-about-unconfigured-color": 5,
-
-		"black": 5,
-		"white": 5,
-		"green": 5,
-		"darkestgreen": 5,
-		"darkgreen": 5,
-		"mediumgreen": 5,
-		"brightgreen": 5,
-		"darkestcyan": 5,
-		"darkcyan": 5,
-		"mediumcyan": 5,
-		"brightcyan": 5,
-		"darkestblue": 5,
-		"darkblue": 5,
-		"red": 5,
-		"darkestred": 5,
-		"darkred": 5,
-		"mediumred": 5,
-		"brightred": 5,
-		"brightestred": 5,
-		"darkestpurple": 5,
-		"mediumpurple": 5,
-		"brightpurple": 5,
-		"darkorange": 5,
-		"mediumorange": 5,
-		"brightorange": 5,
-		"brightestorange": 5,
-		"yellow": 5,
-		"brightyellow": 5,
-		"gray0": 5,
-		"gray1": 5,
-		"gray2": 5,
-		"gray3": 5,
-		"gray4": 5,
-		"gray5": 5,
-		"gray6": 5,
-		"gray7": 5,
-		"gray8": 5,
-		"gray9": 5,
-		"gray10": 5,
-		"gray11": 5,
-		"gray90": 5,
-		"gray70": 5,
-		"lightyellowgreen": 5,
-		"gold3": 5,
-		"orangered": 5,
-		"steelblue": 5,
-		"darkorange3": 5,
-		"skyblue1": 5,
-		"khaki1": 5,
-		"solarized:base03": 5,
-		"solarized:base02": 5,
-		"solarized:base01": 5,
-		"solarized:base00": 5,
-		"solarized:base0": 5,
-		"solarized:base1": 5,
-		"solarized:base2": 5,
-		"solarized:base3": 5,
-		"solarized:yellow": 5,
-		"solarized:orange": 5,
-		"solarized:red": 5,
-		"solarized:magenta": 5,
-		"solarized:violet": 5,
-		"solarized:blue": 5,
-		"solarized:cyan": 5,
-		"solarized:green": 5
+		"wal-darker": 13,
+		"wal-bright": 14,
+		"wal-brightest": 15
 	},
 	"gradients": {
-		"grayscale": [
-			[0, 13, 8, 14, 7, 15]
-		],
-		"grayscale-safe": [
-			[0, 8, 7, 15]
-		],
-		"dark_GREEN_Orange_red": [
-			[5, 5]
-		],
-		"GREEN_Orange_red": [
-			[5, 5]
-		],
-		"green_yellow_red": [
-			[5, 5]
-		],
-		"green_yellow_orange_red": [
-			[5, 5]
-		],
-		"yellow_red": [
-			[5, 5]
-		],
-		"yellow_orange_red": [
-			[5, 5]
-		],
-		"blue_red": [
-			[5, 5]
-		],
-		"white_red": [
-			[5, 5]
-		],
-		"dark_green_gray": [
-			[5, 5]
-		],
-		"light_green_gray": [
-			[5, 5]
-		]
+		"grayscale": [[0, 13, 8, 14, 7, 15]],
+		"grayscale-no-darkest": [[13, 8, 14, 7, 15]],
+		"grayscale-no-brightest": [[0, 13, 8, 14, 7]],
+		"grayscale-safe": [[0, 8, 7, 15]],
+		"grayscale-safe-no-darkest": [[8, 7, 15]],
+		"grayscale-safe-no-brightest": [[0, 8, 7]]
 	}
 }
