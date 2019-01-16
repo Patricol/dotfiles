@@ -15,6 +15,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+alias rgrep='grep -r'
+
 function man() {
     LESS_TERMCAP_md=$'\e[01;31m' \
     LESS_TERMCAP_me=$'\e[0m' \
@@ -93,20 +95,18 @@ alias eb='exec bash'
 alias be='eb'
 alias ebnrc='exec bash --norc --noprofile'
 
-function rgrep() {
-	grep -r $@
-}
 
 function docker() {
 	sudo docker $@
 }
 
-function checli() {
-	sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli $@
-}
 
 function checliver() {
 	sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli:$@
+}
+
+function checli() {
+       checliver `cat /home/docker/che/instance/che.ver.do_not_modify` $@
 }
 
 alias logs='sudo journalctl -xe'
@@ -171,6 +171,7 @@ alias dfgk='add_ssh_key github_fcdcbda'
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 
 function walset() {
+	cat ~/.config/wal/colorschemes/$1.json
 	wal -g -f ~/.config/wal/colorschemes/$1.json
 }
 alias wal-material='walset material'
@@ -192,3 +193,5 @@ function tif() {
         echo "False"
     fi
 }
+
+alias epoch='date +%s'
