@@ -69,7 +69,7 @@ export EDITOR=vim
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-material
+material > /dev/null
 
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
