@@ -5,6 +5,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -68,11 +69,28 @@ export EDITOR=vim
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh
-
-(cat ~/.cache/wal/sequences &)
+if [ -z "$SSH_CONNECTION" ]; then
+	(cat ~/.cache/wal/sequences &)
+else
+	#export LANG="en_US"
+    #export LANG="en_US.UTF-8"
+    #changing LANG messes up powerline in vim, even when the daemon is started correctly.
+    echo ""
+fi
+if [ "$TERM" == "linux" ] || [ ! -z "$SSH_CONNECTION" ]; then
+	export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
+else
+	export POWERLINE_CONFIG_OVERRIDES=''
+fi
+#need to start powerline-daemon with unicode LANG regardless
+LANG="en_US.UTF-8" powerline-daemon -q
 source ~/.cache/wal/colors-tty.sh || true
+
+source <(kitty + complete setup bash)
+
+# run this regularly, but not here:
+#dfg remote update &> /dev/null &
 

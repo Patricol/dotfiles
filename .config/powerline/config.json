@@ -1,34 +1,35 @@
 {
 	"common": {
-		"term_truecolor": false
+		"term_truecolor": false,
+		"default_top_theme": "powerline_terminus_custom"
 	},
 	"ext": {
 		"shell": {
-			"colorscheme": "default",
-			"theme": "default_leftonly",
+			"colorscheme": "custom",
+			"theme": "custom_leftonly",
 			"local_themes": {
-				"continuation": "continuation",
-				"select": "select"
+				"continuation": "continuation_custom",
+				"select": "select_custom"
 			}
 		},
 		"tmux": {
-			"colorscheme": "default",
-			"theme": "default"
+			"colorscheme": "custom",
+			"theme": "custom"
 		},
 		"vim": {
-			"colorscheme": "default",
-			"theme": "default",
+			"colorscheme": "custom",
+			"theme": "custom",
 			"local_themes": {
-				"__tabline__": "tabline",
+				"__tabline__": "tabline_custom",
 
-				"cmdwin": "cmdwin",
-				"help": "help",
-				"quickfix": "quickfix",
+				"cmdwin": "cmdwin_custom",
+				"help": "help_custom",
+				"quickfix": "quickfix_custom",
 
-				"powerline.matchers.vim.plugin.nerdtree.nerdtree": "plugin_nerdtree",
-				"powerline.matchers.vim.plugin.commandt.commandt": "plugin_commandt",
-				"powerline.matchers.vim.plugin.gundo.gundo": "plugin_gundo",
-				"powerline.matchers.vim.plugin.gundo.gundo_preview": "plugin_gundo-preview"
+				"powerline.matchers.vim.plugin.nerdtree.nerdtree": "plugin_nerdtree_custom",
+				"powerline.matchers.vim.plugin.commandt.commandt": "plugin_commandt_custom",
+				"powerline.matchers.vim.plugin.gundo.gundo": "plugin_gundo_custom",
+				"powerline.matchers.vim.plugin.gundo.gundo_preview": "plugin_gundo-preview_custom"
 			}
 		}
 	}
