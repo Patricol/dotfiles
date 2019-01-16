@@ -4,13 +4,28 @@
 # enable color aliases of ls if supported
 if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
+    
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    
+    alias diff='diff --color=auto'
+    
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+alias rgrep='grep -r'
+
+function man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
 
 # some more ls aliases
 alias ll='ls -AlhF'
@@ -22,7 +37,25 @@ alias lra='lar'
 alias lr='ls -R'
 alias l='ls -CF'
 
+function fscrot() {
+	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
+}
 
+alias syu='aurman -Syu'
+function pacs() {
+	aurman -S --repo $@
+}
+function aurs() {
+	aurman -S --aur $@
+}
+function aurr() {
+	aurman -R $@
+}
+function pacr() {
+	aurman -R $@
+}
+alias listexplicitlyinstalled='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort) | sort -n'
+alias listexplicitlyinstalledbysize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
 
 alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
 function ftype() {
@@ -31,11 +64,11 @@ function ftype() {
 function ftypei() {
 	find . -type f -name "*.$1" -exec file {} \;
 }
-alias eb='exec bash'
 
-function rgrep() {
-	grep -r $@
-}
+alias eb='exec bash'
+alias be='eb'
+alias ebnrc='exec bash --norc --noprofile'
+
 
 function fkill() {
 	sudo killall -KILL $@
@@ -44,6 +77,7 @@ function fkill() {
 alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
 
 alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
+alias colorst='msgcat --color=test'
 
 alias cdup='cd ..'
 alias cdu='cdup'
@@ -56,12 +90,40 @@ alias cls='clear && ls'
 alias cl='cls'
 alias x='exit'
 
-alias bal='vim ~/.bash_aliases'
-alias brc='vim ~/.bashrc'
+#open vim to bottom of file.
+alias vimbottom='vim "+ normal GA"'
+
+alias bal='vimbottom ~/.bash_aliases'
+alias brc='vimbottom ~/.bashrc'
 
 #dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
+alias dfgk='add_ssh_key github_fcdcbda'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
-alias material='wal -g -f ~/.config/wal/colorschemes/dark/custom-material.json'
-alias nomaterial='wal -g -f ~/.config/wal/colorschemes/dark/default.json'
+
+function walset() {
+	cat ~/.config/wal/colorschemes/$1.json
+	wal -g -f ~/.config/wal/colorschemes/$1.json
+}
+alias wal-material='walset material'
+alias wal-default='walset default'
+alias wal-distinct='walset debug-distinct'
+alias wal-distinct-flip='walset debug-distinct-flip'
+alias wal-red='walset debug-red'
+alias wal-yellow='walset debug-yellow'
+alias material='wal-material'
+alias nomaterial='wal-default'
+alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
+
+
+function tif() {
+    #test if statement
+    if [ $@ ]; then
+        echo "True"
+    else
+        echo "False"
+    fi
+}
+
+alias epoch='date +%s'

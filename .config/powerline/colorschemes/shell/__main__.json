@@ -2,9 +2,9 @@
 	"groups": {
 		"continuation":         "cwd",
 		"continuation:current": "cwd:current_folder",
-		"exit_fail":            "critical:failure",
-		"exit_success":         "critical:success",
-		"jobnum":               "information:priority",
-		"superuser":            "warning:regular"
+		"exit_fail":            "wal-error",
+		"exit_success":         "wal-success",
+		"jobnum":               "wal-alert",
+		"superuser":            "wal-alert"
 	}
 }
