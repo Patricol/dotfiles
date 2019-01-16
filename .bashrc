@@ -69,6 +69,8 @@ export EDITOR=vim
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+material
+
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh
@@ -88,8 +90,6 @@ fi
 #need to start powerline-daemon with unicode LANG regardless
 LANG="en_US.UTF-8" powerline-daemon -q
 source ~/.cache/wal/colors-tty.sh || true
-
-source <(kitty + complete setup bash)
 
 # run this regularly, but not here:
 #dfg remote update &> /dev/null &
