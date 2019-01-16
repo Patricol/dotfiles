@@ -1,5 +1,5 @@
 rofi.theme: ~/.cache/wal/rofi-theme.rasi
-rofi.terminal: kitty
+rofi.terminal: urxvt
 
 rofi.scroll-method: 1
 rofi.show-match: false

@@ -377,11 +377,6 @@ ramp-capacity-7 = ${symbols.usage-ramp-2}
 ramp-capacity-8 = ${symbols.usage-ramp-1}
 ramp-capacity-9 = ${symbols.usage-ramp-0}
 
-[module/updates-arch]
-type = custom/script
-exec = ~/.config/polybar/updates-arch.sh
-interval = 60
-
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
