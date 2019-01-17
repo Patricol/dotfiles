@@ -101,6 +101,7 @@ else
     #export LANG="en_US.UTF-8"
     #changing LANG messes up powerline in vim, even when the daemon is started correctly.
     echo ""
+    neofetch
 fi
 if [ "$TERM" == "linux" ] || [ ! -z "$SSH_CONNECTION" ]; then
 	export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
@@ -115,4 +116,4 @@ source <(kitty + complete setup bash)
 
 # run this regularly, but not here:
 #dfg remote update &> /dev/null &
-
+# add something to tell me when updates are available on bash start from ssh etc.
