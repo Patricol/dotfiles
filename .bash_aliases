@@ -170,18 +170,17 @@ alias dfgk='add_ssh_key github_fcdcbda'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 
-function walset() {
-	cat ~/.config/wal/colorschemes/$1.json
-	wal -g -f ~/.config/wal/colorschemes/$1.json
+function wpgset() {
+	wpg -n -s $1.png > /dev/null
 }
-alias wal-material='walset material'
-alias wal-default='walset default'
-alias wal-distinct='walset debug-distinct'
-alias wal-distinct-flip='walset debug-distinct-flip'
-alias wal-red='walset debug-red'
-alias wal-yellow='walset debug-yellow'
-alias material='wal-material'
-alias nomaterial='wal-default'
+alias wpg-material='wpgset material'
+alias wpg-default='wpgset default'
+alias wpg-distinct='wpgset debug-distinct'
+alias wpg-distinct-flip='wpgset debug-distinct-flip'
+alias wpg-red='wpgset debug-red'
+alias wpg-yellow='wpgset debug-yellow'
+alias material='wpg-material'
+alias nomaterial='wpg-default'
 alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
 
 

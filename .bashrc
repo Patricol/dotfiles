@@ -95,7 +95,7 @@ POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh
 if [ -z "$SSH_CONNECTION" ]; then
-	(cat ~/.cache/wal/sequences &)
+	(cat ~/.config/wpg/sequences &)
 else
 	#export LANG="en_US"
     #export LANG="en_US.UTF-8"
@@ -110,7 +110,7 @@ else
 fi
 #need to start powerline-daemon with unicode LANG regardless
 LANG="en_US.UTF-8" powerline-daemon -q
-source ~/.cache/wal/colors-tty.sh || true
+source ~/.config/wpg/formats/colors-tty.sh || true
 
 source <(kitty + complete setup bash)
 

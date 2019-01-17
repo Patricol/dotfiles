@@ -1,0 +1,871 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/jaagr/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+
+;It is possible to include a file with pre-defined key-value pairs using:
+;include-file = /absolute/path/to/file
+
+;https://materialdesignicons.com/
+
+[all-colors]
+
+; This way all colors will be imported and setup in the file, but it's easy to see which are actually used. (check [colors])
+
+background =        ${xrdb:background:#212121}
+foreground =        ${xrdb:foreground:#f5f5f5}
+cursor =            ${xrdb:cursor:#ff0000}
+darkest =           ${xrdb:color0:#212121}
+red =               ${xrdb:color1:#e53935}
+green =             ${xrdb:color2:#43a047}
+yellow =            ${xrdb:color3:#fdd835}
+blue =              ${xrdb:color4:#1e88e5}
+pink =              ${xrdb:color5:#d81b60}
+cyan =              ${xrdb:color6:#00acc1}
+brighter =          ${xrdb:color7:#e0e0e0}
+dark =              ${xrdb:color8:#616161}
+accent =            ${xrdb:color9:#ff0000}
+accent-lighter =    ${xrdb:color10:#ff5a36}
+warning =           ${xrdb:color11:#ff00ff}
+brown =             ${xrdb:color12:#6d4c41}
+darker =            ${xrdb:color13:#424242}
+bright =            ${xrdb:color14:#9e9e9e}
+brightest =         ${xrdb:color15:#f5f5f5}
+
+;Using the brands' colors is not long-term viable; as I'll be switching hardware a lot etc.
+gskill-red = #e60012
+intel-blue = #0071c5
+noctua-brown = #632c25
+samsung-evo-gray = #888888
+
+[colors]
+
+accent =        ${all-colors.accent}
+highvis-fg =    ${all-colors.brightest}
+bg =            ${all-colors.background}
+midvis-fg =     ${all-colors.brighter}
+lowvis-fg =     ${all-colors.dark}
+warning =       ${all-colors.warning}
+warning-text =  ${self.bg}
+
+hdd =   ${all-colors.green}
+ram =   ${all-colors.red}
+temp =  ${all-colors.yellow}
+cpu =   ${all-colors.blue}
+
+
+[symbols]
+; Keep all the symbols here, so if an incompatible font is used to edit this file, they're at least properly labeled.
+; more misc useful material icons: ﱺﱻﱼﱽﱾﱿﲀﲁﲂﲃﲄﲅﲆﲇﲈﲉﲊﲋﲌﲍﲎﲏ着暴狼車賈蘭鸞濫藍拉臘廊朗
+
+; all-currently-set = %{T5}串豈更瞧爵犯猪瑱甆画瘝料隸療龍阮%{T-}%{T6}冷蠟來郎浪爛嵐襤%{T-}%{T7}肋輸遲醙鉶陼難%{T-}%{T8}%{T-}%{T9}%{T-}
+circle-check = %{T7}%{T-}
+circle-x = %{T7}%{T-}
+square-check = %{T5}%{T-}
+square-x = %{T5}%{T-}
+check = ${self.circle-check}
+x = ${self.circle-x}
+yes = ${self.check}
+no = ${self.x}
+thermometer-lines = %{T7}%{T-}
+thermometer = %{T7}%{T-}
+speaker-mute = %{T5}%{T-}
+speaker-low = %{T5}%{T-}
+speaker-medium = %{T5}%{T-}
+speaker-high = %{T5}%{T-}
+clock-solid = %{T7}肋%{T-}
+clock-outline = %{T5}%{T-}
+clock = ${self.clock-solid}
+power = %{T5}串%{T-}
+reboot = %{T5}豈%{T-}
+poweroff = %{T5}更%{T-}
+computer = %{T9}%{T-}
+briefcase-outline = %{T7}%{T-}
+briefcase-solid = %{T7}%{T-}
+briefcase = ${self.briefcase-solid}
+ethernet-port = %{T6}%{T-}
+ethernet-cable = %{T6}%{T-}
+ethernet-disconnected = %{T6}%{T-}
+ethernet-connected = ${self.ethernet-port}
+warning-triangle-solid = %{T5}%{T-}
+warning-triangle-outline = %{T5}%{T-}
+warning-box-solid = %{T5}%{T-}
+warning-circle-solid = %{T5}%{T-}
+warning-circle-outline = %{T5}%{T-}
+warning-octagon-solid = %{T5}%{T-}
+warning-solid = ${self.warning-triangle-solid}
+warning-outline = ${self.warning-triangle-outline}
+warning = ${self.warning-solid}
+
+update = %{T5}%{T-}
+
+wifi-connected-outline = %{T6}冷%{T-}
+wifi-connected-solid = %{T6}蠟%{T-}
+wifi-connected-bars = %{T6}%{T-}
+wifi-connected = ${self.wifi-connected-solid}
+wifi-disconnected-outline = %{T6}來%{T-}
+wifi-disconnected-solid = %{T6}郎%{T-}
+wifi-disconnected-bars = %{T6}%{T-}
+wifi-disconnected = ${self.wifi-disconnected-solid}
+
+wifi-empty = ${self.wifi-connected-outline}
+wifi-empty-warning = %{T6}浪%{T-}
+; The dot in this one's exclamation mark hits where an underline would normally go if given the default size; that's why all wifi symbols were set to another size.
+
+wifi-signal-0 = ${self.wifi-connected-outline}
+wifi-signal-1 = %{T6}爛%{T-}
+wifi-signal-2 = %{T6}嵐%{T-}
+wifi-signal-3 = %{T6}襤%{T-}
+wifi-signal-4 = ${self.wifi-connected-solid}
+
+hdd = %{T5}%{T-}
+eject = %{T8}%{T-}
+arch-linux = %{T5}%{T-}
+
+media-prev-outline = %{T7}%{T-}
+media-prev-solid = %{T7}%{T-}
+media-prev = ${self.media-prev-solid}
+media-stop-outline = %{T7}%{T-}
+media-stop-solid = %{T7}%{T-}
+media-stop = ${self.media-stop-solid}
+media-play-outline = %{T7}%{T-}
+media-play-solid = %{T7}%{T-}
+media-play = ${self.media-play-solid}
+media-pause-outline = %{T7}%{T-}
+media-pause-solid = %{T7}%{T-}
+media-pause = ${self.media-pause-solid}
+media-next-outline = %{T7}%{T-}
+media-next-solid = %{T7}%{T-}
+media-next = ${self.media-next-solid}
+media-random = %{T8}%{T-}
+media-repeat = %{T5}%{T-}
+media-single = %{T5}%{T-}
+
+
+hex-empty = %{T7}%{T-}
+hex-1-of-6 = %{T7}輸%{T-}
+hex-2-of-6 = %{T7}遲%{T-}
+hex-3-of-6 = %{T7}醙%{T-}
+hex-4-of-6 = %{T7}鉶%{T-}
+hex-5-of-6 = %{T7}陼%{T-}
+hex-6-of-6 = %{T7}難%{T-}
+hex-full = %{T7}%{T-}
+
+hex-0 = ${self.hex-empty}
+hex-1 = ${self.hex-1-of-6}
+hex-2 = ${self.hex-2-of-6}
+hex-3 = ${self.hex-3-of-6}
+hex-4 = ${self.hex-4-of-6}
+hex-5 = ${self.hex-5-of-6}
+hex-6 = ${self.hex-6-of-6}
+hex-7 = ${self.hex-full}
+
+circle-empty = %{T5}%{T-}
+circle-1-of-8 = %{T5}瞧%{T-}
+circle-2-of-8 = %{T5}爵%{T-}
+circle-3-of-8 = %{T5}犯%{T-}
+circle-4-of-8 = %{T5}猪%{T-}
+circle-5-of-8 = %{T5}瑱%{T-}
+circle-6-of-8 = %{T5}甆%{T-}
+circle-7-of-8 = %{T5}画%{T-}
+circle-8-of-8 = %{T5}瘝%{T-}
+circle-full = %{T5}%{T-}
+; circle-full is slightly different in size; but the difference becomes less noticeable at higher resolutions; so just ignore that.
+
+circle-0 = ${self.circle-empty}
+circle-1 = ${self.circle-1-of-8}
+circle-2 = ${self.circle-2-of-8}
+circle-3 = ${self.circle-3-of-8}
+circle-4 = ${self.circle-4-of-8}
+circle-5 = ${self.circle-5-of-8}
+circle-6 = ${self.circle-6-of-8}
+circle-7 = ${self.circle-7-of-8}
+circle-8 = ${self.circle-8-of-8}
+circle-9 = ${self.circle-full}
+
+usage-ramp-0 = ${self.circle-0}
+usage-ramp-1 = ${self.circle-1}
+usage-ramp-2 = ${self.circle-2}
+usage-ramp-3 = ${self.circle-3}
+usage-ramp-4 = ${self.circle-4}
+usage-ramp-5 = ${self.circle-5}
+usage-ramp-6 = ${self.circle-6}
+usage-ramp-7 = ${self.circle-7}
+usage-ramp-8 = ${self.circle-8}
+usage-ramp-9 = ${self.circle-9}
+
+arrow-ramp-0 = %{T5}料%{T-}
+arrow-ramp-1 = %{T5}隸%{T-}
+arrow-ramp-2 = %{T5}療%{T-}
+arrow-ramp-3 = %{T5}龍%{T-}
+arrow-ramp-4 = %{T5}阮%{T-}
+
+
+[bar/wss]
+width = 1
+offset-x = 100%:-1
+height = 1
+modules-center = i3-min
+override-redirect = true
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+background = ${colors.bg}
+foreground = ${self.background}
+[module/i3-min]
+type = internal/i3
+index-sort = true
+enable-click = false
+enable-scroll = true
+wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+[fonts]
+; redo this paradigm
+; NOTE: The -font property is a 1-based index of available fonts (which means that *-font = 1 will use font-0).
+dark-text = 2
+monospace-fill = 3
+sans-non-mono = 4
+window-title = ${self.sans-non-mono}
+dark-material-numbers = 10
+
+[bar/main]
+
+font-size-base = 10
+
+; NOTE: The -font property is a 1-based index of available fonts (which means that *-font = 1 will use font-0).
+; You can also set an explicitly dpi using dpi = [0-9]+
+; font options etc here: https://www.freedesktop.org/software/fontconfig/fontconfig-user.html
+
+; Later set these up to scale with DPI; so that I don't have to manually change any values etc.
+
+; Chosen as font for spacing. Should be something with almost no characters; because I want everything but the spacing to default to another font. Can change spacing size by changing this font's size.
+font-0 = Misc Fixed:pixelsize=2:antialias=true;0
+
+; For dark text on lighter background; make it leave a pixel space above and below but otherwise fill the height.
+; only need to consider A-Z0-9, but can ignore Q, so that's the same as just considering I.
+font-1 = Source Code Pro:pixelsize=12.5:antialias=true;3
+;font-1 = Source Code Pro:pixelsize=28:antialias=true;6
+
+; For larger monospace font; when there's no need to leave space for underlines/overlines or letters that stick out, like j. Still keep one pixel free underneath; so it's separated from windows below by the background color.
+; only need to consider A-Z0-9, but can ignore Q, so that's the same as just considering I.
+font-2 = Source Code Pro:pixelsize=13.8:antialias=true;2
+;font-2 = Source Code Pro:pixelsize=30:antialias=true;5
+
+; For window titles etc. No (common; idc about ` or |) characters should clip; and there should be a pixel free at the bottom.
+font-3 = Source Sans Pro:pixelsize=9.5:antialias=true;1
+;font-3 = Source Sans Pro:pixelsize=20:antialias=true;2
+
+
+font-4 = Material Design Icons:pixelsize=12.5:antialias=true;2
+;font-4 = Material Design Icons:pixelsize=25:antialias=true;5
+font-5 = Material Design Icons:pixelsize=11.5:antialias=true;1
+;font-5 = Material Design Icons:pixelsize=24:antialias=true;4
+font-6 = Material Design Icons:pixelsize=12:antialias=true;2
+;font-6 = Material Design Icons:pixelsize=23:antialias=true;5
+font-7 = Material Design Icons:pixelsize=14:antialias=true;3
+;font-7 = Material Design Icons:pixelsize=28:antialias=true;7
+font-8 = Material Design Icons:pixelsize=11:antialias=true;2
+;font-8 = Material Design Icons:pixelsize=23:antialias=true;5
+font-9 = Material Design Icons:pixelsize=22:antialias=true;5
+;font-9 = Material Design Icons:pixelsize=46:antialias=true;10
+
+
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+border-size 100
+height = 1.2%
+;height = 2.4%
+fixed-center = true
+
+background = ${colors.bg}
+foreground = ${colors.highvis-fg}
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 0
+module-margin-right = 0
+
+modules-left = time i3-icons keyboard
+;wireless-network wired-network powermenu
+modules-center = xwindow
+;modules-center = font-testing
+modules-right = pulseaudio updates-arch filesystem memory temperature cpu
+
+tray-position = right
+tray-padding = 2
+tray-maxsize = 12
+; So that I can scroll workspaces with mouse on top right corner.
+tray-offset-x = -2
+tray-scale = 1.0
+
+wm-restack = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+[module/font-testing]
+type = custom/text
+; keep this around so you can do quick adjustments when changing resolutions etc.
+; outlier characters (they stick out more than others; don't consider them): `|
+; also Q is the only capital that sticks out. can probably get away with ignoring it.
+; reordering the chars in this string makes it unprintable; be careful:
+test-chars = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,~`[]{}|\:";'><.?/0123456789:-!@#$%^&*()_+-=
+source-code-pro-test-chars = dfgjlpyIQ27
+source-sans-pro-test-chars = dfgjlpyIQ27
+
+;T1 is just for spacing.
+content = %{T1} %{T2}1I27 %{T3}2I27 %{T4}3dfgjlpyIQ27 %{T5}4更瘝 %{T6}5浪 %{T7}6 %{T8}7 %{T9}8 %{T10}91234567890 %{T-}
+; "content" has the same properties as "format-NAME"
+content-background = ${colors.highvis-fg}
+content-foreground = ${colors.bg}
+
+[module/work]
+type = custom/text
+; indicates that this is the work account
+content = ${symbols.briefcase}
+content-foreground = ${colors.lowvis-fg}
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-font = ${fonts.window-title}
+
+[module/keyboard]
+type = internal/xkeyboard
+; Use this to indicate when CapsLock is on.
+
+; List of indicators to ignore
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+
+format = <label-indicator>
+
+label-indicator-padding = 2
+label-indicator-margin = 2
+label-indicator-font = ${fonts.dark-text}
+label-indicator-background = ${colors.warning}
+label-indicator-foreground = ${colors.warning-text}
+
+[module/filesystem]
+type = internal/fs
+interval = 30
+
+mount-0 = /
+spacing = 0
+
+format-mounted = <ramp-capacity>
+format-unmounted = 
+
+label-mounted = %mountpoint%: %percentage_used%% of %total%
+ramp-capacity-foreground = ${colors.hdd}
+ramp-capacity-0 = ${symbols.usage-ramp-9}
+ramp-capacity-1 = ${symbols.usage-ramp-8}
+ramp-capacity-2 = ${symbols.usage-ramp-7}
+ramp-capacity-3 = ${symbols.usage-ramp-6}
+ramp-capacity-4 = ${symbols.usage-ramp-5}
+ramp-capacity-5 = ${symbols.usage-ramp-4}
+ramp-capacity-6 = ${symbols.usage-ramp-3}
+ramp-capacity-7 = ${symbols.usage-ramp-2}
+ramp-capacity-8 = ${symbols.usage-ramp-1}
+ramp-capacity-9 = ${symbols.usage-ramp-0}
+
+[module/updates-arch]
+type = custom/script
+exec = ~/.config/polybar/updates-arch.sh
+interval = 60
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+ws-label = %index%
+ws-label-font = ${fonts.dark-material-numbers}
+
+ws-padding = 1
+ws-margin = 0
+ws-spacing = 0
+
+; for modes like resize
+label-mode = %mode%
+label-mode-font = ${fonts.dark-text}
+label-mode-padding = 2
+label-mode-margin = 2
+label-mode-foreground = ${colors.bg}
+label-mode-background = ${colors.accent}
+
+; focused = Active workspace on focused monitor
+label-focused = ${self.ws-label}
+label-focused-foreground = ${colors.bg}
+label-focused-background = ${colors.highvis-fg}
+label-focused-font = ${self.ws-label-font}
+label-focused-padding = ${self.ws-padding}
+label-focused-margin = ${self.ws-margin}
+label-focused-spacing = ${self.ws-spacing}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = ${self.ws-label}
+label-unfocused-font = ${self.ws-label-font}
+label-unfocused-padding = ${self.ws-padding}
+label-unfocused-margin = ${self.ws-margin}
+label-unfocused-spacing = ${self.ws-spacing}
+
+; visible = Active workspace on unfocused monitor
+label-visible = ${self.ws-label}
+label-visible-background = ${colors.lowvis-fg}
+label-visible-font = ${self.ws-label-font}
+label-visible-padding = ${self.ws-padding}
+label-visible-margin = ${self.ws-margin}
+label-visible-spacing = ${self.ws-spacing}
+
+; urgent = Workspace with urgency hint set
+label-urgent = ${self.ws-label}
+label-urgent-foreground = ${colors.bg}
+label-urgent-background = ${colors.accent}
+label-urgent-font = ${self.ws-label-font}
+label-urgent-padding = ${self.ws-padding}
+label-urgent-margin = ${self.ws-margin}
+label-urgent-spacing = ${self.ws-spacing}
+
+; Separator in between workspaces
+; label-separator = |
+
+
+[module/i3-icons]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+enable-click = true
+enable-scroll = true
+wrapping-scroll = false
+; Only show workspaces on the same output as the bar
+pin-workspaces = false
+
+;ws-icon-0 = 1;%{T5}瞧%{T-}
+;ws-icon-1 = 2;%{T5}爵%{T-}
+;ws-icon-2 = 3;%{T5}犯%{T-}
+;ws-icon-3 = 4;%{T5}猪%{T-}
+;ws-icon-4 = 5;%{T5}瑱%{T-}
+;ws-icon-5 = 6;%{T5}甆%{T-}
+;ws-icon-6 = 7;%{T5}画%{T-}
+;ws-icon-7 = 8;%{T5}瘝%{T-}
+;ws-icon-8 = 9;%{T5}%{T-}
+;ws-icon-9 = 10;%{T5}%{T-}
+;ws-icon-default = %{T5}%{T-}
+ws-icon-0 = 1;%{T5}%{T-}
+ws-icon-1 = 2;%{T5}%{T-}
+ws-icon-2 = 3;%{T5}%{T-}
+ws-icon-3 = 4;%{T5}%{T-}
+ws-icon-4 = 5;%{T5}%{T-}
+ws-icon-5 = 6;%{T5}%{T-}
+ws-icon-6 = 7;%{T5}%{T-}
+ws-icon-7 = 8;%{T5}%{T-}
+ws-icon-8 = 9;%{T5}%{T-}
+ws-icon-9 = 10;%{T5}%{T-}
+ws-icon-default = %{T5}%{T-}
+
+ws-label = %icon%
+
+ws-padding = 1
+ws-margin = 0
+ws-spacing = 0
+
+; for modes like resize
+label-mode = %mode%
+label-mode-font = ${fonts.dark-text}
+label-mode-padding = 2
+label-mode-margin = 2
+label-mode-foreground = ${colors.bg}
+label-mode-background = ${colors.accent}
+
+; focused = Active workspace on focused monitor
+label-focused = ${self.ws-label}
+label-focused-foreground = ${colors.accent}
+label-focused-padding = ${self.ws-padding}
+label-focused-margin = ${self.ws-margin}
+label-focused-spacing = ${self.ws-spacing}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = ${self.ws-label}
+label-unfocused-foreground = ${colors.lowvis-fg}
+label-unfocused-padding = ${self.ws-padding}
+label-unfocused-margin = ${self.ws-margin}
+label-unfocused-spacing = ${self.ws-spacing}
+
+; visible = Active workspace on unfocused monitor
+label-visible = ${self.ws-label}
+label-visible-padding = ${self.ws-padding}
+label-visible-margin = ${self.ws-margin}
+label-visible-spacing = ${self.ws-spacing}
+
+; urgent = Workspace with urgency hint set
+label-urgent = ${self.ws-label}
+label-urgent-background = ${colors.accent}
+label-urgent-padding = ${self.ws-padding}
+label-urgent-margin = ${self.ws-margin}
+label-urgent-spacing = ${self.ws-spacing}
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = ${symbols.media-prev}
+icon-stop = ${symbols.media-stop}
+icon-play = ${symbols.media-play}
+icon-pause = ${symbols.media-pause}
+icon-next = ${symbols.media-next}
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+[module/cpu]
+type = internal/cpu
+interval = 1
+; format = <label> <ramp-load>
+format = <ramp-load> <ramp-coreload>
+label = CPU: %percentage%%
+ramp-load-foreground = ${colors.cpu}
+ramp-load-0 = ${symbols.usage-ramp-0}
+ramp-load-1 = ${symbols.usage-ramp-1}
+ramp-load-2 = ${symbols.usage-ramp-2}
+ramp-load-3 = ${symbols.usage-ramp-3}
+ramp-load-4 = ${symbols.usage-ramp-4}
+ramp-load-5 = ${symbols.usage-ramp-5}
+ramp-load-6 = ${symbols.usage-ramp-6}
+ramp-load-7 = ${symbols.usage-ramp-7}
+ramp-load-8 = ${symbols.usage-ramp-8}
+ramp-load-9 = ${symbols.usage-ramp-9}
+ramp-coreload-foreground = ${self.ramp-load-foreground}
+ramp-coreload-spacing = 0
+ramp-coreload-0 = ${self.ramp-load-0}
+ramp-coreload-1 = ${self.ramp-load-1}
+ramp-coreload-2 = ${self.ramp-load-2}
+ramp-coreload-3 = ${self.ramp-load-3}
+ramp-coreload-4 = ${self.ramp-load-4}
+ramp-coreload-5 = ${self.ramp-load-5}
+ramp-coreload-6 = ${self.ramp-load-6}
+ramp-coreload-7 = ${self.ramp-load-7}
+ramp-coreload-8 = ${self.ramp-load-8}
+ramp-coreload-9 = ${self.ramp-load-9}
+
+[module/memory]
+type = internal/memory
+interval = 1
+format = <ramp-used>
+
+ramp-used-foreground = ${colors.ram}
+ramp-used-0 = ${symbols.usage-ramp-0}
+ramp-used-1 = ${symbols.usage-ramp-1}
+ramp-used-2 = ${symbols.usage-ramp-2}
+ramp-used-3 = ${symbols.usage-ramp-3}
+ramp-used-4 = ${symbols.usage-ramp-4}
+ramp-used-5 = ${symbols.usage-ramp-5}
+ramp-used-6 = ${symbols.usage-ramp-6}
+ramp-used-7 = ${symbols.usage-ramp-7}
+ramp-used-8 = ${symbols.usage-ramp-8}
+ramp-used-9 = ${symbols.usage-ramp-9}
+
+[module/temperature]
+type = internal/temperature
+interval = 1
+; for options, run:
+; for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+thermal-zone = 0
+
+; Display warning label at this temperature.
+warn-temperature = 80
+
+; Show C/F
+units = true
+
+format = <ramp>
+;format-prefix = ${symbols.thermometer}
+format-warn = <label-warn>
+format-warn-margin = 2
+format-warn-padding = 2
+format-warn-prefix = ${symbols.warning-outline}
+format-warn-prefix-foreground = ${colors.warning-text}
+format-warn-suffix = ${symbols.warning-outline}
+format-warn-suffix-foreground = ${colors.warning-text}
+format-warn-background = ${colors.warning}
+
+label = %temperature-c%
+label-warn = " HIGH TEMPERATURE: %temperature-c% "
+label-warn-foreground = ${colors.warning-text}
+label-warn-font = ${fonts.dark-text}
+
+ramp-foreground = ${colors.temp}
+;for i in range(101):
+;    print("ramp-{} = ${{symbols.usage-ramp-{}}}".format(i, max((i//10)-1,0)))
+ramp-0 = ${symbols.usage-ramp-0}
+ramp-1 = ${symbols.usage-ramp-0}
+ramp-2 = ${symbols.usage-ramp-0}
+ramp-3 = ${symbols.usage-ramp-0}
+ramp-4 = ${symbols.usage-ramp-0}
+ramp-5 = ${symbols.usage-ramp-0}
+ramp-6 = ${symbols.usage-ramp-0}
+ramp-7 = ${symbols.usage-ramp-0}
+ramp-8 = ${symbols.usage-ramp-0}
+ramp-9 = ${symbols.usage-ramp-0}
+ramp-10 = ${symbols.usage-ramp-0}
+ramp-11 = ${symbols.usage-ramp-0}
+ramp-12 = ${symbols.usage-ramp-0}
+ramp-13 = ${symbols.usage-ramp-0}
+ramp-14 = ${symbols.usage-ramp-0}
+ramp-15 = ${symbols.usage-ramp-0}
+ramp-16 = ${symbols.usage-ramp-0}
+ramp-17 = ${symbols.usage-ramp-0}
+ramp-18 = ${symbols.usage-ramp-0}
+ramp-19 = ${symbols.usage-ramp-0}
+ramp-20 = ${symbols.usage-ramp-1}
+ramp-21 = ${symbols.usage-ramp-1}
+ramp-22 = ${symbols.usage-ramp-1}
+ramp-23 = ${symbols.usage-ramp-1}
+ramp-24 = ${symbols.usage-ramp-1}
+ramp-25 = ${symbols.usage-ramp-1}
+ramp-26 = ${symbols.usage-ramp-1}
+ramp-27 = ${symbols.usage-ramp-1}
+ramp-28 = ${symbols.usage-ramp-1}
+ramp-29 = ${symbols.usage-ramp-1}
+ramp-30 = ${symbols.usage-ramp-2}
+ramp-31 = ${symbols.usage-ramp-2}
+ramp-32 = ${symbols.usage-ramp-2}
+ramp-33 = ${symbols.usage-ramp-2}
+ramp-34 = ${symbols.usage-ramp-2}
+ramp-35 = ${symbols.usage-ramp-2}
+ramp-36 = ${symbols.usage-ramp-2}
+ramp-37 = ${symbols.usage-ramp-2}
+ramp-38 = ${symbols.usage-ramp-2}
+ramp-39 = ${symbols.usage-ramp-2}
+ramp-40 = ${symbols.usage-ramp-3}
+ramp-41 = ${symbols.usage-ramp-3}
+ramp-42 = ${symbols.usage-ramp-3}
+ramp-43 = ${symbols.usage-ramp-3}
+ramp-44 = ${symbols.usage-ramp-3}
+ramp-45 = ${symbols.usage-ramp-3}
+ramp-46 = ${symbols.usage-ramp-3}
+ramp-47 = ${symbols.usage-ramp-3}
+ramp-48 = ${symbols.usage-ramp-3}
+ramp-49 = ${symbols.usage-ramp-3}
+ramp-50 = ${symbols.usage-ramp-4}
+ramp-51 = ${symbols.usage-ramp-4}
+ramp-52 = ${symbols.usage-ramp-4}
+ramp-53 = ${symbols.usage-ramp-4}
+ramp-54 = ${symbols.usage-ramp-4}
+ramp-55 = ${symbols.usage-ramp-4}
+ramp-56 = ${symbols.usage-ramp-4}
+ramp-57 = ${symbols.usage-ramp-4}
+ramp-58 = ${symbols.usage-ramp-4}
+ramp-59 = ${symbols.usage-ramp-4}
+ramp-60 = ${symbols.usage-ramp-5}
+ramp-61 = ${symbols.usage-ramp-5}
+ramp-62 = ${symbols.usage-ramp-5}
+ramp-63 = ${symbols.usage-ramp-5}
+ramp-64 = ${symbols.usage-ramp-5}
+ramp-65 = ${symbols.usage-ramp-5}
+ramp-66 = ${symbols.usage-ramp-5}
+ramp-67 = ${symbols.usage-ramp-5}
+ramp-68 = ${symbols.usage-ramp-5}
+ramp-69 = ${symbols.usage-ramp-5}
+ramp-70 = ${symbols.usage-ramp-6}
+ramp-71 = ${symbols.usage-ramp-6}
+ramp-72 = ${symbols.usage-ramp-6}
+ramp-73 = ${symbols.usage-ramp-6}
+ramp-74 = ${symbols.usage-ramp-6}
+ramp-75 = ${symbols.usage-ramp-6}
+ramp-76 = ${symbols.usage-ramp-6}
+ramp-77 = ${symbols.usage-ramp-6}
+ramp-78 = ${symbols.usage-ramp-6}
+ramp-79 = ${symbols.usage-ramp-6}
+ramp-80 = ${symbols.usage-ramp-7}
+ramp-81 = ${symbols.usage-ramp-7}
+ramp-82 = ${symbols.usage-ramp-7}
+ramp-83 = ${symbols.usage-ramp-7}
+ramp-84 = ${symbols.usage-ramp-7}
+ramp-85 = ${symbols.usage-ramp-7}
+ramp-86 = ${symbols.usage-ramp-7}
+ramp-87 = ${symbols.usage-ramp-7}
+ramp-88 = ${symbols.usage-ramp-7}
+ramp-89 = ${symbols.usage-ramp-7}
+ramp-90 = ${symbols.usage-ramp-8}
+ramp-91 = ${symbols.usage-ramp-8}
+ramp-92 = ${symbols.usage-ramp-8}
+ramp-93 = ${symbols.usage-ramp-8}
+ramp-94 = ${symbols.usage-ramp-8}
+ramp-95 = ${symbols.usage-ramp-8}
+ramp-96 = ${symbols.usage-ramp-8}
+ramp-97 = ${symbols.usage-ramp-8}
+ramp-98 = ${symbols.usage-ramp-8}
+ramp-99 = ${symbols.usage-ramp-8}
+ramp-100 = ${symbols.usage-ramp-9}
+
+[module/wireless-network]
+type = internal/network
+interface = wlp4s0
+interval = 3
+
+;format-connected = <ramp-signal><label-connected>
+format-connected = <ramp-signal>
+;format-connected-prefix = ${symbols.wifi-connected}
+format-connected-foreground = ${colors.midvis-fg}
+label-connected = %essid% %downspeed% %upspeed%
+
+; format-disconnected = <label-disconnected>
+; format-disconnected-prefix = ${symbols.wifi-disconnected}
+format-disconnected-foreground = ${colors.accent}
+label-disconnected = ${symbols.wifi-disconnected}
+
+ramp-signal-0 = ${symbols.wifi-signal-0}
+ramp-signal-1 = ${symbols.wifi-signal-1}
+ramp-signal-2 = ${symbols.wifi-signal-2}
+ramp-signal-3 = ${symbols.wifi-signal-3}
+ramp-signal-4 = ${symbols.wifi-signal-4}
+
+format-packetloss = <animation-packetloss><label-packetloss>
+
+label-packetloss = ${symbols.warning}
+label-packetloss-foreground = ${colors.warning}
+
+animation-packetloss-0 = ${symbols.wifi-empty}
+animation-packetloss-1 = ${symbols.wifi-empty-warning}
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+
+[module/wired-network]
+type = internal/network
+interface = enp0s31f6
+interval = 3
+
+format-connected = <label-connected>
+; format-connected-prefix = ${symbols.ethernet-connected}
+format-connected-foreground = ${colors.midvis-fg}
+; label-connected = %downspeed% %upspeed%
+label-connected = ${symbols.ethernet-connected}
+
+; format-disconnected = <label-disconnected>
+; format-disconnected-prefix = ${symbols.ethernet-disconnected}
+format-disconnected-foreground = ${colors.accent}
+label-disconnected = ${symbols.ethernet-disconnected}
+
+format-packetloss = <animation-packetloss><label-packetloss>
+
+label-packetloss = ${symbols.warning}
+label-packetloss-foreground = ${colors.warning}
+
+animation-packetloss-0 = ${symbols.ethernet-disconnected}
+animation-packetloss-1 = ${symbols.ethernet-connected}
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+
+[module/time]
+type = internal/date
+interval = 1
+format = <label>
+format-foreground = ${colors.midvis-fg}
+; format-prefix = ${symbols.clock}
+
+label = %time% %date%
+label-font = ${fonts.monospace-fill}
+
+time = "%H:%M"
+time-alt = "%H:%M:%S"
+date = 
+date-alt = "%a %m-%d "
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+use-ui-max = false
+
+interval = 5
+
+format-volume = <label-volume>
+;format-volume = <label-volume><ramp-volume>
+format-volume-prefix = ${symbols.speaker-high}
+format-volume-foreground = ${colors.midvis-fg}
+label-volume = %percentage:02%
+label-volume-font = ${fonts.monospace-fill}
+
+ramp-volume-0 = ${symbols.usage-ramp-0}
+ramp-volume-1 = ${symbols.usage-ramp-1}
+ramp-volume-2 = ${symbols.usage-ramp-2}
+ramp-volume-3 = ${symbols.usage-ramp-3}
+ramp-volume-4 = ${symbols.usage-ramp-4}
+ramp-volume-5 = ${symbols.usage-ramp-5}
+ramp-volume-6 = ${symbols.usage-ramp-6}
+ramp-volume-7 = ${symbols.usage-ramp-7}
+ramp-volume-8 = ${symbols.usage-ramp-8}
+ramp-volume-9 = ${symbols.usage-ramp-9}
+
+format-muted = <label-muted>
+;format-muted = <label-muted><ramp-volume>
+format-muted-prefix = ${symbols.speaker-mute}
+format-muted-foreground = ${colors.lowvis-fg}
+label-muted = ${self.label-volume}
+label-muted-font = ${self.label-volume-font}
+
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false
+
+format-spacing = 0
+format-foreground = ${colors.midvis-fg}
+
+label-open = ${symbols.power}
+label-close = ${symbols.no}
+
+menu-0-0 = ${symbols.reboot}
+menu-0-0-exec = menu-open-1
+menu-0-1 = ${symbols.poweroff}
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = ${symbols.no}
+menu-1-0-exec = menu-open-0
+menu-1-1 = ${symbols.reboot}
+menu-1-1-foreground = ${colors.warning}
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = ${symbols.poweroff}
+menu-2-0-foreground = ${colors.warning}
+menu-2-0-exec = sudo poweroff
+menu-2-1 = ${symbols.no}
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini

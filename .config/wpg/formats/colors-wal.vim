@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/patricol/.config/wpg/wallpapers/material.png"
+let background = "#212121"
+let foreground = "#f5f5f5"
+let cursor     = "#f5f5f5"
+
+" Colors
+let color0  = "#212121"
+let color1  = "#e53935"
+let color2  = "#43a047"
+let color3  = "#fdd835"
+let color4  = "#1e88e5"
+let color5  = "#d81b60"
+let color6  = "#00acc1"
+let color7  = "#e0e0e0"
+let color8  = "#616161"
+let color9  = "#ff0000"
+let color10 = "#ff5a36"
+let color11 = "#ff00ff"
+let color12 = "#6d4c41"
+let color13 = "#424242"
+let color14 = "#9e9e9e"
+let color15 = "#f5f5f5"

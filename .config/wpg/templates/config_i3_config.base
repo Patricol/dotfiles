@@ -309,7 +309,7 @@ set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
 set $lock			exec --no-startup-id lock
-set $terminal			exec --no-startup-id kitty
+set $terminal			exec --no-startup-id <TERMINAL>
 set $files			exec --no-startup-id nemo
 set $chrome			exec chromium
 set $task-manager		exec gnome-system-monitor

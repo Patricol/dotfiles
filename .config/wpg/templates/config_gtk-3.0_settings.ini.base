@@ -1,0 +1,22 @@
+[Settings]
+gtk-theme-name = <GTK_THEME>
+gtk-icon-theme-name = <ICON_THEME>
+gtk-fallback-icon-theme = <ICON_THEME_FALLBACK>
+gtk-cursor-theme-name = <CURSOR_THEME>
+gtk-cursor-theme-size = 0
+gtk-font-name = <FONT> <FONT_SIZE>
+gtk-toolbar-style = GTK_TOOLBAR_ICONS
+#gtk-toolbar-icon-size = GTK_ICON_SIZE_SMALL_TOOLBAR
+gtk-application-prefer-dark-theme = 1
+gtk-menu-popup-delay = 0
+
+#The time before hiding a submenu when the pointer is moving towards the submenu.
+gtk-menu-popdown-delay = 1000
+gtk-decoration-layout = menu:
+gtk-xft-antialias = 1
+gtk-xft-hinting = 1
+gtk-xft-hintstyle = hintfull
+#gtk-xft-rgba = rgb
+#http://www.lagom.nl/lcd-test/subpixel.php
+#Actually very distracting; too easy to see the colors; even with 10pt font on 1080p 24inch
+#see relevant apps: pacman -Qi gtk3
