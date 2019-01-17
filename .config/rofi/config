@@ -1,6 +1,11 @@
 rofi.theme: ~/.cache/wal/rofi-theme.rasi
 rofi.terminal: kitty
 
+rofi.ssh-client:                     ssh
+rofi.ssh-command:                    {terminal} -e {ssh-client} {host}
+rofi.run-command:                    {cmd}
+rofi.run-shell-command:              {terminal} -e {cmd}
+
 rofi.scroll-method: 1
 rofi.show-match: false
 rofi.show-icons: true
