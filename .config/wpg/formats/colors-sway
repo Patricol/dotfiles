@@ -1,0 +1,21 @@
+set $wallpaper /home/patricol/.config/wpg/wallpapers/material.png
+
+set $background #212121
+set $foreground #eeeeee
+
+set $color0 #212121
+set $color1 #d50000
+set $color2 #00c853
+set $color3 #ffd600
+set $color4 #2962ff
+set $color5 #aa00ff
+set $color6 #00b8d4
+set $color7 #bdbdbd
+set $color8 #616161
+set $color9 #ff5252
+set $color10 #69f0ae
+set $color11 #ffff00
+set $color12 #448aff
+set $color13 #e040fb
+set $color14 #18ffff
+set $color15 #eeeeee
