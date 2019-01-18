@@ -16,6 +16,7 @@
 ;
 ;==========================================================
 
+; <CONFIG_EDITING_WARNING>
 
 ;It is possible to include a file with pre-defined key-value pairs using:
 ;include-file = /absolute/path/to/file

@@ -1,5 +1,8 @@
 # Color configuration for kitty.
 
+#<CONFIG_EDITING_WARNING>
+
+
 # The foreground and background colors
 foreground #<FOREGROUND>
 background #<BACKGROUND>
