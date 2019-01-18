@@ -1,0 +1,34 @@
+{
+	"colors": {
+		"wal-darkest": [0, "<DARKEST>"],
+		"wal-red": [1, "<RED>"],
+		"wal-green": [2, "<GREEN>"],
+		"wal-yellow": [3, "<YELLOW>"],
+		"wal-blue": [4, "<BLUE>"],
+		"wal-magenta": [5, "<MAGENTA>"],
+		"wal-cyan": [6, "<CYAN>"],
+		"wal-bright": [7, "<BRIGHT>"],
+		"wal-dark": [8, "<DARK>"],
+		"wal-light-red": [9, "<LIGHT_RED>"],
+		"wal-light-green": [10, "<LIGHT_GREEN>"],
+		"wal-light-yellow": [11, "<LIGHT_YELLOW>"],
+		"wal-light-blue": [12, "<LIGHT_BLUE>"],
+		"wal-light-magenta": [13, "<LIGHT_MAGENTA>"],
+		"wal-light-cyan": [14, "<LIGHT_CYAN>"],
+		"wal-brightest": [15, "<BRIGHTEST>"],
+		"wal-brighter": [253, "<BRIGHTER>"],
+		"wal-brightish": [247, "<BRIGHTISH>"],
+		"wal-darkish": [243, "<DARKISH>"],
+		"wal-darker": [238, "<DARKER>"],
+		"wal-accent": [196, "<ACCENT>"],
+		"wal-warning": [201, "<WARNING>"]
+	},
+	"gradients": {
+		"grayscale": [[0, 238, 8, 243, 247, 7, 253, 15]],
+		"grayscale-no-darkest": [[238, 8, 243, 247, 7, 253, 15]],
+		"grayscale-no-brightest": [[0, 238, 8, 243, 247, 7, 253]],
+		"grayscale-safe": [[0, 8, 7, 15]],
+		"grayscale-safe-no-darkest": [[8, 7, 15]],
+		"grayscale-safe-no-brightest": [[0, 8, 7]]
+	}
+}
