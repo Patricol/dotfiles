@@ -3,37 +3,36 @@
  */
 * {
 
-    background:                 #<BACKGROUND>;//#<FALLBACK_BACKGROUND>
-    foreground:                 #<FOREGROUND>;//#<FALLBACK_FOREGROUND>
-    yellow:                     #<YELLOW>;//#<FALLBACK_YELLOW>
-    blue:                       #<BLUE>;//#<FALLBACK_BLUE>
-    dark:                       #<DARK>;//#<FALLBACK_DARK>
-    accent:                     #<ACCENT>;//#<FALLBACK_ACCENT>
-    warning:                    #<WARNING>;//#<FALLBACK_WARNING>
-    darker:                     #<DARKER>;//#<FALLBACK_DARKER>
-    bright:                     #<BRIGHT>;//#<FALLBACK_BRIGHT>
-    brightest:                  #<BRIGHTEST>;//#<FALLBACK_BRIGHTEST>
+    darkest:                    #<DARKEST>;
+    yellow:                     #<YELLOW>;
+    blue:                       #<BLUE>;
+    bright:                     #<BRIGHT>;
+    dark:                       #<DARK>;
+    brightest:                  #<BRIGHTEST>;
+    darker:                     #<DARKER>;
+    accent:                     #<ACCENT>;
+    warning:                    #<WARNING>;
     
     highvis-fg:                 @brightest;
     midvis-fg:                  @bright;
     lowvis-fg:                  @dark;
     
-    text-color:                 @foreground;
-    background-color:           @background;
+    text-color:                 @brightest;
+    background-color:           @darkest;
     spacing:                    0;
     separatorcolor:             @accent;
     
     text-input-background:      @yellow;
-    text-input-foreground:      @background;
-    inactive-button-background:      @background;
+    text-input-foreground:      @darkest;
+    inactive-button-background:      @darkest;
     inactive-button-foreground:      @lowvis-fg;
     active-button-background:      @blue;
-    active-button-foreground:      @background;
-    button-row-background:          @background;
+    active-button-foreground:      @darkest;
+    button-row-background:          @darkest;
 
-    normal-background:           @background;
-    urgent-background:           @background;
-    active-background:           @background;
+    normal-background:           @darkest;
+    urgent-background:           @darkest;
+    active-background:           @darkest;
     selected-normal-background:  @accent;
     selected-urgent-background:  @accent;
     selected-active-background:  @accent;
@@ -41,9 +40,9 @@
     normal-foreground:           @midvis-fg;
     urgent-foreground:           @accent;
     active-foreground:           @highvis-fg;
-    selected-normal-foreground:  @background;
-    selected-urgent-foreground:  @background;
-    selected-active-foreground:  @background;
+    selected-normal-foreground:  @darkest;
+    selected-urgent-foreground:  @darkest;
+    selected-active-foreground:  @darkest;
     
     alternate-normal-background: @normal-background;
     alternate-urgent-background: @urgent-background;
@@ -124,7 +123,7 @@
 }
 #textbox {
     background-color: @darker;
-    text-color: @foreground;
+    text-color: @brightest;
     border-radius:  @rounded-radius;
     padding:  @row-padding;
 }

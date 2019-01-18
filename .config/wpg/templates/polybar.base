@@ -26,38 +26,23 @@
 
 ; This way all colors will be imported and setup in the file, but it's easy to see which are actually used. (check [colors])
 
-background =        ${xrdb:background:#212121}
-foreground =        ${xrdb:foreground:#f5f5f5}
-cursor =            ${xrdb:cursor:#ff0000}
-darkest =           ${xrdb:color0:#212121}
-red =               ${xrdb:color1:#e53935}
-green =             ${xrdb:color2:#43a047}
-yellow =            ${xrdb:color3:#fdd835}
-blue =              ${xrdb:color4:#1e88e5}
-pink =              ${xrdb:color5:#d81b60}
-cyan =              ${xrdb:color6:#00acc1}
-brighter =          ${xrdb:color7:#e0e0e0}
-dark =              ${xrdb:color8:#616161}
-accent =            ${xrdb:color9:#ff0000}
-accent-lighter =    ${xrdb:color10:#ff5a36}
-warning =           ${xrdb:color11:#ff00ff}
-brown =             ${xrdb:color12:#6d4c41}
-darker =            ${xrdb:color13:#424242}
-bright =            ${xrdb:color14:#9e9e9e}
-brightest =         ${xrdb:color15:#f5f5f5}
-
-;Using the brands' colors is not long-term viable; as I'll be switching hardware a lot etc.
-gskill-red = #e60012
-intel-blue = #0071c5
-noctua-brown = #632c25
-samsung-evo-gray = #888888
+darkest =           ${xrdb:color0:#<FALLBACK_DARKEST>}
+red =               ${xrdb:color1:#<FALLBACK_RED>}
+green =             ${xrdb:color2:#<FALLBACK_GREEN>}
+yellow =            ${xrdb:color3:#<FALLBACK_YELLOW>}
+blue =              ${xrdb:color4:#<FALLBACK_BLUE>}
+bright =            ${xrdb:color7:#<FALLBACK_BRIGHT>}
+dark =              ${xrdb:color8:#<FALLBACK_DARK>}
+brightest =         ${xrdb:color15:#<FALLBACK_BRIGHTEST>}
+accent =            #<ACCENT>
+warning =           #<WARNING>
 
 [colors]
 
 accent =        ${all-colors.accent}
 highvis-fg =    ${all-colors.brightest}
-bg =            ${all-colors.background}
-midvis-fg =     ${all-colors.brighter}
+bg =            ${all-colors.darkest}
+midvis-fg =     ${all-colors.bright}
 lowvis-fg =     ${all-colors.dark}
 warning =       ${all-colors.warning}
 warning-text =  ${self.bg}
@@ -258,31 +243,31 @@ font-0 = Misc Fixed:pixelsize=2:antialias=true;0
 
 ; For dark text on lighter background; make it leave a pixel space above and below but otherwise fill the height.
 ; only need to consider A-Z0-9, but can ignore Q, so that's the same as just considering I.
-font-1 = Source Code Pro:pixelsize=12.5:antialias=true;3
-;font-1 = Source Code Pro:pixelsize=28:antialias=true;6
+font-1 = <FONT_MONOSPACE>:pixelsize=12.5:antialias=true;3
+;font-1 = <FONT_MONOSPACE>:pixelsize=28:antialias=true;6
 
 ; For larger monospace font; when there's no need to leave space for underlines/overlines or letters that stick out, like j. Still keep one pixel free underneath; so it's separated from windows below by the background color.
 ; only need to consider A-Z0-9, but can ignore Q, so that's the same as just considering I.
-font-2 = Source Code Pro:pixelsize=13.8:antialias=true;2
-;font-2 = Source Code Pro:pixelsize=30:antialias=true;5
+font-2 = <FONT_MONOSPACE>:pixelsize=13.8:antialias=true;2
+;font-2 = <FONT_MONOSPACE>:pixelsize=30:antialias=true;5
 
 ; For window titles etc. No (common; idc about ` or |) characters should clip; and there should be a pixel free at the bottom.
-font-3 = Source Sans Pro:pixelsize=9.5:antialias=true;1
-;font-3 = Source Sans Pro:pixelsize=20:antialias=true;2
+font-3 = <FONT>:pixelsize=9.5:antialias=true;1
+;font-3 = <FONT>:pixelsize=20:antialias=true;2
 
 
-font-4 = Material Design Icons:pixelsize=12.5:antialias=true;2
-;font-4 = Material Design Icons:pixelsize=25:antialias=true;5
-font-5 = Material Design Icons:pixelsize=11.5:antialias=true;1
-;font-5 = Material Design Icons:pixelsize=24:antialias=true;4
-font-6 = Material Design Icons:pixelsize=12:antialias=true;2
-;font-6 = Material Design Icons:pixelsize=23:antialias=true;5
-font-7 = Material Design Icons:pixelsize=14:antialias=true;3
-;font-7 = Material Design Icons:pixelsize=28:antialias=true;7
-font-8 = Material Design Icons:pixelsize=11:antialias=true;2
-;font-8 = Material Design Icons:pixelsize=23:antialias=true;5
-font-9 = Material Design Icons:pixelsize=22:antialias=true;5
-;font-9 = Material Design Icons:pixelsize=46:antialias=true;10
+font-4 = <FONT_ICONS>:pixelsize=12.5:antialias=true;2
+;font-4 = <FONT_ICONS>:pixelsize=25:antialias=true;5
+font-5 = <FONT_ICONS>:pixelsize=11.5:antialias=true;1
+;font-5 = <FONT_ICONS>:pixelsize=24:antialias=true;4
+font-6 = <FONT_ICONS>:pixelsize=12:antialias=true;2
+;font-6 = <FONT_ICONS>:pixelsize=23:antialias=true;5
+font-7 = <FONT_ICONS>:pixelsize=14:antialias=true;3
+;font-7 = <FONT_ICONS>:pixelsize=28:antialias=true;7
+font-8 = <FONT_ICONS>:pixelsize=11:antialias=true;2
+;font-8 = <FONT_ICONS>:pixelsize=23:antialias=true;5
+font-9 = <FONT_ICONS>:pixelsize=22:antialias=true;5
+;font-9 = <FONT_ICONS>:pixelsize=46:antialias=true;10
 
 
 ;monitor = ${env:MONITOR:HDMI-1}
