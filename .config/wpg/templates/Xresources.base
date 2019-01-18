@@ -1,4 +1,5 @@
 ! Configure rxvt-unicode here
+! <CONFIG_EDITING_WARNING>
 
 ! do not scroll with output
 URxvt*scrollTtyOutput: false
