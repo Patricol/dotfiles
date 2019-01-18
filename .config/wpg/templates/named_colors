@@ -1,0 +1,1 @@
+/home/patricol/.config/wpg/patricol_scripts/named-colors.sh

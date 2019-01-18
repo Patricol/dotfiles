@@ -1,13 +1,11 @@
 # i3 config file (v4)
 # https://i3wm.org/docs/userguide.html#configuring
-#make this more mouse friendly for guacamole usage etc.
+# make this more mouse friendly for guacamole usage etc.
 
 # AUTOSTART ###################################################################
-
 exec --no-startup-id startapp
 exec --no-startup-id polybar main -r
 exec --no-startup-id polybar wss -r
-
 
 
 
@@ -45,39 +43,36 @@ for_window [class=".*"] title_format "<span font='Source Code Pro 10'>%title</sp
 
 #for highly visible elements like the border around the active window; and that window's titlebar and text etc.
 
-set_from_resource   $background     i3wm.background #212121
-set_from_resource   $foreground     i3wm.foreground #f5f5f5
-set_from_resource   $cursor         i3wm.cursor     #ff0000
-set_from_resource   $darkest        i3wm.color0     #212121
-set_from_resource   $red            i3wm.color1     #e53935
-set_from_resource   $green          i3wm.color2     #43a047
-set_from_resource   $yellow         i3wm.color3     #fdd835
-set_from_resource   $blue           i3wm.color4     #1e88e5
-set_from_resource   $pink           i3wm.color5     #d81b60
-set_from_resource   $cyan           i3wm.color6     #00acc1
-set_from_resource   $brighter       i3wm.color7     #e0e0e0
-set_from_resource   $dark           i3wm.color8     #616161
-set_from_resource   $accent         i3wm.color9     #ff0000
-set_from_resource   $accent-lighter i3wm.color10    #ff5a36
-set_from_resource   $warning        i3wm.color11    #ff00ff
-set_from_resource   $brown          i3wm.color12    #6d4c41
-set_from_resource   $darker         i3wm.color13    #424242
-set_from_resource   $bright         i3wm.color14    #9e9e9e
-set_from_resource   $brightest      i3wm.color15    #f5f5f5
+set_from_resource   $darkest        i3wm.color0     "#212121"
+set_from_resource   $red            i3wm.color1     "#d50000"
+set_from_resource   $green          i3wm.color2     "#00c853"
+set_from_resource   $yellow         i3wm.color3     "#ffd600"
+set_from_resource   $blue           i3wm.color4     "#2962ff"
+set_from_resource   $magenta        i3wm.color5     "#aa00ff"
+set_from_resource   $cyan           i3wm.color6     "#00b8d4"
+set_from_resource   $bright         i3wm.color7     "#bdbdbd"
+set_from_resource   $dark           i3wm.color8     "#616161"
+set_from_resource   $light-red      i3wm.color9     "#ff5252"
+set_from_resource   $light-green    i3wm.color10    "#69f0ae"
+set_from_resource   $light-yellow   i3wm.color11    "#ffff00"
+set_from_resource   $light-blue     i3wm.color12    "#448aff"
+set_from_resource   $light-magenta  i3wm.color13    "#e040fb"
+set_from_resource   $light-cyan     i3wm.color14    "#18ffff"
+set_from_resource   $brightest      i3wm.color15    "#eeeeee"
+set $accent #ff0000
+set $warning #ff00ff
 
 
 # class                    border      backgr.     text        indicator child_border
-client.focused             $brightest  $background $brightest  $accent   $brightest
-client.focused_inactive    $dark       $background $brighter   $dark     $dark
-client.unfocused           $background $background $bright     $dark     $background
-client.urgent              $accent     $accent     $background $dark     $accent
-client.placeholder         $background $background $bright     $dark     $background
-client.background          $background
-
-exec xsetroot -solid gray
+client.focused             $brightest  $darkest    $brightest  $accent   $brightest
+client.focused_inactive    $dark       $darkest    $brighter   $dark     $dark
+client.unfocused           $darkest    $darkest    $bright     $dark     $darkest
+client.urgent              $accent     $accent     $darkest    $dark     $accent
+client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
+client.background          $darkest
 
 
-exec_always --no-startup-id xsetroot -solid "$background"
+exec_always --no-startup-id xsetroot -solid "$darkest"
 
 
 
@@ -125,17 +120,17 @@ set $windows-key-code 133
 
 # MOUSE BINDINGS ##############################################################
 
+bindsym $mouse-right floating toggle
+bindsym --whole-window $mod+$mouse-right floating toggle
+
 bindsym --whole-window $mod+$mouse-wheel-click kill
+
 
 # The middle button over a titlebar kills the window
 bindsym --release $mouse-wheel-click kill
 
-# Right click over a titlebar toggles floating
-bindsym $mouse-right floating toggle
-bindsym --whole-window $alt+$mouse-right floating toggle
-
 # Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $alt
+floating_modifier $mod
 
 bindsym --whole-window $mod+$mouse-wheel-left	move left
 bindsym --whole-window $mod+$mouse-wheel-down	move down
@@ -153,13 +148,10 @@ bindsym --whole-window $mod+$shift+$mouse-wheel-right	move container to workspac
 
 # KEYBOARD BINDINGS ###########################################################
 
-
 # reload the configuration file
 bindsym $mod+$shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+$shift+r restart
-
-
 
 
 set $xkill exec --no-startup-id xkill
@@ -300,8 +292,9 @@ bindsym $mod+$shift+$ctrl+0 move container to $ws10; $ws10
 
 # PROGRAM ALIASES #############################################################
 
-set $start_main_app		exec --no-startup-id startapp
+set $start_main_app             exec --no-startup-id startapp
 set $launcher			exec rofi -show combi
+set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
 set $terminal			exec --no-startup-id urxvt
 set $chrome			exec chromium
@@ -325,11 +318,12 @@ bindsym $mod2+space		$launcher
 bindsym $mod2+r			$launcher
 bindsym $mod2+a			$text-editor
 bindsym $mod2+c			$chrome
-bindsym $mod+$mod2+v		$type-clipboard
+bindsym $mod+$mod2+v	        $type-clipboard
+bindsym $alt+Tab		$window_switcher
 
 bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
 bindsym XF86AudioLowerVolume    $volume-unmute ; $volume-lower
-bindsym XF86AudioMute    	$volume-toggle-mute
+bindsym XF86AudioMute           $volume-toggle-mute
 
 # win key only to open rofi
 #bindcode $windows-key-code --release $launcher

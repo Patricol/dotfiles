@@ -1,5 +1,10 @@
-rofi.theme: ~/.cache/wal/rofi-theme.rasi
+rofi.theme: ~/.config/rofi/themes/custom.rasi
 rofi.terminal: urxvt
+
+rofi.ssh-client: ssh
+rofi.ssh-command: {terminal} -e {ssh-client} {host}
+rofi.run-command: {cmd}
+rofi.run-shell-command: {terminal} -e {cmd}
 
 rofi.scroll-method: 1
 rofi.show-match: false
@@ -171,4 +176,3 @@ rofi.kb-row-last:                    Shift+End
 ! rofi.me-accept-entry:                MouseDPrimary
 ! "Accept hovered row with custom action" Set from: Default
 ! rofi.me-accept-custom:               Control+MouseDPrimary
-
