@@ -2,6 +2,9 @@
 # https://i3wm.org/docs/userguide.html#configuring
 # make this more mouse friendly for guacamole usage etc.
 
+#<CONFIG_EDITING_WARNING>
+
+
 # AUTOSTART ###################################################################
 exec --no-startup-id startapp
 exec --no-startup-id polybar main -r

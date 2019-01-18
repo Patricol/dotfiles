@@ -69,8 +69,6 @@ export EDITOR=vim
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
-material > /dev/null
-
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh

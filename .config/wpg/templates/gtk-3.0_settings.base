@@ -1,4 +1,7 @@
 [Settings]
+
+#<CONFIG_EDITING_WARNING>
+
 gtk-theme-name = <GTK_THEME>
 gtk-icon-theme-name = <ICON_THEME>
 gtk-fallback-icon-theme = <ICON_THEME_FALLBACK>
