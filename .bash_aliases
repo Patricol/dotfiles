@@ -41,22 +41,6 @@ function fscrot() {
 	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
 }
 
-alias syu='aurman -Syu'
-function pacs() {
-	aurman -S --repo $@
-}
-function aurs() {
-	aurman -S --aur $@
-}
-function aurr() {
-	aurman -R $@
-}
-function pacr() {
-	aurman -R $@
-}
-alias listexplicitlyinstalled='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort) | sort -n'
-alias listexplicitlyinstalledbysize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
-
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
 alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
@@ -66,59 +50,10 @@ function ftype() {
 function ftypei() {
 	find . -type f -name "*.$1" -exec file {} \;
 }
-function drf() {
-	sudo docker run --rm -it $@
-}
-function dpf() {
-	sudo docker pull $@
-}
-function dprf() {
-	#Can only use when no options are provided before the container name; fix that later.
-	dpf $1
-	drf $@
-}
-alias drfa='dprf alpine /bin/ash'
-alias drfalpine='drfa'
-alias alpine='drfa'
-alias drfu='dprf ubuntu /bin/bash'
-alias drfubuntu='drfu'
-alias ubuntu='drfu'
-alias drfarch='dprf patricol/arch /bin/bash'
-alias drfar='drfarch'
-alias arch='drfarch'
-function drfg() {
-	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $1 /bin/bash
-}
-alias drfgui='drfg patricol/terminal:latest'
 
 alias eb='exec bash'
 alias be='eb'
 alias ebnrc='exec bash --norc --noprofile'
-
-
-function docker() {
-	sudo docker $@
-}
-
-
-function checliver() {
-	sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli:$@
-}
-
-function checli() {
-       checliver `cat /home/docker/che/instance/che.ver.do_not_modify` $@
-}
-
-alias logs='sudo journalctl -xe'
-
-function mountiso() {
-	sudo mount -o loop $@ /media/iso
-}
-
-alias umountiso='sudo umount /media/iso'
-function fkill() {
-	sudo killall -KILL $@
-}
 
 function merge() {
 	rsync --remove-source-files -abviuAP $@

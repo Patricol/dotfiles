@@ -74,8 +74,7 @@ function add_ssh_key() {
 }
 
 eval $(ssh-agent) > /dev/null
-add_ssh_key allshares &> /dev/null
-add_ssh_key gdrive &> /dev/null
+add_ssh_key nas_work_share &> /dev/null
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 
@@ -85,8 +84,6 @@ RUN_FORTUNE=false
 if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a $RUN_FORTUNE == "true" ]; then
     fortune | cowsay
 fi
-
-PATH=$PATH:~/.bin
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 

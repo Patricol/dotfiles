@@ -286,11 +286,11 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 0
 
-modules-left = time i3-icons keyboard
+modules-left = work time i3-icons keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
-modules-right = pulseaudio updates-arch filesystem memory temperature cpu
+modules-right = pulseaudio filesystem memory temperature cpu
 
 tray-position = right
 tray-padding = 2
