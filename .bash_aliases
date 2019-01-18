@@ -172,6 +172,8 @@ alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 
 function wpgset() {
 	wpg -n -s $1.png > /dev/null
+	oomox-cli -o oomox-wpg -t ~/.themes -d false -m all ~/.config/oomox/colors/oomox-wpg
+	oomox-materia-cli -o materia-wpg -d false ~/.config/oomox/colors/materia-wpg
 }
 alias wpg-material='wpgset material'
 alias wpg-default='wpgset default'
