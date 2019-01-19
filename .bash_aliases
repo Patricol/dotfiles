@@ -107,6 +107,11 @@ alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 #provide the branch to pull changes from as an arg
 alias dfgm='dfg difftool -d -t meld'
+alias dfga='dfg add'
+alias dfgaa='dfga -u'
+alias dfgc='dfg commit'
+alias dfgch='dfg checkout'
+alias dfgp='dfg push'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 alias mnf='mineofetch'

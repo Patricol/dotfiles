@@ -33,6 +33,8 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+PS1='[\u@\h \W]\$ '
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     xterm*|rxvt*)
@@ -61,8 +63,6 @@ if ! shopt -oq posix; then
       source /etc/bash_completion
     fi
 fi
-
-PS1='[\u@\h \W]\$ '
 
 # Don't move this to a separate script; caused issues.
 function add_ssh_key() {
@@ -97,6 +97,8 @@ POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh
 if [ -n "$SSH_CONNECTION" ]; then
     neofetch
+    #changing lang fixes vim powerline
+    export LANG=en_US.UTF-8
 fi
 if [ "$TERM" == "linux" ] || [ -n "$SSH_CONNECTION" ]; then
     export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
@@ -105,7 +107,6 @@ else
 fi
 #need to start powerline-daemon with unicode LANG regardless
 LANG="en_US.UTF-8" powerline-daemon -q
-source ~/.config/wpg/formats/colors-tty.sh || true
 
 # disable Ctrl-S
 stty -ixon
