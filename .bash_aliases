@@ -45,10 +45,10 @@ alias syu='apt-get update && apt-get upgrade'
 function pacs() {
 	apt-get update && apt-get install $@
 }
+alias aurs='pacs'
 function pacr() {
 	apt-get remove $@
 }
-alias aurs='pacs'
 alias aurr='pacr'
 
 alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
