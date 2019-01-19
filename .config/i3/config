@@ -152,6 +152,8 @@ bindsym --whole-window $mod+$shift+$mouse-wheel-right	move container to workspac
 
 # KEYBOARD BINDINGS ###########################################################
 
+set $exit_i3			exec --no-startup-id "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
+
 # reload the configuration file
 bindsym $mod+$shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -301,7 +303,7 @@ set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
 set $terminal			exec --no-startup-id env LANG=en_US.UTF-8 urxvt
-set $update_xresources	        exec --no-startup-id xrdb ~/.Xresources
+set $update_xresources		exec --no-startup-id xrdb ~/.Xresources
 set $chrome			exec chromium
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -323,7 +325,7 @@ bindsym $mod2+space		$launcher
 bindsym $mod2+r			$launcher
 bindsym $mod2+a			$text-editor
 bindsym $mod2+c			$chrome
-bindsym $mod+$mod2+v	        $type-clipboard
+bindsym $mod+$mod2+v		$type-clipboard
 bindsym $alt+Tab		$window_switcher
 
 bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise

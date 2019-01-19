@@ -79,6 +79,8 @@ POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh
 if [ -n "$SSH_CONNECTION" ]; then
     neofetch
+    #changing lang fixes vim powerline
+    export LANG=en_US.UTF-8
 fi
 if [ "$TERM" == "linux" ] || [ -n "$SSH_CONNECTION" ]; then
     export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'

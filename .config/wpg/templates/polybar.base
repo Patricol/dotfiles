@@ -294,7 +294,7 @@ modules-left = time i3-icons keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
-modules-right = pulseaudio filesystem memory temperature cpu
+modules-right = pulseaudio check-updates filesystem memory temperature cpu
 
 wm-restack = i3
 
@@ -367,9 +367,9 @@ ramp-capacity-7 = ${symbols.usage-ramp-2}
 ramp-capacity-8 = ${symbols.usage-ramp-1}
 ramp-capacity-9 = ${symbols.usage-ramp-0}
 
-[module/updates-arch]
+[module/check-updates]
 type = custom/script
-exec = ~/.config/polybar/updates-arch.sh
+exec = ~/.config/polybar/check-updates.sh
 interval = 60
 
 [module/i3]

@@ -43,15 +43,14 @@ function fscrot() {
 
 alias syu='aurman -Syu'
 function pacs() {
-	aurman -S --repo $@
+	aurman -S $@
 }
-function aurs() {
-	aurman -S --aur $@
-}
+alias aurs='pacs'
 function pacr() {
 	aurman -R $@
 }
 alias aurr='pacr'
+
 alias listexplicitlyinstalled='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort) | sort -n'
 alias listexplicitlyinstalledbysize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
 
