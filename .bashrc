@@ -87,6 +87,8 @@ fi
 
 PATH=$PATH:~/.bin
 
+vim -es +PU +qa
+
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 #Do this above neofetch. Blanks the terminal; though it only runs if on tty.

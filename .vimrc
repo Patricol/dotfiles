@@ -8,6 +8,24 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 " Copies what was just pasted.
 xnoremap p pgvy
 
+
+com! -bar PU call s:plugins_update()
+com! -bar PUS call s:plugins_update_snapshot()
+
+fu! s:plugins_update() abort
+    PlugUpdate
+    PlugUpgrade
+endfu
+fu! s:plugins_update_snapshot() abort
+    if !isdirectory($HOME.'/.vim/tmp/snapshot')
+        call mkdir($HOME.'/.vim/tmp/snapshot', 'p')
+    endif
+    exe 'PlugSnapshot! '.fnameescape($HOME.'/.vim/tmp/snapshot/'.strftime('%d-%m_%H:%M').'.vim')
+    close
+    call s:plugins_update()
+endfu
+
+
 call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
@@ -40,3 +58,4 @@ call plug#end()
 " Remember to :PlugInstall when needed
 
 colorscheme wal
+
