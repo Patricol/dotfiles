@@ -54,7 +54,7 @@
 				"weather_condition_snowy":    "weather",
 				"weather_condition_rainy":    "weather",
 		"powerline-innermost:divider":"powerline-innermost",
-		"powerline-inner":		      { "fg": "wal-brightest", "bg": "wal-dark", "attrs": [] },
+		"powerline-inner":		      { "fg": "wal-darkest", "bg": "wal-dark", "attrs": [] },
 			"wal-branch":                 "powerline-inner",
 				"branch":                     "wal-branch",
 					"branch_clean": 			  "branch",

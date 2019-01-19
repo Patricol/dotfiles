@@ -2,8 +2,7 @@
 # https://i3wm.org/docs/userguide.html#configuring
 # make this more mouse friendly for guacamole usage etc.
 
-#<CONFIG_EDITING_WARNING>
-
+# <CONFIG_EDITING_WARNING>
 
 # AUTOSTART ###################################################################
 exec --no-startup-id startapp
@@ -31,6 +30,8 @@ for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="VNC config"] move scratchpad
 
 font pango:<FONT_MONOSPACE> 8
+font pango:<FONT_ICONS> 8
+font pango:<FONT_HIGH_COVERAGE> 8
 for_window [class=".*"] title_format "<span font='<FONT_MONOSPACE> 10'>%title</span>"
 #This lets me set the title bar size and fontsize separately. need to tweak to get it to apply to everything though.
 
@@ -68,7 +69,7 @@ set $warning #<WARNING>
 
 # class                    border      backgr.     text        indicator child_border
 client.focused             $brightest  $darkest    $brightest  $accent   $brightest
-client.focused_inactive    $dark       $darkest    $brighter   $dark     $dark
+client.focused_inactive    $dark       $darkest    $brightest  $dark     $dark
 client.unfocused           $darkest    $darkest    $bright     $dark     $darkest
 client.urgent              $accent     $accent     $darkest    $dark     $accent
 client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
