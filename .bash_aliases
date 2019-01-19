@@ -43,17 +43,14 @@ function fscrot() {
 
 alias syu='aurman -Syu'
 function pacs() {
-	aurman -S --repo $@
+	aurman -S $@
 }
-function aurs() {
-	aurman -S --aur $@
-}
-function aurr() {
-	aurman -R $@
-}
+alias aurs='pacs'
 function pacr() {
 	aurman -R $@
 }
+alias aurr='pacr'
+
 alias listexplicitlyinstalled='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort) | sort -n'
 alias listexplicitlyinstalledbysize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
 
@@ -172,6 +169,11 @@ alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 #provide the branch to pull changes from as an arg
 alias dfgm='dfg difftool -d -t meld'
+alias dfga='dfg add'
+alias dfgaa='dfga -u'
+alias dfgc='dfg commit'
+alias dfgch='dfg checkout'
+alias dfgp='dfg push'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 alias mnf='mineofetch'

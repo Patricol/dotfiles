@@ -33,6 +33,8 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
+PS1='[\u@\h \W]\$ '
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
     xterm*|rxvt*)
@@ -62,8 +64,6 @@ if ! shopt -oq posix; then
     fi
 fi
 
-PS1='[\u@\h \W]\$ '
-
 # Don't move this to a separate script; caused issues.
 function add_ssh_key() {
     if [ ! -z "$1" ]; then
@@ -86,8 +86,6 @@ if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a $RUN_FORTUNE == "true" ]; then
 fi
 
 PATH=$PATH:~/.bin
-
-vim -es +PU +qa
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 

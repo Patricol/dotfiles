@@ -313,21 +313,21 @@ bindsym $mod+$shift+$ctrl+0 move container to $ws10; $ws10
 set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
-set $lock			exec --no-startup-id lock
 set $terminal			exec --no-startup-id urxvt
-set $files			exec --no-startup-id nemo
 set $chrome			exec chromium
-set $task-manager		exec gnome-system-monitor
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 set $volume-toggle-mute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+set $text-editor		exec --no-startup-id atom
+set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
+set $lock			exec --no-startup-id lock
+set $files			exec --no-startup-id nemo
+set $task-manager		exec gnome-system-monitor
 set $calculator			exec gnome-calculator
 set $music			exec --no-startup-id gpmdp
 set $notes			exec --no-startup-id standardnotes-desktop
-set $text-editor		exec --no-startup-id atom
 set $facebook-messenger		exec --no-startup-id caprine
-set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
 
 
 
@@ -339,18 +339,18 @@ bindsym $mod+Return		$terminal
 bindsym $mod+space		$launcher
 bindsym $mod2+space		$launcher
 bindsym $mod2+r			$launcher
-bindsym $mod2+s			$notes
 bindsym $mod2+a			$text-editor
-bindsym $mod2+f			$facebook-messenger
 bindsym $mod2+c			$chrome
+bindsym $mod2+s			$notes
+bindsym $mod2+f			$facebook-messenger
 bindsym $mod2+m			$music
 bindsym $mod2+n			$notes
 bindsym $mod2+Print		$screenshot
 bindsym Print			$screenshot
 bindsym $mod2+l			$lock
-bindsym $mod+$mod2+v	$type-clipboard
 bindsym $mod2+e			$files
 bindsym $ctrl+$shift+Escape	$task-manager
+bindsym $mod+$mod2+v		$type-clipboard
 bindsym $alt+Tab		$window_switcher
 
 bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise

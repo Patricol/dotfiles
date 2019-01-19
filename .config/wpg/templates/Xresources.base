@@ -60,6 +60,7 @@ URxvt.termName: rxvt-unicode-256color
 ! Select the fonts to be used. This is a comma separated list of font names that are checked in order when trying to find glyphs for characters. The first font defines the cell size for characters; other fonts might be smaller, but not (in general) larger. A (hopefully) reasonable default font list is always appended to it. Each font can either be a standard X11 core font (XLFD) name, with optional prefix "x:" or a Xft font (Compile xft), prefixed with "xft:". In addition, each font can be prefixed with additional hints and specifications enclosed in square brackets ("[]"). The only available hint currently is "codeset=codeset-name", and this is only used for Xft fonts. Note that the base font (the first one named) defines the character cell grid size.
 ! NOTE ABOUT SYMBOLS: Need to set symbol fonts to a smaller size than the main font. If individual characters are too large; they will not be printed.
 URxvt.font: xft:<FONT_MONOSPACE>:size=<FONT_MONOSPACE_SIZE>,\
+            xft:PowerlineSymbols:size=<FONT_MONOSPACE_SIZE>,\
             xft:<FONT_ICONS>:size=20,\
             xft:<FONT_ICONS>:size=19,\
             xft:<FONT_ICONS>:size=18,\
@@ -85,6 +86,7 @@ URxvt.font: xft:<FONT_MONOSPACE>:size=<FONT_MONOSPACE_SIZE>,\
 
 ! The font list to use for displaying bold characters.
 URxvt.boldFont: xft:<FONT_MONOSPACE>:bold:size=<FONT_MONOSPACE_SIZE>,\
+            	xft:PowerlineSymbols:size=<FONT_MONOSPACE_SIZE>,\
                 xft:<FONT_ICONS>:size=20,\
                 xft:<FONT_ICONS>:size=19,\
                 xft:<FONT_ICONS>:size=18,\
@@ -108,6 +110,7 @@ URxvt.boldFont: xft:<FONT_MONOSPACE>:bold:size=<FONT_MONOSPACE_SIZE>,\
 
 ! The font list to use for displaying italic characters.
 URxvt.italicFont: xft:<FONT_MONOSPACE>:italic:size=<FONT_MONOSPACE_SIZE>,\
+            	  xft:PowerlineSymbols:size=<FONT_MONOSPACE_SIZE>,\
                   xft:<FONT_ICONS>:size=20,\
                   xft:<FONT_ICONS>:size=19,\
                   xft:<FONT_ICONS>:size=18,\
@@ -131,6 +134,7 @@ URxvt.italicFont: xft:<FONT_MONOSPACE>:italic:size=<FONT_MONOSPACE_SIZE>,\
 
 ! The font list to use for displaying bold italic characters.
 URxvt.boldItalicFont: xft:<FONT_MONOSPACE>:bold:italic:size=<FONT_MONOSPACE_SIZE>,\
+		      xft:PowerlineSymbols:size=<FONT_MONOSPACE_SIZE>,\
                       xft:<FONT_ICONS>:size=20,\
                       xft:<FONT_ICONS>:size=19,\
                       xft:<FONT_ICONS>:size=18,\
