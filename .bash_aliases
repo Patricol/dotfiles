@@ -170,6 +170,8 @@ alias dfgk='add_ssh_key github_fcdcbda'
 alias dfgs='dfg status'
 alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
+#provide the branch to pull changes from as an arg
+alias dfgm='dfg difftool -d -t meld'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 alias mnf='mineofetch'
