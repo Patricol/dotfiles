@@ -41,13 +41,13 @@ function fscrot() {
 	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
 }
 
-alias syu='apt-get update && apt-get upgrade'
+alias syu='sudo apt-get update && sudo apt-get upgrade'
 function pacs() {
-	apt-get update && apt-get install $@
+	sudo apt-get update && sudo apt-get install $@
 }
 alias aurs='pacs'
 function pacr() {
-	apt-get remove $@
+	sudo apt-get remove $@
 }
 alias aurr='pacr'
 
