@@ -35,6 +35,8 @@ for_window [class=.*] border $def_border
 for_window [title="Authy" class="Chromium"] floating enable
 
 font pango:Source Code Pro 8
+font pango:Material Design Icons 8
+font pango:Unifont 8
 for_window [class=".*"] title_format "<span font='Source Code Pro 10'>%title</span>"
 #This lets me set the title bar size and fontsize separately. need to tweak to get it to apply to everything though.
 
@@ -312,7 +314,7 @@ set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
 set $lock			exec --no-startup-id lock
-set $terminal			exec --no-startup-id kitty
+set $terminal			exec --no-startup-id urxvt
 set $files			exec --no-startup-id nemo
 set $chrome			exec chromium
 set $task-manager		exec gnome-system-monitor

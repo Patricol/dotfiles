@@ -35,6 +35,8 @@ for_window [class=.*] border $def_border
 for_window [title="Authy" class="Chromium"] floating enable
 
 font pango:<FONT_MONOSPACE> 8
+font pango:<FONT_ICONS> 8
+font pango:<FONT_HIGH_COVERAGE> 8
 for_window [class=".*"] title_format "<span font='<FONT_MONOSPACE> 10'>%title</span>"
 #This lets me set the title bar size and fontsize separately. need to tweak to get it to apply to everything though.
 
