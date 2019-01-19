@@ -71,8 +71,6 @@ export QT_QPA_PLATFORMTHEME=qt5ct
 #Do this above neofetch. Blanks the terminal; though it only runs if on tty.
 source ~/.config/wpg/formats/colors-tty.sh || true
 
-xrdb ~/.Xresources
-
 # Not needed; overrides custom cursor etc.
 #(cat ~/.config/wpg/sequences &)
 
