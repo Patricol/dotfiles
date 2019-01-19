@@ -41,6 +41,15 @@ function fscrot() {
 	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
 }
 
+alias syu='apt-get update && apt-get upgrade'
+function pacs() {
+	apt-get update && apt-get install $@
+}
+function pacr() {
+	apt-get remove $@
+}
+alias aurs='pacs'
+alias aurr='pacr'
 
 alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
 function ftype() {
@@ -111,6 +120,8 @@ alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 #provide the branch to pull changes from as an arg
 alias dfgm='dfg difftool -d -t meld'
+alias dfga='dfg add'
+alias dfgaa='dfga -u'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 alias mnf='mineofetch'

@@ -1,3 +1,3 @@
 ~/.config/wpg/wp_init.sh
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
-exec i3
+LANG=en_US.UTF-8 exec i3

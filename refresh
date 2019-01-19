@@ -1,0 +1,8 @@
+#!/bin/bash
+# For commands that should run before /vnc or /rdp.
+# Runs after dotfiles are updated.
+
+vim -es +PlugInstall +qa
+vim -es +PU +qa
+xrdb ~/.Xresources
+
