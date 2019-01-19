@@ -74,7 +74,7 @@ set $warning #<WARNING>
 
 # class                    border      backgr.     text        indicator child_border
 client.focused             $brightest  $darkest    $brightest  $accent   $brightest
-client.focused_inactive    $dark       $darkest    $brighter   $dark     $dark
+client.focused_inactive    $dark       $darkest    $brightest  $dark     $dark
 client.unfocused           $darkest    $darkest    $bright     $dark     $darkest
 client.urgent              $accent     $accent     $darkest    $dark     $accent
 client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
