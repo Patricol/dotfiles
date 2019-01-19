@@ -167,11 +167,21 @@ alias brc='vimbottom ~/.bashrc'
 #dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
 alias dfgk='add_ssh_key github_fcdcbda'
+alias dfgs='dfg status'
+alias dfgd='dfg diff'
+alias dfgdc='dfgd --cached'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
+alias mnf='mineofetch'
+alias nf='neofetch'
+alias nfa='neofetch --ascii'
 
-function wpgset() {
+function wpgsetfast() {
 	wpg -n -s $1.png
+	xrdb ~/.Xresources
+}
+function wpgset() {
+	wpgsetfast $1
 	oomox-cli -o oomox-wpg -t ~/.themes -d false -m all ~/.config/oomox/colors/oomox-wpg
 	oomox-materia-cli -o materia-wpg -d false ~/.config/oomox/colors/materia-wpg
 }
@@ -182,6 +192,7 @@ alias wpg-distinct-flip='wpgset debug-distinct-flip'
 alias wpg-red='wpgset debug-red'
 alias wpg-yellow='wpgset debug-yellow'
 alias material='wpg-material'
+alias fmaterial='wpgsetfast material'
 alias nomaterial='wpg-default'
 alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
 
