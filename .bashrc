@@ -37,11 +37,10 @@ PS1='[\u@\h \W]\$ '
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    xterm*|rxvt*)
+        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+        ;;
+    *)  ;;
 esac
 
 # enable color support of ls
@@ -58,38 +57,42 @@ fi
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    source /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    source /etc/bash_completion
-  fi
+    if [ -f /usr/share/bash-completion/bash_completion ]; then
+      source /usr/share/bash-completion/bash_completion
+    elif [ -f /etc/bash_completion ]; then
+      source /etc/bash_completion
+    fi
 fi
 
 export EDITOR=vim
 
 export QT_QPA_PLATFORMTHEME=qt5ct
 
+#Do this above neofetch. Blanks the terminal; though it only runs if on tty.
+source ~/.config/wpg/formats/colors-tty.sh || true
+
+# Not needed; overrides custom cursor etc.
+#(cat ~/.config/wpg/sequences &)
+
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh
-if [ -z "$SSH_CONNECTION" ]; then
-	(cat ~/.config/wpg/sequences &)
-else
-	#export LANG="en_US"
-    #export LANG="en_US.UTF-8"
-    #changing LANG messes up powerline in vim, even when the daemon is started correctly.
-    echo ""
+if [ -n "$SSH_CONNECTION" ]; then
     neofetch
 fi
-if [ "$TERM" == "linux" ] || [ ! -z "$SSH_CONNECTION" ]; then
-	export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
+if [ "$TERM" == "linux" ] || [ -n "$SSH_CONNECTION" ]; then
+    export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
 else
-	export POWERLINE_CONFIG_OVERRIDES=''
+    export POWERLINE_CONFIG_OVERRIDES=''
 fi
 #need to start powerline-daemon with unicode LANG regardless
 LANG="en_US.UTF-8" powerline-daemon -q
-source ~/.config/wpg/formats/colors-tty.sh || true
+
+# disable Ctrl-S
+stty -ixon
 
 # run this regularly, but not here:
 #dfg remote update &> /dev/null &
 # add something to tell me when updates are available on bash start from ssh etc.
+
+#tty is changing colors because bold. neofetch color output must be bold; to be acting this way. need to have it not use the emphasis bit etc; or have tty-specific setups without bold stuff? but why would the background grey be missing for the cwd?

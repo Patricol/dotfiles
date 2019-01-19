@@ -59,10 +59,32 @@ function fkill() {
 	sudo killall -KILL $@
 }
 
+function merge() {
+	rsync --remove-source-files -abviuAP $@
+}
+
 alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
 
 alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
 alias colorst='msgcat --color=test'
+
+function extract() {
+	7z x $@
+        # if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
+       # it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
+}
+#anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
+#gzip seems much less resistant to corruption than xz.
+#maybe add functions for creating archives of different types.
+#I do really care about avoiding corruption.
+#zip vs tgz vs txz vs ?
+#txz is best for compression, efficiency etc.
+#extracting individual files from zip is faster. zip is also more ubiquitous.
+
+#function maketxz() {
+#}
+#function makezip() {
+#}
 
 alias cdup='cd ..'
 alias cdu='cdup'
@@ -84,11 +106,23 @@ alias brc='vimbottom ~/.bashrc'
 #dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
 alias dfgk='add_ssh_key github_fcdcbda'
+alias dfgs='dfg status'
+alias dfgd='dfg diff'
+alias dfgdc='dfgd --cached'
+#provide the branch to pull changes from as an arg
+alias dfgm='dfg difftool -d -t meld'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
+alias mnf='mineofetch'
+alias nf='neofetch'
+alias nfa='neofetch --ascii'
 
-function wpgset() {
+function wpgsetfast() {
 	wpg -n -s $1.png
+	xrdb ~/.Xresources
+}
+function wpgset() {
+	wpgsetfast $1
 	oomox-cli -o oomox-wpg -t ~/.themes -d false -m all ~/.config/oomox/colors/oomox-wpg
 	oomox-materia-cli -o materia-wpg -d false ~/.config/oomox/colors/materia-wpg
 }
@@ -99,6 +133,7 @@ alias wpg-distinct-flip='wpgset debug-distinct-flip'
 alias wpg-red='wpgset debug-red'
 alias wpg-yellow='wpgset debug-yellow'
 alias material='wpg-material'
+alias fmaterial='wpgsetfast material'
 alias nomaterial='wpg-default'
 alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
 
@@ -113,4 +148,3 @@ function tif() {
 }
 
 alias epoch='date +%s'
-
