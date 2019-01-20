@@ -328,9 +328,9 @@ content-foreground = ${colors.lowvis-fg}
 
 [module/xwindow]
 type = internal/xwindow
-; Middle clicking closes the active window.
-;label = %{A2:i3-msg kill &:}%title%%{A}
-label = %{A3:i3-msg floating toggle &:}%title%%{A}
+; Middle clicking closes the active window. Right-clicking toggles floating
+label = %{A2:i3-msg kill &:}%{A3:i3-msg floating toggle &:}%title%%{A}%{A}
+; Should try to setup a way to copy the window's name to clipboard.
 ;label = %{A1:echo '%title%' | xclip -selection c &:}%title%%{A}
 label-font = ${fonts.window-title}
 
