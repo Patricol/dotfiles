@@ -86,6 +86,9 @@ alias arch='drfarch'
 function drfg() {
 	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $1 /bin/bash
 }
+function drfgv() {
+	dpf $1 && drf -e RDP_OR_VNC="VNC" -p 3389:3389 -p 5900:5900 $1 /bin/bash
+}
 alias drfgui='drfg patricol/terminal:latest'
 
 alias eb='exec bash'
