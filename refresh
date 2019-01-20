@@ -6,10 +6,10 @@
 #source /etc/profile.d/locale.sh
 
 #Update Vim plugins and plugin manager
-vim -es +MAINTAIN
+su user -c "vim -es +MAINTAIN"
 
 #reload Xresources in case it was changed when dotfiles were updated.
-xrdb ~/.Xresources
+su user -c "xrdb ~/.Xresources"
 
 su user -c "/home/user/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines"
 su user -c "/home/user/.local/share/umake/bin/apm disable spell-check tree-view"
