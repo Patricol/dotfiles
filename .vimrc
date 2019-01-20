@@ -81,6 +81,14 @@ call plug#begin('~/.vim/plugged')
 " Unmanaged plugin (manually installed and updated)
 " Plug '~/my-prototype-plugin'
 
+Plug 'scrooloose/nerdtree'
+call s:check_installed('nerdtree')
+
+Plug 'tpope/vim-sleuth'
+call s:check_installed('vim-sleuth')
+
+Plug 'tpope/vim-sensible'
+call s:check_installed('vim-sensible')
 
 Plug 'dylanaraps/wal.vim'
 call s:check_installed('wal.vim')
