@@ -170,7 +170,7 @@ alias dfgdc='dfgd --cached'
 #provide the branch to pull changes from as an arg
 alias dfgm='dfg difftool -d -t meld'
 alias dfga='dfg add'
-alias dfgaa='dfga -u'
+alias dfgaa='dfga -u && dfga ~/.themes ~/.config/wpg ~/.config/powerline ~/.config/wallpapers'
 alias dfgc='dfg commit'
 alias dfgch='dfg checkout'
 alias dfgchp='dfgch archpatricol'
