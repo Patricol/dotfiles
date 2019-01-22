@@ -1,5 +1,7 @@
 # dotfiles
 
+The dotfiles are in [branches](https://github.com/Patricol/dotfiles/branches/all).
+
 * Note to self:
   * This is mainly for keeping a history of config files I manually edit a lot.
     * Not for saving and restoring configs of things like VLC
