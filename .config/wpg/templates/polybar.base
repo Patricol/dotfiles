@@ -298,7 +298,7 @@ modules-left = time i3-icons keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
-modules-right = pulseaudio updates-arch filesystem memory temperature cpu
+modules-right = pulseaudio check-updates filesystem memory temperature cpu
 
 tray-position = right
 tray-padding = 2

@@ -51,8 +51,9 @@ function pacr() {
 }
 alias aurr='pacr'
 
-alias listexplicitlyinstalled='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort) | sort -n'
-alias listexplicitlyinstalledbysize='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
+alias listexplicitlyinstalled='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
+#alias listexplicitlyinstalleduniversal='pacman -Qi | egrep "^(Name|Installed)" | cut -f2 -d":" | paste - - | column -t | sort -nrk 2 | grep MiB | tac'
+alias listexplicitlyinstalleduniversal='pacman -Qi $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | egrep "^(Name|Installed)" | cut -f2 -d":" | paste - - | column -t | sort -nrk 2 | grep MiB | tac'
 
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
