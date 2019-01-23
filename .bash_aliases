@@ -1,6 +1,9 @@
 # Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+# Better to just include commands (from other dotfile branches) even if they don't run because (e.g) this account cant sudo etc.
+# Easier to maintain/merge; and can use those aliases when checking out a branch in an environment it's not meant for, etc.
+
 # enable color aliases of ls if supported
 if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
@@ -37,9 +40,25 @@ alias lra='lar'
 alias lr='ls -R'
 alias l='ls -CF'
 
+alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
+
 function fscrot() {
 	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
 }
+
+alias syu='yay -Syu'
+function pacs() {
+	syu $@
+}
+alias aurs='pacs'
+function pacr() {
+	yay -R $@
+}
+alias aurr='pacr'
+
+alias listexplicitlyinstalled='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
+#alias listexplicitlyinstalleduniversal='pacman -Qi | egrep "^(Name|Installed)" | cut -f2 -d":" | paste - - | column -t | sort -nrk 2 | grep MiB | tac'
+alias listexplicitlyinstalleduniversal='pacman -Qi $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | egrep "^(Name|Installed)" | cut -f2 -d":" | paste - - | column -t | sort -nrk 2 | grep MiB | tac'
 
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
@@ -50,10 +69,63 @@ function ftype() {
 function ftypei() {
 	find . -type f -name "*.$1" -exec file {} \;
 }
+function drf() {
+	sudo docker run --rm -it $@
+}
+function dpf() {
+	sudo docker pull $@
+}
+function dprf() {
+	#Can only use when no options are provided before the container name; fix that later.
+	dpf $1
+	drf $@
+}
+alias drfa='dprf alpine /bin/ash'
+alias drfalpine='drfa'
+alias alpine='drfa'
+alias drfu='dprf ubuntu /bin/bash'
+alias drfubuntu='drfu'
+alias ubuntu='drfu'
+alias drfarch='dprf patricol/arch /bin/bash'
+alias drfar='drfarch'
+alias arch='drfarch'
+function drfg() {
+	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $1 /bin/bash
+}
+function drfgv() {
+	dpf $1 && drf -e RDP_OR_VNC="VNC" -p 3389:3389 -p 5900:5900 $1 /bin/bash
+}
+alias drfgui='drfg patricol/terminal:latest'
 
 alias eb='exec bash'
 alias be='eb'
 alias ebnrc='exec bash --norc --noprofile'
+
+
+function docker() {
+	sudo docker $@
+}
+
+
+function checliver() {
+	sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli:$@
+}
+
+function checli() {
+       checliver `cat /home/docker/che/instance/che.ver.do_not_modify` $@
+}
+
+alias logs='sudo journalctl -xe'
+
+function mountiso() {
+	sudo mount -o loop $@ /media/iso
+}
+
+alias umountiso='sudo umount /media/iso'
+
+function fkill() {
+	sudo killall -KILL $@
+}
 
 function merge() {
 	rsync --remove-source-files -abviuAP $@
@@ -107,6 +179,10 @@ alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 #provide the branch to pull changes from as an arg
 alias dfgm='dfg difftool -d -t meld'
+alias dfgmp='dfgm archpatricol'
+alias dfgmw='dfgm archwork'
+alias dfgmda='dfgm dockerarch'
+alias dfgmdu='dfgm dockerubuntu'
 alias dfga='dfg add'
 alias dfgaa='dfga -u && dfga ~/.themes ~/.config/wpg ~/.config/powerline ~/.config/wallpapers'
 alias dfgac='dfgaa && dfgc'
@@ -114,9 +190,8 @@ alias dfgc='dfg commit'
 alias dfgch='dfg checkout'
 alias dfgchp='dfgch archpatricol'
 alias dfgchw='dfgch archwork'
-alias dfgchda='dfgch dockerarchgui'
-alias dfgchdu='dfgch dockerubuntugui'
-alias dfgchdc='dfgch dockerchex11'
+alias dfgchda='dfgch dockerarch'
+alias dfgchdu='dfgch dockerubuntu'
 alias dfgp='dfg push'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'

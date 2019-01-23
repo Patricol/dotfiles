@@ -79,11 +79,6 @@ source /usr/share/doc/pkgfile/command-not-found.bash
 
 export EDITOR=vim
 
-RUN_FORTUNE=false
-if [ -x /usr/bin/cowsay -a -x /usr/bin/fortune -a $RUN_FORTUNE == "true" ]; then
-    fortune | cowsay
-fi
-
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 #Do this above neofetch. Blanks the terminal; though it only runs if on tty.

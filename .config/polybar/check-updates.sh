@@ -1,6 +1,11 @@
 #!/bin/sh
+if [ `which yay 2> /dev/null` ]; then
+    check_command="yay -Qu"
+else
+    check_command="checkupdates"
+fi
 
-if ! updates=$(checkupdates 2> /dev/null | wc -l ); then
+if ! updates=$($check_command 2> /dev/null | wc -l ); then
     updates=0
 fi
 
