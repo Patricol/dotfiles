@@ -40,6 +40,8 @@ alias lra='lar'
 alias lr='ls -R'
 alias l='ls -CF'
 
+alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
+
 function fscrot() {
 	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
 }
