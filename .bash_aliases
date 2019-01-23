@@ -52,6 +52,8 @@ alias aurs='pacs'
 alias pacr='yay -R'
 alias aurr='pacr'
 
+alias pq='pacman -Q | grep'
+
 alias listexplicitlyinstalled='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
 alias listexplicitlyinstalleduniversal='pacman -Qi $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | egrep "^(Name|Installed)" | cut -f2 -d":" | paste - - | column -t | sort -nrk 2 | grep MiB | tac'
 
