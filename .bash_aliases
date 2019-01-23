@@ -229,4 +229,11 @@ function tif() {
     fi
 }
 
+function ier() {
+    #if exists, run.
+    if [ -n "`which $1 2> /dev/null`" ]; then
+	$@
+    fi
+}
+
 alias epoch='date +%s'

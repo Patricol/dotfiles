@@ -2,6 +2,13 @@
 # For commands that should run before /vnc or /rdp.
 # Runs after dotfiles are updated.
 
+function ier() {
+	#if exists, run.
+	if [ -n "`which $1 2> /dev/null`" ]; then
+		$@
+	fi
+}
+
 #Not needed in ubuntu; only in arch
 source /etc/profile.d/locale.sh
 
@@ -9,8 +16,8 @@ source /etc/profile.d/locale.sh
 vim +MAINTAIN
 
 #reload Xresources in case it was changed when dotfiles were updated.
-xrdb ~/.Xresources
+ier xrdb ~/.Xresources
 
-#~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
-#~/.local/share/umake/bin/apm disable spell-check tree-view
+ier ~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
+ier ~/.local/share/umake/bin/apm disable spell-check tree-view
 
