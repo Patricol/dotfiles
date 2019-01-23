@@ -52,6 +52,11 @@ fi
 if [ -f ~/.bash_aliases ]; then
     source ~/.bash_aliases
 fi
+if [ -d ~/.aliases/ ]; then
+    for f in ~/.aliases/*; do
+        source $f
+    done
+fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

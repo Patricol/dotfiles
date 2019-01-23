@@ -1,0 +1,30 @@
+#dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
+
+alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
+
+alias dfgk='add_ssh_key github_fcdcbda'
+
+alias dfgs='dfg status'
+
+alias dfgd='dfg diff'
+alias dfgdc='dfgd --cached'
+
+#provide the branch to pull changes from as an arg
+alias dfgm='dfg difftool -d -t meld'
+alias dfgmp='dfgm archpatricol'
+alias dfgmw='dfgm archwork'
+alias dfgmda='dfgm dockerarch'
+alias dfgmdu='dfgm dockerubuntu'
+
+alias dfga='dfg add'
+alias dfgaa='dfga -u && dfga ~/.themes ~/.aliases ~/.config/wpg ~/.config/powerline ~/.config/wallpapers'
+alias dfgac='dfgaa && dfgc'
+alias dfgc='dfg commit'
+
+alias dfgch='dfg checkout'
+alias dfgchp='dfgch archpatricol'
+alias dfgchw='dfgch archwork'
+alias dfgchda='dfgch dockerarch'
+alias dfgchdu='dfgch dockerubuntu'
+
+alias dfgp='dfg push'
