@@ -14,3 +14,5 @@ xrdb ~/.Xresources
 #~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
 #~/.local/share/umake/bin/apm disable spell-check tree-view
 
+export PATH=/usr/games:/usr/local/games:$PATH
+
