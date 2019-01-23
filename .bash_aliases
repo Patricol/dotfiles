@@ -68,7 +68,7 @@ function ftypei() {
 
 alias docker='sudo docker'
 
-alias drf='docker run --rm --it'
+alias drf='docker run --rm -it'
 alias dpf='docker pull'
 function dprf() {
 	#Can only use when no options are provided before the container name; fix that later.
