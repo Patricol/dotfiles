@@ -41,13 +41,13 @@ function fscrot() {
 	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
 }
 
-alias syu='aurman -Syu'
+alias syu='yay -Syu'
 function pacs() {
-	aurman -S $@
+	syu $@
 }
 alias aurs='pacs'
 function pacr() {
-	aurman -R $@
+	yay -R $@
 }
 alias aurr='pacr'
 
