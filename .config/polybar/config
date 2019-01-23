@@ -281,6 +281,7 @@ font-10 = Unifont:pixelsize=10:antialias=true;1
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 border-size 100
+;height = 13
 height = 1.2%
 ;height = 2.4%
 fixed-center = true
@@ -385,6 +386,7 @@ ramp-capacity-9 = ${symbols.usage-ramp-0}
 type = custom/script
 exec = ~/.config/polybar/check-updates.sh
 interval = 60
+;interval = 6000
 
 [module/start-terminal]
 type = custom/text
