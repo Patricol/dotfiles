@@ -303,7 +303,7 @@ set $start_main_app             exec --no-startup-id startapp
 set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
-set $terminal			exec --no-startup-id env LANG=en_US.UTF-8 <TERMINAL>
+set $terminal			exec --no-startup-id <TERMINAL>
 set $chrome			exec chromium
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%

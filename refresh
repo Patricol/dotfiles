@@ -3,11 +3,11 @@
 # Runs after dotfiles are updated.
 
 #Update Vim plugins and plugin manager
-su user -c "vim +MAINTAIN"
+vim +MAINTAIN
 
 #reload Xresources in case it was changed when dotfiles were updated.
-su user -c "xrdb ~/.Xresources"
+xrdb ~/.Xresources
 
-su user -c "/home/user/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines"
-su user -c "/home/user/.local/share/umake/bin/apm disable spell-check tree-view"
+~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
+~/.local/share/umake/bin/apm disable spell-check tree-view
 

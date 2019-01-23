@@ -64,6 +64,16 @@ if ! shopt -oq posix; then
     fi
 fi
 
+# Don't move this to a separate script; caused issues.
+function add_ssh_key() {
+    if [ ! -z "$1" ]; then
+        chmod 600 ~/.ssh/"$1"
+        eval `keychain --eval "$1"`
+    fi
+}
+
+eval $(ssh-agent) > /dev/null
+
 export EDITOR=vim
 
 export QT_QPA_PLATFORMTHEME=qt5ct
