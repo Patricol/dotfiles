@@ -282,6 +282,8 @@ font-10 = <FONT_HIGH_COVERAGE>:pixelsize=10:antialias=true;1
 width = 100%
 border-size 100
 height = 13
+;height = 1.2%
+;height = 2.4%
 fixed-center = true
 
 background = ${colors.bg}
@@ -299,7 +301,13 @@ modules-center = xwindow
 ;modules-center = font-testing
 modules-right = pulseaudio check-updates filesystem memory temperature cpu
 
-wm-restack = i3
+;tray-position = right
+;tray-padding = 2
+;tray-maxsize = 12
+;; So that I can scroll workspaces with mouse on top right corner.
+;tray-offset-x = -2
+;tray-scale = 1.0
+;wm-restack = i3
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
@@ -376,6 +384,7 @@ ramp-capacity-9 = ${symbols.usage-ramp-0}
 [module/check-updates]
 type = custom/script
 exec = ~/.config/polybar/check-updates.sh
+;interval = 60
 interval = 6000
 
 [module/start-terminal]
@@ -735,6 +744,65 @@ ramp-98 = ${symbols.usage-ramp-8}
 ramp-99 = ${symbols.usage-ramp-8}
 ramp-100 = ${symbols.usage-ramp-9}
 
+[module/wireless-network]
+type = internal/network
+interface = wlp4s0
+interval = 3
+
+;format-connected = <ramp-signal><label-connected>
+format-connected = <ramp-signal>
+;format-connected-prefix = ${symbols.wifi-connected}
+format-connected-foreground = ${colors.midvis-fg}
+label-connected = %essid% %downspeed% %upspeed%
+
+; format-disconnected = <label-disconnected>
+; format-disconnected-prefix = ${symbols.wifi-disconnected}
+format-disconnected-foreground = ${colors.accent}
+label-disconnected = ${symbols.wifi-disconnected}
+
+ramp-signal-0 = ${symbols.wifi-signal-0}
+ramp-signal-1 = ${symbols.wifi-signal-1}
+ramp-signal-2 = ${symbols.wifi-signal-2}
+ramp-signal-3 = ${symbols.wifi-signal-3}
+ramp-signal-4 = ${symbols.wifi-signal-4}
+
+format-packetloss = <animation-packetloss><label-packetloss>
+
+label-packetloss = ${symbols.warning}
+label-packetloss-foreground = ${colors.warning}
+
+animation-packetloss-0 = ${symbols.wifi-empty}
+animation-packetloss-1 = ${symbols.wifi-empty-warning}
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+
+[module/wired-network]
+type = internal/network
+interface = enp0s31f6
+interval = 3
+
+format-connected = <label-connected>
+; format-connected-prefix = ${symbols.ethernet-connected}
+format-connected-foreground = ${colors.midvis-fg}
+; label-connected = %downspeed% %upspeed%
+label-connected = ${symbols.ethernet-connected}
+
+; format-disconnected = <label-disconnected>
+; format-disconnected-prefix = ${symbols.ethernet-disconnected}
+format-disconnected-foreground = ${colors.accent}
+label-disconnected = ${symbols.ethernet-disconnected}
+
+format-packetloss = <animation-packetloss><label-packetloss>
+
+label-packetloss = ${symbols.warning}
+label-packetloss-foreground = ${colors.warning}
+
+animation-packetloss-0 = ${symbols.ethernet-disconnected}
+animation-packetloss-1 = ${symbols.ethernet-connected}
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
 
 [module/time]
 type = internal/date
@@ -783,6 +851,34 @@ format-muted-foreground = ${colors.lowvis-fg}
 label-muted = ${self.label-volume}
 label-muted-font = ${self.label-volume-font}
 
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = false
+
+format-spacing = 0
+format-foreground = ${colors.midvis-fg}
+
+label-open = ${symbols.power}
+label-close = ${symbols.no}
+
+menu-0-0 = ${symbols.reboot}
+menu-0-0-exec = menu-open-1
+menu-0-1 = ${symbols.poweroff}
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = ${symbols.no}
+menu-1-0-exec = menu-open-0
+menu-1-1 = ${symbols.reboot}
+menu-1-1-foreground = ${colors.warning}
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = ${symbols.poweroff}
+menu-2-0-foreground = ${colors.warning}
+menu-2-0-exec = sudo poweroff
+menu-2-1 = ${symbols.no}
+menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true

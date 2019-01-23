@@ -11,3 +11,6 @@ vim +MAINTAIN
 #reload Xresources in case it was changed when dotfiles were updated.
 xrdb ~/.Xresources
 
+#~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
+#~/.local/share/umake/bin/apm disable spell-check tree-view
+
