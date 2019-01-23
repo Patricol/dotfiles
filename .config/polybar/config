@@ -307,6 +307,7 @@ modules-right = pulseaudio check-updates filesystem memory temperature cpu
 ;; So that I can scroll workspaces with mouse on top right corner.
 ;tray-offset-x = -2
 ;tray-scale = 1.0
+
 wm-restack = i3
 
 scroll-up = i3wm-wsnext
