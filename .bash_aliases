@@ -83,10 +83,10 @@ function dprf() {
 alias drfa='dprf alpine /bin/ash'
 alias drfalpine='drfa'
 alias alpine='drfa'
-alias drfu='dprf ubuntu /bin/bash'
+alias drfu='dprf patricol/riced:ubuntu_rolling /bin/bash'
 alias drfubuntu='drfu'
 alias ubuntu='drfu'
-alias drfarch='dprf patricol/arch /bin/bash'
+alias drfarch='dprf patricol/riced:arch /bin/bash'
 alias drfar='drfarch'
 alias arch='drfarch'
 function drfg() {
