@@ -1,6 +1,9 @@
 # Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
+# Better to just include commands (from other dotfile branches) even if they don't run because (e.g) this account cant sudo etc.
+# Easier to maintain/merge; and can use those aliases when checking out a branch in an environment it's not meant for, etc.
+
 # enable color aliases of ls if supported
 if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
@@ -37,17 +40,19 @@ alias lra='lar'
 alias lr='ls -R'
 alias l='ls -CF'
 
+alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
+
 function fscrot() {
 	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
 }
 
-alias syu='aurman -Syu'
+alias syu='yay -Syu'
 function pacs() {
-	aurman -S $@
+	syu $@
 }
 alias aurs='pacs'
 function pacr() {
-	aurman -R $@
+	yay -R $@
 }
 alias aurr='pacr'
 
