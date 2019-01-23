@@ -122,6 +122,7 @@ function mountiso() {
 }
 
 alias umountiso='sudo umount /media/iso'
+
 function fkill() {
 	sudo killall -KILL $@
 }
@@ -178,6 +179,10 @@ alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 #provide the branch to pull changes from as an arg
 alias dfgm='dfg difftool -d -t meld'
+alias dfgmp='dfgm archpatricol'
+alias dfgmw='dfgm archwork'
+alias dfgmda='dfgm dockerarch'
+alias dfgmdu='dfgm dockerubuntu'
 alias dfga='dfg add'
 alias dfgaa='dfga -u && dfga ~/.themes ~/.config/wpg ~/.config/powerline ~/.config/wallpapers'
 alias dfgac='dfgaa && dfgc'
@@ -185,9 +190,8 @@ alias dfgc='dfg commit'
 alias dfgch='dfg checkout'
 alias dfgchp='dfgch archpatricol'
 alias dfgchw='dfgch archwork'
-alias dfgchda='dfgch dockerarchgui'
-alias dfgchdu='dfgch dockerubuntugui'
-alias dfgchdc='dfgch dockerchex11'
+alias dfgchda='dfgch dockerarch'
+alias dfgchdu='dfgch dockerubuntu'
 alias dfgp='dfg push'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
