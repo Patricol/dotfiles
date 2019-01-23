@@ -47,13 +47,9 @@ function fscrot() {
 }
 
 alias syu='sudo apt-get update && sudo apt-get upgrade'
-function pacs() {
-	sudo apt-get update && sudo apt-get install $@
-}
+alias pacs='sudo apt-get update && sudo apt-get install'
 alias aurs='pacs'
-function pacr() {
-	sudo apt-get remove $@
-}
+alias pacr='sudo apt-get remove'
 alias aurr='pacr'
 
 alias listexplicitlyinstalled="dpkg-query --show --showformat='\${Installed-Size}\t\${Package}\n' | sort -rh | head -25 | awk '{print \$1/1024, \$2}'"
@@ -67,51 +63,52 @@ function ftype() {
 function ftypei() {
 	find . -type f -name "*.$1" -exec file {} \;
 }
-function drf() {
-	sudo docker run --rm -it $@
-}
-function dpf() {
-	sudo docker pull $@
-}
+
+
+
+alias docker='sudo docker'
+
+alias drf='docker run --rm --it'
+alias dpf='docker pull'
 function dprf() {
 	#Can only use when no options are provided before the container name; fix that later.
 	dpf $1
 	drf $@
 }
-alias drfa='dprf alpine /bin/ash'
-alias drfalpine='drfa'
-alias alpine='drfa'
-alias drfu='dprf patricol/riced:ubuntu_rolling /bin/bash'
-alias drfubuntu='drfu'
-alias ubuntu='drfu'
-alias drfarch='dprf patricol/riced:arch /bin/bash'
-alias drfar='drfarch'
+
+alias drfalpine='dprf alpine /bin/ash'
+alias alpine='drfalpine'
+
+alias drfubuntu='dprf patricol/riced:ubuntu_rolling'
+alias ubuntu='drfubuntu'
+alias drfu='drfubuntu'
+
+alias drfarch='dprf patricol/riced:arch'
 alias arch='drfarch'
+alias drfa='drfarch'
+
 function drfg() {
 	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $1 /bin/bash
 }
 function drfgv() {
 	dpf $1 && drf -e RDP_OR_VNC="VNC" -p 3389:3389 -p 5900:5900 $1 /bin/bash
 }
-alias drfgui='drfg patricol/terminal:latest'
-
-alias eb='exec bash'
-alias be='eb'
-alias ebnrc='exec bash --norc --noprofile'
-
-
-function docker() {
-	sudo docker $@
-}
+alias drfgui='drfg patricol/gui_base:arch'
 
 
 function checliver() {
 	sudo docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli:$@
 }
-
 function checli() {
        checliver `cat /home/docker/che/instance/che.ver.do_not_modify` $@
 }
+
+
+
+alias eb='exec bash'
+alias be='eb'
+alias ebnrc='exec bash --norc --noprofile'
+
 
 alias logs='dmesg | less'
 
@@ -121,13 +118,9 @@ function mountiso() {
 
 alias umountiso='sudo umount /media/iso'
 
-function fkill() {
-	sudo killall -KILL $@
-}
+alias fkill='sudo killall -KILL'
 
-function merge() {
-	rsync --remove-source-files -abviuAP $@
-}
+alias merge='rsync --remove-source-files -abviuAP'
 
 alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
 
