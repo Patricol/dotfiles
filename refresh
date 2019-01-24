@@ -21,3 +21,5 @@ ier xrdb ~/.Xresources
 ier ~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
 ier ~/.local/share/umake/bin/apm disable spell-check tree-view
 
+export SHELL="bash"
+
