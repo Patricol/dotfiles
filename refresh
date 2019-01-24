@@ -23,3 +23,6 @@ ier ~/.local/share/umake/bin/apm disable spell-check tree-view
 
 export SHELL="bash"
 
+#use this to check what contexts get env variables from this script. To check if they penetrate into i3 through vnc and/or rdp etc.
+export RAN_REFRESH="YES"
+
