@@ -29,7 +29,7 @@ alias dfgchdu='dfgch dockerubuntu'
 
 alias dfgp='dfg push'
 
-alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfg stash pop && dfgmda && dfgac -m "merge from all others" && dfgchw && dfgmp && dfgac -m "merge from all others" && dfgchda && dfg stash pop && dfgmp && dfgac -m "merge from all others" && dfgchdu && dfgmda && dfgac -m "merge from all others"'
+alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && (dfg stash pop || true) && dfgmda && dfgac -m "merge from all others" && dfgchw && dfgmp && dfgac -m "merge from all others" && dfgchda && (dfg stash pop || true) && dfgmp && dfgac -m "merge from all others" && dfgchdu && dfgmda && dfgac -m "merge from all others"'
 
 alias dfgpushall='dfgchdu && dfgp && dfgchda && dfgp && dfgchw && dfgp && dfgchp && dfgp'
 
