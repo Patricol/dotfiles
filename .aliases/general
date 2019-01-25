@@ -124,6 +124,7 @@ alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 alias mnf='mineofetch'
 alias nf='neofetch'
 alias nfa='neofetch --ascii'
+alias nfs='neofetch --config ~/.config/neofetch/status.conf'
 
 
 alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
@@ -146,3 +147,6 @@ function ier() {
 }
 
 alias epoch='date +%s'
+
+alias i3env='i3-msg "exec env > ~/i3env"'
+

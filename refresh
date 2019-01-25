@@ -23,3 +23,11 @@ ier ~/.local/share/umake/bin/apm disable spell-check tree-view
 
 export PATH=/usr/games:/usr/local/games:$PATH
 
+export SHELL="bash"
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
+export LANG="en_US.UTF-8"
+
+#use this to check what contexts get env variables from this script. To check if they penetrate into i3 through vnc and/or rdp etc.
+export RAN_REFRESH="YES"
+
