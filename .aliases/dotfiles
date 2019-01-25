@@ -17,7 +17,7 @@ alias dfgmda='dfgm dockerarch'
 alias dfgmdu='dfgm dockerubuntu'
 
 alias dfga='dfg add'
-alias dfgaa='dfga -u && dfga ~/.themes ~/.aliases ~/.config/wpg ~/.config/powerline ~/.config/wallpapers'
+alias dfgaa='dfga -u && dfga ~/.themes ~/.aliases ~/.config/wpg ~/.config/powerline ~/.config/wallpapers ~/.config/qt5ct/'
 alias dfgac='dfgaa && dfgc'
 alias dfgc='dfg commit'
 
