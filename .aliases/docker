@@ -20,10 +20,10 @@ alias arch='drfarch'
 alias drfa='drfarch'
 
 function drfg() {
-	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $1 /bin/bash
+	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $@
 }
 function drfgv() {
-	dpf $1 && drf -e RDP_OR_VNC="VNC" -p 3389:3389 -p 5900:5900 $1 /bin/bash
+	dpf $1 && drf -e RDP_OR_VNC="VNC" -p 3389:3389 -p 5900:5900 $@
 }
 alias drfgui='drfg patricol/gui_base:arch'
 
