@@ -85,8 +85,6 @@ source /usr/share/doc/pkgfile/command-not-found.bash
 
 export EDITOR=vim
 
-PATH=$PATH:~/.bin
-
 export QT_QPA_PLATFORMTHEME=qt5ct
 
 #Do this above neofetch. Blanks the terminal; though it only runs if on tty.
