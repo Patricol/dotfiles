@@ -1,7 +1,7 @@
 [Nemo Action]
 Name=Extract to ./*
 Comment=Extract to a folder matching the rar file's name
-Exec=/home/patricol/.bin/funrar %F
+Exec=funrar %F
 Selection=s
 Extensions=rar;
 
@@ -10,7 +10,7 @@ Extensions=rar;
 # Can be:  single, double, backtick
 #Quote=double
 
-Dependencies=/home/patricol/.bin/funrar;unrar;
+Dependencies=funrar;unrar;
 
 # Escape Spaces - set to true to escape spaces in filenames and uris ($U, $F, $P, $D)
 # Sometimes this may be preferred to getting raw filenames that must be enclosed in
