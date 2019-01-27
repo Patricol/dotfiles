@@ -34,6 +34,7 @@ alias dfgpopall='while dfgpop; do :; done'
 alias dfgp='dfg push'
 
 alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
+alias dfgmergeall='dfgfullmerge'
 
 alias dfgpopush='dfgpopall && dfgs && dfgp'
 alias dfgpushall='dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
