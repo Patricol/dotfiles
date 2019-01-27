@@ -85,6 +85,7 @@ alias colorst='msgcat --color=test'
 
 function extract() {
 	7z x $@
+	# should probably not use 7z for all. e.g. extracting tar as root with 7z doesn't preserve permissions and ownership, but doing so with tar -xvzf does.
         # if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
        # it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
 }

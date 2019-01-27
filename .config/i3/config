@@ -34,6 +34,7 @@ for_window [class=.*] border $def_border
 #adds border to things like GTK calculator and Chromium
 
 for_window [title="Authy" class="Chromium"] floating enable
+for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
 
 #Hide vncconfig window. closing it could prevent copy/paste from working.
 for_window [title="VNC config"] move scratchpad
