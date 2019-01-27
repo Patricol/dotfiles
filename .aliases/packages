@@ -1,11 +1,11 @@
-alias syu='yay -Syu'
+alias syu='yay -Syu && yay -S'
 alias pacs='syu'
 alias aurs='pacs'
 alias pacr='yay -R'
 alias aurr='pacr'
 
 alias pq='pacman -Q | grep'
-
+alias plaur='pacman -Qm'
 
 function cps() {
 	#check package (effective) size
