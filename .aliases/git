@@ -18,8 +18,9 @@ alias dfgmdu='dfgm dockerubuntu'
 
 alias dfga='dfg add'
 alias dfgaa='dfga -u && dfga ~/.themes ~/.aliases ~/.config/wpg ~/.config/powerline ~/.config/wallpapers ~/.config/qt5ct/'
+alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'
-alias dfgc='dfg commit'
+alias dfgacm='dfgac -m "merge from all others" -e'
 
 alias dfgch='dfg checkout'
 alias dfgchp='dfgch archpatricol'
@@ -29,7 +30,9 @@ alias dfgchdu='dfgch dockerubuntu'
 
 alias dfgp='dfg push'
 
-alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && (dfg stash pop || true) && dfgmda && dfgac -m "merge from all others" && dfgchw && dfgmp && dfgac -m "merge from all others" && dfgchda && (dfg stash pop || true) && dfgmp && dfgac -m "merge from all others" && dfgchdu && dfgmda && dfgac -m "merge from all others"'
+alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && (dfg stash pop || true) && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && (dfg stash pop || true) && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
 
 alias dfgpushall='dfgchdu && dfgs && dfgp && dfgchda && dfgs && dfgp && dfgchw && dfgs && dfgp && dfgchp && dfgs && dfgp'
+
+alias sysg='sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/'
 

@@ -5,7 +5,7 @@ alias pacr='yay -R'
 alias aurr='pacr'
 
 alias pq='pacman -Q | grep'
-
+alias plaur='pacman -Qm'
 
 function cps() {
 	#check package (effective) size

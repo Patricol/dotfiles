@@ -151,5 +151,3 @@ alias epoch='date +%s'
 
 alias i3env='i3-msg "exec env > ~/i3env"'
 
-alias sysg='sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/'
-
