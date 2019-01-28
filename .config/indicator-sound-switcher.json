@@ -43,21 +43,24 @@
                     "always_available": true
                 },
                 "analog-input-rear-mic": {
-                    "name": "Rear Microphone",
+                    "name": "Rear Microphone (Red)",
                     "always_available": true
                 },
                 "analog-input-linein": {
+                    "name": "Rear Line In (Blue)",
                     "always_available": true
                 },
                 "analog-output-lineout": {
+                    "name": "Rear Line Out (Green)",
                     "always_available": true
                 },
                 "analog-output-headphones": {
+                    "name": "Front Headphones",
                     "always_available": true
                 },
                 "iec958-stereo-output": {
                     "name": "S/PDIF",
-                    "always_available": true
+                    "visible": false
                 }
             },
             "name": "Motherboard"
