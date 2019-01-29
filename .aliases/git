@@ -41,3 +41,5 @@ alias dfgpushall='dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgp
 
 alias sysg='sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/'
 
+alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
+
