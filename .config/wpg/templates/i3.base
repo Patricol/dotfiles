@@ -365,3 +365,17 @@ bindsym XF86Calculator          $calculator
 # win key only to open rofi
 #bindcode $windows-key-code --release $launcher
 
+
+# capitalize modes so they look better in polybar. (font sizing etc.)
+bindsym $mod+u mode "NO DISTRACTION"
+mode "NO DISTRACTION" {
+        set $exit mode "default"
+
+        bindsym $mod+f fullscreen toggle
+        set $launcher			exec rofi -show combi
+        bindsym $mod+space		$launcher
+
+        bindsym Escape	$exit
+        bindsym $mod+u	$exit
+}
+
