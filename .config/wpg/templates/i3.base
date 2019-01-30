@@ -156,6 +156,11 @@ bindsym --whole-window $mod+$shift+$mouse-wheel-down	move container to workspace
 bindsym --whole-window $mod+$shift+$mouse-wheel-up	move container to workspace prev
 bindsym --whole-window $mod+$shift+$mouse-wheel-right	move container to workspace next
 
+bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-left	move container to workspace prev ; workspace prev
+bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-down	move container to workspace next ; workspace next
+bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-up	move container to workspace prev ; workspace prev
+bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-right	move container to workspace next ; workspace next
+
 
 
 
