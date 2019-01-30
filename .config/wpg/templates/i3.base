@@ -331,7 +331,7 @@ set $text-editor		exec --no-startup-id atom
 set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
 set $lock			exec --no-startup-id lock
 set $files			exec --no-startup-id nemo
-set $task-manager		exec gnome-system-monitor
+set $task-manager		exec --no-startup-id <TERMINAL> -e htop
 set $calculator			exec gnome-calculator
 set $music			exec --no-startup-id gpmdp
 set $notes			exec --no-startup-id standardnotes-desktop
