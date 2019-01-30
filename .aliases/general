@@ -57,7 +57,7 @@ function ftypei() {
 	find . -type f -name "*.$1" -exec file {} \;
 }
 
-
+alias findbrokenlinks='find -xtype l'
 
 
 
