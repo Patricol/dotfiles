@@ -152,3 +152,5 @@ alias epoch='date +%s'
 alias i3env='i3-msg "exec env > ~/i3env"'
 
 #need to figure out ways to take advantage of how you can use multiple aliases in one command; like how "alias aecho='echo '; alias stuff='lots of stuff'; aecho stuff" echoes 'lots of stuff'
+
+alias nmo='xdg-open . &> /dev/null'
