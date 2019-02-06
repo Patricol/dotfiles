@@ -57,7 +57,7 @@ function ftypei() {
 	find . -type f -name "*.$1" -exec file {} \;
 }
 
-
+alias findbrokenlinks='find -xtype l'
 
 
 
@@ -108,6 +108,8 @@ alias cdback='cd -'
 alias cdb='cdback'
 alias cdhome='cd ~'
 alias cdh='cdhome'
+alias cdshared='cd /home/shared'
+alias cds='cdshared'
 alias c='clear'
 alias cls='clear && ls'
 alias cl='cls'
@@ -154,3 +156,7 @@ alias i3env='i3-msg "exec env > ~/i3env"'
 function check() {
     cat `which $1`
 }
+
+#need to figure out ways to take advantage of how you can use multiple aliases in one command; like how "alias aecho='echo '; alias stuff='lots of stuff'; aecho stuff" echoes 'lots of stuff'
+
+alias nmo='xdg-open . &> /dev/null'

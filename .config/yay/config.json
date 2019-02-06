@@ -1,6 +1,6 @@
 {
 	"aururl": "https://aur.archlinux.org",
-	"buildDir": "/home/patricol/.cache/yay",
+	"buildDir": ".cache/yay",
 	"editor": "",
 	"editorflags": "",
 	"makepkgbin": "makepkg",
