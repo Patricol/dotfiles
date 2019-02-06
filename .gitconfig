@@ -3,3 +3,5 @@
 	name = Patrick Collins
 [core]
 	autocrlf = input
+[mergetool]
+	keepBackup = false
