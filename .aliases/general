@@ -151,3 +151,6 @@ alias epoch='date +%s'
 
 alias i3env='i3-msg "exec env > ~/i3env"'
 
+function check() {
+    cat `which $1`
+}
