@@ -12,6 +12,8 @@ exec_always --no-startup-id systemctl --user restart polybar-wss.service
 exec_always --no-startup-id systemctl --user start redshift-gtk.service
 exec_always --no-startup-id systemctl --user start network-manager-applet.service
 exec_always --no-startup-id systemctl --user start blueman-applet.service
+#exec_always --no-startup-id systemctl --user start network-manager-applet.service
+#exec_always --no-startup-id systemctl --user start blueman-applet.service
 exec_always --no-startup-id systemctl --user start udiskie.service
 exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
 
