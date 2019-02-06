@@ -2,6 +2,27 @@
 
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
 
+
+function fix_symlink_for_dotfiles() {
+	#Check input file is a symlink
+	if [ -L "$1" ]; then
+		symlink=$1
+		target=`readlink "$symlink"`
+		#if the symlink goes inside the home directory; make it relative.
+		if [[ $target == /home/* ]]; then
+			ln -srf $target $symlink
+		elif [[ $target == /* ]]; then
+			echo "Found non-relative symlink in dotfiles:"
+			ls -l $symlink
+		fi
+	fi
+}
+
+function fix_symlinks_for_dotfiles() {
+	dfg ls-tree -r --name-only --full-tree HEAD | while read line; do fix_symlink_for_dotfiles $line; done
+}
+
+
 alias dfgk='add_ssh_key github_fcdcbda'
 
 alias dfgs='dfg status'
@@ -10,7 +31,7 @@ alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 
 #provide the branch to pull changes from as an arg
-alias dfgm='dfg difftool -d -t meld'
+alias dfgm='dfg difftool -y -t meld'
 alias dfgmp='dfgm archpatricol'
 alias dfgmw='dfgm archwork'
 alias dfgmda='dfgm dockerarch'
@@ -40,4 +61,6 @@ alias dfgpopush='dfgpopall && dfgs && dfgp'
 alias dfgpushall='dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
 alias sysg='sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/'
+
+alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
 

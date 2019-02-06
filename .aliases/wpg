@@ -1,7 +1,7 @@
 #Aliases for wpg
 
 function wpgsetfast() {
-	wpg -n -s $1.png
+	wpg -s $1.png
 	xrdb ~/.Xresources
 }
 
@@ -22,3 +22,5 @@ alias material='wpg-material'
 alias fmaterial='wpgsetfast material'
 
 alias nomaterial='wpg-default'
+
+alias colorscheme='cat ~/.config/wpg/patricol_scripts/named-colors.sh'
