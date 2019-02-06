@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-wpg -nrs 'material.png' 'material.png'
+wpg -rs 'material.png' 'material.png'

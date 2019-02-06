@@ -116,3 +116,7 @@ stty -ixon
 # add something to tell me when updates are available on bash start from ssh etc.
 
 #tty is changing colors because bold. neofetch color output must be bold; to be acting this way. need to have it not use the emphasis bit etc; or have tty-specific setups without bold stuff? but why would the background grey be missing for the cwd?
+
+#warns me if there is critical news I need to know before updating
+yay --news
+

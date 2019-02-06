@@ -1,7 +1,7 @@
 #Aliases for wpg
 
 function wpgsetfast() {
-	wpg -n -s $1.png
+	wpg -s $1.png
 	xrdb ~/.Xresources
 }
 
