@@ -12,7 +12,17 @@ function cps() {
 	echo n | yay -Rns $@ 2> /dev/null | egrep "^Total Removed Size:" | cut -f2 -d":" | xargs
 }
 
+function cpss() {
+	#check package (effective) size and print it with name.
+	for pkg in $@; do
+		echo "$@"
+		echo n | yay -Rns $@ 2> /dev/null | egrep "^Total Removed Size:" | cut -f2 -d":" | xargs
+	done
+}
+
 #try to get these to show how much space the package being installed takes up. E.g. get the number from cps.
 
 alias listexplicitlyinstalled='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
 alias listexplicitlyinstalleduniversal='pacman -Qi $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | egrep "^(Name|Installed)" | cut -f2 -d":" | paste - - | column -t | sort -nrk 2 | grep MiB | tac'
+
+alias listexplicitlyinstalleduniversalws='cpss $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | egrep "^(Name|Installed)" | cut -f2 -d":" | paste - - | column -t | sort -nrk 2 | grep MiB | tac'
