@@ -31,7 +31,7 @@ alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 
 #provide the branch to pull changes from as an arg
-alias dfgm='dfg difftool -d -t meld'
+alias dfgm='dfg difftool -y -t meld'
 alias dfgmp='dfgm archpatricol'
 alias dfgmw='dfgm archwork'
 alias dfgmda='dfgm dockerarch'
