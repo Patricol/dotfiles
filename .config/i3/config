@@ -153,6 +153,11 @@ bindsym --whole-window $mod+$shift+$mouse-wheel-down	move container to workspace
 bindsym --whole-window $mod+$shift+$mouse-wheel-up	move container to workspace prev
 bindsym --whole-window $mod+$shift+$mouse-wheel-right	move container to workspace next
 
+bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-left	move container to workspace prev ; workspace prev
+bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-down	move container to workspace next ; workspace next
+bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-up	move container to workspace prev ; workspace prev
+bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-right	move container to workspace next ; workspace next
+
 
 
 
@@ -323,7 +328,7 @@ set $text-editor		exec --no-startup-id atom
 set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
 set $lock			exec --no-startup-id lock
 set $files			exec --no-startup-id nemo
-set $task-manager		exec gnome-system-monitor
+set $task-manager		exec --no-startup-id urxvt -e htop
 set $calculator			exec gnome-calculator
 set $music			exec --no-startup-id gpmdp
 set $notes			exec --no-startup-id standardnotes-desktop
@@ -361,4 +366,18 @@ bindsym XF86Calculator          $calculator
 
 # win key only to open rofi
 #bindcode $windows-key-code --release $launcher
+
+
+# capitalize modes so they look better in polybar. (font sizing etc.)
+bindsym $mod+u mode "NO DISTRACTION"
+mode "NO DISTRACTION" {
+        set $exit mode "default"
+
+        bindsym $mod+f fullscreen toggle
+        set $launcher			exec rofi -show combi
+        bindsym $mod+space		$launcher
+
+        bindsym Escape	$exit
+        bindsym $mod+u	$exit
+}
 
