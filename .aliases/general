@@ -1,0 +1,164 @@
+# Alias definitions.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+# Better to just include commands (from other dotfile branches) even if they don't run because (e.g) this account cant sudo etc.
+# Easier to maintain/merge; and can use those aliases when checking out a branch in an environment it's not meant for, etc.
+
+# enable color aliases of ls if supported
+if [ -x /usr/bin/dircolors ]; then
+    alias ls='ls --color=auto'
+    
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+    
+    alias diff='diff --color=auto'
+    
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+alias rgrep='grep -r'
+
+function man() {
+    LESS_TERMCAP_md=$'\e[01;31m' \
+    LESS_TERMCAP_me=$'\e[0m' \
+    LESS_TERMCAP_se=$'\e[0m' \
+    LESS_TERMCAP_so=$'\e[01;44;33m' \
+    LESS_TERMCAP_ue=$'\e[0m' \
+    LESS_TERMCAP_us=$'\e[01;32m' \
+    command man "$@"
+}
+
+# some more ls aliases
+alias ll='ls -AlhF'
+alias llr='ls -AlhFR'
+alias lrl='llr'
+alias la='ls -A'
+alias lar='ls -AR'
+alias lra='lar'
+alias lr='ls -R'
+alias l='ls -CF'
+
+alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
+
+function fscrot() {
+	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
+}
+
+
+alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
+
+alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
+function ftype() {
+	find . -type f -name "*.$1"
+}
+function ftypei() {
+	find . -type f -name "*.$1" -exec file {} \;
+}
+
+alias findbrokenlinks='find -xtype l'
+
+
+
+alias eb='exec bash'
+alias be='eb'
+alias ebnrc='exec bash --norc --noprofile'
+
+
+alias logs='sudo journalctl -xe'
+
+function mountiso() {
+	sudo mount -o loop $@ /media/iso
+}
+
+alias umountiso='sudo umount /media/iso'
+
+alias fkill='sudo killall -KILL'
+
+alias merge='rsync --remove-source-files -abviuAP'
+
+alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
+
+alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
+alias colorst='msgcat --color=test'
+
+function extract() {
+	7z x $@
+	# should probably not use 7z for all. e.g. extracting tar as root with 7z doesn't preserve permissions and ownership, but doing so with tar -xvzf does.
+        # if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
+       # it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
+}
+#anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
+#gzip seems much less resistant to corruption than xz.
+#maybe add functions for creating archives of different types.
+#I do really care about avoiding corruption.
+#zip vs tgz vs txz vs ?
+#txz is best for compression, efficiency etc.
+#extracting individual files from zip is faster. zip is also more ubiquitous.
+
+#function maketxz() {
+#}
+#function makezip() {
+#}
+
+alias cdup='cd ..'
+alias cdu='cdup'
+alias cdback='cd -'
+alias cdb='cdback'
+alias cdhome='cd ~'
+alias cdh='cdhome'
+alias cdshared='cd /home/shared'
+alias cds='cdshared'
+alias c='clear'
+alias cls='clear && ls'
+alias cl='cls'
+alias x='exit'
+
+#open vim to bottom of file.
+alias vimbottom='vim "+ normal GA"'
+
+#alias bal='vimbottom ~/.bash_aliases'
+alias bal='vim -o ~/.aliases/*'
+alias brc='vimbottom ~/.bashrc'
+
+
+alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
+alias mnf='mineofetch'
+alias nf='neofetch'
+alias nfa='neofetch --ascii'
+alias nfs='neofetch --config ~/.config/neofetch/status.conf'
+
+
+alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
+
+
+function tif() {
+    #test if statement
+    if [ $@ ]; then
+        echo "True"
+    else
+        echo "False"
+    fi
+}
+
+function ier() {
+    #if exists, run.
+    if [ -n "`which $1 2> /dev/null`" ]; then
+	$@
+    fi
+}
+
+alias epoch='date +%s'
+
+alias i3env='i3-msg "exec env > ~/i3env"'
+
+function check() {
+    cat `which $1`
+}
+
+#need to figure out ways to take advantage of how you can use multiple aliases in one command; like how "alias aecho='echo '; alias stuff='lots of stuff'; aecho stuff" echoes 'lots of stuff'
+
+alias nmo='xdg-open . &> /dev/null'
+
+alias aecho='echo '

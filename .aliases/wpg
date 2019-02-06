@@ -1,0 +1,26 @@
+#Aliases for wpg
+
+function wpgsetfast() {
+	wpg -s $1.png
+	xrdb ~/.Xresources
+}
+
+function wpgset() {
+	wpgsetfast $1
+	oomox-cli -o oomox-wpg -t ~/.themes -d false -m all ~/.config/oomox/colors/oomox-wpg
+	oomox-materia-cli -o materia-wpg -d false ~/.config/oomox/colors/materia-wpg
+}
+
+alias wpg-material='wpgset material'
+alias wpg-default='wpgset default'
+alias wpg-distinct='wpgset debug-distinct'
+alias wpg-distinct-flip='wpgset debug-distinct-flip'
+alias wpg-red='wpgset debug-red'
+alias wpg-yellow='wpgset debug-yellow'
+
+alias material='wpg-material'
+alias fmaterial='wpgsetfast material'
+
+alias nomaterial='wpg-default'
+
+alias colorscheme='cat ~/.config/wpg/patricol_scripts/named-colors.sh'

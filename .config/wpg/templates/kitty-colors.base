@@ -1,0 +1,56 @@
+# Color configuration for kitty.
+
+#<CONFIG_EDITING_WARNING>
+
+
+# The foreground and background colors
+foreground #<FOREGROUND>
+background #<BACKGROUND>
+
+# Default cursor color
+cursor #<ACCENT>
+
+# The 16 terminal colors. There are 8 basic colors, each color has a dull and bright version. You can also set the remaining colors from the 256 color table as color16 to color255.
+color0  #<COLOR0>
+color1  #<COLOR1>
+color2  #<COLOR2>
+color3  #<COLOR3>
+color4  #<COLOR4>
+color5  #<COLOR5>
+color6  #<COLOR6>
+color7  #<COLOR7>
+color8  #<COLOR8>
+color9  #<COLOR9>
+color10 #<COLOR10>
+color11 #<COLOR11>
+color12 #<COLOR12>
+color13 #<COLOR13>
+color14 #<COLOR14>
+color15 #<COLOR15>
+
+# Choose the color of text under the cursor. If you want it rendered  with the background color of the cell underneath instead, use the special keyword: background
+cursor_text_color #<BACKGROUND>
+
+# The color for highlighting URLs on mouse-over.
+url_color #<BLUE>
+
+# The color for the border of the active window
+active_border_color #<FOREGROUND>
+
+# The color for the border of inactive windows
+inactive_border_color #<DARK>
+
+# The color for the border of inactive windows in which a bell has occurred
+bell_border_color #<RED>
+
+
+# Tab bar colors
+active_tab_foreground   #<BACKGROUND>
+active_tab_background   #<FOREGROUND>
+inactive_tab_foreground #<DARK>
+inactive_tab_background #<BACKGROUND>
+
+
+# The foreground and background for text selected with the mouse
+selection_foreground #<BACKGROUND>
+selection_background #<ACCENT>

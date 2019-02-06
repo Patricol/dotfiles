@@ -1,0 +1,85 @@
+{
+    "devices": {
+        "alsa_card.pci-0000_01_00.1": {
+            "ports": {
+                "hdmi-output-0": {
+                    "name": "HDMI"
+                },
+                "hdmi-output-1": {
+                    "name": "Displayport (1/3)"
+                },
+                "hdmi-output-2": {
+                    "name": "Displayport (2/3)"
+                },
+                "hdmi-output-3": {
+                    "name": "Displayport (3/3)"
+                }
+            },
+            "name": "GPU"
+        },
+        "alsa_card.usb-Kingston_HyperX_7.1_Audio_00000000-00": {
+            "ports": {
+                "analog-input-headset-mic": {
+                    "name": "Microphone"
+                },
+                "iec958-stereo-input": {
+                    "name": "Microphone (Digital)",
+                    "visible": false
+                },
+                "analog-output": {
+                    "name": "Headphones"
+                },
+                "iec958-stereo-output": {
+                    "name": "Headphones (Digital)",
+                    "visible": false
+                }
+            },
+            "name": "HyperX USB"
+        },
+        "alsa_card.pci-0000_00_1f.3": {
+            "ports": {
+                "analog-input-front-mic": {
+                    "name": "Front Microphone",
+                    "always_available": true
+                },
+                "analog-input-rear-mic": {
+                    "name": "Rear Microphone (Red)",
+                    "always_available": true
+                },
+                "analog-input-linein": {
+                    "name": "Rear Line In (Blue)",
+                    "always_available": true
+                },
+                "analog-output-lineout": {
+                    "name": "Rear Line Out (Green)",
+                    "always_available": true
+                },
+                "analog-output-headphones": {
+                    "name": "Front Headphones",
+                    "always_available": true
+                },
+                "iec958-stereo-output": {
+                    "name": "S/PDIF",
+                    "visible": false
+                }
+            },
+            "name": "Motherboard"
+        },
+        "virtual": {
+            "sources": {},
+            "sinks": {}
+        },
+        "alsa_card.usb-046d_Logitech_Webcam_C930e_35B81DEE-02": {
+            "ports": {
+                "analog-input-mic": {
+                    "name": "Microphone"
+                },
+                "iec958-stereo-input": {
+                    "name": "Microphone (Digital)",
+                    "visible": false
+                }
+            },
+            "name": "Logitech C930e"
+        }
+    }
+}

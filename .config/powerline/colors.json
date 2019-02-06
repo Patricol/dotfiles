@@ -1,0 +1,34 @@
+{
+	"colors": {
+		"wal-darkest": [0, "212121"],
+		"wal-red": [1, "d50000"],
+		"wal-green": [2, "00c853"],
+		"wal-yellow": [3, "ffd600"],
+		"wal-blue": [4, "2962ff"],
+		"wal-magenta": [5, "aa00ff"],
+		"wal-cyan": [6, "00b8d4"],
+		"wal-bright": [7, "bdbdbd"],
+		"wal-dark": [8, "616161"],
+		"wal-light-red": [9, "ff5252"],
+		"wal-light-green": [10, "69f0ae"],
+		"wal-light-yellow": [11, "ffff00"],
+		"wal-light-blue": [12, "448aff"],
+		"wal-light-magenta": [13, "e040fb"],
+		"wal-light-cyan": [14, "18ffff"],
+		"wal-brightest": [15, "eeeeee"],
+		"wal-brighter": [253, "e0e0e0"],
+		"wal-brightish": [247, "9e9e9e"],
+		"wal-darkish": [243, "757575"],
+		"wal-darker": [238, "424242"],
+		"wal-accent": [196, "ff0000"],
+		"wal-warning": [201, "ff00ff"]
+	},
+	"gradients": {
+		"grayscale": [[0, 238, 8, 243, 247, 7, 253, 15]],
+		"grayscale-no-darkest": [[238, 8, 243, 247, 7, 253, 15]],
+		"grayscale-no-brightest": [[0, 238, 8, 243, 247, 7, 253]],
+		"grayscale-safe": [[0, 8, 7, 15]],
+		"grayscale-safe-no-darkest": [[8, 7, 15]],
+		"grayscale-safe-no-brightest": [[0, 8, 7]]
+	}
+}

@@ -1,0 +1,8 @@
+[Nemo Action]
+Name=Zip Without Compression
+Comment=Zip folder in store mode.
+Exec=fzip %F
+Selection=s
+Extensions=dir;
+Dependencies=fzip;zip;
+EscapeSpaces=true
