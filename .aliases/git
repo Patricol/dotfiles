@@ -74,5 +74,5 @@ alias dfgmergeall='dfgfullmerge'
 alias dfgpopush='dfgpopall && dfgs && dfgp'
 alias dfgpushall='dfgchm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
-alias sysg='sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/'
+alias sysg='sudo git --git-dir=/root/.systemfiles-repo/ --work-tree=/'
 
