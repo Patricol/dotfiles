@@ -5,8 +5,8 @@ else
     check_command="checkupdates"
 fi
 
-updates=$(apt-get upgrade -s |grep -P '^\d+ upgraded'|cut -d" " -f1 2> /dev/null)
 updates=$($check_command 2> /dev/null | wc -l )
+#updates=$(apt-get upgrade -s |grep -P '^\d+ upgraded'|cut -d" " -f1 2> /dev/null)
 
 if [ -z "$updates" ]; then
     updates=0

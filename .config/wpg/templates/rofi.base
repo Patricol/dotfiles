@@ -76,10 +76,10 @@ rofi.kb-accept-entry:                Return,KP_Enter
 ! rofi.kb-accept-alt:                  Shift+Return
 ! "Delete entry from history" Set from: Default
 ! rofi.kb-delete-entry:                Shift+Delete
-rofi.kb-mode-next:                   Shift+Right,Control+Tab
-rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab
 rofi.kb-mode-next:                   Shift+Right,Control+Tab,Control+Page_Down
+! rofi.kb-mode-next:                   Shift+Right,Control+Tab
 rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab,Control+Page_Up
+! rofi.kb-mode-previous:               Shift+Left,Control+Shift+Tab
 ! "Go to the previous column" Set from: Default
 rofi.kb-row-left:
 ! "Go to the next column" Set from: Default

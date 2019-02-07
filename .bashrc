@@ -80,7 +80,7 @@ function add_ssh_key() {
 eval $(ssh-agent) > /dev/null
 add_ssh_key allshares &> /dev/null
 add_ssh_key gdrive &> /dev/null
-add_ssh_key nas_work_share &> /dev/null
+#add_ssh_key nas_work_share &> /dev/null
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 

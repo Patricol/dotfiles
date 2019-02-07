@@ -2,7 +2,7 @@
 
 The dotfiles are in [branches](https://github.com/Patricol/dotfiles/branches/all).
 
-Do not use this (master) branch; it's used to simplify merging, and has invalid files.
+Do not use this (master) branch; it's used to simplify merging, and could have invalid files.
 
 * Note to self:
   * This is mainly for keeping a history of config files I manually edit a lot.
