@@ -31,7 +31,19 @@ alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 
 #provide the branch to pull changes from as an arg
-alias dfgm='dfg difftool -y -t meld'
+alias dfgdt='dfg difftool -y -t meld'
+alias dfgdtm='dfgdt master'
+alias dfgdtp='dfgdt archpatricol'
+alias dfgdtw='dfgdt archwork'
+alias dfgdtda='dfgdt dockerarch'
+alias dfgdtdu='dfgdt dockerubuntu'
+
+alias dfgmt='dfg mergetool -t meld'
+
+alias dfgmac='dfg merge --edit --no-ff'
+alias dfgm='dfgmac --no-commit'
+alias dfgmacm='dfgmac master'
+alias dfgmm='dfgm master'
 alias dfgmp='dfgm archpatricol'
 alias dfgmw='dfgm archwork'
 alias dfgmda='dfgm dockerarch'
@@ -41,9 +53,10 @@ alias dfga='dfg add'
 alias dfgaa='dfga -u && dfga ~/.themes ~/.aliases ~/.config/wpg ~/.config/powerline ~/.config/wallpapers ~/.config/qt5ct/'
 alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'
-alias dfgacm='(dfgac -m "merge from all others" -e || true)'
+#alias dfgacm='(dfgac -m "merge from all others" -e || true)'
 
 alias dfgch='dfg checkout'
+alias dfgchm='dfgch master'
 alias dfgchp='dfgch archpatricol'
 alias dfgchw='dfgch archwork'
 alias dfgchda='dfgch dockerarch'
@@ -54,13 +67,11 @@ alias dfgpopall='while dfgpop; do :; done'
 
 alias dfgp='dfg push'
 
-alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
+#alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
 alias dfgmergeall='dfgfullmerge'
 
 alias dfgpopush='dfgpopall && dfgs && dfgp'
-alias dfgpushall='dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
+alias dfgpushall='dfgchm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
 alias sysg='sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/'
-
-alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
 

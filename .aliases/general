@@ -149,6 +149,8 @@ function ier() {
     fi
 }
 
+alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
+
 alias epoch='date +%s'
 
 alias i3env='i3-msg "exec env > ~/i3env"'
