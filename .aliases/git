@@ -53,7 +53,6 @@ alias dfga='dfg add'
 alias dfgaa='dfga -u && dfga ~/.themes ~/.aliases ~/.config/wpg ~/.config/powerline ~/.config/wallpapers ~/.config/qt5ct/'
 alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'
-#alias dfgacm='(dfgac -m "merge from all others" -e || true)'
 
 alias dfgch='dfg checkout'
 alias dfgchm='dfgch master'
@@ -66,6 +65,8 @@ alias dfgpop='dfg stash pop'
 alias dfgpopall='while dfgpop; do :; done'
 
 alias dfgp='dfg push'
+
+#to avoid merging branch-specific changes back into master; use "dfg merge -s ours BRANCH" when the BRANCH is only ahead by its merge commit.
 
 #alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
 alias dfgmergeall='dfgfullmerge'
