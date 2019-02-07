@@ -5,7 +5,9 @@ else
     check_command="checkupdates"
 fi
 
-if ! updates=$($check_command 2> /dev/null | wc -l ); then
+updates=$($check_command 2> /dev/null | wc -l )
+
+if [ -z "$updates" ]; then
     updates=0
 fi
 
