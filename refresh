@@ -11,6 +11,7 @@ function ier() {
 
 #Not needed in ubuntu; only in arch
 source /etc/profile.d/locale.sh
+#source /etc/profile.d/locale.sh
 
 #Update Vim plugins and plugin manager
 vim +MAINTAIN
@@ -20,6 +21,8 @@ ier xrdb ~/.Xresources
 
 ier ~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
 ier ~/.local/share/umake/bin/apm disable spell-check tree-view
+
+export PATH=/usr/games:/usr/local/games:$PATH
 
 export SHELL="bash"
 

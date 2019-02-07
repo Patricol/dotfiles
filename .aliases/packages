@@ -1,8 +1,11 @@
 alias syu='yay -Syu && yay -S'
 alias pacs='syu'
+alias syu='sudo apt-get update && sudo apt-get upgrade'
+alias pacs='sudo apt-get update && sudo apt-get install'
 alias aurs='pacs'
 alias pacr='yay -R'
 alias pacrs='yay -Rs'
+alias pacr='sudo apt-get remove'
 alias aurr='pacr'
 alias aurrs='pacrs'
 
@@ -29,6 +32,7 @@ function cpss() {
 #try to get these to show how much space the package being installed takes up. E.g. get the number from cps.
 
 alias listexplicitlyinstalled='expac -H M "%011m\t%-20n\t%10d" $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | sort -n'
+alias listexplicitlyinstalled="dpkg-query --show --showformat='\${Installed-Size}\t\${Package}\n' | sort -rh | head -25 | awk '{print \$1/1024, \$2}'"
 alias listexplicitlyinstalleduniversal='pacman -Qi $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | egrep "^(Name|Installed)" | cut -f2 -d":" | paste - - | column -t | sort -nrk 2 | grep MiB | tac'
 
 alias listexplicitlyinstalleduniversaleffectivesize='cpss $(comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)) | paste - - | sort -n'

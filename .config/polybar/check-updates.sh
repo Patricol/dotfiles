@@ -6,6 +6,7 @@ else
 fi
 
 if ! updates=$($check_command 2> /dev/null | wc -l ); then
+if ! updates=$(apt-get upgrade -s |grep -P '^\d+ upgraded'|cut -d" " -f1 2> /dev/null); then
     updates=0
 fi
 
