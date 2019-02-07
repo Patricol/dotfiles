@@ -282,7 +282,6 @@ font-10 = <FONT_HIGH_COVERAGE>:pixelsize=10:antialias=true;1
 width = 100%
 border-size 100
 height = 13
-;height = 1.2%
 ;height = 2.4%
 fixed-center = true
 
@@ -385,7 +384,6 @@ ramp-capacity-9 = ${symbols.usage-ramp-0}
 [module/check-updates]
 type = custom/script
 exec = ~/.config/polybar/check-updates.sh
-;interval = 60
 interval = 6000
 
 [module/check-other-sessions]
