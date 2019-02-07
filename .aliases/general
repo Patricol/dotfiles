@@ -66,8 +66,8 @@ alias be='eb'
 alias ebnrc='exec bash --norc --noprofile'
 
 
-alias logs='sudo journalctl -xe'
 alias logs='dmesg | less'
+alias logs='sudo journalctl -xe'
 
 function mountiso() {
 	sudo mount -o loop $@ /media/iso

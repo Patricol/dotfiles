@@ -9,9 +9,7 @@ function ier() {
 	fi
 }
 
-#Not needed in ubuntu; only in arch
 source /etc/profile.d/locale.sh
-#source /etc/profile.d/locale.sh
 
 #Update Vim plugins and plugin manager
 vim +MAINTAIN

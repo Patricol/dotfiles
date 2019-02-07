@@ -12,8 +12,6 @@ exec_always --no-startup-id systemctl --user restart polybar-wss.service
 exec_always --no-startup-id systemctl --user start redshift-gtk.service
 exec_always --no-startup-id systemctl --user start network-manager-applet.service
 exec_always --no-startup-id systemctl --user start blueman-applet.service
-#exec_always --no-startup-id systemctl --user start network-manager-applet.service
-#exec_always --no-startup-id systemctl --user start blueman-applet.service
 exec_always --no-startup-id systemctl --user start udiskie.service
 exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
 
@@ -31,19 +29,14 @@ exec --no-startup-id startapp
 gaps inner 1
 gaps outer 0
 smart_gaps on
-#gaps inner 1
-#gaps outer 0
-#smart_gaps on
 
 #border can be pixel, normal, or none.
+set $def_border_floating normal 1
+new_window $def_border
+new_float $def_border_floating
 set $def_border pixel 1
 default_border $def_border
 default_floating_border $def_border
-set $def_border_floating normal 1
-new_window $def_border
-#default_border $def_border
-new_float $def_border_floating
-#default_floating_border $def_border_floating
 
 for_window [class=.*] border $def_border
 #adds border to things like GTK calculator and Chromium
@@ -185,8 +178,6 @@ bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-right	move container to wo
 set $exit_i3			exec --no-startup-id "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
 bindsym $ctrl+$alt+Delete	$exit_i3
 bindsym $mod+$shift+e		$exit_i3
-#bindsym $ctrl+$alt+Delete	$exit_i3
-#bindsym $mod+$shift+e		$exit_i3
 
 # reload the configuration file
 bindsym $mod+$shift+c reload
@@ -194,7 +185,6 @@ bindsym $mod+$shift+c reload
 bindsym $mod+$shift+r restart
 
 bindsym $mod+$shift+u $stop_services
-#bindsym $mod+$shift+u $stop_services
 
 
 set $xkill exec --no-startup-id xkill
@@ -362,7 +352,6 @@ set $facebook-messenger		exec --no-startup-id caprine
 # LAUNCHING HOTKEYS ###########################################################
 
 bindsym $mod+Return		$terminal
-#bindsym $mod2+Return		$start_main_app
 bindsym $mod2+Return		$start_main_app
 bindsym $mod+space		$launcher
 bindsym $mod2+space		$launcher
