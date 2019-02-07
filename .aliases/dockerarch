@@ -1,0 +1,2 @@
+# For account-specific aliases etc.
+# Also makes it easy to tell which two branches are being merged when running dfgfullmerge (this file is at the top of the meld directory comparison.)
