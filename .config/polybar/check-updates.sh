@@ -1,6 +1,8 @@
 #!/bin/sh
 
-if ! updates=$(apt-get upgrade -s |grep -P '^\d+ upgraded'|cut -d" " -f1 2> /dev/null); then
+updates=$(apt-get upgrade -s |grep -P '^\d+ upgraded'|cut -d" " -f1 2> /dev/null)
+
+if [ -z "$updates" ]; then
     updates=0
 fi
 
