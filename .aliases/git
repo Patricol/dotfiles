@@ -10,7 +10,14 @@ function fix_symlink_for_dotfiles() {
 		target=`readlink "$symlink"`
 		#if the symlink goes inside the home directory; make it relative.
 		if [[ $target == /home/* ]]; then
-			ln -srf $target $symlink
+			#ln -srf $target $symlink #actually skips intermediate symlinks when -r option is given; not an acceptable solution.
+			targetname=`basename $target`
+			targetdir=${target%$targetname}
+			symlinkname=`basename $symlink`
+			symlinkdir=${symlink%$symlinkname}
+			reltargetdir=`realpath --relative-to=$symlinkdir $targetdir`
+			reltarget=$reltargetdir/$targetname
+			ln -sf $reltarget $symlink
 		elif [[ $target == /* ]]; then
 			echo "Found non-relative symlink in dotfiles:"
 			ls -l $symlink
