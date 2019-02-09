@@ -77,11 +77,10 @@ function dfgfmc() {
 	getnewcommits $branch | tail -n 1
 }
 # ours-merge merge commit
-alias dfgommc='dfg merge -s ours dfgfmc'
-alias dfgommcp='dfgommc archpatricol'
-alias dfgommcw='dfgommc archwork'
-alias dfgommcda='dfgommc dockerarch'
-alias dfgommcdu='dfgommc dockerubuntu'
+alias dfgommcp='dfg merge -s ours $(dfgfmc archpatricol)'
+alias dfgommcw='dfg merge -s ours $(dfgfmc archwork)'
+alias dfgommcda='dfg merge -s ours $(dfgfmc dockerarch)'
+alias dfgommcdu='dfg merge -s ours $(dfgfmc dockerubuntu)'
 
 
 alias dfgmac='dfg merge --edit --no-ff'
