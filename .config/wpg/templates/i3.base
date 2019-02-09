@@ -9,12 +9,12 @@
 
 exec_always --no-startup-id systemctl --user restart polybar-main.service
 exec_always --no-startup-id systemctl --user restart polybar-wss.service
+exec_always --no-startup-id systemctl --user restart animated-wallpaper.service
 exec_always --no-startup-id systemctl --user start redshift-gtk.service
 exec_always --no-startup-id systemctl --user start network-manager-applet.service
 exec_always --no-startup-id systemctl --user start blueman-applet.service
 exec_always --no-startup-id systemctl --user start udiskie.service
 exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
-exec_always --no-startup-id systemctl --user start animated-wallpaper.service
 
 set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service network-manager-applet.service blueman-applet.service udiskie.service indicator-sound-switcher.service animated-wallpaper.service
 
@@ -86,8 +86,8 @@ client.urgent              $accent     $accent     $darkest    $dark     $accent
 client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
 client.background          $darkest
 
+#exec_always --no-startup-id xsetroot -solid "$darkest" #keep disabled; now that there's a wallpaper.service.
 
-exec_always --no-startup-id xsetroot -solid "$darkest"
 
 
 # BEHAVIOR ####################################################################
@@ -102,8 +102,6 @@ mouse_warping none
 popup_during_fullscreen leave_fullscreen
 focus_wrapping yes
 workspace_auto_back_and_forth yes
-
-
 
 
 
