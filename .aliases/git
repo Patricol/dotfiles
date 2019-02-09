@@ -30,7 +30,7 @@ function fix_symlinks_for_dotfiles() {
 }
 
 
-alias dfgk='add_ssh_key github_fcdcbda'
+alias dfgk='add_ssh_keys github'
 
 alias dfgs='dfg status'
 
