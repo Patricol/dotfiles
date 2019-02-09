@@ -1,0 +1,8 @@
+[Unit]
+Description=Polybar wss bar
+
+[Service]
+ExecStart=polybar wss
+
+[Install]
+WantedBy=default.target

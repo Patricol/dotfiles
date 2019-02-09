@@ -120,4 +120,3 @@ stty -ixon
 
 #warns me if there is critical news I need to know before updating
 yay --news
-

@@ -89,7 +89,6 @@ client.background          $darkest
 exec_always --no-startup-id xsetroot -solid "$darkest"
 
 
-
 # BEHAVIOR ####################################################################
 
 default_orientation auto
