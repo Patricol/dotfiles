@@ -61,6 +61,7 @@ function hasunmerged() {
 	if [ $commitcount -ge 2 ]; then
 		return 0
 	else
+		echo "no unmerged changes"
 		return 1
 	fi
 }
