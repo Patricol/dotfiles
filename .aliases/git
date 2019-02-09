@@ -65,16 +65,23 @@ function hasunmerged() {
 	fi
 }
 
+alias dfghump='hasunmerged archpatricol'
+alias dfghumw='hasunmerged archwork'
+alias dfghumda='hasunmerged dockerarch'
+alias dfghumdu='hasunmerged dockerubuntu'
+
 #find merge commit
 function dfgfmc() {
 	branch=$1
 	getnewcommits $branch | tail -n 1
 }
+# ours-merge merge commit
+alias dfgommc='dfg merge -s ours dfgfmc'
+alias dfgommcp='dfgommc archpatricol'
+alias dfgommcw='dfgommc archwork'
+alias dfgommcda='dfgommc dockerarch'
+alias dfgommcdu='dfgommc dockerubuntu'
 
-alias dfgfmcp='dfgfmc archpatricol'
-alias dfgfmcw='dfgfmc archwork'
-alias dfgfmcda='dfgfmc dockerarch'
-alias dfgfmcdu='dfgfmc dockerubuntu'
 
 alias dfgmac='dfg merge --edit --no-ff'
 alias dfgm='dfgmac --no-commit'
@@ -104,6 +111,12 @@ alias dfgpopall='while dfgpop; do :; done'
 alias dfgp='dfgk && dfg push'
 
 #to avoid merging branch-specific changes back into master; use "dfg merge -s ours BRANCH" when the BRANCH is only ahead by its merge commit.
+
+#merge to master from ...
+alias dfgmtmfp='dfgchm && dfghump && dfgommcp && dfgmp && dfg reset'
+alias dfgmtmfw='dfgchm && dfghumw && dfgommcw && dfgmw && dfg reset'
+alias dfgmtmfda='dfgchm && dfghumda && dfgommcda && dfgmda && dfg reset'
+alias dfgmtmfdu='dfgchm && dfghumdu && dfgommcdu && dfgmdu && dfg reset'
 
 #alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
 alias dfgmergeall='dfgfullmerge'
