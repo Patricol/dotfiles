@@ -2,7 +2,7 @@
 Description=Animated Wallpaper
 
 [Service]
-ExecStart=~/.config/wallpapers/video-bg ~/.config/wallpapers/default-animated
+ExecStart=video-bg %h/.config/wallpapers/default-animated
 
 [Install]
 WantedBy=default.target
