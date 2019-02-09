@@ -49,6 +49,33 @@ alias dfgdtdu='dfgdt dockerubuntu'
 
 alias dfgmt='dfg mergetool -t meld'
 
+
+function getnewcommits() {
+	branch=$1
+	dfg rev-list $(dfg merge-base -a $branch master)..$branch
+}
+
+function hasunmerged() {
+	branch=$1
+	commitcount=$(getnewcommits $branch | wc -l)
+	if [ $commitcount -ge 2 ]; then
+		return 0
+	else
+		return 1
+	fi
+}
+
+#find merge commit
+function dfgfmc() {
+	branch=$1
+	getnewcommits $branch | tail -n 1
+}
+
+alias dfgfmcp='dfgfmc archpatricol'
+alias dfgfmcw='dfgfmc archwork'
+alias dfgfmcda='dfgfmc dockerarch'
+alias dfgfmcdu='dfgfmc dockerubuntu'
+
 alias dfgmac='dfg merge --edit --no-ff'
 alias dfgm='dfgmac --no-commit'
 alias dfgmacm='dfgmac master'
