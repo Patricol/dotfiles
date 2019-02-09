@@ -117,10 +117,10 @@ alias dfgp='dfgk && dfg push'
 #to avoid merging branch-specific changes back into master; use "dfg merge -s ours BRANCH" when the BRANCH is only ahead by its merge commit.
 
 #merge to master from ...
-alias dfgmtmfp='dfgchm && dfghump && dfgommcp && dfgmp && dfg reset'
-alias dfgmtmfw='dfgchm && dfghumw && dfgommcw && dfgmw && dfg reset'
-alias dfgmtmfda='dfgchm && dfghumda && dfgommcda && dfgmda && dfg reset'
-alias dfgmtmfdu='dfgchm && dfghumdu && dfgommcdu && dfgmdu && dfg reset'
+alias dfgmtmfp='dfgchm && dfghump && dfgommcp && dfgmp && dfg reset --soft'
+alias dfgmtmfw='dfgchm && dfghumw && dfgommcw && dfgmw && dfg reset --soft'
+alias dfgmtmfda='dfgchm && dfghumda && dfgommcda && dfgmda && dfg reset --soft'
+alias dfgmtmfdu='dfgchm && dfghumdu && dfgommcdu && dfgmdu && dfg reset --soft'
 
 #alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
 alias dfgmergeall='dfgfullmerge'
