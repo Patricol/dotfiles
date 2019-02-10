@@ -53,7 +53,8 @@ alias dfgmt='dfg mergetool -t meld'
 function getnewcommits() {
 	branch=$1
 	merge_base=`dfg merge-base -a $branch master`
-	dfg rev-list $merge_base..$branch
+	#need ancestry path so it doesn't include previous one-way merges.
+	dfg rev-list --ancestry-path $merge_base..$branch
 }
 
 function hasunmerged() {
