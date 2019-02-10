@@ -10,6 +10,7 @@ alias pq='pacman -Q | grep'
 alias pqe='pacman -Qe | grep'
 alias pqd='pacman -Qd | grep'
 alias pqi='pacman -Qi'
+alias pacunneeded='pacman -Qittd'
 alias plaur='pacman -Qm'
 
 function cps() {
