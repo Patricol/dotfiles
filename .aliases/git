@@ -152,7 +152,7 @@ alias dfgmtmfw='dfgcheckuptodate archwork && dfgchm && ((dfghumw && dfgommcw && 
 alias dfgmtmfda='dfgcheckuptodate dockerarch && dfgchm && ((dfghumda && dfgommcda && (dfgmda ; dfgmt ; dfgwarnmerge)) || true )'
 alias dfgmtmfdu='dfgcheckuptodate dockerubuntu && dfgchm && ((dfghumdu && dfgommcdu && (dfgmdu ; dfgmt ; dfgwarnmerge)) || true )'
 
-alias dfgfullmerge='dfgmtmfp && dfgmtmfw && dfgmtmfda && dfgmtmfdu'
+alias dfgfullmerge='dfgmtmfp && dfgmtmfw && dfgmtmfda && dfgmtmfdu && dfgchp'
 alias dfgmergeall='dfgfullmerge'
 
 alias dfgpopush='dfgpopall && dfgs && dfgp'
