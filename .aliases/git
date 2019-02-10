@@ -79,7 +79,8 @@ function dfgfmc() {
 
 # ours-merge merge commit
 function dfgommc() {
-	dfg merge -s ours $(dfgfmc $1)
+	dfg merge -s ours --no-edit $(dfgfmc $1)
+	echo "REMEMBER YOU NEED TO UNDO THIS MERGE BEFORE COMMITTING"
 }
 alias dfgommcp='dfgommc archpatricol'
 alias dfgommcw='dfgommc archwork'
