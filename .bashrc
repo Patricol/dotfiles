@@ -70,15 +70,18 @@ if ! shopt -oq posix; then
 fi
 
 # Don't move this to a separate script; caused issues.
-function add_ssh_key() {
-    if [ ! -z "$1" ]; then
-        chmod 600 ~/.ssh/"$1"
-        eval `keychain --eval "$1"`
-    fi
+function add_ssh_keys() {
+    for keyname in "$@"; do
+        key=$HOME/.ssh/$keyname
+        if [ -f "$key" ]; then
+            chmod 600 "$key"
+        fi
+    done
+    eval $(keychain --eval --quiet $@)
 }
 
-eval $(ssh-agent) > /dev/null
-add_ssh_key nas_work_share &> /dev/null
+add_ssh_keys nas_work_share &
+
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 

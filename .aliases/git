@@ -10,7 +10,15 @@ function fix_symlink_for_dotfiles() {
 		target=`readlink "$symlink"`
 		#if the symlink goes inside the home directory; make it relative.
 		if [[ $target == /home/* ]]; then
-			ln -srf $target $symlink
+			#ln -srf $target $symlink #actually skips intermediate symlinks when -r option is given; not an acceptable solution.
+			echo "Fixing: $symlink"
+			targetname=`basename $target`
+			targetdir=${target%$targetname}
+			symlinkname=`basename $symlink`
+			symlinkdir=${symlink%$symlinkname}
+			reltargetdir=`realpath --relative-to=$symlinkdir $targetdir`
+			reltarget=$reltargetdir/$targetname
+			ln -sf $reltarget $symlink
 		elif [[ $target == /* ]]; then
 			echo "Found non-relative symlink in dotfiles:"
 			ls -l $symlink
@@ -22,28 +30,81 @@ function fix_symlinks_for_dotfiles() {
 	dfg ls-tree -r --name-only --full-tree HEAD | while read line; do fix_symlink_for_dotfiles $line; done
 }
 
+alias dfgfixsym='fix_symlinks_for_dotfiles'
+alias dfgso='dfg remote set-url origin git@github.com:Patricol/dotfiles.git'
+alias dfgk='dfgso && add_ssh_keys github'
 
-alias dfgk='add_ssh_key github_fcdcbda'
-
-alias dfgs='dfg status'
+alias dfgs='dfg status --ahead-behind'
 
 alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
 
 #provide the branch to pull changes from as an arg
-alias dfgm='dfg difftool -y -t meld'
+alias dfgdt='dfg difftool -y -t meld'
+alias dfgdtm='dfgdt master'
+alias dfgdtp='dfgdt archpatricol'
+alias dfgdtw='dfgdt archwork'
+alias dfgdtda='dfgdt dockerarch'
+alias dfgdtdu='dfgdt dockerubuntu'
+
+alias dfgmt='dfg mergetool -t meld'
+
+
+function getnewcommits() {
+	branch=$1
+	merge_base=`dfg merge-base -a $branch master`
+	dfg rev-list $merge_base..$branch
+}
+
+function hasunmerged() {
+	branch=$1
+	commitcount=$(getnewcommits $branch | wc -l)
+	if [ $commitcount -ge 2 ]; then
+		return 0
+	else
+		echo "no unmerged changes"
+		return 1
+	fi
+}
+
+alias dfghump='hasunmerged archpatricol'
+alias dfghumw='hasunmerged archwork'
+alias dfghumda='hasunmerged dockerarch'
+alias dfghumdu='hasunmerged dockerubuntu'
+
+#find merge commit
+function dfgfmc() {
+	branch=$1
+	getnewcommits $branch | tail -n 1
+}
+
+# ours-merge merge commit
+function dfgommc() {
+	dfg merge -s ours -m "fake merge to avoid pulling in branch-specific differences" --no-edit $(dfgfmc $1)
+}
+alias dfgommcp='dfgommc archpatricol'
+alias dfgommcw='dfgommc archwork'
+alias dfgommcda='dfgommc dockerarch'
+alias dfgommcdu='dfgommc dockerubuntu'
+
+
+alias dfgmac='dfg merge --edit --no-ff'
+alias dfgm='dfgmac --no-commit'
+alias dfgmacm='dfgmac master'
+alias dfgmm='dfgm master'
 alias dfgmp='dfgm archpatricol'
 alias dfgmw='dfgm archwork'
 alias dfgmda='dfgm dockerarch'
 alias dfgmdu='dfgm dockerubuntu'
 
 alias dfga='dfg add'
-alias dfgaa='dfga -u && dfga ~/.themes ~/.aliases ~/.config/wpg ~/.config/powerline ~/.config/wallpapers ~/.config/qt5ct/'
+alias dfgaa='dfgfixsym && dfga -u && dfga ~/.themes ~/.aliases ~/.config/wpg ~/.config/systemd ~/.config/powerline ~/.config/wallpapers ~/.config/qt5ct/'
+alias dfgaae='dfgaa && dfg reset HEAD -- ~/.config/htop/htoprc'
 alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'
-alias dfgacm='(dfgac -m "merge from all others" -e || true)'
 
 alias dfgch='dfg checkout'
+alias dfgchm='dfgch master'
 alias dfgchp='dfgch archpatricol'
 alias dfgchw='dfgch archwork'
 alias dfgchda='dfgch dockerarch'
@@ -52,15 +113,49 @@ alias dfgchdu='dfgch dockerubuntu'
 alias dfgpop='dfg stash pop'
 alias dfgpopall='while dfgpop; do :; done'
 
-alias dfgp='dfg push'
+alias dfgp='dfgk && dfg push'
 
-alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
+#to avoid merging branch-specific changes back into master; use "dfg merge -s ours BRANCH" when the BRANCH is only ahead by its merge commit.
+
+function dfgcmctm() {
+	#commit merge changes to master
+	branch=$1
+	#dfg stash
+	#dfgpop
+	#dfga -u
+	#dfg reset --soft HEAD~1
+	dfgc --no-edit #--edit -m "Pull new changes from $branch $(dfg rev-parse $branch)"
+	dfgc --allow-empty -m "dummy commit to enable the next merge"
+	dfgch $branch
+	dfg merge -s ours -m "merge again to re-add branch-specific differences" --no-edit master
+	echo "sanity-check the changes made to both branches, then push."
+}
+alias dfgcmctmp='dfgcmctm archpatricol'
+alias dfgcmctmw='dfgcmctm archwork'
+alias dfgcmctmda='dfgcmctm dockerarch'
+alias dfgcmctmdu='dfgcmctm dockerubuntu'
+
+function dfgcheckuptodate() {
+	branch=$1
+	dfgch $branch
+	dfgmm
+	dfg merge HEAD || dfgmt && dfgc
+	dfg merge HEAD # will error out if merge is in progress; if commit was aborted or otherwise failed because of merge conflicts
+}
+
+
+alias dfgwarnmerge='echo "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmctm* TO COMMIT OR OTHERWISE WRAP UP!"'
+#merge to master from ... (P.S.: do not remove the stash and pop; that allows the soft reset; which is otherwise blocked by git as it detects the ongoing merge.)
+alias dfgmtmfp='dfgcheckuptodate archpatricol && dfgchm && dfghump && dfgommcp && (dfgmp ; dfgmt ; dfgwarnmerge)'
+alias dfgmtmfw='dfgcheckuptodate archwork && dfgmm && dfgc && dfgchm && dfghumw && dfgommcw && (dfgmw ; dfgmt ; dfgwarnmerge)'
+alias dfgmtmfda='dfgcheckuptodate dockerarch && dfgmm && dfgc && dfgchm && dfghumda && dfgommcda && (dfgmda ; dfgmt ; dfgwarnmerge)'
+alias dfgmtmfdu='dfgcheckuptodate dockerubuntu && dfgmm && dfgc && dfgchm && dfghumdu && dfgommcdu && (dfgmdu ; dfgmt ; dfgwarnmerge)'
+
+#alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
 alias dfgmergeall='dfgfullmerge'
 
 alias dfgpopush='dfgpopall && dfgs && dfgp'
-alias dfgpushall='dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
+alias dfgpushall='dfgchm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
-alias sysg='sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/'
-
-alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
+alias gsf='sudo git --git-dir=/root/.systemfiles-repo/ --work-tree=/'
 
