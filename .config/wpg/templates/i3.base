@@ -28,6 +28,10 @@ for_window [class=.*] border $def_border
 for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
 
+#Ensure chromium starts on the current workspace. Often opens on workspace 1 first time post login.
+for_window [class="^chromium$"] move window to workspace current
+for_window [class="^Chromium$"] move window to workspace current
+
 #Hide vncconfig window. closing it could prevent copy/paste from working.
 for_window [title="VNC config"] move scratchpad
 
@@ -77,7 +81,6 @@ client.urgent              $accent     $accent     $darkest    $dark     $accent
 client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
 client.background          $darkest
 
-
 exec_always --no-startup-id xsetroot -solid "$darkest"
 
 
@@ -94,8 +97,6 @@ mouse_warping none
 popup_during_fullscreen leave_fullscreen
 focus_wrapping yes
 workspace_auto_back_and_forth yes
-
-
 
 
 

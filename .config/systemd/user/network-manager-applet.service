@@ -1,0 +1,8 @@
+[Unit]
+Description=Applet for managing network connections
+
+[Service]
+ExecStart=nm-applet
+
+[Install]
+WantedBy=default.target

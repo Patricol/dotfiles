@@ -1,0 +1,9 @@
+[Unit]
+Description=Wallpaper
+
+[Service]
+Type=oneshot
+ExecStart=feh --bg-fill --no-fehbg %h/.config/wallpapers/default/fehbg.png
+
+[Install]
+WantedBy=default.target

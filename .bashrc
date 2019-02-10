@@ -70,14 +70,16 @@ if ! shopt -oq posix; then
 fi
 
 # Don't move this to a separate script; caused issues.
-function add_ssh_key() {
-    if [ ! -z "$1" ]; then
-        chmod 600 ~/.ssh/"$1"
-        eval `keychain --eval "$1"`
-    fi
+function add_ssh_keys() {
+    for keyname in "$@"; do
+        key=$HOME/.ssh/$keyname
+        if [ -f "$key" ]; then
+            chmod 600 "$key"
+        fi
+    done
+    eval $(keychain --eval --quiet $@)
 }
 
-eval $(ssh-agent) > /dev/null
 
 export EDITOR=vim
 
@@ -113,3 +115,7 @@ stty -ixon
 # add something to tell me when updates are available on bash start from ssh etc.
 
 #tty is changing colors because bold. neofetch color output must be bold; to be acting this way. need to have it not use the emphasis bit etc; or have tty-specific setups without bold stuff? but why would the background grey be missing for the cwd?
+
+#warns me if there is critical news I need to know before updating
+yay --news
+
