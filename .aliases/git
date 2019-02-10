@@ -125,7 +125,8 @@ function dfgcmctm() {
 	#dfgpop
 	#dfga -u
 	#dfg reset --soft HEAD~1
-	dfgc #--edit -m "Pull new changes from $branch $(dfg rev-parse $branch)"
+	dfgc --no-edit #--edit -m "Pull new changes from $branch $(dfg rev-parse $branch)"
+	dfgc --allow-empty -m "dummy commit to enable the next merge"
 	dfgch $branch
 	dfg merge -s ours --no-edit || dfgmt && dfgc --no-edit
 	echo "sanity-check the changes made to both branches, then push."
