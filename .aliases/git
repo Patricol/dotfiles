@@ -124,6 +124,7 @@ function dfgcmctm() {
 	dfga -u
 	dfg reset --soft HEAD~1
 	dfgc --edit -m "Pull new changes from $branch $(dfgfmc $branch)"
+	echo "remember you're on the master branch now"
 }
 alias dfgcmctmp='dfgcmctm archpatricol'
 alias dfgcmctmw='dfgcmctm archwork'
