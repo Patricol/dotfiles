@@ -136,12 +136,12 @@ alias dfgcmctmda='dfgcmctm dockerarch'
 alias dfgcmctmdu='dfgcmctm dockerubuntu'
 
 
-alias dfgwarnmerge='echo "READ ME: finish merging with dfgmt, check changes are good, THEN MUST USE dfgcmctm* TO COMMIT OR OTHERWISE WRAP UP!"'
+alias dfgwarnmerge='echo "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmctm* TO COMMIT OR OTHERWISE WRAP UP!"'
 #merge to master from ... (P.S.: do not remove the stash and pop; that allows the soft reset; which is otherwise blocked by git as it detects the ongoing merge.)
-alias dfgmtmfp='dfgmm && dfgchm && dfghump && dfgommcp && (dfgmp ; dfgwarnmerge)'
-alias dfgmtmfw='dfgmm && dfgchm && dfghumw && dfgommcw && (dfgmw ; dfgwarnmerge)'
-alias dfgmtmfda='dfgmm && dfgchm && dfghumda && dfgommcda && (dfgmda ; dfgwarnmerge)'
-alias dfgmtmfdu='dfgmm && dfgchm && dfghumdu && dfgommcdu && (dfgmdu ; dfgwarnmerge)'
+alias dfgmtmfp='dfgmm && dfgchm && dfghump && dfgommcp && (dfgmp ; dfgmt ; dfgwarnmerge)'
+alias dfgmtmfw='dfgmm && dfgchm && dfghumw && dfgommcw && (dfgmw ; dfgmt ; dfgwarnmerge)'
+alias dfgmtmfda='dfgmm && dfgchm && dfghumda && dfgommcda && (dfgmda ; dfgmt ; dfgwarnmerge)'
+alias dfgmtmfdu='dfgmm && dfgchm && dfghumdu && dfgommcdu && (dfgmdu ; dfgmt ; dfgwarnmerge)'
 
 #alias dfgfullmerge='dfgchp && dfgmw && dfg stash && dfgchda && dfgmdu && dfg stash && dfgchp && dfgpopall && dfgmda && dfgacm && dfgchw && dfgmp && dfgacm && dfgchda && dfgpopall && dfgmp && dfgacm && dfgchdu && dfgmda && dfgacm'
 alias dfgmergeall='dfgfullmerge'
