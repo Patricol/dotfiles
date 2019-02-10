@@ -80,7 +80,7 @@ function dfgfmc() {
 
 # ours-merge merge commit
 function dfgommc() {
-	dfg merge -s ours --no-edit $(dfgfmc $1)
+	dfg merge -s ours -m "fake merge to avoid pulling in branch-specific differences" --no-edit $(dfgfmc $1)
 	echo "REMEMBER YOU NEED TO UNDO THIS MERGE BEFORE COMMITTING"
 }
 alias dfgommcp='dfgommc archpatricol'
@@ -128,7 +128,7 @@ function dfgcmctm() {
 	dfgc --no-edit #--edit -m "Pull new changes from $branch $(dfg rev-parse $branch)"
 	dfgc --allow-empty -m "dummy commit to enable the next merge"
 	dfgch $branch
-	dfg merge -s ours --no-edit || dfgmt && dfgc --no-edit
+	dfg merge -s ours -m "merge again to re-add branch-specific differences" --no-edit master || dfgmt && dfgc --no-edit
 	echo "sanity-check the changes made to both branches, then push."
 }
 alias dfgcmctmp='dfgcmctm archpatricol'
