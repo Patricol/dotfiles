@@ -139,7 +139,7 @@ function dfgcheckuptodate() {
 	branch=$1
 	dfgch $branch
 	dfgmm
-	dfg merge HEAD || dfgc
+	dfg merge HEAD || dfgmt && dfgc
 	dfg merge HEAD # will error out if merge is in progress; if commit was aborted or otherwise failed because of merge conflicts
 }
 
