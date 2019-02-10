@@ -81,7 +81,6 @@ function dfgfmc() {
 # ours-merge merge commit
 function dfgommc() {
 	dfg merge -s ours -m "fake merge to avoid pulling in branch-specific differences" --no-edit $(dfgfmc $1)
-	echo "REMEMBER YOU NEED TO UNDO THIS MERGE BEFORE COMMITTING"
 }
 alias dfgommcp='dfgommc archpatricol'
 alias dfgommcw='dfgommc archwork'
