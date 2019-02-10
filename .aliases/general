@@ -123,6 +123,20 @@ alias vimbottom='vim "+ normal GA"'
 alias bal='vim -o ~/.aliases/*'
 alias brc='vimbottom ~/.bashrc'
 
+function edit_wpg_template() {
+    config_filename=$1
+    vim ~/.config/wpg/templates/$config_filename.base
+    echo "remember fmaterial"
+}
+
+function vimc() {
+    if [ -f ~/.config/wpg/templates/$1.base ]; then
+	edit_wpg_template $1
+    else
+	echo "add to the (vimc) function; not found in wpg templates."
+    fi
+}
+
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 alias mnf='mineofetch'
@@ -136,7 +150,7 @@ alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
 
 function tif() {
     #test if statement
-    if [ $@ ]; then
+    if [ "$@" ]; then
         echo "True"
     else
         echo "False"
@@ -149,6 +163,8 @@ function ier() {
 	$@
     fi
 }
+
+alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
 
 alias epoch='date +%s'
 

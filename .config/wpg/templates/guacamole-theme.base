@@ -1,0 +1,9 @@
+#!/bin/bash
+
+#setup something to construct the string that needs to be pasted into guacamole settings
+#<CONFIG_EDITING_WARNING>
+
+#sample: background:rgb:21/21/21;foreground:rgb:ee/ee/ee;color0:rgb:21/21/21;color1:rgb:d5/00/00;color2:rgb:00/c8/53;color3:rgb:ff/d6/00;color4:rgb:29/62/ff;color5:rgb:aa/00/ff;color6:rgb:00/b8/d4;color7:rgb:bd/bd/bd;color8:rgb:61/61/61;color9:rgb:ff/52/52;color10:rgb:69/f0/ae;color11:rgb:ff/ff/00;color12:rgb:44/8a/ff;color13:rgb:e0/40/fb;color14:rgb:18/ff/ff;color15:rgb:ee/ee/ee
+
+
+echo "background:rgb:<BACKGROUND>;foreground:rgb:<FOREGROUND>;color0:rgb:<COLOR0>;color1:rgb:<COLOR1>;color2:rgb:<COLOR2>;color3:rgb:<COLOR3>;color4:rgb:<COLOR4>;color5:rgb:<COLOR5>;color6:rgb:<COLOR6>;color7:rgb:<COLOR7>;color8:rgb:<COLOR8>;color9:rgb:<COLOR9>;color10:rgb:<COLOR10>;color11:rgb:<COLOR11>;color12:rgb:<COLOR12>;color13:rgb:<COLOR13>;color14:rgb:<COLOR14>;color15:rgb:<COLOR15>" | sed -r "s@:rgb:(..)(..)(..)@:rgb:\1/\2/\3@g"

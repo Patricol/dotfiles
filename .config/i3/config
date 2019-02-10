@@ -9,13 +9,14 @@
 
 exec_always --no-startup-id systemctl --user restart polybar-main.service
 exec_always --no-startup-id systemctl --user restart polybar-wss.service
+exec_always --no-startup-id systemctl --user restart animated-wallpaper.service
 exec_always --no-startup-id systemctl --user start redshift-gtk.service
 exec_always --no-startup-id systemctl --user start network-manager-applet.service
 exec_always --no-startup-id systemctl --user start blueman-applet.service
 exec_always --no-startup-id systemctl --user start udiskie.service
 exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
 
-set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service network-manager-applet.service blueman-applet.service udiskie.service indicator-sound-switcher.service
+set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service network-manager-applet.service blueman-applet.service udiskie.service indicator-sound-switcher.service animated-wallpaper.service
 
 #exec --no-startup-id polybar main -r
 ## No need for this; and can cover the one on my actual device.
@@ -43,6 +44,10 @@ for_window [class=.*] border $def_border
 
 for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
+
+#Ensure chromium starts on the current workspace. Often opens on workspace 1 first time post login.
+for_window [class="^chromium$"] move window to workspace current
+for_window [class="^Chromium$"] move window to workspace current
 
 #Hide vncconfig window. closing it could prevent copy/paste from working.
 for_window [title="VNC config"] move scratchpad
@@ -93,8 +98,7 @@ client.urgent              $accent     $accent     $darkest    $dark     $accent
 client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
 client.background          $darkest
 
-
-exec_always --no-startup-id xsetroot -solid "$darkest"
+#exec_always --no-startup-id xsetroot -solid "$darkest" #keep disabled; now that there's a wallpaper.service.
 
 
 
@@ -110,8 +114,6 @@ mouse_warping none
 popup_during_fullscreen leave_fullscreen
 focus_wrapping yes
 workspace_auto_back_and_forth yes
-
-
 
 
 
