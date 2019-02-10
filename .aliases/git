@@ -147,10 +147,10 @@ function dfgcheckuptodate() {
 
 alias dfgwarnmerge='echo "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmctm* TO COMMIT OR OTHERWISE WRAP UP!"'
 #merge to master from ... (P.S.: do not remove the stash and pop; that allows the soft reset; which is otherwise blocked by git as it detects the ongoing merge.)
-alias dfgmtmfp='dfgcheckuptodate archpatricol && dfgchm && ((dfghump && dfgommcp && (dfgmp ; dfgmt ; dfgwarnmerge)) || True )'
-alias dfgmtmfw='dfgcheckuptodate archwork && dfgchm && ((dfghumw && dfgommcw && (dfgmw ; dfgmt ; dfgwarnmerge)) || True )'
-alias dfgmtmfda='dfgcheckuptodate dockerarch && dfgchm && ((dfghumda && dfgommcda && (dfgmda ; dfgmt ; dfgwarnmerge)) || True )'
-alias dfgmtmfdu='dfgcheckuptodate dockerubuntu && dfgchm && ((dfghumdu && dfgommcdu && (dfgmdu ; dfgmt ; dfgwarnmerge)) || True )'
+alias dfgmtmfp='dfgcheckuptodate archpatricol && dfgchm && ((dfghump && dfgommcp && (dfgmp ; dfgmt ; dfgwarnmerge)) || true )'
+alias dfgmtmfw='dfgcheckuptodate archwork && dfgchm && ((dfghumw && dfgommcw && (dfgmw ; dfgmt ; dfgwarnmerge)) || true )'
+alias dfgmtmfda='dfgcheckuptodate dockerarch && dfgchm && ((dfghumda && dfgommcda && (dfgmda ; dfgmt ; dfgwarnmerge)) || true )'
+alias dfgmtmfdu='dfgcheckuptodate dockerubuntu && dfgchm && ((dfghumdu && dfgommcdu && (dfgmdu ; dfgmt ; dfgwarnmerge)) || true )'
 
 alias dfgfullmerge='dfgmtmfp && dfgmtmfw && dfgmtmfda && dfgmtmfdu'
 alias dfgmergeall='dfgfullmerge'
