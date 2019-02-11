@@ -48,6 +48,7 @@ fscrot() {
 
 
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
+alias fp='echo "fixing permissions..."; sudo /usr/local/sbin/fix-permissions'
 
 alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
 ftype() {
