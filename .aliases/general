@@ -166,7 +166,7 @@ ier() {
 	#if exists, run.
 	declare program="$1" command="$@"
 	if which "${program}" &> /dev/null; then
-	"${command}"
+		"${command}"
 	fi
 }
 
