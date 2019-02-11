@@ -155,7 +155,6 @@ dfgmtmf() {
 	declare branch="$1"
 	if dfgcheckuptodate "$branch"; then
 		dfgchm
-		((dfghum "$branch" && dfgommc "$branch" && (dfgm "$branch" ; dfgmt ; dfgwarnmerge)) || true )
 		if dfghum "$branch"; then
 			dfgommc "$branch"
 			dfgm "$branch" || (dfgmt &)
