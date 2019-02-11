@@ -38,8 +38,8 @@ for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
 
 #Ensure chromium starts on the current workspace. Often opens on workspace 1 first time post login.
-for_window [class="^chromium$"] move window to workspace current
-for_window [class="^Chromium$"] move window to workspace current
+for_window [urgent="latest" class="^chromium$"] move window to workspace current
+for_window [urgent="latest" class="^Chromium$"] move window to workspace current
 
 #Hide vncconfig window. closing it could prevent copy/paste from working.
 for_window [title="VNC config"] move scratchpad
