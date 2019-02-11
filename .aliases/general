@@ -42,6 +42,9 @@ alias l='ls -CF'
 
 alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
 
+alias top='htop'
+
+
 fscrot() {
 	scrot -q 100 -m -e 'mv "$f" ~/pictures/' $@
 }
@@ -87,25 +90,67 @@ alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do e
 alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
 alias colorst='msgcat --color=test'
 
+
 extract() {
-	declare archive="$1"
-	7z x "${archive}"
 	# should probably not use 7z for all. e.g. extracting tar as root with 7z doesn't preserve permissions and ownership, but doing so with tar -xvzf does.
 	# if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
 	# it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
+	# anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
+	declare archives="$@"
+	if [[ -z "${archive}" ]]; then
+		echo "provide archive(s)" >&2
+		false
+		return "$?"
+	fi
+	local archive
+	for archive in ${archives}; do
+		if [[ ! -f "${archive}" ]]; then
+			echo "given archive (${archive}) does not exist" >&2
+			false
+			return "$?"
+		fi
+		case "${archive%,}" in
+			*.tar|*.tgz|*.tar.gz|*.txz|*.tar.xz|*.tbz2|*.tar.bz2)
+				tar -xvf "${archive}"
+				;;
+			*.rar|*.cbr)
+				unrar x "${archive}"
+				;;
+			*.lzma)
+				unlzma "${archive}"
+				;;
+			*.bz2)
+				bunzip2 "${archive}"
+				;;
+			*.gz)
+				gunzip "${archive}"
+				;;
+			*.zip|*.cbz)
+				unzip "${archive}"
+				;;
+			*.z)
+				uncompress "${archive}"
+				;;
+			*.xz)
+				unxz "${archive}"
+				;;
+			*.exe)
+				cabextract "${archive}"
+				;;
+			*)
+				7z x "${archive}"
+				;;
+		esac
+	done
 }
-#anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
-#gzip seems much less resistant to corruption than xz.
-#maybe add functions for creating archives of different types.
-#I do really care about avoiding corruption.
-#zip vs tgz vs txz vs ?
-#txz is best for compression, efficiency etc.
-#extracting individual files from zip is faster. zip is also more ubiquitous.
-
 #maketxz() {
+	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
 #}
 #makezip() {
+	# extracting individual files from zip is faster. zip is also more ubiquitous.
 #}
+
+
 
 alias cdup='cd ..'
 alias cdu='cdup'
