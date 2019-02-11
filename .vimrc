@@ -14,6 +14,13 @@ set showtabline=2 " Always display the tabline, even if there is only one tab
 " Copies what was just pasted.
 xnoremap p pgvy
 
+com! -bar TOTABS call s:switch_to_tabs()
+
+fu! s:switch_to_tabs() abort
+    set tabstop=4
+    set noexpandtab
+    set %retab!
+endfu
 
 com! -bar MAINTAIN call s:maintenance_tasks()
 

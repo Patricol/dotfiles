@@ -384,13 +384,12 @@ ramp-capacity-9 = ${symbols.usage-ramp-0}
 
 [module/check-updates]
 type = custom/script
-exec = ~/.config/polybar/check-updates.sh
+exec = ~/.config/polybar/check-updates
 interval = 60
-;interval = 6000
 
 [module/check-other-sessions]
 type = custom/script
-exec = ~/.config/polybar/check-other-sessions.sh
+exec = ~/.config/polybar/check-other-sessions
 interval = 60
 
 [module/start-terminal]

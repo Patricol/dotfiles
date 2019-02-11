@@ -2,13 +2,13 @@
 
 wpgsetfast() {
 	declare theme="$1"
-	wpg -n -s "$theme".png
+	wpg -n -s "${theme}".png
 	xrdb ~/.Xresources
 }
 
 wpgset() {
 	declare theme="$1"
-	wpgsetfast "$theme"
+	wpgsetfast "${theme}"
 	oomox-cli -o oomox-wpg -t ~/.themes -d false -m all ~/.config/oomox/colors/oomox-wpg
 	oomox-materia-cli -o materia-wpg -d false ~/.config/oomox/colors/materia-wpg
 }
