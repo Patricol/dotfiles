@@ -62,7 +62,8 @@ alias dfgmt='dfg mergetool -t meld'
 getnewcommits() {
 	declare branch="$1"
 	local merge_base
-	merge_base="$(dfg merge-base -a "${branch}" master)"
+	# need to use origin/master so that unmerged changes aren't ignored if a branch has run dfgmm after making those changes.
+	merge_base="$(dfg merge-base -a "${branch}" origin/master)"
 	#need ancestry path so it doesn't include previous one-way merges.
 	dfg rev-list --ancestry-path "${merge_base}".."${branch}"
 }
@@ -151,6 +152,7 @@ dfgcmctm() {
 	dfgch "${branch}"
 	dfg merge -s ours -m "${merge_message}" --no-edit master
 	echo "sanity-check the changes made to both branches, then push." >&2
+	echo "DON'T PUSH MASTER UNTIL A FULLMERGE COMPLETES WITHOUT DOING ANYTHING." >&2
 }
 alias dfgcmctmp='dfgcmctm archpatricol'
 alias dfgcmctmw='dfgcmctm archwork'
