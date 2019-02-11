@@ -43,7 +43,7 @@ alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && ad
 
 alias dfgs='dfg status --ahead-behind'
 alias dfgl='dfg log --relative-date --graph'
-alias dfglc='dfgl --pretty=format:"%h%x09%ad%x09%s"'
+alias dfglc='dfgl --pretty=format:"%Cgreen%h%x09%Cred%ad%x09%Creset%s%Cblue%d"'
 
 alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
