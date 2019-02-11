@@ -1,28 +1,26 @@
 #!/bin/bash
 
-#w -hs
-current_user=`id -un`
+check_other_sessions() {
+    other_users() {
+        local current_user="$(id -un)"
+        local others="$(w -hs | grep -vE "^$current_user" | wc -l)"
+        [[ "$others" -gt 0 ]]
+        return $?
+    }
 
-function other_users() {
-    other_users_sessions=`w -hs | grep -vE "^$current_user" | wc -l`
-    if [ "$other_users_sessions" -gt 0 ]; then
-        true
-    else
-        false
+    other_sessions() {
+        local others="$(w -hs | wc -l)"
+        [[ "$others" -gt 1 ]]
+        return $?
+    }
+
+    if other_sessions; then
+        local output='%{T5}%{T-}'
     fi
+    echo "$output"
+    unset -f other_users other_sessions
 }
 
-function other_sessions() {
-    other_sessions=`w -hs | wc -l`
-    if [ "$other_sessions" -gt 1 ]; then
-        true
-    else
-        false
-    fi
-}
+check_other_sessions
+unset -f check_other_sessions
 
-if other_sessions; then
-    echo "%{T5}%{T-}"
-else
-    echo ""
-fi

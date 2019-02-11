@@ -1,19 +1,29 @@
-#!/bin/sh
-if [ `which yay 2> /dev/null` ]; then
-    check_command="yay -Qu"
-else
-    check_command="checkupdates"
-fi
+#!/bin/bash
 
-updates=$($check_command 2> /dev/null | wc -l )
+check_updates() {
+    local updates=0
+    
+    use_method() {
+        declare program="$1" command="$@"
+        if which "$program" &> /dev/null; then
+            local found_updates="$("$command" 2> /dev/null | wc -l)"
+            [[ "$found_updates" -ge "$updates" ]] && updates="$found_updates"
+        fi
+    }
 
-if [ -z "$updates" ]; then
-    updates=0
-fi
+    use_method checkupdates
+    use_method yay -Qu
 
-if [ "$updates" -gt 0 ]; then
-    echo "%{T4}%{T-}%{T3}$updates%{T-}"
-    #fonts: material icons and monospace-fill.
-else
-    echo ""
-fi
+    if [[ "$updates" -gt 0 ]]; then
+        # font indexes for polybar
+        local material_icons=4
+        local monospace_fill=3
+        local output="%{T$material_icons}%{T-}%{T$monospace_fill}$updates%{T-}"
+    fi
+    echo "$output"
+    unset -f use_method
+}
+
+check_updates
+unset -f check_updates
+

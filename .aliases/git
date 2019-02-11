@@ -3,36 +3,35 @@
 alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
 
 
-function fix_symlink_for_dotfiles() {
-	#Check input file is a symlink
-	if [ -L "$1" ]; then
-		symlink=$1
-		target=`readlink "$symlink"`
-		#if the symlink goes inside the home directory; make it relative.
-		if [[ $target == /home/* ]]; then
-			#ln -srf $target $symlink #actually skips intermediate symlinks when -r option is given; not an acceptable solution.
-			echo "Fixing: $symlink"
-			targetname=`basename $target`
-			targetdir=${target%$targetname}
-			symlinkname=`basename $symlink`
-			symlinkdir=${symlink%$symlinkname}
-			reltargetdir=`realpath --relative-to=$symlinkdir $targetdir`
-			reltarget=$reltargetdir/$targetname
-			ln -sf $reltarget $symlink
-		elif [[ $target == /* ]]; then
-			echo "Found non-relative symlink in dotfiles:"
-			ls -l $symlink
+dfgfixsym() {
+	# fix symlinks for dotfiles
+	local filepath
+	dfg ls-tree -r --name-only --full-tree HEAD | while read filepath; do
+		#Check input file is a symlink
+		if [[ -L "$filepath" ]]; then
+			local symlink="$filepath"
+			local target="$(readlink "$symlink")"
+			#if the symlink goes inside the home directory; make it relative.
+			if [[ "$target" == /home/* ]]; then
+				#ln -srf $target $symlink #actually skips intermediate symlinks when -r option is given; not an acceptable solution.
+				echo "Fixing: $symlink"
+				local targetname="$(basename "$target")"
+				local targetdir="${target%$targetname}"
+				local symlinkname="$(basename "$symlink")"
+				local symlinkdir="${symlink%$symlinkname}"
+				local reltargetdir="$(realpath --relative-to="$symlinkdir" "$targetdir")"
+				local reltarget="$reltargetdir"/"$targetname"
+				ln -sf "$reltarget" "$symlink"
+			elif [[ "$target" == /* ]]; then
+				echo "Found non-relative symlink in dotfiles:"
+				ls -l "$symlink"
+			fi
 		fi
-	fi
+	done
 }
 
-function fix_symlinks_for_dotfiles() {
-	dfg ls-tree -r --name-only --full-tree HEAD | while read line; do fix_symlink_for_dotfiles $line; done
-}
 
-alias dfgfixsym='fix_symlinks_for_dotfiles'
-alias dfgso='dfg remote set-url origin git@github.com:Patricol/dotfiles.git'
-alias dfgk='dfgso && add_ssh_keys github'
+alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && add_ssh_keys github'
 
 alias dfgs='dfg status --ahead-behind'
 
@@ -50,38 +49,42 @@ alias dfgdtdu='dfgdt dockerubuntu'
 alias dfgmt='dfg mergetool -t meld'
 
 
-function getnewcommits() {
-	branch=$1
-	merge_base=`dfg merge-base -a $branch master`
+getnewcommits() {
+	declare branch="$1"
+	local merge_base="$(dfg merge-base -a "$branch" master)"
 	#need ancestry path so it doesn't include previous one-way merges.
-	dfg rev-list --ancestry-path $merge_base..$branch
+	dfg rev-list --ancestry-path "$merge_base".."$branch"
 }
 
-function hasunmerged() {
-	branch=$1
-	commitcount=$(getnewcommits $branch | wc -l)
-	if [ $commitcount -ge 2 ]; then
-		return 0
+dfghum() {
+	declare branch="$1"
+	local commitcount="$(getnewcommits "$branch" | wc -l)"
+	if [[ "$commitcount" -ge 2 ]]; then
+		true
+		return "$?"
 	else
-		echo "no unmerged changes"
-		return 1
+		echo "$branch has no unmerged changes."
+		false
+		return "$?"
 	fi
 }
-
-alias dfghump='hasunmerged archpatricol'
-alias dfghumw='hasunmerged archwork'
-alias dfghumda='hasunmerged dockerarch'
-alias dfghumdu='hasunmerged dockerubuntu'
+alias dfghump='dfghum archpatricol'
+alias dfghumw='dfghum archwork'
+alias dfghumda='dfghum dockerarch'
+alias dfghumdu='dfghum dockerubuntu'
 
 #find merge commit
-function dfgfmc() {
-	branch=$1
-	getnewcommits $branch | tail -n 1
+dfgfmc() {
+	declare branch="$1"
+	getnewcommits "$branch" | tail -n 1
 }
 
 # ours-merge merge commit
-function dfgommc() {
-	dfg merge -s ours -m "fake merge to avoid pulling in branch-specific differences" --no-edit $(dfgfmc $1)
+dfgommc() {
+	declare branch="$1"
+	local merge_commit="$(dfgfmc "$branch")"
+	local message="fake merge to avoid pulling in branch-specific differences"
+	dfg merge -s ours -m "$message" --no-edit "$merge_commit" 
 }
 alias dfgommcp='dfgommc archpatricol'
 alias dfgommcw='dfgommc archwork'
@@ -118,17 +121,19 @@ alias dfgp='dfgk && dfg push'
 
 #to avoid merging branch-specific changes back into master; use "dfg merge -s ours BRANCH" when the BRANCH is only ahead by its merge commit.
 
-function dfgcmctm() {
+dfgcmctm() {
+	declare branch="$1"
+	local commit_message="dummy commit to enable the next merge"
+	local merge_message="merge again to re-add branch-specific differences"
 	#commit merge changes to master
-	branch=$1
 	#dfg stash
 	#dfgpop
 	#dfga -u
 	#dfg reset --soft HEAD~1
-	dfgc --no-edit #--edit -m "Pull new changes from $branch $(dfg rev-parse $branch)"
-	dfgc --allow-empty -m "dummy commit to enable the next merge"
-	dfgch $branch
-	dfg merge -s ours -m "merge again to re-add branch-specific differences" --no-edit master
+	dfgc --no-edit
+	dfgc --allow-empty -m "$commit_message"
+	dfgch "$branch"
+	dfg merge -s ours -m "$merge_message" --no-edit master
 	echo "sanity-check the changes made to both branches, then push."
 }
 alias dfgcmctmp='dfgcmctm archpatricol'
@@ -136,9 +141,9 @@ alias dfgcmctmw='dfgcmctm archwork'
 alias dfgcmctmda='dfgcmctm dockerarch'
 alias dfgcmctmdu='dfgcmctm dockerubuntu'
 
-function dfgcheckuptodate() {
-	branch=$1
-	dfgch $branch
+dfgcheckuptodate() {
+	declare branch="$1"
+	dfgch "$branch"
 	dfgmm
 	dfg merge HEAD || dfgmt && dfgc
 	dfg merge HEAD # will error out if merge is in progress; if commit was aborted or otherwise failed because of merge conflicts

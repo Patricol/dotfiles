@@ -2,7 +2,7 @@ alias docker='sudo docker'
 
 alias drf='docker run --rm -it'
 alias dpf='docker pull'
-function dprf() {
+dprf() {
 	#Can only use when no options are provided before the container name; fix that later.
 	dpf $1
 	drf $@
@@ -19,18 +19,18 @@ alias drfarch='dprf patricol/riced:arch'
 alias arch='drfarch'
 alias drfa='drfarch'
 
-function drfg() {
+drfg() {
 	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $@
 }
-function drfgv() {
+drfgv() {
 	dpf $1 && drf -e RDP_OR_VNC="VNC" -p 3389:3389 -p 5900:5900 $@
 }
 alias drfgui='drfg patricol/gui_base:arch'
 
 
-function checliver() {
+checliver() {
 	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli:$@
 }
-function checli() {
-    checliver `cat /home/docker/che/instance/che.ver.do_not_modify` $@
+checli() {
+	checliver $(cat /home/docker/che/instance/che.ver.do_not_modify) $@
 }
