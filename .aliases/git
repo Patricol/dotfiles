@@ -42,6 +42,8 @@ dfgfixsym() {
 alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && add_ssh_keys github'
 
 alias dfgs='dfg status --ahead-behind'
+alias dfgl='dfg log --relative-date --graph'
+alias dfglc='dfgl --pretty=format:"%h%x09%ad%x09%s"'
 
 alias dfgd='dfg diff'
 alias dfgdc='dfgd --cached'
