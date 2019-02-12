@@ -177,7 +177,7 @@ dfg_mtmf() {
 	if dfg_mfmt "${branch}"; then
 		dfg_chm
 		if dfg_hum "${branch}"; then
-			dfg_ommc "${branch}"
+			dfg_ommc "${branch}" || return "$?"
 			dfg_m "${branch}" || (dfgmt &)
 			echo "MERGING NEW THINGS FROM $branch INTO MASTER"
 			echo "CHECK CHANGES ARE GOOD, THEN MUST USE dfg_cmtmf* (${branch}) TO COMMIT AND WRAP UP!" >&2
