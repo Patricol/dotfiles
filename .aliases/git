@@ -154,6 +154,10 @@ dfg_cmtmf() {
 	dfg merge -s ours -m "$(dfg_getmsg_mbsd)" --no-edit master
 	echo "push after sanity-checking the changes made to this branch and master. (dfg diff origin/branch)" >&2
 }
+alias dfg_cmtmfp='dfg_cmtmf archpatricol'
+alias dfg_cmtmfw='dfg_cmtmf archwork'
+alias dfg_cmtmfda='dfg_cmtmf dockerarch'
+alias dfg_cmtmfdu='dfg_cmtmf dockerubuntu'
 
 dfg_mfmt() {
 	# merge from master to branch
@@ -174,7 +178,7 @@ dfg_mtmf() {
 			dfg_ommc "${branch}"
 			dfg_m "${branch}" || (dfgmt &)
 			echo "MERGING NEW THINGS FROM $branch INTO MASTER"
-			echo "CHECK CHANGES ARE GOOD, THEN MUST USE dfg_cmtmf ${branch} TO COMMIT AND WRAP UP!" >&2
+			echo "CHECK CHANGES ARE GOOD, THEN MUST USE dfg_cmtmf* (${branch}) TO COMMIT AND WRAP UP!" >&2
 			false
 			return "$?"
 		else
