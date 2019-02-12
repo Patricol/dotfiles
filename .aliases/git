@@ -61,13 +61,14 @@ alias dfgmt='dfg mergetool -t meld'
 
 
 dfg_getmsg_mbsd() {
+	declare branch="$1"
+	[[ -n "${branch}" ]] || exit 4
 	# get message for merging branch-specific differences. should avoid changing it, as it breaks automatic merging.
-	echo "merge again to re-add branch-specific differences"
+	echo "merge ${branch} again to re-add branch-specific differences"
 }
 
 dfg_getc_mim() {
 	# last time changes from this branch were merged into master
-	declare branch="$1"
 	local lmim
 	lmim=$(dfg rev-list --merges --grep="Merge branch '${branch}'" "${branch}" | tac | tail -n1)
 	echo "${lmim}"
@@ -76,7 +77,7 @@ dfg_getc_mbsdfm() {
 	#find 'merge branch-specific differences from master' commit (last time they were re-merged into a non-master branch using -s ours etc.)
 	declare branch="$1"
 	local msgfmbsd
-	msgfmbsd="$(dfg_getmsg_mbsd)"
+	msgfmbsd="$(dfg_getmsg_mbsd ${branch})"
 	local lmsgfmbsd # last time branch-specific changes were merged into this branch after changes from this branch were merged into master
 	lmsgfmbsd=$(dfg rev-list --merges --grep="${msgfmbsd}" "${branch}" | tac | tail -n1)
 	echo "${lmsgfmbsd}"
@@ -92,7 +93,7 @@ dfg_getc_mfm() {
 dfg_getc_new() {
 	# get new commits (ones that originated in this branch and haven't been merged into master yet)
 	declare branch="$1"
-	dfg rev-list --no-merges --first-parent "$(dfg_getc_mbsdfm "${branch}")".."${branch}"
+	dfg rev-list --no-merges --first-parent "$(dfg_getc_mbsdfm ${branch})..${branch}"
 }
 
 dfg_hum() {
@@ -114,6 +115,7 @@ dfg_ommc() {
 	declare branch="$1"
 	local mbsdfmc
 	mbsdfmc="$(dfg_getc_mbsdfm "${branch}")"
+	[[ -n "${mbsdfmc}" ]] || exit 5
 	local message
 	message="ours-merge to avoid pulling in branch-specific differences"
 	dfg merge -s ours -m "${message}" --no-edit "${mbsdfmc}" 
@@ -147,11 +149,11 @@ alias dfgpopush='dfgpopall && dfgs && dfgp'
 dfg_cmtmf() {
 	#continue merge to master from
 	declare branch="$1"
-	[[ -n "${branch}" ]] || exit 1
+	[[ -n "${branch}" ]] || exit 3
 	dfgc --no-edit
 	dfgc --allow-empty -m "dummy commit to enable the next merge"
 	dfgch "${branch}"
-	dfg merge -s ours -m "$(dfg_getmsg_mbsd)" --no-edit master
+	dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
 	echo "push after sanity-checking the changes made to this branch and master. (dfg diff origin/branch)" >&2
 }
 alias dfg_cmtmfp='dfg_cmtmf archpatricol'
