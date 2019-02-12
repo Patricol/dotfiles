@@ -161,6 +161,7 @@ dfg_lock_branchdiffs() {
 	lock_diffs_for archwork
 	lock_diffs_for dockerarch
 	lock_diffs_for dockerubuntu
+	dfgchp
 	unset -f lock_diffs_for
 }
 
