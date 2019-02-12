@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+main() {
+	use_method() {
+		declare program="$1" command="$@"
+		if which "${program}" &> /dev/null; then
+			local found_updates
+			found_updates="$("${command}" 2> /dev/null | wc -l)"
+			[[ "${found_updates}" -ge "${updates}" ]] && updates="${found_updates}"
+		fi
+	}
+
+	local updates
+	updates=0
+
+	use_method checkupdates
+	use_method yay -Qu
+	#updates=$(apt-get upgrade -s |grep -P '^\d+ upgraded'|cut -d" " -f1 2> /dev/null)
+
+	if [[ "${updates}" -gt 0 ]]; then
+		# font indexes for polybar
+		local material_icons
+		material_icons=4
+		local monospace_fill
+		monospace_fill=3
+		local output
+		output="%{T${material_icons}}%{T-}%{T${monospace_fill}}${updates}%{T-}"
+	fi
+	echo "${output}"
+}
+
+main
+
