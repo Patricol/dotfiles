@@ -112,7 +112,6 @@ dfg_hum() {
 dfg_ommc() {
 	# ours-merge merge commit
 	declare branch="$1"
-	dfg_chm
 	local mbsdfmc
 	mbsdfmc="$(dfg_getc_mbsdfm "${branch}")"
 	local message
