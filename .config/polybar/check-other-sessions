@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+main() {
+	other_users() {
+		local current_user
+		current_user="$(id -un)"
+		local others
+		others="$(w -hs | grep -vE "^${current_user}" | wc -l)"
+		[[ "{$others}" -gt 0 ]]
+		return "$?"
+	}
+
+	other_sessions() {
+		local others
+		others="$(w -hs | wc -l)"
+		[[ "${others}" -gt 1 ]]
+		return "$?"
+	}
+
+	if other_sessions; then
+		# font index for polybar
+		local material_icons
+		material_icons=5
+		local output
+		output="%{T${material_icons}}%{T-}"
+	fi
+	echo "${output}"
+}
+
+main
+

@@ -5,29 +5,29 @@
 # Easier to maintain/merge; and can use those aliases when checking out a branch in an environment it's not meant for, etc.
 
 # enable color aliases of ls if supported
-if [ -x /usr/bin/dircolors ]; then
-    alias ls='ls --color=auto'
-    
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-    
-    alias diff='diff --color=auto'
-    
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+if [[ -x /usr/bin/dircolors ]]; then
+	alias ls='ls --color=auto'
+
+	alias dir='dir --color=auto'
+	alias vdir='vdir --color=auto'
+
+	alias diff='diff --color=auto'
+
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
 fi
 
 alias rgrep='grep -r'
 
-function man() {
-    LESS_TERMCAP_md=$'\e[01;31m' \
-    LESS_TERMCAP_me=$'\e[0m' \
-    LESS_TERMCAP_se=$'\e[0m' \
-    LESS_TERMCAP_so=$'\e[01;44;33m' \
-    LESS_TERMCAP_ue=$'\e[0m' \
-    LESS_TERMCAP_us=$'\e[01;32m' \
-    command man "$@"
+man() {
+	LESS_TERMCAP_md=$'\e[01;31m' \
+	LESS_TERMCAP_me=$'\e[0m' \
+	LESS_TERMCAP_se=$'\e[0m' \
+	LESS_TERMCAP_so=$'\e[01;44;33m' \
+	LESS_TERMCAP_ue=$'\e[0m' \
+	LESS_TERMCAP_us=$'\e[01;32m' \
+	command man $@
 }
 
 # some more ls aliases
@@ -42,19 +42,25 @@ alias l='ls -CF'
 
 alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
 
-function fscrot() {
-	scrot -q 100 -m -e 'mv $f ~/pictures/' $@
+alias top='htop'
+
+
+fscrot() {
+	scrot -q 100 -m -e 'mv "$f" ~/pictures/' $@
 }
 
 
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
+alias fp='echo "fixing permissions..."; sudo /usr/local/sbin/fix-permissions'
 
 alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
-function ftype() {
-	find . -type f -name "*.$1"
+ftype() {
+	declare extension="$1"
+	find . -type f -name "*.${extension}"
 }
-function ftypei() {
-	find . -type f -name "*.$1" -exec file {} \;
+ftypei() {
+	declare extension="$1"
+	find . -type f -name "*.${extension}" -exec file {} \;
 }
 
 alias findbrokenlinks='find -xtype l'
@@ -68,8 +74,9 @@ alias ebnrc='exec bash --norc --noprofile'
 
 alias logs='dmesg | less'
 
-function mountiso() {
-	sudo mount -o loop $@ /media/iso
+mountiso() {
+	declare device="$@"
+	sudo mount -o loop "${device}" /media/iso
 }
 
 alias umountiso='sudo umount /media/iso'
@@ -83,24 +90,67 @@ alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do e
 alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
 alias colorst='msgcat --color=test'
 
-function extract() {
-	7z x $@
-	# should probably not use 7z for all. e.g. extracting tar as root with 7z doesn't preserve permissions and ownership, but doing so with tar -xvzf does.
-        # if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
-       # it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
-}
-#anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
-#gzip seems much less resistant to corruption than xz.
-#maybe add functions for creating archives of different types.
-#I do really care about avoiding corruption.
-#zip vs tgz vs txz vs ?
-#txz is best for compression, efficiency etc.
-#extracting individual files from zip is faster. zip is also more ubiquitous.
 
-#function maketxz() {
+extract() {
+	# should probably not use 7z for all. e.g. extracting tar as root with 7z doesn't preserve permissions and ownership, but doing so with tar -xvzf does.
+	# if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
+	# it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
+	# anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
+	declare archives="$@"
+	if [[ -z "${archive}" ]]; then
+		echo "provide archive(s)" >&2
+		false
+		return "$?"
+	fi
+	local archive
+	for archive in ${archives}; do
+		if [[ ! -f "${archive}" ]]; then
+			echo "given archive (${archive}) does not exist" >&2
+			false
+			return "$?"
+		fi
+		case "${archive%,}" in
+			*.tar|*.tgz|*.tar.gz|*.txz|*.tar.xz|*.tbz2|*.tar.bz2)
+				tar -xvf "${archive}"
+				;;
+			*.rar|*.cbr)
+				unrar x "${archive}"
+				;;
+			*.lzma)
+				unlzma "${archive}"
+				;;
+			*.bz2)
+				bunzip2 "${archive}"
+				;;
+			*.gz)
+				gunzip "${archive}"
+				;;
+			*.zip|*.cbz)
+				unzip "${archive}"
+				;;
+			*.z)
+				uncompress "${archive}"
+				;;
+			*.xz)
+				unxz "${archive}"
+				;;
+			*.exe)
+				cabextract "${archive}"
+				;;
+			*)
+				7z x "${archive}"
+				;;
+		esac
+	done
+}
+#maketxz() {
+	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
 #}
-#function makezip() {
+#makezip() {
+	# extracting individual files from zip is faster. zip is also more ubiquitous.
 #}
+
+
 
 alias cdup='cd ..'
 alias cdu='cdup'
@@ -122,18 +172,19 @@ alias vimbottom='vim "+ normal GA"'
 alias bal='vim -o ~/.aliases/*'
 alias brc='vimbottom ~/.bashrc'
 
-function edit_wpg_template() {
-    config_filename=$1
-    vim ~/.config/wpg/templates/$config_filename.base
-    echo "remember fmaterial"
+edit_wpg_template() {
+	declare config_filename="$1"
+	vim ~/.config/wpg/templates/"${config_filename}".base
+	echo "remember fmaterial"
 }
 
-function vimc() {
-    if [ -f ~/.config/wpg/templates/$1.base ]; then
-	edit_wpg_template $1
-    else
+vimc() {
+	declare config_file="$1"
+	if [[ -f ~/.config/wpg/templates/"${config_file}".base ]]; then
+	edit_wpg_template "${config_file}"
+	else
 	echo "add to the (vimc) function; not found in wpg templates."
-    fi
+	fi
 }
 
 
@@ -147,20 +198,21 @@ alias nfs='neofetch --config ~/.config/neofetch/status.conf'
 alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
 
 
-function tif() {
-    #test if statement
-    if [ "$@" ]; then
-        echo "True"
-    else
-        echo "False"
-    fi
+tif() {
+	#test if statement
+	if [[ $@ ]]; then
+		echo "True"
+	else
+		echo "False"
+	fi
 }
 
-function ier() {
-    #if exists, run.
-    if [ -n "`which $1 2> /dev/null`" ]; then
-	$@
-    fi
+ier() {
+	#if exists, run.
+	declare program="$1" command="$@"
+	if which "${program}" &> /dev/null; then
+		"${command}"
+	fi
 }
 
 alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
@@ -169,8 +221,9 @@ alias epoch='date +%s'
 
 alias i3env='i3-msg "exec env > ~/i3env"'
 
-function check() {
-    cat `which $1`
+check() {
+	declare program_name="$1"
+	cat "$(which "${program_name}")"
 }
 
 #need to figure out ways to take advantage of how you can use multiple aliases in one command; like how "alias aecho='echo '; alias stuff='lots of stuff'; aecho stuff" echoes 'lots of stuff'
