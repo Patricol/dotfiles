@@ -13,7 +13,7 @@ main() {
 	local updates
 	updates=0
 
-	#updates=$(apt-get upgrade -s | grep -P '^\d+ upgraded' | cut -d" " -f1 2> /dev/null)
+	updates=$(apt-get upgrade -s | grep -P '^\d+ upgraded' | cut -d" " -f1 2> /dev/null)
 
 	if [[ "${updates}" -gt 0 ]]; then
 		# font indexes for polybar
