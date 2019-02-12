@@ -1,11 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # For commands that should run before /vnc or /rdp.
 # Runs after dotfiles are updated.
 
-function ier() {
+ier() {
 	#if exists, run.
-	if [ -n "`which $1 2> /dev/null`" ]; then
-		$@
+	declare program="$1" command="$@"
+	if which "${program}" &> /dev/null; then
+		"${command}"
 	fi
 }
 
@@ -19,7 +20,7 @@ ier xrdb ~/.Xresources
 ier ~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
 ier ~/.local/share/umake/bin/apm disable spell-check tree-view
 
-export PATH=/usr/games:/usr/local/games:$PATH
+export PATH="/usr/games:/usr/local/games:${PATH}"
 
 export SHELL="bash"
 
