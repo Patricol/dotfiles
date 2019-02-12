@@ -146,6 +146,25 @@ alias dfgp='dfgk && dfg push'
 alias dfgpopush='dfgpopall && dfgs && dfgp'
 
 
+dfg_lock_branchdiffs() {
+	# merge -s ours each branch, to lock in its differences from the master branch; so they don't need to be reapplied during the next merge. For example, customizations made while merging other branches' changes from master will be locked in by this.
+	lock_diffs_for() {
+		declare branch="$1"
+		dfgch "${branch}"
+		dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
+	}
+
+	dfg_chm
+	dfgc --allow-empty -m "dummy commit to enable the next merges"
+
+	lock_diffs_for archpatricol
+	lock_diffs_for archwork
+	lock_diffs_for dockerarch
+	lock_diffs_for dockerubuntu
+	unset -f lock_diffs_for
+}
+
+
 dfg_cmtmf() {
 	#continue merge to master from
 	declare branch="$1"
@@ -195,6 +214,8 @@ dfg_mtmf() {
 
 alias dfgfullmerge='dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
 alias dfgmergeall='dfgfullmerge'
+alias dfgfullmerge_and_lock='dfgfullmerge && dfg_lock_branchdiffs'
+alias dfgmergeall_and_lock='dfgfullmerge_and_lock'
 
 alias dfgpushall='dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
