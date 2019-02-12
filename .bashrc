@@ -1,14 +1,13 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+[[ "$-" != *i* ]] && return
 
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+HISTCONTROL="ignoreboth"
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -17,75 +16,70 @@ shopt -s histappend
 HISTSIZE=1000
 HISTFILESIZE=2000000000
 
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
+# If set, the pattern "**" used in a pathname expansion context will match all files and zero or more directories and subdirectories.
 #shopt -s globstar
 
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
 # set variable identifying the chroot you work in (used in the prompt below)
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+if [[ -z "${debian_chroot:-}" ]] && [[ -r /etc/debian_chroot ]]; then
+	debian_chroot="$(cat /etc/debian_chroot)"
 fi
 
 PS1='[\u@\h \W]\$ '
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-    xterm*|rxvt*)
-        PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-        ;;
-    *)  ;;
+case "${TERM}" in
+	xterm*|rxvt*)
+		PS1="\[\e]0;${debian_chroot:+(${debian_chroot})}\u@\h: \w\a\]${PS1}"
+		;;
+	*)	;;
 esac
 
 # enable color support of ls
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+if [[ -x /usr/bin/dircolors ]]; then
+	[[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
 # Alias definitions.
-if [ -f ~/.bash_aliases ]; then
-    source ~/.bash_aliases
+if [[ -f ~/.bash_aliases ]]; then
+	source ~/.bash_aliases
 fi
-if [ -d ~/.aliases/ ]; then
-    for f in ~/.aliases/*; do
-        source $f
-    done
+if [[ -d ~/.aliases/ ]]; then
+	for alias_file in ~/.aliases/*; do
+		source "${alias_file}"
+	done
+	unset alias_file
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# enable programmable completion features (you don't need to enable this, if it's already enabled in /etc/bash.bashrc and /etc/profile sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
-    if [ -f /usr/share/bash-completion/bash_completion ]; then
-      source /usr/share/bash-completion/bash_completion
-    elif [ -f /etc/bash_completion ]; then
-      source /etc/bash_completion
-    fi
+	if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+		source /usr/share/bash-completion/bash_completion
+	elif [[ -f /etc/bash_completion ]]; then
+		source /etc/bash_completion
+	fi
 fi
 
 # Don't move this to a separate script; caused issues.
-function add_ssh_keys() {
-    for keyname in "$@"; do
-        key=$HOME/.ssh/$keyname
-        if [ -f "$key" ]; then
-            chmod 600 "$key"
-        fi
-    done
-    eval $(keychain --eval --quiet $@)
+add_ssh_keys() {
+	declare key_names="$@"
+	for key_name in "${key_names}"; do
+		local key="${HOME}"/.ssh/"${key_name}"
+		if [[ -f "${key}" ]]; then
+			chmod 600 "${key}"
+		fi
+	done
+	eval "$(keychain --eval --quiet $@)"
 }
 
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 
-export EDITOR=vim
+export EDITOR="vim"
 
-export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME="qt5ct"
 
 #Do this above neofetch. Blanks the terminal; though it only runs if on tty.
 source ~/.config/wpg/formats/colors-tty.sh || true
@@ -96,17 +90,17 @@ source ~/.config/wpg/formats/colors-tty.sh || true
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
 source /usr/share/powerline/bindings/bash/powerline.sh
-if [ -n "$SSH_CONNECTION" ]; then
-    neofetch
-    #changing lang fixes vim powerline
-    export LANG=en_US.UTF-8
+if [[ -n "${SSH_CONNECTION}" ]]; then
+	neofetch
+	# changing lang fixes vim powerline
+	export LANG="en_US.UTF-8"
 fi
-if [ "$TERM" == "linux" ] || [ -n "$SSH_CONNECTION" ]; then
-    export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
+if [[ "${TERM}" == "linux" ]] || [[ -n "${SSH_CONNECTION}" ]]; then
+	export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
 else
-    export POWERLINE_CONFIG_OVERRIDES=''
+	export POWERLINE_CONFIG_OVERRIDES=""
 fi
-#need to start powerline-daemon with unicode LANG regardless
+# need to start powerline-daemon with unicode LANG regardless
 LANG="en_US.UTF-8" powerline-daemon -q
 
 # disable Ctrl-S
@@ -116,8 +110,8 @@ stty -ixon
 #dfg remote update &> /dev/null &
 # add something to tell me when updates are available on bash start from ssh etc.
 
-#tty is changing colors because bold. neofetch color output must be bold; to be acting this way. need to have it not use the emphasis bit etc; or have tty-specific setups without bold stuff? but why would the background grey be missing for the cwd?
+# tty is changing colors because bold. neofetch color output must be bold; to be acting this way. need to have it not use the emphasis bit etc; or have tty-specific setups without bold stuff? but why would the background grey be missing for the cwd?
 
-#warns me if there is critical news I need to know before updating
+# warns me if there is critical news I need to know before updating
 yay --news
 
