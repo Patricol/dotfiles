@@ -213,7 +213,9 @@ dfg_mtmf() {
 	fi
 }
 
-alias dfgfullmerge='dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
+alias dfgpullall='dfgchp && dfg pull && dfgchw && dfg pull && dfgchda && dfg pull && dfgchdu && dfg pull && dfg_chm && dfg pull && dfgchp'
+
+alias dfgfullmerge='dfgpullall && dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
 alias dfgmergeall='dfgfullmerge'
 alias dfgfullmerge_and_lock='dfgfullmerge && dfg_lock_branchdiffs'
 alias dfgmergeall_and_lock='dfgfullmerge_and_lock'
