@@ -1,1 +1,1 @@
-./.shrc/bash
+.shrc/bash
