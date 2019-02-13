@@ -1,34 +1,34 @@
-{
-	"colors": {
-		"wal-darkest": [0, "<DARKEST>"],
-		"wal-red": [1, "<RED>"],
-		"wal-green": [2, "<GREEN>"],
-		"wal-yellow": [3, "<YELLOW>"],
-		"wal-blue": [4, "<BLUE>"],
-		"wal-magenta": [5, "<MAGENTA>"],
-		"wal-cyan": [6, "<CYAN>"],
-		"wal-bright": [7, "<BRIGHT>"],
-		"wal-dark": [8, "<DARK>"],
-		"wal-light-red": [9, "<LIGHT_RED>"],
-		"wal-light-green": [10, "<LIGHT_GREEN>"],
-		"wal-light-yellow": [11, "<LIGHT_YELLOW>"],
-		"wal-light-blue": [12, "<LIGHT_BLUE>"],
-		"wal-light-magenta": [13, "<LIGHT_MAGENTA>"],
-		"wal-light-cyan": [14, "<LIGHT_CYAN>"],
-		"wal-brightest": [15, "<BRIGHTEST>"],
-		"wal-brighter": [253, "<BRIGHTER>"],
-		"wal-brightish": [247, "<BRIGHTISH>"],
-		"wal-darkish": [243, "<DARKISH>"],
-		"wal-darker": [238, "<DARKER>"],
-		"wal-accent": [196, "<ACCENT>"],
-		"wal-warning": [201, "<WARNING>"]
-	},
-	"gradients": {
+{{
+	"colors": {{
+		"wal-darkest": [0, "{darkest.strip}"],
+		"wal-red": [1, "{red.strip}"],
+		"wal-green": [2, "{green.strip}"],
+		"wal-yellow": [3, "{yellow.strip}"],
+		"wal-blue": [4, "{blue.strip}"],
+		"wal-magenta": [5, "{magenta.strip}"],
+		"wal-cyan": [6, "{cyan.strip}"],
+		"wal-bright": [7, "{bright.strip}"],
+		"wal-dark": [8, "{dark.strip}"],
+		"wal-light-red": [9, "{light_red.strip}"],
+		"wal-light-green": [10, "{light_green.strip}"],
+		"wal-light-yellow": [11, "{light_yellow.strip}"],
+		"wal-light-blue": [12, "{light_blue.strip}"],
+		"wal-light-magenta": [13, "{light_magenta.strip}"],
+		"wal-light-cyan": [14, "{light_cyan.strip}"],
+		"wal-brightest": [15, "{brightest.strip}"],
+		"wal-brighter": [253, "{brighter.strip}"],
+		"wal-brightish": [247, "{brightish.strip}"],
+		"wal-darkish": [243, "{darkish.strip}"],
+		"wal-darker": [238, "{darker.strip}"],
+		"wal-accent": [196, "{accent.strip}"],
+		"wal-warning": [201, "{warning.strip}"]
+	}},
+	"gradients": {{
 		"grayscale": [[0, 238, 8, 243, 247, 7, 253, 15]],
 		"grayscale-no-darkest": [[238, 8, 243, 247, 7, 253, 15]],
 		"grayscale-no-brightest": [[0, 238, 8, 243, 247, 7, 253]],
 		"grayscale-safe": [[0, 8, 7, 15]],
 		"grayscale-safe-no-darkest": [[8, 7, 15]],
 		"grayscale-safe-no-brightest": [[0, 8, 7]]
-	}
-}
+	}}
+}}

@@ -1,13 +1,13 @@
 # Font configuration for kitty.
 
-#<CONFIG_EDITING_WARNING>
+#{CONFIG_EDITING_WARNING}
 
 
 #: kitty has very powerful font management. You can configure
 #: individual font faces and even specify special fonts for particular
 #: characters.
 
-font_family      <FONT_MONOSPACE>
+font_family      {FONT_MONOSPACE}
 bold_font        auto
 italic_font      auto
 bold_italic_font auto
@@ -37,8 +37,8 @@ adjust_column_width 0
 #: than 100% to reduce sizes (but this might cause rendering
 #: artifacts).
 
-symbol_map U+E0A0-U+E0A2,U+E0B0-U+E0B3 <FONT_MONOSPACE>
-symbol_map U+F001-U+FCB6 <FONT_ICONS>
+symbol_map U+E0A0-U+E0A2,U+E0B0-U+E0B3 {FONT_MONOSPACE}
+symbol_map U+F001-U+FCB6 {FONT_ICONS}
 
 #: Map the specified unicode codepoints to a particular font. Useful
 #: if you need special rendering for some symbols, such as for

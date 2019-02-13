@@ -1,12 +1,12 @@
-! <CONFIG_EDITING_WARNING>
+! {CONFIG_EDITING_WARNING}
 
 rofi.theme: ~/.config/rofi/themes/custom.rasi
-rofi.terminal: <TERMINAL>
+rofi.terminal: {TERMINAL}
 
 rofi.ssh-client: ssh
-rofi.ssh-command: {terminal} -e {ssh-client} {host}
-rofi.run-command: {cmd}
-rofi.run-shell-command: {terminal} -e {cmd}
+rofi.ssh-command: {{terminal}} -e {{ssh-client}} {{host}}
+rofi.run-command: {{cmd}}
+rofi.run-shell-command: {{terminal}} -e {{cmd}}
 
 rofi.scroll-method: 1
 rofi.show-match: false
@@ -17,7 +17,7 @@ rofi.levenshtein-sort: true
 rofi.tokenize: true
 rofi.monitor: -4
 ! rofi.dpi
-rofi.window-format: {w:0} {t:40} {c:0}
+rofi.window-format: {{w:0}} {{t:40}} {{c:0}}
 rofi.drun-match-fields: name,generic,categories
 rofi.sidebar-mode: true
 rofi.threads: 0
@@ -31,7 +31,7 @@ rofi.sorting-method: levenshtein
 ! "Background to use for fake transparency. (background or screenshot)" Set from: Default
 ! rofi.fake-background:                screenshot
 ! "Window Format. w (desktop name), t (title), n (name), r (role), c (class) *DEPRECATED*" Set from: Default
-rofi.window-format: {w:0} {t:40} {c:0}
+rofi.window-format: {{w:0}} {{t:40}} {{c:0}}
 ! "Max history size (WARNING: can cause slowdowns when set to high)." Set from: Default
 ! rofi.max-history-size:               25
 ! "Hide the prefix mode prefix on the combi view." Set from: Default
