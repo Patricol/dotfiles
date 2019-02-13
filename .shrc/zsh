@@ -33,15 +33,16 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 # HYPHEN_INSENSITIVE="true"             # use hyphen-insensitive completion. _ and - will be interchangeable. (Case-sensitive completion must be off.)
 DISABLE_AUTO_UPDATE="false"
 DISABLE_UPDATE_PROMPT="true" # automatically upgrade without prompting
- export UPDATE_ZSH_DAYS=1             # change how often to auto-update (in days).
+export UPDATE_ZSH_DAYS=1             # change how often to auto-update (in days).
 # DISABLE_LS_COLORS="true"              # disable colors in ls.
 # DISABLE_AUTO_TITLE="true"             # disable auto-setting terminal title.
 # ENABLE_CORRECTION="true"              # enable command auto-correction.
 # COMPLETION_WAITING_DOTS="true"        # display red dots whilst waiting for completion.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"  # disable marking untracked files under VCS as dirty. This makes repository status check for large repositories much, much faster.
 
+ZSH_THEME="agnoster" # Set name of the theme to load --- if set to "random", it will load a random theme each time oh-my-zsh is loaded, in which case, to know which specific one was loaded, run: echo $RANDOM_THEME
 # my powerline will override, but this is the most similar theme for fallback.
-ZSH_THEME="powerlevel9k" # Set name of the theme to load --- if set to "random", it will load a random theme each time oh-my-zsh is loaded, in which case, to know which specific one was loaded, run: echo $RANDOM_THEME
+#source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" ) # Set list of themes to pick from when loading at random. Setting this variable when ZSH_THEME=random will cause zsh to load a theme from this variable instead of looking in "~/.oh-my-zsh/themes/". If set to an empty array, this variable will have no effect.
 
 # Which plugins would you like to load?
@@ -51,7 +52,7 @@ ZSH_THEME="powerlevel9k" # Set name of the theme to load --- if set to "random",
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker)
 
-source $ZSH/oh-my-zsh.sh # do user configuration after this line
+source "${ZSH}/oh-my-zsh.sh" # do user configuration after this line
 
 source /usr/share/powerline/bindings/zsh/powerline.zsh
 
