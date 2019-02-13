@@ -3,7 +3,6 @@
 # Path to your oh-my-zsh installation.
 #ZSH="${HOME}/.oh-my-zsh"
 ZSH="/usr/share/oh-my-zsh"
-SHELL="/bin/zsh"
 
 ZSH_CUSTOM="${HOME}/.config/oh-my-zsh" # default is $ZSH/custom
 [[ ! -d "${ZSH_CUSTOM}" ]] || mkdir -p "${ZSH_CUSTOM}"
