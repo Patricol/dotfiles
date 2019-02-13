@@ -1,0 +1,48 @@
+# vi:syntax=sh
+
+# Alias definitions.
+if [[ -d ~/.aliases/ ]]; then
+	for alias_file in ~/.aliases/*; do
+		source "${alias_file}"
+	done
+	unset alias_file
+fi
+
+(add_ssh_keys nas_work_share &)
+
+export EDITOR="vim"
+
+export QT_QPA_PLATFORMTHEME="qt5ct"
+
+
+source ~/.config/wpg/formats/colors-tty.sh || true # do this above neofetch. blanks the terminal; though it only runs if on tty.
+
+
+#(cat ~/.config/wpg/sequences &) # not needed; overrides custom cursor etc.
+
+if [[ -n "${SSH_CONNECTION}" ]]; then
+	neofetch
+	export LANG="en_US.UTF-8" # changing lang fixes vim powerline
+fi
+
+if [[ "${TERM}" == "linux" ]] || [[ -n "${SSH_CONNECTION}" ]]; then
+	export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
+else
+	export POWERLINE_CONFIG_OVERRIDES=""
+fi
+
+
+LANG="en_US.UTF-8" powerline-daemon -q # need to start powerline-daemon with unicode LANG regardless
+
+
+stty -ixon # disable Ctrl-S
+
+
+#(dfg remote update &> /dev/null &) # run this regularly, but not here
+# add something to tell me when updates are available on bash start from ssh etc.
+
+# tty is changing colors because bold. neofetch color output must be bold; to be acting this way. need to have it not use the emphasis bit etc; or have tty-specific setups without bold stuff? but why would the background grey be missing for the cwd?
+
+
+ier yay --news # warns me of news I need to know before updating
+
