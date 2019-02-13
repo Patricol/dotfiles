@@ -1,3 +1,4 @@
+# vi:syntax=sh
 # Alias definitions.
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
@@ -21,13 +22,14 @@ fi
 alias rgrep='grep -r'
 
 man() {
+	LESS_TERMCAP_mb=$'\e[01;31m' \
 	LESS_TERMCAP_md=$'\e[01;31m' \
 	LESS_TERMCAP_me=$'\e[0m' \
 	LESS_TERMCAP_se=$'\e[0m' \
 	LESS_TERMCAP_so=$'\e[01;44;33m' \
 	LESS_TERMCAP_ue=$'\e[0m' \
 	LESS_TERMCAP_us=$'\e[01;32m' \
-	command man $@
+	man $@
 }
 
 # some more ls aliases
@@ -41,9 +43,24 @@ alias lr='ls -R'
 alias l='ls -CF'
 alias lsgd='ls --group-directories-first'
 
+alias diff='diff -s'
+
 alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
 
 alias top='htop'
+
+add_ssh_keys() {
+	declare key_names="$@"
+	for key_name in "${key_names}"; do
+		local key="${HOME}"/.ssh/"${key_name}"
+		if [[ -f "${key}" ]]; then
+			chmod 600 "${key}"
+		fi
+	done
+	eval "$(keychain --eval --quiet $@)"
+}
+
+
 
 
 fscrot() {
@@ -71,6 +88,8 @@ alias findbrokenlinks='find -xtype l'
 alias eb='exec bash'
 alias be='eb'
 alias ebnrc='exec bash --norc --noprofile'
+alias ez='exec zsh'
+alias ze='ez'
 
 
 alias logs='sudo journalctl -xe'
@@ -170,9 +189,8 @@ alias x='exit'
 #open vim to bottom of file.
 alias vimbottom='vim "+ normal GA"'
 
-#alias bal='vimbottom ~/.bash_aliases'
 alias bal='vim -o ~/.aliases/*'
-alias brc='vimbottom ~/.bashrc'
+alias brc='vim -O ~/.shrc/*'
 
 edit_wpg_template() {
 	declare config_filename="$1"
@@ -216,7 +234,7 @@ ier() {
 	#if exists, run.
 	declare program="$1" command="$@"
 	if which "${program}" &> /dev/null; then
-		"${command}"
+		${command}
 	fi
 }
 
