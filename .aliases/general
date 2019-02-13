@@ -39,6 +39,7 @@ alias lar='ls -AR'
 alias lra='lar'
 alias lr='ls -R'
 alias l='ls -CF'
+alias lsgd='ls --group-directories-first'
 
 alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
 
