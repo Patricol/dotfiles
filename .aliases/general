@@ -182,15 +182,18 @@ edit_wpg_template() {
 vimc() {
 	declare config_file="$1"
 	if [[ -f ~/.config/wpg/templates/"${config_file}".base ]]; then
-	edit_wpg_template "${config_file}"
+		edit_wpg_template "${config_file}"
+	elif [[ -f ~/.aliases/"${config_file}" ]]; then
+		vim ~/.aliases/"${config_file}"
 	else
-	echo "add to the (vimc) function; not found in wpg templates."
+		echo "add to the (vimc) function; not found in wpg templates."
 	fi
 }
 
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 alias mnf='mineofetch'
+alias nfm='mnf'
 alias nf='neofetch'
 alias nfa='neofetch --ascii'
 alias nfs='neofetch --config ~/.config/neofetch/status.conf'
@@ -232,3 +235,18 @@ check() {
 alias nmo='xdg-open . &> /dev/null'
 
 alias aecho='echo '
+
+chwp() {
+	declare new_wp="$1"
+	if [[ -n "${new_wp}" ]]; then
+		ln -sf "../animated/${new_wp}" ~/.config/wallpapers/default/animated
+		systemctl --user restart animated-wallpaper.service
+	else
+		ls ~/.config/wallpapers/animated/
+	fi
+}
+
+alias fn='find . -name'
+fa() {
+	find / -path ./media -prune -o $@ -print 2> /dev/null
+}

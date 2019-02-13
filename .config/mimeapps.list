@@ -1,6 +1,6 @@
 [Default Applications]
 image/jpeg=feh.desktop
-image/gif=org.kde.gwenview.desktop
+image/gif=custom-mpv.desktop
 image/x-xpixmap=org.kde.showfoto.desktop
 image/x-xbitmap=org.kde.showfoto.desktop
 image/png=feh.desktop
@@ -91,7 +91,7 @@ application/vnd.comicbook-rar=mcomix.desktop
 inode/directory=nemo.desktop
 
 [Added Associations]
-image/gif=userapp-mpv-LT2KWZ.desktop;chromium.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;
+image/gif=custom-mpv.desktop;chromium.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;
 image/x-xpixmap=org.kde.showfoto.desktop;
 image/x-xbitmap=org.kde.showfoto.desktop;
 image/png=org.kde.showfoto.desktop;shotwell-viewer.desktop;feh.desktop;
