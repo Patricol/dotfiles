@@ -1,7 +1,14 @@
 # vi:syntax=zsh
 
 # Path to your oh-my-zsh installation.
-export ZSH="${HOME}/.oh-my-zsh"
+#ZSH="${HOME}/.oh-my-zsh"
+ZSH="/usr/share/oh-my-zsh"
+
+ZSH_CUSTOM="${HOME}/.config/oh-my-zsh" # default is $ZSH/custom
+[[ ! -d "${ZSH_CUSTOM}" ]] || mkdir -p "${ZSH_CUSTOM}"
+
+ZSH_CACHE_DIR="${HOME}/.cache/oh-my-zsh"
+[[ ! -d "${ZSH_CACHE_DIR}" ]] || mkdir -p "${ZSH_CACHE_DIR}"
 
 # History options
 HISTFILE="${HOME}/.history/zsh"
@@ -32,9 +39,6 @@ DISABLE_UPDATE_PROMPT="true" # automatically upgrade without prompting
 # ENABLE_CORRECTION="true"              # enable command auto-correction.
 # COMPLETION_WAITING_DOTS="true"        # display red dots whilst waiting for completion.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"  # disable marking untracked files under VCS as dirty. This makes repository status check for large repositories much, much faster.
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # my powerline will override, but this is the most similar theme for fallback.
 ZSH_THEME="powerlevel9k" # Set name of the theme to load --- if set to "random", it will load a random theme each time oh-my-zsh is loaded, in which case, to know which specific one was loaded, run: echo $RANDOM_THEME
