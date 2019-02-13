@@ -1,0 +1,49 @@
+# vi:syntax=sh
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
+
+# If not running interactively, don't do anything
+[[ "$-" != *i* ]] && return
+
+# History options
+HISTCONTROL="ignoreboth" # don't put duplicate lines or lines starting with space in the history.
+shopt -s histappend # append to the history file, don't overwrite it
+HISTFILE="${HOME}/.history/bash"
+HISTSIZE=1000
+HISTFILESIZE=2000000000
+
+[[ "${DISPLAY}" ]] && shopt -s checkwinsize # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
+
+#shopt -s globsta # If set, the pattern "**" used in a pathname expansion context will match all files and zero or more directories and subdirectories.r
+
+PS1='[\u@\h \W]\$ '
+
+# set the title if using xterm
+case "${TERM}" in
+	xterm*|rxvt*)
+		PS1="\[\e]0;\u@\h: \w\a\]${PS1}"
+		;;
+	*)	;;
+esac
+
+# enable color support for ls
+if [[ -x /usr/bin/dircolors ]]; then
+	[[ -r ~/.dircolors ]] && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+# enable programmable completion features
+if ! shopt -oq posix; then
+	if [[ -f /usr/share/bash-completion/bash_completion ]]; then
+		source /usr/share/bash-completion/bash_completion
+	elif [[ -f /etc/bash_completion ]]; then
+		source /etc/bash_completion
+	fi
+fi
+
+POWERLINE_BASH_CONTINUATION=1
+POWERLINE_BASH_SELECT=1
+source /usr/share/powerline/bindings/bash/powerline.sh
+
+source /usr/share/doc/pkgfile/command-not-found.bash
+
+source "${HOME}/.shrc/both"
