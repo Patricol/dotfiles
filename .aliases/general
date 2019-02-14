@@ -232,9 +232,10 @@ tif() {
 
 ier() {
 	#if exists, run.
-	declare program="$1" command="$@"
+	local program="$1"; shift
+	local args="$@"
 	if which "${program}" &> /dev/null; then
-		${command}
+		${program} ${args}
 	fi
 }
 
