@@ -1,0 +1,136 @@
+# vi:syntax=sh
+# Standalone functions that don't fit into the other sections.
+
+add_ssh_keys() {
+	declare key_names="$@"
+	for key_name in "${key_names}"; do
+		local key="${HOME}"/.ssh/"${key_name}"
+		if [[ -f "${key}" ]]; then
+			chmod 600 "${key}"
+		fi
+	done
+	eval "$(keychain --eval --quiet $@)"
+}
+
+
+
+extract() {
+	# should probably not use 7z for all. e.g. extracting tar as root with 7z doesn't preserve permissions and ownership, but doing so with tar -xvzf does.
+	# if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
+	# it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
+	# anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
+	declare archives="$@"
+	if [[ -z "${archive}" ]]; then
+		echo "provide archive(s)" >&2
+		false
+		return "$?"
+	fi
+	local archive
+	for archive in ${archives}; do
+		if [[ ! -f "${archive}" ]]; then
+			echo "given archive (${archive}) does not exist" >&2
+			false
+			return "$?"
+		fi
+		case "${archive%,}" in
+			*.tar|*.tgz|*.tar.gz|*.txz|*.tar.xz|*.tbz2|*.tar.bz2)
+				tar -xvf "${archive}"
+				;;
+			*.rar|*.cbr)
+				unrar x "${archive}"
+				;;
+			*.lzma)
+				unlzma "${archive}"
+				;;
+			*.bz2)
+				bunzip2 "${archive}"
+				;;
+			*.gz)
+				gunzip "${archive}"
+				;;
+			*.zip|*.cbz)
+				unzip "${archive}"
+				;;
+			*.z)
+				uncompress "${archive}"
+				;;
+			*.xz)
+				unxz "${archive}"
+				;;
+			*.exe)
+				cabextract "${archive}"
+				;;
+			*)
+				7z x "${archive}"
+				;;
+		esac
+	done
+}
+#maketxz() {
+	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
+#}
+#makezip() {
+	# extracting individual files from zip is faster. zip is also more ubiquitous.
+#}
+
+
+alias bal='vim -o ~/.aliases/*'
+alias brc='vim -O ~/.shrc/*'
+
+edit_wpg_template() {
+	declare config_filename="$1"
+	vim ~/.config/wpg/templates/"${config_filename}".base
+	echo "remember fmaterial"
+}
+
+vimc() {
+	declare config_file="$1"
+	if [[ -f ~/.config/wpg/templates/"${config_file}".base ]]; then
+		edit_wpg_template "${config_file}"
+	elif [[ -f ~/.aliases/"${config_file}" ]]; then
+		vim ~/.aliases/"${config_file}"
+	elif [[ -f ~/.shrc/"${config_file}" ]]; then
+		vim ~/.shrc/"${config_file}"
+	else
+		echo "add to the (vimc) function; not found in wpg templates."
+	fi
+}
+alias vc='vimc'
+
+
+tif() {
+	#test if statement
+	if [[ $@ ]]; then
+		echo "True"
+	else
+		echo "False"
+	fi
+}
+
+ier() {
+	#if exists, run.
+	local program="$1"; shift
+	local args="$@"
+	if which "${program}" &> /dev/null; then
+		${program} ${args}
+	fi
+}
+
+alias i3env='i3-msg "exec env > ~/i3env"'
+
+check() {
+	declare program_name="$1"
+	cat "$(which "${program_name}")"
+}
+
+
+chwp() {
+	declare new_wp="$1"
+	if [[ -n "${new_wp}" ]]; then
+		ln -sf "../animated/${new_wp}" ~/.config/wallpapers/default/animated
+		systemctl --user restart animated-wallpaper.service
+	else
+		ls ~/.config/wallpapers/animated/
+	fi
+}
+

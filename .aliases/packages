@@ -1,3 +1,4 @@
+# vi:syntax=sh
 alias syu='sudo apt-get update && sudo apt-get upgrade'
 alias pacs='sudo apt-get update && sudo apt-get install'
 alias aurs='pacs'

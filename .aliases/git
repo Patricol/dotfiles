@@ -1,3 +1,4 @@
+# vi:syntax=sh
 # dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 # dfg_* are intended for internal use only.
 

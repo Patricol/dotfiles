@@ -1,3 +1,4 @@
+# vi:syntax=sh
 # Aliases for wpg
 
 wpgsetfast() {
