@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+main() {
+	local current_user
+	current_user="$(id -un)"
+
+	local user_icon
+	local font_index
+	case "${current_user}" in
+		patricol)
+			font_index="8"
+			user_icon=""
+			;;
+		work)
+			font_index="5"
+			user_icon=""
+			;;
+		user)
+			font_index="8"
+			user_icon=""
+			;;
+		*)
+			font_index="8"
+			user_icon="וּ"
+			;;
+	esac
+	local output
+	output="%{T${font_index}}${user_icon}%{T-}"
+	echo "${output}"
+}
+
+main
+
