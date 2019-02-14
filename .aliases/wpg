@@ -2,7 +2,8 @@
 
 wpgsetfast() {
 	declare theme="$1"
-	wpg -n -s "${theme}".png
+	wpg -ns dummy.png
+	wpg -n --theme "${theme}"
 	xrdb ~/.Xresources
 }
 
