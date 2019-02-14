@@ -1,23 +1,23 @@
-#<CONFIG_EDITING_WARNING>
+#{CONFIG_EDITING_WARNING}
 
 FONT=ter-i12n
 FONT_MAP=cp437
 
 # Need to run "mkinitcpio -P" to update afterwards
 # Also the colors hook needs to be in /etc/mkinitcpio.conf
-COLOR_0=<COLOR0>
-COLOR_1=<COLOR1>
-COLOR_2=<COLOR2>
-COLOR_3=<COLOR3>
-COLOR_4=<COLOR4>
-COLOR_5=<COLOR5>
-COLOR_6=<COLOR6>
-COLOR_7=<COLOR7>
-COLOR_8=<COLOR8>
-COLOR_9=<COLOR9>
-COLOR_10=<COLOR10>
-COLOR_11=<COLOR11>
-COLOR_12=<COLOR12>
-COLOR_13=<COLOR13>
-COLOR_14=<COLOR14>
-COLOR_15=<COLOR15>
+COLOR_0={color0.strip}
+COLOR_1={color1.strip}
+COLOR_2={color2.strip}
+COLOR_3={color3.strip}
+COLOR_4={color4.strip}
+COLOR_5={color5.strip}
+COLOR_6={color6.strip}
+COLOR_7={color7.strip}
+COLOR_8={color8.strip}
+COLOR_9={color9.strip}
+COLOR_10={color10.strip}
+COLOR_11={color11.strip}
+COLOR_12={color12.strip}
+COLOR_13={color13.strip}
+COLOR_14={color14.strip}
+COLOR_15={color15.strip}
