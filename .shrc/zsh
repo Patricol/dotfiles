@@ -1,5 +1,6 @@
 # vi:syntax=zsh
 
+SHELL="/bin/zsh"
 # Path to your oh-my-zsh installation.
 #ZSH="${HOME}/.oh-my-zsh"
 ZSH="/usr/share/oh-my-zsh"

@@ -86,10 +86,9 @@ alias findbrokenlinks='find -xtype l'
 
 
 alias eb='exec bash'
-alias be='eb'
 alias ebnrc='exec bash --norc --noprofile'
 alias ez='exec zsh'
-alias ze='ez'
+alias be='exec "${SHELL}"'
 
 
 alias logs='sudo journalctl -xe'
@@ -203,6 +202,8 @@ vimc() {
 		edit_wpg_template "${config_file}"
 	elif [[ -f ~/.aliases/"${config_file}" ]]; then
 		vim ~/.aliases/"${config_file}"
+	elif [[ -f ~/.shrc/"${config_file}" ]]; then
+		vim ~/.shrc/"${config_file}"
 	else
 		echo "add to the (vimc) function; not found in wpg templates."
 	fi
@@ -231,9 +232,10 @@ tif() {
 
 ier() {
 	#if exists, run.
-	declare program="$1" command="$@"
+	local program="$1"; shift
+	local args="$@"
 	if which "${program}" &> /dev/null; then
-		${command}
+		${program} ${args}
 	fi
 }
 
