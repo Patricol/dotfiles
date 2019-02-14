@@ -9,6 +9,7 @@ dfgfixsym() {
 	local filepath
 	dfg ls-tree -r --name-only --full-tree HEAD | while read filepath; do
 		#Check input file is a symlink
+		filepath="${HOME}/${filepath}"
 		if [[ -L "${filepath}" ]]; then
 			local symlink
 			symlink="${filepath}"
