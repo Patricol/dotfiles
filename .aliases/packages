@@ -1,4 +1,4 @@
-alias syu='yay -Syu && yay -S'
+alias syu='yay -Syu --devel && yay -S'
 #alias syu='sudo apt-get update && sudo apt-get upgrade'
 alias pacs='syu'
 #alias pacs='sudo apt-get update && sudo apt-get install'
