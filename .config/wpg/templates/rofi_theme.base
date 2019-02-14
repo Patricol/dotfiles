@@ -1,18 +1,18 @@
 /**
  * Author: Patricol
- * <CONFIG_EDITING_WARNING>
+ * {CONFIG_EDITING_WARNING}
  */
-* {
+* {{
 
-    darkest:                    #<DARKEST>;
-    yellow:                     #<YELLOW>;
-    blue:                       #<BLUE>;
-    bright:                     #<BRIGHT>;
-    dark:                       #<DARK>;
-    brightest:                  #<BRIGHTEST>;
-    darker:                     #<DARKER>;
-    accent:                     #<ACCENT>;
-    warning:                    #<WARNING>;
+    darkest:                    {darkest};
+    yellow:                     {yellow};
+    blue:                       {blue};
+    bright:                     {bright};
+    dark:                       {dark};
+    brightest:                  {brightest};
+    darker:                     {darker};
+    accent:                     {accent};
+    warning:                    {warning};
     
     highvis-fg:                 @brightest;
     midvis-fg:                  @bright;
@@ -61,8 +61,8 @@
     powerline-arrow: "";
     hollow-powerline-arrow: "";
     prompt-symbol: @hollow-powerline-arrow;
-}
-#window {
+}}
+#window {{
     anchor: north;
     location: north;
     width: 30em;
@@ -71,120 +71,120 @@
     font: "Source Code Pro Regular 14";
     padding: @outer-edge-padding;
     fullscreen: false;
-}
-#mainbox {
+}}
+#mainbox {{
     //border:  30%;
     spacing: @row-spacing;
     children: [sidebar,inputbar,message,listview];
-}
+}}
 
-#sidebar {
+#sidebar {{
     spacing: @column-spacing;
     background-color: @button-row-background;
     border-radius:  @rounded-radius;
-}
-#button {
+}}
+#button {{
     border-radius:  inherit;
     padding:  @row-padding;
-}
+}}
 
-#inputbar {
+#inputbar {{
     spacing: @column-spacing;
     padding:  @row-padding;
     border-radius:  @rounded-radius;
     children: [textbox-prompt,entry,case-indicator];
     text-color: @text-input-foreground;
     background-color: @text-input-background;
-}
-#textbox-prompt {
+}}
+#textbox-prompt {{
     expand:     false;
     str:        @prompt-symbol;
     margin:     0em -0.54em 0em 0.25em;//negative left margin so text lines up with entries.
     text-color: inherit;
     background-color: inherit;
-}
-#entry {
+}}
+#entry {{
     text-color: inherit;
     background-color: inherit;
-}
-#case-indicator {
+}}
+#case-indicator {{
     text-color: inherit;
     background-color: inherit;
-}
+}}
 
-#message {
+#message {{
     background-color: @warning;
     border-radius:  @rounded-radius;
     padding:  0.2em;
-}
-#error-message {
+}}
+#error-message {{
     background-color: @warning;
     border-radius:  @rounded-radius;
     padding:  0.2em;
-}
-#textbox {
+}}
+#textbox {{
     background-color: @darker;
     text-color: @brightest;
     border-radius:  @rounded-radius;
     padding:  @row-padding;
-}
+}}
 
-#listview {
+#listview {{
     //lines: 5;
     fixed-height: false;
     dynamic: true;
     scrollbar: false;
     cycle: false;
     spacing: @row-spacing;
-}
+}}
 
-#element {
+#element {{
     border-radius:  @rounded-radius;
     padding:        @row-padding;
-}
+}}
 
 
-#button.normal {
+#button.normal {{
     text-color: @inactive-button-foreground;
     background-color: @inactive-button-background;
-}
-#button.selected {
+}}
+#button.selected {{
     text-color: @active-button-foreground;
     background-color: @active-button-background;
-}
-#element.normal.normal {
+}}
+#element.normal.normal {{
     text-color: @normal-foreground;
     background-color: @normal-background;
-}
-#element.normal.urgent {
+}}
+#element.normal.urgent {{
     text-color: @urgent-foreground;
     background-color: @urgent-background;
-}
-#element.normal.active {
+}}
+#element.normal.active {{
     text-color: @active-foreground;
     background-color: @active-background;
-}
-#element.selected.normal {
+}}
+#element.selected.normal {{
     text-color: @selected-normal-foreground;
     background-color: @selected-normal-background;
-}
-#element.selected.urgent {
+}}
+#element.selected.urgent {{
     text-color: @selected-urgent-foreground;
     background-color: @selected-urgent-background;
-}
-#element.selected.active {
+}}
+#element.selected.active {{
     text-color: @selected-active-foreground;
     background-color: @selected-active-background;
-}
-#element.alternate.normal {
+}}
+#element.alternate.normal {{
     text-color: @alternate-normal-foreground;
     background-color: @alternate-normal-background;
-}
-#element.alternate.urgent {
+}}
+#element.alternate.urgent {{
     text-color: @alternate-urgent-foreground;
     background-color: @alternate-urgent-background;
-}
-#element.alternate.active {
+}}
+#element.alternate.active {{
     text-color: @alternate-active-foreground;
     background-color: @alternate-active-background;
-}
+}}

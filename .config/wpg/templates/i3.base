@@ -3,7 +3,7 @@
 # make this more mouse friendly for guacamole usage etc.
 # add something for alt page up and page down
 
-# <CONFIG_EDITING_WARNING>
+# {CONFIG_EDITING_WARNING}
 
 # AUTOSTART ###################################################################
 
@@ -44,10 +44,10 @@ for_window [urgent="latest" class="^Chromium$"] move window to workspace current
 #Hide vncconfig window. closing it could prevent copy/paste from working.
 for_window [title="VNC config"] move scratchpad
 
-font pango:<FONT_MONOSPACE> 8
-font pango:<FONT_ICONS> 8
-font pango:<FONT_HIGH_COVERAGE> 8
-for_window [class=".*"] title_format "<span font='<FONT_MONOSPACE> 10'>%title</span>"
+font pango:{FONT_MONOSPACE} 8
+font pango:{FONT_ICONS} 8
+font pango:{FONT_HIGH_COVERAGE} 8
+for_window [class=".*"] title_format "<span font='{FONT_MONOSPACE} 10'>%title</span>"
 #This lets me set the title bar size and fontsize separately. need to tweak to get it to apply to everything though.
 
 # class                 border  backgr. text    indicator child_border
@@ -62,24 +62,24 @@ for_window [class=".*"] title_format "<span font='<FONT_MONOSPACE> 10'>%title</s
 
 #for highly visible elements like the border around the active window; and that window's titlebar and text etc.
 
-set_from_resource   $darkest        i3wm.color0     "#<FALLBACK_DARKEST>"
-set_from_resource   $red            i3wm.color1     "#<FALLBACK_RED>"
-set_from_resource   $green          i3wm.color2     "#<FALLBACK_GREEN>"
-set_from_resource   $yellow         i3wm.color3     "#<FALLBACK_YELLOW>"
-set_from_resource   $blue           i3wm.color4     "#<FALLBACK_BLUE>"
-set_from_resource   $magenta        i3wm.color5     "#<FALLBACK_MAGENTA>"
-set_from_resource   $cyan           i3wm.color6     "#<FALLBACK_CYAN>"
-set_from_resource   $bright         i3wm.color7     "#<FALLBACK_BRIGHT>"
-set_from_resource   $dark           i3wm.color8     "#<FALLBACK_DARK>"
-set_from_resource   $light-red      i3wm.color9     "#<FALLBACK_LIGHT_RED>"
-set_from_resource   $light-green    i3wm.color10    "#<FALLBACK_LIGHT_GREEN>"
-set_from_resource   $light-yellow   i3wm.color11    "#<FALLBACK_LIGHT_YELLOW>"
-set_from_resource   $light-blue     i3wm.color12    "#<FALLBACK_LIGHT_BLUE>"
-set_from_resource   $light-magenta  i3wm.color13    "#<FALLBACK_LIGHT_MAGENTA>"
-set_from_resource   $light-cyan     i3wm.color14    "#<FALLBACK_LIGHT_CYAN>"
-set_from_resource   $brightest      i3wm.color15    "#<FALLBACK_BRIGHTEST>"
-set $accent #<ACCENT>
-set $warning #<WARNING>
+set_from_resource   $darkest        i3wm.color0     "{fallback_darkest}"
+set_from_resource   $red            i3wm.color1     "{fallback_red}"
+set_from_resource   $green          i3wm.color2     "{fallback_green}"
+set_from_resource   $yellow         i3wm.color3     "{fallback_yellow}"
+set_from_resource   $blue           i3wm.color4     "{fallback_blue}"
+set_from_resource   $magenta        i3wm.color5     "{fallback_magenta}"
+set_from_resource   $cyan           i3wm.color6     "{fallback_cyan}"
+set_from_resource   $bright         i3wm.color7     "{fallback_bright}"
+set_from_resource   $dark           i3wm.color8     "{fallback_dark}"
+set_from_resource   $light-red      i3wm.color9     "{fallback_light_red}"
+set_from_resource   $light-green    i3wm.color10    "{fallback_light_green}"
+set_from_resource   $light-yellow   i3wm.color11    "{fallback_light_yellow}"
+set_from_resource   $light-blue     i3wm.color12    "{fallback_light_blue}"
+set_from_resource   $light-magenta  i3wm.color13    "{fallback_light_magenta}"
+set_from_resource   $light-cyan     i3wm.color14    "{fallback_light_cyan}"
+set_from_resource   $brightest      i3wm.color15    "{fallback_brightest}"
+set $accent {accent}
+set $warning {warning}
 
 
 # class                    border      backgr.     text        indicator child_border
@@ -235,7 +235,7 @@ bindsym $mod+$shift+Right move right
 
 # capitalize modes so they look better in polybar. (font sizing etc.)
 bindsym $mod+r mode "RESIZE"
-mode "RESIZE" {
+mode "RESIZE" {{
         set $big 10 px or 10 ppt
         set $small 1 px or 1 ppt
         set $sw resize shrink width
@@ -262,7 +262,7 @@ mode "RESIZE" {
         bindsym Escape	$exit
         bindsym space	$exit
         bindsym $mod+r	$exit
-}
+}}
 
 
 set $ws1 workspace number 1
@@ -323,7 +323,7 @@ set $start_main_app             exec --no-startup-id startapp
 set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/pictures/'
-set $terminal			exec --no-startup-id <TERMINAL>
+set $terminal			exec --no-startup-id {TERMINAL}
 set $chrome			exec chromium
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -333,7 +333,7 @@ set $text-editor		exec --no-startup-id atom
 set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
 set $lock			exec --no-startup-id lock
 set $files			exec --no-startup-id nemo
-set $task-manager		exec --no-startup-id <TERMINAL> -e htop
+set $task-manager		exec --no-startup-id {TERMINAL} -e htop
 set $calculator			exec gnome-calculator
 set $music			exec --no-startup-id gpmdp
 set $notes			exec --no-startup-id standardnotes-desktop
@@ -375,7 +375,7 @@ bindsym XF86Calculator          $calculator
 
 # capitalize modes so they look better in polybar. (font sizing etc.)
 bindsym $mod+u mode "NO DISTRACTION"
-mode "NO DISTRACTION" {
+mode "NO DISTRACTION" {{
         set $exit mode "default"
 
         bindsym $mod+f fullscreen toggle
@@ -384,5 +384,5 @@ mode "NO DISTRACTION" {
 
         bindsym Escape	$exit
         bindsym $mod+u	$exit
-}
+}}
 
