@@ -214,14 +214,14 @@ dfg_mtmf() {
 	fi
 }
 
-alias dfgpullall='dfgchp && dfg pull && dfgchw && dfg pull && dfgchda && dfg pull && dfgchdu && dfg pull && dfg_chm && dfg pull && dfgchp'
+alias dfgpullall='dfgk && dfgchp && dfg pull && dfgchw && dfg pull && dfgchda && dfg pull && dfgchdu && dfg pull && dfg_chm && dfg pull && dfgchp'
 
-alias dfgfullmerge='dfgk && dfgpullall && dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
+alias dfgfullmerge='dfgpullall && dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
 alias dfgmergeall='dfgfullmerge'
 alias dfgfullmerge_and_lock='dfgfullmerge && dfg_lock_branchdiffs'
 alias dfgmergeall_and_lock='dfgfullmerge_and_lock'
 
-alias dfgpushall='dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
+alias dfgpushall='dfgk && dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
 alias gsf='sudo git --git-dir=/root/.systemfiles-repo/ --work-tree=/'
 
