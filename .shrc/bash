@@ -8,15 +8,52 @@ SHELL="/bin/bash"
 [[ "$-" != *i* ]] && return
 
 # History options
-HISTCONTROL="ignoreboth" # don't put duplicate lines or lines starting with space in the history.
+HISTCONTROL="erasedups:ignoreboth" # don't put duplicate lines or lines starting with space in the history.
 shopt -s histappend # append to the history file, don't overwrite it
+shopt -s cmdhist # Save multi-line commands as one command
 HISTFILE="${HOME}/.history/bash"
 HISTSIZE=1000
 HISTFILESIZE=2000000000
+PROMPT_COMMAND='history -a' # Record each line as it gets issued
+
 
 [[ "${DISPLAY}" ]] && shopt -s checkwinsize # check the window size after each command and, if necessary, update the values of LINES and COLUMNS.
 
-#shopt -s globsta # If set, the pattern "**" used in a pathname expansion context will match all files and zero or more directories and subdirectories.r
+shopt -s autocd # cd automatically if dir is entered
+#shopt -s dirspell # Correct spelling errors during tab-completion
+#shopt -s cdspell # Correct spelling errors in arguments supplied to cd
+
+
+PROMPT_DIRTRIM=2 # Automatically trim long paths in the prompt
+
+
+bind "set completion-ignore-case on" # Perform file completion in a case insensitive fashion
+#bind "set completion-map-case on" # Treat hyphens and underscores as equivalent
+bind "set show-all-if-ambiguous on" # Display matches for ambiguous patterns at first tab press
+bind "set mark-symlinked-directories on" # Immediately add a trailing slash when autocompleting symlinks to directories
+
+
+# Enable incremental history search with up/down arrows (also Readline goodness)
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
+bind '"\e[C": forward-char'
+bind '"\e[D": backward-char'
+
+#shopt -s globsta # If set, the pattern "**" used in a pathname expansion context will match all files and zero or more directories and subdirectories.
+
+
+# This defines where cd looks for targets. Add the directories you want to have fast access to, separated by colons.
+# Ex: CDPATH=".:~:~/projects" will look for targets in the current working directory, in home and in the ~/projects folder
+CDPATH="."
+
+# This allows you to bookmark your favorite places across the file system. Define a variable containing a path and you will be able to cd into it regardless of the directory you're in
+#shopt -s cdable_vars
+# Examples:
+# export dotfiles="$HOME/dotfiles"
+# export projects="$HOME/projects"
+# export documents="$HOME/Documents"
+# export dropbox="$HOME/Dropbox"
+
 
 PS1='[\u@\h \W]\$ '
 
