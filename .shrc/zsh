@@ -55,6 +55,7 @@ plugins=(git docker command-not-found extract safe-paste systemd colorize comple
 
 source "${ZSH}/oh-my-zsh.sh" # do user configuration after this line
 
+source /usr/share/zsh/scripts/zplug/init.zsh
 source /usr/share/powerline/bindings/zsh/powerline.zsh
 
 source "${HOME}/.shrc/both"
