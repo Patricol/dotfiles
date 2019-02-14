@@ -99,6 +99,9 @@ warning = ${self.warning-solid}
 console = %{T7}%{T-}
 console-line = %{T8}%{T-}
 menu = %{T7}%{T-}
+docker = %{T8}%{T-}
+unknown-user = %{T8}וּ%{T-}
+general-user = %{T8}%{T-}
 
 update = %{T5}%{T-}
 
@@ -294,7 +297,7 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 0
 
-modules-left = time i3-icons start-terminal start-rofi keyboard
+modules-left = user-icon time i3-icons start-terminal start-rofi keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
@@ -322,17 +325,12 @@ test-chars = ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz,~`[]{}|\:";'><
 source-code-pro-test-chars = dfgjlpyIQ27
 source-sans-pro-test-chars = dfgjlpyIQ27
 
+
 ;T1 is just for spacing.
-content = %{T1} %{T2}1I27 %{T3}2I27 %{T4}3dfgjlpyIQ27 %{T5}4更瘝 %{T6}5浪 %{T7}6 %{T8}7 %{T9}8 %{T10}91234567890 %{T11}0Xyj@ %{T-}
+content = %{T1}T1: %{T2}T2:I27 %{T3}T3:I27 %{T4}T4:dfgjlpyIQ27 %{T5}T5:更瘝 %{T6}T6:浪 %{T7}T7: %{T8}T8:וּ %{T9}T9: %{T10}T10:1234567890 %{T11}T11:Xyj@ %{T-}
 ; "content" has the same properties as "format-NAME"
 content-background = ${colors.highvis-fg}
 content-foreground = ${colors.bg}
-
-[module/work]
-type = custom/text
-; indicates that this is the work account
-content = ${symbols.briefcase}
-content-foreground = ${colors.lowvis-fg}
 
 [module/xwindow]
 type = internal/xwindow
@@ -380,6 +378,12 @@ ramp-capacity-6 = ${symbols.usage-ramp-3}
 ramp-capacity-7 = ${symbols.usage-ramp-2}
 ramp-capacity-8 = ${symbols.usage-ramp-1}
 ramp-capacity-9 = ${symbols.usage-ramp-0}
+
+[module/user-icon]
+type = custom/script
+exec = ~/.config/polybar/user-icon
+format-foreground = ${colors.lowvis-fg}
+interval = 9999
 
 [module/check-updates]
 type = custom/script

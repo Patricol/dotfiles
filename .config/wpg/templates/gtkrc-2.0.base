@@ -1,11 +1,11 @@
 
-#<CONFIG_EDITING_WARNING>
+#{CONFIG_EDITING_WARNING}
 
-gtk-theme-name = "<GTK_THEME>"
-gtk-icon-theme-name = "<ICON_THEME>"
+gtk-theme-name = "{GTK_THEME}"
+gtk-icon-theme-name = "{ICON_THEME}"
 gtk-icon-theme-size = 0
-gtk-cursor-theme-name = "<CURSOR_THEME>"
-gtk-font-name = "<FONT> <FONT_SIZE>"
+gtk-cursor-theme-name = "{CURSOR_THEME}"
+gtk-font-name = "{FONT} {FONT_SIZE}"
 gtk-toolbar-style = GTK_TOOLBAR_ICONS
 #gtk-toolbar-icon-size = GTK_ICON_SIZE_SMALL_TOOLBAR
 gtk-menu-popup-delay = 0
