@@ -1,4 +1,8 @@
+# vi:syntax=sh
 alias docker='sudo docker'
+
+alias dps='docker ps'
+alias dpsa='docker ps -a'
 
 alias drf='docker run --rm -it'
 alias dpf='docker pull'
