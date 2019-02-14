@@ -1,4 +1,4 @@
-alias syu='yay -Syu && yay -S'
+alias syu='yay -Syu --devel && yay -S'
 alias pacs='syu'
 alias aurs='pacs'
 alias pacr='yay -R'
