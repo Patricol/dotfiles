@@ -1,4 +1,4 @@
-set $wallpaper /home/work/.config/wpg/wallpapers/dummy.png
+set $wallpaper /home/patricol/.config/wpg/wallpapers/dummy.png
 
 set $background #212121
 set $foreground #eeeeee

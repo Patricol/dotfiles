@@ -1,5 +1,5 @@
 " Special
-let wallpaper  = "/home/work/.config/wpg/wallpapers/dummy.png"
+let wallpaper  = "/home/patricol/.config/wpg/wallpapers/dummy.png"
 let background = "#212121"
 let foreground = "#eeeeee"
 let cursor     = "#eeeeee"
