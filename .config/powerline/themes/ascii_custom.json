@@ -23,8 +23,10 @@
 		},
 		"cwd": {
 			"args": {
-				"ellipsis": "...",
-				"dir_shorten_len": 8
+				"use_path_separator": true,
+				"dir_limit_depth": 16,
+				"dir_shorten_len": 16,
+				"ellipsis": "┅"
 			}
 		},
 		"line_current_symbol": {
@@ -40,9 +42,29 @@
 				}
 			}
 		},
+		"mode": {
+			"args": {
+				"override": {
+					"viins": "I",
+					"vicmd": "C",
+					"emacs": "E"
+				}
+			}
+		},
+		"continuation": {
+			"args": {
+				"right_align": true,
+				"renames": {
+					"quote": "'",
+					"dquote": "\""
+				}
+			}
+		},
 
-		"time": {
-			"before": ""
+		"powerline.segments.common.time.date": {
+			"args": {
+				"format": "%H:%M"
+			}
 		},
 
 		"powerline.segments.common.net.network_load": {

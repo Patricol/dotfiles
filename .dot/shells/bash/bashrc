@@ -81,8 +81,9 @@ fi
 
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
+powerline_shell_theme='custom_leftonly'
 source /usr/share/powerline/bindings/bash/powerline.sh
 
 source /usr/share/doc/pkgfile/command-not-found.bash
 
-source "${HOME}/.shrc/both"
+source "${HOME}/.dot/l/shrc/both"
