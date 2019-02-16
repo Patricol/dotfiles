@@ -5,7 +5,7 @@
 		"file_format":        "vim-unimportant",
 			"file_encoding":      "file_format",
 			"file_type":          "file_format",
-		"branch":             "wal-branch",
+		"branch":             "c-branch",
 			"branch_clean":       "branch",
 		"file_scheme":        "file_name",
 		"file_directory":     "vim-additional",
