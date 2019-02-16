@@ -2,12 +2,16 @@
 	"use_non_breaking_spaces": false,
 	"dividers": {
 		"left": {
-			"hard": " ",
-			"soft": " "
+			"hard": "█████ ",
+			"hard": " ",
+			"soft": "████ ",
+			"soft": " "
 		},
 		"right": {
-			"hard": " ",
-			"soft": " "
+			"hard": " █████",
+			"hard": " ",
+			"soft": " ████",
+			"soft": " "
 		}
 	},
 	"spaces": 1,
@@ -23,8 +27,10 @@
 		},
 		"cwd": {
 			"args": {
-				"ellipsis": "┅",
-				"dir_shorten_len": 8
+				"use_path_separator": false,
+				"dir_limit_depth": 16,
+				"dir_shorten_len": 16,
+				"ellipsis": "┅"
 			}
 		},
 		"line_current_symbol": {
@@ -40,9 +46,29 @@
 				}
 			}
 		},
+		"mode": {
+			"args": {
+				"override": {
+					"viins": "I",
+					"vicmd": "C",
+					"emacs": "E"
+				}
+			}
+		},
+		"continuation": {
+			"args": {
+				"right_align": true,
+				"renames": {
+					"quote": "'",
+					"dquote": "\""
+				}
+			}
+		},
 
-		"time": {
-			"before": ""
+		"powerline.segments.common.time.date": {
+			"args": {
+				"format": "%H:%M"
+			}
 		},
 
 		"powerline.segments.common.net.network_load": {
@@ -52,7 +78,8 @@
 			}
 		},
 		"powerline.segments.common.net.hostname": {
-			"before": " "
+			"before": " ",
+			"before": ""
 		},
 		"powerline.segments.common.bat.battery": {
 			"args": {

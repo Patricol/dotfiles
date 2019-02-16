@@ -3,6 +3,9 @@
 	"segments": {
 		"left": [
 			{
+				"function": "powerline.segments.shell.mode"
+			},
+			{
 				"function": "continuation"
 			}
 		],

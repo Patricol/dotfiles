@@ -1,1 +1,1 @@
-.shrc/zsh
+.dot/l/zshrc
