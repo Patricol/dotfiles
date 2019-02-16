@@ -6,7 +6,7 @@
 	"ext": {
 		"shell": {
 			"colorscheme": "custom",
-			"theme": "custom_leftonly",
+			"theme": "custom",
 			"local_themes": {
 				"continuation": "continuation_custom",
 				"select": "select_custom"

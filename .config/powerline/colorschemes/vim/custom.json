@@ -1,21 +1,21 @@
 {
 	"name": "Default color scheme",
 	"groups": {
-		"mode":                     { "fg": "wal-darkest", "bg": "wal-green", "attrs": ["bold"] },
-		"vim-mode-insert": 			{ "fg": "wal-darkest", "bg": "wal-blue", "attrs": ["bold"] },
-		"vim-mode-visual": 			{ "fg": "wal-darkest", "bg": "wal-yellow", "attrs": ["bold"] },
-		"visual_range":             { "fg": "wal-yellow", "bg": "wal-dark", "attrs": ["bold"] },
-		"vim-mode-replace": 		{ "fg": "wal-darkest", "bg": "wal-red", "attrs": ["bold"] },
+		"mode":                     "c-vim-mode",
+		"vim-mode-insert": 			"c-vim-mode-insert",
+		"vim-mode-visual": 			"c-vim-mode-visual",
+		"visual_range":             "c-vim-visual-range",
+		"vim-mode-replace": 		"c-vim-mode-replace",
 		
-		"file_vcs_status":          "wal-red",
-		"file_vcs_status_A":        "wal-green",
-		"paste_indicator":          "wal-cyan",
-		"error":                    "wal-error",
-		"modified": 				"wal-modified",
+		"file_vcs_status":          "c-vim-file_vcs_status",
+		"file_vcs_status_A":        "c-vim-file_vcs_status_A",
+		"paste_indicator":          "c-vim-paste-indicator",
+		"error":                    "c-error",
+		"modified": 				"c-modified",
 			"modified_indicator":       "modified",
 			"modified_buffers":         "modified",
 			"file_vcs_status_M":        "modified",
-		"warning":       			"wal-warning",
+		"warning":       			"c-warning",
 			"capslock_indicator":       "warning",
 			"readonly_indicator":       "warning",
 		"vim-background":           "powerline-background",
@@ -37,7 +37,7 @@
 				"col_current":              "line_current",
 					"virtcol_current": 			"col_current",
 						"virtcol_current_gradient": "virtcol_current",
-		"branch:divider":           "wal-branch:divider"
+		"branch:divider":           "c-branch:divider"
 	},
 	"mode_translations": {
 		"i":  {"groups": {"mode": "vim-mode-insert"}},

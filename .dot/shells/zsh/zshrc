@@ -1,0 +1,114 @@
+# vi:syntax=zsh
+
+SHELL="/bin/zsh"
+
+HISTFILE="${HOME}/.history/zsh"
+HISTSIZE=1000
+SAVEHIST=2000000000
+
+# Treat these characters as part of a word.
+#WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+
+#setup modes and incremental history search etc; should customize the bindkey stuff a lot.
+bindkey -d
+#bindkey "\e[A" history-search-backward
+#bindkey "\e0A" history-search-backward
+#bindkey "$terminfo[kcuu1]" history-substring-search-up
+#bindkey "$terminfo[kcuu1]" history-incremental-search-backward
+#bindkey "\e[B" history-search-forward
+#bindkey "\e[C" forward-char
+#bindkey "\e[D" backward-char
+
+setup_zsh_plugins() {
+	setup_zplug() {
+		if [[ -z "${ZPLUG_HOME}" ]]; then
+			export ZPLUG_HOME="${HOME}/.zplug"
+		fi
+		if [[ ! -d "${ZPLUG_HOME}" ]]; then
+			echo "Installing zplug..."
+			git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
+		fi
+		export ZPLUG_CACHE_DIR="${HOME}/.cache/zplug"
+		export ZPLUG_BIN="${ZPLUG_HOME}/bin"
+		source "${ZPLUG_HOME}/init.zsh"
+	}
+	install_missing_plugins() {
+		if ! zplug check; then
+			zplug install
+		fi
+	}
+
+	setup_zplug
+
+	zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+
+	#zplug "zsh-users/zsh-history-substring-search"
+	if zplug check "zsh-users/zsh-history-substring-search"; then
+		# bind UP and DOWN arrow keys
+		zmodload zsh/terminfo
+		bindkey "$terminfo[kcuu1]" history-substring-search-up
+		bindkey "$terminfo[kcud1]" history-substring-search-down
+
+		# bind k and j for VI mode
+		bindkey -M vicmd 'k' history-substring-search-up
+		bindkey -M vicmd 'j' history-substring-search-down
+		#HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND is a global variable that defines how the query should be highlighted inside a matching command. Its default value causes this script to highlight using bold, white text on a magenta background. See the "Character Highlighting" section in the zshzle(1) man page to learn about the kinds of values you may assign to this variable.
+		#HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND is a global variable that defines how the query should be highlighted when no commands in the history match it. Its default value causes this script to highlight using bold, white text on a red background. See the "Character Highlighting" section in the zshzle(1) man page to learn about the kinds of values you may assign to this variable.
+		#HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS is a global variable that defines how the command history will be searched for your query. Its default value causes this script to perform a case-insensitive search. See the "Globbing Flags" section in the zshexpn(1) man page to learn about the kinds of values you may assign to this variable.
+	fi
+	zplug "zsh-users/zsh-autosuggestions"
+	if zplug check "zsh-users/zsh-autosuggestions"; then
+		#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=3
+		export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+		unset ZSH_AUTOSUGGEST_USE_ASYNC # unset to disable
+		# setup keybindings etc: https://github.com/zsh-users/zsh-autosuggestions
+	fi
+	zplug "zsh-users/zsh-completions"
+	zplug "zsh-users/zsh-syntax-highlighting", defer:2
+	#zplug "trapd00r/zsh-syntax-highlighting-filetypes"
+	zplug "plugins/git",			from:oh-my-zsh, if:"(( $+commands[git] ))"
+	#zplug "plugins/compleat",		from:oh-my-zsh
+	zplug "plugins/command-not-found",	from:oh-my-zsh
+	#zplug "plugins/colorize",		from:oh-my-zsh
+	zplug "plugins/safe-paste",		from:oh-my-zsh
+	zplug "plugins/systemd",		from:oh-my-zsh, if:"(( $+commands[systemctl] ))"
+	#zplug "plugins/wd",			from:oh-my-zsh
+	zplug "plugins/pip",			from:oh-my-zsh, if:"(( $+commands[pip] ))"
+	zplug "plugins/tmux",			from:oh-my-zsh, if:"(( $+commands[tmux] ))"
+	#zplug "modules/editor",		from:prezto # evaluate
+	#zplug "modules/gpg",			from:prezto # evaluate
+	#zplug "modules/utility",		from:prezto # evaluate
+	#zplug "bhilburn/powerlevel9k",		as:theme # my powerline will override, but this is the most similar theme for fallback.
+	#zplug "Tarrasch/zsh-bd"
+	#zplug "wting/autojump"
+	#zplug "chriskempson/base16-shell"
+	zplug "jreese/zsh-titles"
+	zplug "MichaelAquilina/zsh-you-should-use"
+	if zplug check "MichaelAquilina/zsh-you-should-use"; then
+		export YSU_MESSAGE_POSITION="after"
+		export YSU_MODE="ALL"
+		export YSU_MESSAGE_FORMAT="$(tput setaf 2)Reminder: can use the $(tput setaf 3)%alias_type $(tput setaf 1)%alias $(tput setaf 2)for $(tput setaf 9)'%command'$(tput sgr0)"
+	fi
+
+	zplug "~/.dot/l/zsh-local-plugins", from:local
+
+	install_missing_plugins
+
+	#zplug clean
+	zplug load #--verbose
+
+	unset -f setup_zplug install_missing_plugins
+}
+setup_zsh_plugins
+
+powerline_shell_theme='custom'
+source /usr/share/powerline/bindings/zsh/powerline.zsh
+
+source "${HOME}/.dot/l/shrc/both"
+
+#autoload -U compinit && compinit
+#zplug update regularly?
+#"zplug clear" to clear cache
+alias zcc='yes | zplug clean && zplug clear && autoload -U compinit && compinit'
+
+#should setup right-side prompts on my powerline etc

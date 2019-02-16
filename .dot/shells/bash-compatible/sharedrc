@@ -1,8 +1,8 @@
 # vi:syntax=sh
 
 # Alias definitions.
-if [[ -d ~/.aliases/ ]]; then
-	for alias_file in ~/.aliases/*; do
+if [[ -d ~/.dot/aliases/ ]]; then
+	for alias_file in ~/.dot/aliases/*; do
 		source "${alias_file}"
 	done
 	unset alias_file
@@ -26,12 +26,17 @@ if [[ -n "${SSH_CONNECTION}" ]]; then
 	export LANG="en_US.UTF-8" # changing lang fixes vim powerline
 fi
 
-if [[ "${TERM}" == "linux" ]] || [[ -n "${SSH_CONNECTION}" ]]; then
-	export POWERLINE_CONFIG_OVERRIDES='ext.vim.top_theme="ascii_custom";common.default_top_theme="ascii_custom"'
+if [[ "${TERM}" == "linux" ]]; then
+	powerline_shell_theme="ext.shell.theme=\"${powerline_shell_theme}_oneline\";ext.shell.colorscheme=\"custom_tty\";ext.vim.colorscheme=\"custom_tty\";ext.tmux.colorscheme=\"custom_tty\""
 else
-	export POWERLINE_CONFIG_OVERRIDES=""
+	powerline_shell_theme="ext.shell.theme=\"${powerline_shell_theme}\""
 fi
-
+if [[ "${TERM}" == "linux" ]] || [[ -n "${SSH_CONNECTION}" ]]; then
+	export POWERLINE_CONFIG_OVERRIDES="ext.vim.top_theme=\"ascii_custom\";common.default_top_theme=\"ascii_custom\";${powerline_shell_theme}"
+else
+	export POWERLINE_CONFIG_OVERRIDES="${powerline_shell_theme}"
+fi
+unset powerline_shell_theme
 
 LANG="en_US.UTF-8" powerline-daemon -q # need to start powerline-daemon with unicode LANG regardless
 

@@ -74,8 +74,8 @@ extract() {
 #}
 
 
-alias bal='vim -o ~/.aliases/*'
-alias brc='vim -O ~/.shrc/*'
+alias bal='vim -o ~/.dot/l/aliases/*'
+alias brc='vim -O ~/.dot/l/shrc/*'
 
 edit_wpg_template() {
 	declare config_filename="$1"
@@ -87,10 +87,10 @@ vimc() {
 	declare config_file="$1"
 	if [[ -f ~/.config/wpg/templates/"${config_file}".base ]]; then
 		edit_wpg_template "${config_file}"
-	elif [[ -f ~/.aliases/"${config_file}" ]]; then
-		vim ~/.aliases/"${config_file}"
-	elif [[ -f ~/.shrc/"${config_file}" ]]; then
-		vim ~/.shrc/"${config_file}"
+	elif [[ -f ~/.dot/l/aliases/"${config_file}" ]]; then
+		vim ~/.dot/l/aliases/"${config_file}"
+	elif [[ -f ~/.dot/l/shrc/"${config_file}" ]]; then
+		vim ~/.dot/l/shrc/"${config_file}"
 	else
 		echo "add to the (vimc) function; not found in wpg templates."
 	fi

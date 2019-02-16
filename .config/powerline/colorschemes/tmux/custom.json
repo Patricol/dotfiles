@@ -1,13 +1,13 @@
 {
 	"groups": {
-		"active_window_status": {"fg": "wal-blue", "bg": "wal-darkest", "attrs": []},
-		"window_status":        {"fg": "wal-bright", "bg": "wal-darkest", "attrs": []},
-		"activity_status":      {"fg": "wal-yellow", "bg": "wal-darkest", "attrs": []},
-		"bell_status":          {"fg": "wal-red", "bg": "wal-darkest", "attrs": []},
-		"window":               {"fg": "wal-bright", "bg": "wal-darkest", "attrs": []},
-		"window:divider":       {"fg": "wal-dark", "bg": "wal-darkest", "attrs": []},
-		"window:current":       {"fg": "wal-brighter", "bg": "wal-blue", "attrs": []},
-		"window_name":          {"fg": "wal-brightest", "bg": "wal-accent", "attrs": ["bold"]},
-		"attached_clients": 	{"fg": "wal-green", "bg": "wal-brightest", "attrs": []}
+		"active_window_status": "c-tmux-active_window_status",
+		"window_status":        "c-tmux-window_status",
+		"activity_status":      "c-tmux-activity_status",
+		"bell_status":          "c-tmux-bell_status",
+		"window":               "c-tmux-window",
+		"window:divider":       "c-tmux-window:divider",
+		"window:current":       "c-tmux-window:current",
+		"window_name":          "c-tmux-window_name",
+		"attached_clients": 	"c-tmux-attached_clients"
 	}
 }

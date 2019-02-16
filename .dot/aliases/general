@@ -5,32 +5,7 @@
 # Better to just include commands (from other dotfile branches) even if they don't run because (e.g) this account cant sudo etc.
 # Easier to maintain/merge; and can use those aliases when checking out a branch in an environment it's not meant for, etc.
 
-# enable color aliases of ls if supported
-if [[ -x /usr/bin/dircolors ]]; then
-	alias ls='ls --color=auto'
-
-	alias dir='dir --color=auto'
-	alias vdir='vdir --color=auto'
-
-	alias diff='diff --color=auto'
-
-	alias grep='grep --color=auto'
-	alias fgrep='fgrep --color=auto'
-	alias egrep='egrep --color=auto'
-fi
-
 alias rgrep='grep -r'
-
-man() {
-	LESS_TERMCAP_mb=$'\e[01;31m' \
-	LESS_TERMCAP_md=$'\e[01;31m' \
-	LESS_TERMCAP_me=$'\e[0m' \
-	LESS_TERMCAP_se=$'\e[0m' \
-	LESS_TERMCAP_so=$'\e[01;44;33m' \
-	LESS_TERMCAP_ue=$'\e[0m' \
-	LESS_TERMCAP_us=$'\e[01;32m' \
-	command man $@
-}
 
 # some more ls aliases
 alias ll='ls -AlhF'
@@ -59,6 +34,8 @@ alias s='sudo'
 alias mnt='tldr'
 alias mnc='cheat'
 alias mn='mnt'
+
+alias view='vim -R'
 
 alias diff='diff -s'
 
@@ -108,12 +85,6 @@ alias fkill='sudo killall -KILL'
 
 alias merge='rsync --remove-source-files -abviuAP'
 
-alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
-
-alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
-alias colorst='msgcat --color=test'
-
-
 alias cdup='cd ..'
 alias cdu='cdup'
 alias ..='cd ..'
@@ -139,9 +110,13 @@ alias cls='clear && ls'
 alias cl='cls'
 alias x='exit'
 
+alias d='dirs -v'
+#for index ({1..9}) alias "$index"="cd +${index}"; unset index
+
 #open vim to bottom of file.
 alias vimbottom='vim "+ normal GA"'
 
+alias bell='printf \\a'
 
 alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
 alias mnf='mineofetch'
@@ -168,5 +143,5 @@ alias aecho='echo '
 
 alias fn='find . -name'
 fa() {
-	find / -path ./media -prune -o $@ -print 2> /dev/null
+	find / -path ./media -prune -o -path /proc -prune -o $@ -print 2> /dev/null
 }
