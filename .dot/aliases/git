@@ -128,7 +128,7 @@ alias dfg_m='dfg merge --edit --no-ff --no-commit'
 alias dfg_mm='dfg_m master'
 
 alias dfga='dfg add'
-alias dfgaa='dfgfixsym && dfga -u && dfga ~/.{themes,aliases,shrc} ~/.config/{wpg,wal,systemd,powerline,wallpapers,qt5ct,oh-my-zsh}'
+alias dfgaa='dfgfixsym && dfga -u && dfga ~/.{themes,dot} ~/.config/{feh,fontconfig,i3,kitty,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wallpapers,wpg}'
 alias dfgaae='dfgaa && dfg reset HEAD -- ~/.config/htop/htoprc'
 alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'

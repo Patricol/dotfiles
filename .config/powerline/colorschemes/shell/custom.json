@@ -1,13 +1,10 @@
 {
 	"name": "Default color scheme for shell prompts",
 	"groups": {
-		"mode": { "fg": "wal-darkest", "bg": "wal-green", "attrs": ["bold"] }
+		"mode": "c-shell-mode"
 	},
 	"mode_translations": {
-		"vicmd": {
-			"groups": {
-				"mode": { "fg": "wal-darkest", "bg": "wal-cyan", "attrs": ["bold"] }
-			}
-		}
+		"vicmd": {"groups": {"mode": "c-shell-mode-vicmd"}},
+		"emacs": {"groups": {"mode": "c-shell-mode-emacs"}}
 	}
 }

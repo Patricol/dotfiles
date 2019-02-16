@@ -1,1 +1,1 @@
-.shrc/bash
+.dot/l/bashrc

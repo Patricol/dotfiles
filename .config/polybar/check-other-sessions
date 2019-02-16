@@ -6,7 +6,7 @@ main() {
 		current_user="$(id -un)"
 		local others
 		others="$(w -hs | grep -vE "^${current_user}" | wc -l)"
-		[[ "{$others}" -gt 0 ]]
+		[[ "${others}" -gt 0 ]]
 		return "$?"
 	}
 
