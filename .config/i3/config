@@ -344,7 +344,7 @@ set $facebook-messenger		exec --no-startup-id caprine
 # LAUNCHING HOTKEYS ###########################################################
 
 bindsym $mod+Return		$terminal
-#bindsym $mod2+Return		$start_main_app
+#bindsym $mod2+Return	        $start_main_app
 bindsym $mod+space		$launcher
 bindsym $mod2+space		$launcher
 bindsym $mod2+r			$launcher
@@ -359,7 +359,7 @@ bindsym Print			$screenshot
 bindsym $mod2+l			$lock
 bindsym $mod2+e			$files
 bindsym $ctrl+$shift+Escape	$task-manager
-bindsym $mod+$mod2+v		$type-clipboard
+bindsym $mod+$mod2+v	        $type-clipboard
 bindsym $alt+Tab		$window_switcher
 
 bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
@@ -372,15 +372,31 @@ bindsym XF86Calculator          $calculator
 
 
 # capitalize modes so they look better in polybar. (font sizing etc.)
-bindsym $mod+u mode "NO DISTRACTION"
-mode "NO DISTRACTION" {
-        set $exit mode "default"
-
-        bindsym $mod+f fullscreen toggle
-        set $launcher			exec rofi -show combi
+bindsym $ctrl+$alt+$shift+w mode "WORKISH"
+set $warnstopworking exec --no-startup-id "rofi -e 'Ctrl+Alt+Shift+P to stop working.'"
+set $exitmode mode "default"
+mode "WORKISH" {
+        bindsym $mod+f                  fullscreen toggle
         bindsym $mod+space		$launcher
+        bindsym $mod2+l			$lock
+        
+        bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
+        bindsym XF86AudioLowerVolume    $volume-unmute ; $volume-lower
+        bindsym XF86AudioMute           $volume-toggle-mute
 
-        bindsym Escape	$exit
-        bindsym $mod+u	$exit
+        bindsym $ctrl+$alt+$shift+w     mode "WORK"
+        bindsym Escape                  $warnstopworking
+        bindsym $ctrl+$alt+$shift+p     $exitmode
+}
+mode "WORK" {
+        bindsym $mod2+l			$lock
+        
+        bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
+        bindsym XF86AudioLowerVolume    $volume-unmute ; $volume-lower
+        bindsym XF86AudioMute           $volume-toggle-mute
+        
+        bindsym $ctrl+$alt+$shift+w     mode "WORKISH"
+        bindsym Escape                  $warnstopworking
+        bindsym $ctrl+$alt+$shift+p     $exitmode
 }
 
