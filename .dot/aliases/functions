@@ -78,24 +78,36 @@ alias bal='vim -o ~/.dot/l/aliases/*'
 alias brc='vim -O ~/.dot/l/shrc/*'
 
 edit_wpg_template() {
-	declare config_filename="$1"
-	vim ~/.config/wpg/templates/"${config_filename}".base
+	declare editor="$1" config_filename="$2"
+	${editor} ~/.config/wpg/templates/"${config_filename}".base
 	echo "remember fmaterial"
+}
+
+edit_config() {
+	declare editor="$1" config_file="$2"
+	if [[ -f ~/.config/wpg/templates/"${config_file}".base ]]; then
+		edit_wpg_template "${editor}" "${config_file}"
+	elif [[ -f ~/.dot/l/aliases/"${config_file}" ]]; then
+		${editor} ~/.dot/l/aliases/"${config_file}"
+	elif [[ -f ~/.dot/l/shrc/"${config_file}" ]]; then
+		${editor} ~/.dot/l/shrc/"${config_file}"
+	else
+		echo "config file not found; add it to the (edit_config) function."
+	fi
 }
 
 vimc() {
 	declare config_file="$1"
-	if [[ -f ~/.config/wpg/templates/"${config_file}".base ]]; then
-		edit_wpg_template "${config_file}"
-	elif [[ -f ~/.dot/l/aliases/"${config_file}" ]]; then
-		vim ~/.dot/l/aliases/"${config_file}"
-	elif [[ -f ~/.dot/l/shrc/"${config_file}" ]]; then
-		vim ~/.dot/l/shrc/"${config_file}"
-	else
-		echo "add to the (vimc) function; not found in wpg templates."
-	fi
+	edit_config "vim" "${config_file}"
 }
+
+atomc() {
+	declare config_file="$1"
+	edit_config "atom" "${config_file}"
+}
+
 alias vc='vimc'
+alias ac='atomc'
 
 
 tif() {
