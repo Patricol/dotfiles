@@ -21,9 +21,7 @@ bindkey -d
 
 setup_zsh_plugins() {
 	setup_zplug() {
-		if [[ -z "${ZPLUG_HOME}" ]]; then
-			export ZPLUG_HOME="${HOME}/.zplug"
-		fi
+		export ZPLUG_HOME="${HOME}/.zplug"
 		if [[ ! -d "${ZPLUG_HOME}" ]]; then
 			echo "Installing zplug..."
 			git clone https://github.com/zplug/zplug "${ZPLUG_HOME}"
