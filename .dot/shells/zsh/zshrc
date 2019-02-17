@@ -9,6 +9,10 @@ SAVEHIST=2000000000
 # Treat these characters as part of a word.
 #WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
+# https://www.zsh.org/mla/workers/2013/msg01176.html https://github.com/bhilburn/powerlevel9k/issues/110
+zmodload zsh/terminfo
+RPS1="${RPS1%?}%{${(M)RPS1%?}${terminfo[cub1]}%}"
+
 #setup modes and incremental history search etc; should customize the bindkey stuff a lot.
 bindkey -d
 #bindkey "\e[A" history-search-backward

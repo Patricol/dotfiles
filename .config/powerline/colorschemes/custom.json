@@ -15,6 +15,7 @@
 			"c-success":         		  "wal-green-bold",
 		"wal-yellow":         	      {"fg": "wal-darkest", "bg": "wal-yellow", "attrs": []},
 		"wal-yellow-bold":         	  {"fg": "wal-darkest", "bg": "wal-yellow", "attrs": ["bold"]},
+			"c-tmux-activity_status":     "wal-yellow-bold",
 			"c-vim-mode-visual":          "wal-yellow-bold",
 			"c-modified":       		  "wal-yellow-bold",
 				"branch_dirty":               "c-modified",
@@ -39,6 +40,7 @@
 			"user":                       "wal-accent-bold",
 		"wal-warning":         		  {"fg": "wal-darkest", "bg": "wal-warning", "attrs": []},
 		"wal-warning-bold":           {"fg": "wal-darkest", "bg": "wal-warning", "attrs": ["bold"]},
+			"c-tmux-bell_status":         "wal-warning-bold",
 			"c-warning":			      "wal-warning-bold",
 		"wal-rev-red":         		  {"fg": "wal-red", "bg": "wal-darkest", "attrs": []},
 		"wal-rev-red-bold":           {"fg": "wal-red", "bg": "wal-darkest", "attrs": ["bold"]},
@@ -47,7 +49,6 @@
 			"c-tmux-attached_clients": 	  "wal-rev-green-bold",
 		"wal-rev-yellow":         	  {"fg": "wal-yellow", "bg": "wal-darkest", "attrs": []},
 		"wal-rev-yellow-bold":        {"fg": "wal-yellow", "bg": "wal-darkest", "attrs": ["bold"]},
-			"c-tmux-activity_status":     "wal-rev-yellow-bold",
 			"c-vim-visual-range":         "wal-rev-yellow-bold",
 		"wal-rev-blue":         	  {"fg": "wal-blue", "bg": "wal-darkest", "attrs": []},
 		"wal-rev-blue-bold":          {"fg": "wal-blue", "bg": "wal-darkest", "attrs": ["bold"]},
@@ -55,10 +56,8 @@
 		"wal-rev-cyan-bold":          {"fg": "wal-cyan", "bg": "wal-darkest", "attrs": ["bold"]},
 		"wal-rev-accent":             {"fg": "wal-accent", "bg": "wal-darkest", "attrs": []},
 		"wal-rev-accent-bold":        {"fg": "wal-accent", "bg": "wal-darkest", "attrs": ["bold"]},
-			"c-tmux-active_window_status":"wal-rev-accent-bold",
 		"wal-rev-warning":         	  {"fg": "wal-warning", "bg": "wal-darkest", "attrs": []},
 		"wal-rev-warning-bold":       {"fg": "wal-warning", "bg": "wal-darkest", "attrs": ["bold"]},
-			"c-tmux-bell_status":         "wal-rev-warning-bold",
 		
 		"c-background":		          {"fg": "wal-brightest", "bg": "wal-darkest", "attrs": []},
 			"c-tmux-window":              "c-background",
@@ -67,6 +66,7 @@
 		"c-innermost":		          {"fg": "wal-brightest", "bg": "wal-darker", "attrs": []},
 		"c-inner":		              {"fg": "wal-darkest", "bg": "wal-dark", "attrs": []},
 		"c-outer":		              {"fg": "wal-darkest", "bg": "wal-brightest", "attrs": []},
+			"c-tmux-active_window_status":"c-outer",
 
 		"c-shell-continuation":       {"fg": "wal-yellow", "bg": "wal-darker", "attrs": ["bold"]},
 		
@@ -124,8 +124,8 @@
 		"powerline-outer":		      "c-outer",
 			"powerline-outer:divider":	  "powerline-outer",
 		"powerline-outermost":		  "wal-accent",
-			"session":                    "powerline-outermost",
-				"session:prefix":       	  "session",
+			"c-tmux-session":             "powerline-outermost",
+				"c-tmux-session:prefix":      "c-tmux-session",
 			"powerline-outermost:divider":"powerline-outermost"
 	}
 }

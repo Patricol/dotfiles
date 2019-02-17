@@ -8,6 +8,8 @@
 		"window:divider":       "c-tmux-window:divider",
 		"window:current":       "c-tmux-window:current",
 		"window_name":          "c-tmux-window_name",
-		"attached_clients": 	"c-tmux-attached_clients"
+		"attached_clients": 	"c-tmux-attached_clients",
+		"session":              "c-tmux-session",
+		"session:prefix":       "c-tmux-session:prefix"
 	}
 }
