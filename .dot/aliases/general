@@ -155,5 +155,15 @@ alias aecho='echo '
 
 alias fn='find . -name'
 fa() {
-	find / -path ./media -prune -o -path /proc -prune -o $@ -print 2> /dev/null
+	#local ignore_dirs
+	#ignore_dirs=""
+	#for dir in /var; do
+	#	ignore_dirs="${ignore_dirs} -path ${dir} -prune -o"
+	#done
+	#find / -mount ${ignore_dirs} $@ -print 2> /dev/null
+	find / -mount ${ignore_dirs} $@ -print
+}
+
+fan() {
+	fa -name $@
 }
