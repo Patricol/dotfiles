@@ -135,7 +135,10 @@ set $windows-key-code 133
 # MOUSE BINDINGS ##############################################################
 
 bindsym $mouse-right floating toggle
-bindsym --whole-window $mod+$mouse-right floating toggle
+
+#this covers the usual alt-right-click resizing that's so convenient.
+#bindsym --whole-window $mod+$mouse-right floating toggle
+bindsym --whole-window $mod+$mouse-left floating toggle
 
 bindsym --whole-window $mod+$mouse-wheel-click kill
 
