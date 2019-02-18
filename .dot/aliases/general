@@ -31,6 +31,14 @@ alias cloc='curl -L -C - -O' # follow redirects, download as original name, cont
 
 alias s='sudo'
 
+alias sup='sudo -i -u patricol'
+alias sip='sup'
+alias suw='sudo -i -u work'
+alias siw='suw'
+alias sur='sudo -i -u root'
+alias sir='sur'
+alias visudo='sudo visudo'
+
 alias mnt='tldr'
 alias mnc='cheat'
 alias mn='mnt'
