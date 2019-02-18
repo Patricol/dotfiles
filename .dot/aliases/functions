@@ -84,6 +84,7 @@ edit_wpg_template() {
 }
 
 edit_config() {
+	#later likely make this check for filenames in the dotfiles repo
 	declare editor="$1" config_file="$2"
 	if [[ -f ~/.config/wpg/templates/"${config_file}".base ]]; then
 		edit_wpg_template "${editor}" "${config_file}"
@@ -92,7 +93,29 @@ edit_config() {
 	elif [[ -f ~/.dot/l/shrc/"${config_file}" ]]; then
 		${editor} ~/.dot/l/shrc/"${config_file}"
 	else
-		echo "config file not found; add it to the (edit_config) function."
+		case "${config_file}" in
+			lightdm|lightdm-webkit2-greeter|slick-greeter)
+				sudo "${editor}" "/etc/lightdm/${config_file}.conf"
+				;;
+			sshd|ssh)
+				config_file="${config_file}_config"
+				;& #fall-through
+			sshd_config|ssh_config)
+				sudo "${editor}" "/etc/ssh/${config_file}"
+				;;
+			sudoers)
+				sudo visudo
+				;;
+			makepkg|mkinitcpio|pacman|sudo|vconsole)
+				config_file="${config_file}.conf"
+				;& #fall-through
+			bash.bash_logout|bash.bashrc|environment|fstab|motd|profile)
+				sudo "${editor}" "/etc/${config_file}"
+				;;
+			*)
+				echo "config file not found; add it to the (edit_config) function."
+				;;
+		esac
 	fi
 }
 
@@ -108,6 +131,7 @@ atomc() {
 
 alias vc='vimc'
 alias ac='atomc'
+
 
 
 tif() {
