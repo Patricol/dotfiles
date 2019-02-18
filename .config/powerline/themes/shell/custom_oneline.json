@@ -36,15 +36,15 @@
 				"priority": 70
 			},
 			{
-				"function": "powerline.segments.common.time.date",
-				"priority": 80
-			},
-			{
 				"function": "powerline.segments.common.net.hostname",
 				"priority": 20,
 				"args": {
 					"only_if_ssh": true
 				}
+			},
+			{
+				"function": "powerline.segments.common.time.date",
+				"priority": 80
 			}
 		]
 	}
