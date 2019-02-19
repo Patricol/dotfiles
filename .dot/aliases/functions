@@ -20,7 +20,7 @@ extract() {
 	# it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
 	# anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
 	declare archives="$@"
-	if [[ -z "${archive}" ]]; then
+	if [[ -z "${archives}" ]]; then
 		echo "provide archive(s)" >&2
 		false
 		return "$?"
