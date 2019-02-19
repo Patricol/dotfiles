@@ -226,7 +226,7 @@ alias dfgpushall='dfgk && dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchd
 
 alias gsf='sudo GIT_EDITOR="uvim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
 
-alias gsfk='gsf remote set-url origin git@github.com:Patricol/systemfiles.git && sudo add_ssh_keys /home/patricol/.ssh/github'
+alias gsfk='gsf remote set-url origin git@github.com:Patricol/systemfiles.git'
 
 alias gsfs='gsf status --ahead-behind'
 
@@ -239,5 +239,16 @@ alias gsfaae='gsfaa && gsf reset HEAD -- /root/.dot/htoprc'
 alias gsfc='gsf commit -v'
 alias gsfac='gsfaa && gsfc'
 
-alias gsfp='gsfk && gsf push'
+gsf_push() {
+	gsfk
+	local gsf_command
+	gsf_command="$(aecho gsf)"
+	gsf_command="${gsf_command:5}" # need to remove sudo from the start
+	local full_command
+	full_command="add_ssh_keys /home/patricol/.ssh/github && ${gsf_command} push"
+	sudo -i bash -ic -- "${full_command}"
+}
+
+alias gsfp='gsf_push'
+
 
