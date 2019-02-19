@@ -8,8 +8,8 @@ if [[ -d ~/.dot/aliases/ ]]; then
 	unset alias_file
 fi
 
-(add_ssh_keys allshares gdrive &)
-#(add_ssh_keys nas_work_share &)
+add_ssh_keys allshares gdrive
+#add_ssh_keys nas_work_share
 
 export EDITOR="vim"
 
