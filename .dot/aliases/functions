@@ -1,17 +1,10 @@
 # vi:syntax=sh
 # Standalone functions that don't fit into the other sections.
 
-add_ssh_keys() {
-	declare key_names="$@"
-	for key_name in "${key_names}"; do
-		local key="${HOME}"/.ssh/"${key_name}"
-		if [[ -f "${key}" ]]; then
-			chmod 600 "${key}"
-		fi
-	done
-	eval "$(keychain --eval --quiet $@)"
-}
 
+add_ssh_keys() {
+        eval "$(keychain --eval --quiet $@)"
+}
 
 
 extract() {
@@ -20,7 +13,7 @@ extract() {
 	# it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
 	# anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
 	declare archives="$@"
-	if [[ -z "${archive}" ]]; then
+	if [[ -z "${archives}" ]]; then
 		echo "provide archive(s)" >&2
 		false
 		return "$?"
@@ -73,6 +66,8 @@ extract() {
 	# extracting individual files from zip is faster. zip is also more ubiquitous.
 #}
 
+alias svim='sudo uvim'
+alias satom='env SUDO_EDITOR="atom --wait" sudo --edit'
 
 alias bal='vim -o ~/.dot/l/aliases/*'
 alias brc='vim -O ~/.dot/l/shrc/*'
@@ -85,6 +80,7 @@ edit_wpg_template() {
 
 edit_config() {
 	#later likely make this check for filenames in the dotfiles repo
+	#make this handle multiple filenames as input.
 	declare editor="$1" config_file="$2"
 	if [[ -f ~/.config/wpg/templates/"${config_file}".base ]]; then
 		edit_wpg_template "${editor}" "${config_file}"
@@ -93,6 +89,9 @@ edit_config() {
 	elif [[ -f ~/.dot/l/shrc/"${config_file}" ]]; then
 		${editor} ~/.dot/l/shrc/"${config_file}"
 	else
+		if [[ "${editor}" == "vim" ]]; then
+			editor="uvim"
+		fi
 		case "${config_file}" in
 			lightdm|lightdm-webkit2-greeter|slick-greeter)
 				sudo "${editor}" "/etc/lightdm/${config_file}.conf"
@@ -111,6 +110,9 @@ edit_config() {
 				;& #fall-through
 			bash.bash_logout|bash.bashrc|environment|fstab|motd|profile)
 				sudo "${editor}" "/etc/${config_file}"
+				;;
+			setup)
+				sudo "${editor}" "/root/${config_file}.txt"
 				;;
 			*)
 				echo "config file not found; add it to the (edit_config) function."

@@ -25,10 +25,9 @@ alias pager='${PAGER}'
 alias rd='rmdir'
 alias md='mkdir -p'
 
-alias svim='sudo vim'
-
 alias cloc='curl -L -C - -O' # follow redirects, download as original name, continue
 
+alias sudo='sudo ' # allows me to use sudo before aliases
 alias s='sudo'
 
 alias sup='sudo -i -u patricol'
@@ -146,9 +145,7 @@ alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,noun
 alias epoch='date +%s'
 
 
-#need to figure out ways to take advantage of how you can use multiple aliases in one command; like how "alias aecho='echo '; alias stuff='lots of stuff'; aecho stuff" echoes 'lots of stuff'
-
-alias nmo='xdg-open . &> /dev/null'
+alias nmo='nohup nemo . > /dev/null 2>&1 &'
 
 alias aecho='echo '
 

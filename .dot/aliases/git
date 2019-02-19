@@ -1,5 +1,5 @@
 # vi:syntax=sh
-# dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
+# systemfiles and dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 # dfg_* are intended for internal use only.
 
 alias dfg='git --git-dir=${HOME}/.dotfiles-repo/ --work-tree=${HOME}'
@@ -224,5 +224,20 @@ alias dfgmergeall_and_lock='dfgfullmerge_and_lock'
 
 alias dfgpushall='dfgk && dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
-alias gsf='sudo git --git-dir=/root/.systemfiles-repo/ --work-tree=/'
+alias gsf='sudo GIT_EDITOR="uvim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
+
+alias gsfk='gsf remote set-url origin git@github.com:Patricol/systemfiles.git && sudo add_ssh_keys /home/patricol/.ssh/github'
+
+alias gsfs='gsf status --ahead-behind'
+
+alias gsfd='gsf diff'
+alias gsfdc='gsfd --cached'
+
+alias gsfa='gsf add'
+alias gsfaa='gsfa -u && gsfa /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/pacman.d/hooks'
+alias gsfaae='gsfaa && gsf reset HEAD -- /root/.dot/htoprc'
+alias gsfc='gsf commit -v'
+alias gsfac='gsfaa && gsfc'
+
+alias gsfp='gsfk && gsf push'
 
