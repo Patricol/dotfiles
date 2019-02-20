@@ -80,6 +80,8 @@ alias ebnrc='exec bash --norc --noprofile'
 alias ez='exec zsh'
 alias be='exec "${SHELL}"'
 
+alias ep='exec python'
+
 
 alias logs='sudo journalctl -xe'
 
@@ -164,3 +166,7 @@ fa() {
 fan() {
 	fa -name $@
 }
+
+alias pingf='ping -c 1 1.1.1.1'
+
+
