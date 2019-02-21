@@ -27,16 +27,30 @@ alias md='mkdir -p'
 
 alias cloc='curl -L -C - -O' # follow redirects, download as original name, continue
 
+gui_open() {
+	declare program="$@"
+	i3-msg exec "${program}"
+}
+
+gui_sudo_open() {
+	declare as_user="$1" ; shift
+	local program
+	program="$@"
+	gui_open "sudo --askpass --login --user=${as_user} -- ${program}"
+}
+
 alias sudo='sudo ' # allows me to use sudo before aliases
 alias s='sudo'
 
-alias sup='sudo -i -u patricol'
+alias sup='sudo -i -u patricol --'
 alias sip='sup'
-alias suw='sudo -i -u work'
+alias supg='gui_sudo_open patricol'
+alias suw='sudo -i -u work --'
 alias siw='suw'
-alias sur='sudo -i -u root'
+alias sur='sudo -i -u root --'
 alias sir='sur'
-alias visudo='sudo visudo'
+alias surg='gui_sudo_open root'
+alias visudo='sudo -- visudo'
 
 alias mnas='sip mount /media/nas'
 alias umnas='umount /media/nas'
@@ -79,6 +93,8 @@ alias eb='exec bash'
 alias ebnrc='exec bash --norc --noprofile'
 alias ez='exec zsh'
 alias be='exec "${SHELL}"'
+
+alias ep='exec python'
 
 
 alias logs='dmesg | less'
@@ -145,7 +161,7 @@ alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,noun
 alias epoch='date +%s'
 
 
-alias nmo='nohup nemo . > /dev/null 2>&1 &'
+alias nmo='gui_open nemo $(pwd)'
 
 alias aecho='echo '
 
@@ -164,3 +180,7 @@ fa() {
 fan() {
 	fa -name $@
 }
+
+alias pingf='ping -c 1 1.1.1.1'
+
+
