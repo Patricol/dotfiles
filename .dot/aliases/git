@@ -244,7 +244,16 @@ alias gsfd='gsf diff'
 alias gsfdc='gsfd --cached'
 
 alias gsfa='gsf add'
-alias gsfaa='gsfa -u && gsfa /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/pacman.d/hooks'
+gsfaa() {
+	gsfa -u
+     	for directory in /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/pacman.d/hooks; do
+		if [[ -d "${directory}" ]]; then
+     			gsfa "${directory}"
+		else
+			echo "skipping missing dir (${directory})"
+		fi
+	done
+}
 alias gsfaae='gsfaa && gsf reset HEAD -- /root/.dot/htoprc'
 alias gsfc='gsf commit -v'
 alias gsfac='gsfaa && gsfc'
