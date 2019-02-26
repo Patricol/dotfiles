@@ -68,7 +68,7 @@ alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
 alias top='htop'
 
 fscrot() {
-	scrot -q 100 -m -e 'mv "$f" ~/pictures/' $@
+	scrot -q 100 -m -e 'mv "$f" ~/screenshots/' $@
 }
 
 
