@@ -7,14 +7,12 @@ alias dfg='git --git-dir=${HOME}/.dotfiles-repo/ --work-tree=${HOME}'
 
 dfgfixsym() {
 	# fix symlinks for dotfiles
-	local filepath
+	local filepath symlink target #declaring symlink and target here makes zsh less verbose
 	dfg ls-tree -r --name-only --full-tree HEAD | while read filepath; do
 		#Check input file is a symlink
 		filepath="${HOME}/${filepath}"
 		if [[ -L "${filepath}" ]]; then
-			local symlink
 			symlink="${filepath}"
-			local target
 			target="$(readlink "${symlink}")"
 			#if the symlink goes inside the home directory; make it relative.
 			if [[ "${target}" == /home/* ]]; then
@@ -128,8 +126,20 @@ alias dfg_m='dfg merge --edit --no-ff --no-commit'
 alias dfg_mm='dfg_m master'
 
 alias dfga='dfg add'
-alias dfgaa='dfgfixsym && dfga -u && dfga ~/.{themes,dot} ~/.config/{feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wallpapers,wpg}'
+
+dfgaa() {
+	dfgfixsym
+	dfga -u
+     	for directory in ~/.{themes,dot} ~/.config/{feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wallpapers,wpg}; do
+		if [[ -d "${directory}" ]]; then
+     			dfga "${directory}"
+		else
+			echo "skipping missing dir (${directory})"
+		fi
+	done
+}
 alias dfgaae='dfgaa && dfg reset HEAD -- ~/.config/htop/htoprc'
+alias dfgchhtop='dfgch -- ~/.config/htop/htoprc'
 alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'
 
@@ -234,7 +244,16 @@ alias gsfd='gsf diff'
 alias gsfdc='gsfd --cached'
 
 alias gsfa='gsf add'
-alias gsfaa='gsfa -u && gsfa /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/pacman.d/hooks'
+gsfaa() {
+	gsfa -u
+     	for directory in /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/pacman.d/hooks; do
+		if [[ -d "${directory}" ]]; then
+     			gsfa "${directory}"
+		else
+			echo "skipping missing dir (${directory})"
+		fi
+	done
+}
 alias gsfaae='gsfaa && gsf reset HEAD -- /root/.dot/htoprc'
 alias gsfc='gsf commit -v'
 alias gsfac='gsfaa && gsfc'
