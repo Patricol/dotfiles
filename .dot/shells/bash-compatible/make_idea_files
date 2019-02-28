@@ -21,7 +21,7 @@ main() {
         for subdir in "config" "system"; do
             echo "idea.${subdir}.path="'${user.home}'"/${dir}/${subdir}" | tee -a "${real_file}"
         done
-        echo "${var}_PROPERTIES=\""'${HOME}'"/${dir}/idea.properties\"" | tee -a "${jetbrainsrc}"
+        echo "export ${var}_PROPERTIES=\""'${HOME}'"/${dir}/idea.properties\"" | tee -a "${jetbrainsrc}"
     }
     
     local jetbrainsrc
