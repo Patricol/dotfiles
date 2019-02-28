@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+main() {
+    # https://intellij-support.jetbrains.com/hc/en-us/articles/207240985-Changing-IDE-default-directories-used-for-config-plugins-and-caches-storage
+    declare -a dirs=("intellijidea" "clion" "appcode" "pycharm" "datagrip" "androidstudio" "webstorm" "phpstorm" "goland" "rider")
+    declare -a vars=("IDEA" "CLION" "APPCODE" "PYCHARM" "DATAGRIP" "STUDIO" "WEBIDE" "PHPSTORM" "GOLAND" "RIDER")
+    
+    reset_file() {
+        declare filepath="$1"
+        echo "# see make_idea_files before modifying." | tee "${filepath}"
+    }
+    make_idea_file() {
+        declare dir="$1" var="$2" jetbrainsrc="$3"
+        local real_dir real_file
+        dir=".config/custom/jetbrains/${dir}"
+        real_dir="${HOME}/${dir}"
+        real_file="${real_dir}/idea.properties"
+        mkdir -p "${real_dir}"
+
+        reset_file "${real_file}"
+        for subdir in "config" "system"; do
+            echo "idea.${subdir}.path="'${user.home}'"/${dir}/${subdir}" | tee -a "${real_file}"
+        done
+        echo "${var}_PROPERTIES=\""'${HOME}'"/${dir}/idea.properties\"" | tee -a "${jetbrainsrc}"
+    }
+    
+    local jetbrainsrc
+    jetbrainsrc="${HOME}/.dot/shells/bash-compatible/jetbrainsrc"
+    local num_ides
+    num_ides=${#dirs[@]}
+    if [[ ${num_ides} -ne ${#vars[@]} ]]; then
+        echo "unequal number of dirs and vars" >&2
+        exit 2
+    fi
+    
+    reset_file "${jetbrainsrc}"
+    for ((i=0; i<${num_ides}; i++)); do
+        make_idea_file "${dirs[${i}]}" "${vars[${i}]}" "${jetbrainsrc}"
+    done
+}
+
+main
