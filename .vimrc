@@ -7,6 +7,11 @@ endif
 set fileencodings=utf-8,cp936,gbk,utf-16le
 set mouse=a
 let g:powerline_pycmd="py3"
+"let g:python_host_prog="/usr/bin/python2" " path to Python 2 interpreter
+let g:python3_host_prog="/usr/bin/python" " path to Python 3 interpreter
+let g:loaded_python_provider=1 " disables Python 2 support
+"let g:loaded_python3_provider=1 " disables Python 3 support
+let g:powerline_pycmd="py3"
 set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 set showtabline=2 " Always display the tabline, even if there is only one tab
@@ -100,6 +105,17 @@ call s:check_installed('vim-sensible')
 
 Plug 'dylanaraps/wal.vim'
 call s:check_installed('wal.vim')
+
+
+" powerline doesn't support nvim yet: https://github.com/powerline/powerline/issues/1287
+if has('nvim')
+  Plug 'vim-airline/vim-airline'
+  call s:check_installed('vim-airline')
+else
+  Plug 'powerline/powerline'
+  call s:check_installed('powerline')
+endif
+"Plug 'powerline/powerline'
 
 call plug#end()
 
