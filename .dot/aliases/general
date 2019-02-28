@@ -59,7 +59,12 @@ alias mnt='tldr'
 alias mnc='cheat'
 alias mn='mnt'
 
+alias ex='vim -e'
+alias exim='vim -E'
+alias rview='vim -RZ'
+alias rvim='vim -Z'
 alias view='vim -R'
+alias vimdiff='vim -d'
 
 alias diff='diff -s'
 
