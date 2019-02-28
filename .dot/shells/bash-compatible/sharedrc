@@ -7,6 +7,9 @@ if [[ -d ~/.dot/aliases/ ]]; then
 	done
 	unset alias_file
 fi
+if [[ -f ~/.dot/shells/bash-compatible/jetbrainsrc ]]; then
+	source ~/.dot/shells/bash-compatible/jetbrainsrc
+fi
 
 add_ssh_keys nas_work_share
 
