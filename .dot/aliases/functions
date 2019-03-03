@@ -94,32 +94,38 @@ edit_config() {
 		if [[ "${editor}" == "vim" ]]; then
 			editor="uvim"
 		fi
-		case "${config_file}" in
-			lightdm|lightdm-webkit2-greeter|slick-greeter)
-				sudo "${editor}" "/etc/lightdm/${config_file}.conf"
-				;;
-			sshd|ssh)
-				config_file="${config_file}_config"
-				;& #fall-through
-			sshd_config|ssh_config)
-				sudo "${editor}" "/etc/ssh/${config_file}"
-				;;
-			sudoers)
-				sudo visudo
-				;;
-			makepkg|mkinitcpio|pacman|sudo|vconsole)
-				config_file="${config_file}.conf"
-				;& #fall-through
-			bash.bash_logout|bash.bashrc|environment|fstab|motd|profile)
-				sudo "${editor}" "/etc/${config_file}"
-				;;
-			setup)
-				sudo "${editor}" "/root/${config_file}.txt"
-				;;
-			*)
-				echo "config file not found; add it to the (edit_config) function."
-				;;
-		esac
+		if [[ -f "/usr/local/bin/${config_file}" ]]; then
+			${editor} "$/usr/local/bin/${config_file}"
+		elif [[ -f "/usr/local/sbin/${config_file}" ]]; then
+			${editor} "$/usr/local/sbin/${config_file}"
+		else
+			case "${config_file}" in
+				lightdm|lightdm-webkit2-greeter|slick-greeter)
+					sudo "${editor}" "/etc/lightdm/${config_file}.conf"
+					;;
+				sshd|ssh)
+					config_file="${config_file}_config"
+					;& #fall-through
+				sshd_config|ssh_config)
+					sudo "${editor}" "/etc/ssh/${config_file}"
+					;;
+				sudoers)
+					sudo visudo
+					;;
+				makepkg|mkinitcpio|pacman|sudo|vconsole)
+					config_file="${config_file}.conf"
+					;& #fall-through
+				bash.bash_logout|bash.bashrc|environment|fstab|motd|profile)
+					sudo "${editor}" "/etc/${config_file}"
+					;;
+				setup)
+					sudo "${editor}" "/root/${config_file}.txt"
+					;;
+				*)
+					echo "config file not found; add it to the (edit_config) function."
+					;;
+			esac
+		fi
 	fi
 }
 
