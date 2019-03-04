@@ -1,0 +1,12 @@
+#compdef edit_file
+
+local -a __edit_file_completions
+__make_file_dict
+_describe 'command' __edit_file_completions
+
+#compdef vc=edit_file
+#compdef vimc=vc
+
+#compdef ac=edit_file
+#compdef atomc=ac
+
