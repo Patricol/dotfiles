@@ -1,5 +1,7 @@
 # vi:syntax=zsh
 
+#zmodload zsh/zprof #uncomment for profiling (run zprof after exec zsh)
+
 SHELL="/bin/zsh"
 
 HISTFILE="${HOME}/.history/zsh"
