@@ -22,6 +22,7 @@ export EDITOR="vim"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
+export LESSHISTFILE="${HOME}/.history/less"
 
 source ~/.config/wpg/formats/colors-tty.sh || true # do this above neofetch. blanks the terminal; though it only runs if on tty.
 
