@@ -1,4 +1,7 @@
 # vi:syntax=sh
+
+alias logs='dmesg | less'
+
 alias syu='sudo apt-get update && sudo apt-get upgrade'
 alias pacs='sudo apt-get update && sudo apt-get install'
 alias aurs='pacs'
