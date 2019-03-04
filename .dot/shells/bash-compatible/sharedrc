@@ -15,7 +15,9 @@ if ! [[ -d "${HOME}/.history/" ]]; then
 	mkdir -p "${HOME}/.history/"
 fi
 
-add_ssh_keys allshares gdrive
+if [[ -d "${HOME}/.ssh/auto" ]]; then
+	add_ssh_keys $(find "${HOME}/.ssh/auto/" ! -type d)
+fi
 
 export EDITOR="vim"
 
