@@ -384,19 +384,19 @@ ramp-capacity-9 = ${{symbols.usage-ramp-0}}
 
 [module/user-icon]
 type = custom/script
-exec = ~/.config/polybar/user-icon
+exec = ~/.config/polybar/bin/user-icon
 format-foreground = ${{colors.lowvis-fg}}
 interval = 9999
 
 [module/check-updates]
 type = custom/script
-exec = ~/.config/polybar/check-updates
+exec = ~/.config/polybar/bin/check-updates
 interval = 60
 ;interval = 6000
 
 [module/check-other-sessions]
 type = custom/script
-exec = ~/.config/polybar/check-other-sessions
+exec = ~/.config/polybar/bin/check-other-sessions
 interval = 60
 
 [module/start-terminal]
