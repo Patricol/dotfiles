@@ -247,7 +247,7 @@ alias gsfa='gsf add'
 gsfaa() {
 	gsfa -u
      	for directory in /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/pacman.d/hooks; do
-		if [[ -d "${directory}" ]]; then
+		if sudo test -d "${directory}"; then
      			gsfa "${directory}"
 		else
 			echo "skipping missing dir (${directory})"

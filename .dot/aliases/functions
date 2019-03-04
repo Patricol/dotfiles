@@ -66,9 +66,6 @@ extract() {
 	# extracting individual files from zip is faster. zip is also more ubiquitous.
 #}
 
-alias svim='sudo uvim'
-alias satom='env SUDO_EDITOR="atom --wait" sudo --edit'
-
 alias bal='vim -o ~/.dot/l/aliases/*'
 alias brc='vim -O ~/.dot/l/shrc/*'
 
@@ -80,8 +77,58 @@ edit_wpg_template() {
 
 edit_config() {
 	#later likely make this check for filenames in the dotfiles repo
+	
 	#make this handle multiple filenames as input.
+	
+	#merge bal and brc into this; accept folder names etc.
+	
 	declare editor="$1" config_file="$2"
+	declare -A file_dict
+
+	add_file_without_suffix() {
+		declare suffix="$1" ; shift
+		declare filepath="$@"
+		local filename nickname
+		filename="$(basename "${filepath}")"
+		nickname="${filename%${suffix}}"
+		file_dict["${nickname}"]="${filepath}"
+	}
+	
+	add_files_without_suffix() {
+		declare suffix="$1" ; shift
+		for file in $@; do
+			add_file_without_suffix "${suffix}" "${file}"
+		done
+	}
+
+	add_file() {
+		add_file_without_suffix "" "$@"
+	}
+	
+	add_files() {
+		add_files_without_suffix "" $@
+	}
+	
+	local findargs
+	findargs="-maxdepth 1 -mindepth 1 -type f"
+    
+	add_files "$(find ~/.dot/l/ ${findargs})"
+	add_files "$(find ~/.dot/l/aliases/ ${findargs})"
+	add_files "$(find ~/.dot/l/shrc/ ${findargs})"
+	add_files "$(find /usr/local/bin/ ${findargs})"
+	add_files "$(find /usr/local/sbin/ ${findargs})"
+	add_files_without_suffix ".base" "$(find ~/.config/wpg/templates/ ${findargs} -name "*.base")"
+	add_files_without_suffix "_action" "$(find ~/.local/share/nemo/actions/ ${findargs} -name "*_action")"
+    
+	add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile}
+	add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo,vconsole}.conf
+	add_files_without_suffix "_config" /etc/ssh/{sshd,ssh}_config
+	add_files_without_suffix ".txt" /root/setup.txt
+
+	for key in "${!file_dict[@]}"; do
+		echo "$key : ${file_dict[$key]}"
+	done
+
 	if [[ -f "${HOME}/.config/wpg/templates/${config_file}.base" ]]; then
 		edit_wpg_template "${editor}" "${config_file}"
 	elif [[ -f "${HOME}/.dot/l/${config_file}" ]]; then
@@ -91,23 +138,20 @@ edit_config() {
 	elif [[ -f "${HOME}/.dot/l/shrc/${config_file}" ]]; then
 		${editor} "${HOME}/.dot/l/shrc/${config_file}"
 	else
-		if [[ "${editor}" == "vim" ]]; then
-			editor="uvim"
-		fi
 		if [[ -f "/usr/local/bin/${config_file}" ]]; then
-			${editor} "$/usr/local/bin/${config_file}"
+			${editor} "/usr/local/bin/${config_file}"
 		elif [[ -f "/usr/local/sbin/${config_file}" ]]; then
-			${editor} "$/usr/local/sbin/${config_file}"
+			${editor} "/usr/local/sbin/${config_file}"
 		else
 			case "${config_file}" in
 				lightdm|lightdm-webkit2-greeter|slick-greeter)
-					sudo "${editor}" "/etc/lightdm/${config_file}.conf"
+					${editor} "/etc/lightdm/${config_file}.conf"
 					;;
 				sshd|ssh)
 					config_file="${config_file}_config"
 					;& #fall-through
 				sshd_config|ssh_config)
-					sudo "${editor}" "/etc/ssh/${config_file}"
+					${editor} "/etc/ssh/${config_file}"
 					;;
 				sudoers)
 					sudo visudo
@@ -116,28 +160,21 @@ edit_config() {
 					config_file="${config_file}.conf"
 					;& #fall-through
 				bash.bash_logout|bash.bashrc|environment|fstab|motd|profile)
-					sudo "${editor}" "/etc/${config_file}"
+					${editor} "/etc/${config_file}"
 					;;
 				setup)
-					sudo "${editor}" "/root/${config_file}.txt"
+					${editor} "/root/${config_file}.txt"
 					;;
 				*)
-					echo "config file not found; add it to the (edit_config) function."
+					echo "config file not found; add it to the (edit_config) function." >&2
 					;;
 			esac
 		fi
 	fi
 }
 
-vimc() {
-	declare config_file="$1"
-	edit_config "vim" "${config_file}"
-}
-
-atomc() {
-	declare config_file="$1"
-	edit_config "atom" "${config_file}"
-}
+alias vimc='edit_config svim'
+alias atomc='edit_config satom'
 
 alias vc='vimc'
 alias ac='atomc'
