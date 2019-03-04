@@ -114,8 +114,8 @@ if has('nvim')
 else
   Plug 'powerline/powerline'
   call s:check_installed('powerline')
+  set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim
 endif
-"Plug 'powerline/powerline'
 
 call plug#end()
 
