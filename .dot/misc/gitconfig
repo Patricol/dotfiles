@@ -1,0 +1,7 @@
+[user]
+	email = PatrickCP0@Gmail.com
+	name = Patrick Collins
+[core]
+	autocrlf = input
+[mergetool]
+	keepBackup = false

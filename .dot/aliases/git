@@ -234,7 +234,7 @@ alias dfgmergeall_and_lock='dfgfullmerge_and_lock'
 
 alias dfgpushall='dfgk && dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
-alias gsf='sudo GIT_EDITOR="uvim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
+alias gsf='sudo GIT_EDITOR="svim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
 
 alias gsfk='gsf remote set-url origin git@github.com:Patricol/systemfiles.git'
 
@@ -247,7 +247,7 @@ alias gsfa='gsf add'
 gsfaa() {
 	gsfa -u
      	for directory in /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/pacman.d/hooks; do
-		if [[ -d "${directory}" ]]; then
+		if sudo test -d "${directory}"; then
      			gsfa "${directory}"
 		else
 			echo "skipping missing dir (${directory})"
