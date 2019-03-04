@@ -1,3 +1,1 @@
-#
-# ~/.bash_logout
-#
+.dot/l/bash_logout

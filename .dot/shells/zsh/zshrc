@@ -106,6 +106,8 @@ setup_zsh_plugins
 powerline_shell_theme='custom'
 source /usr/share/powerline/bindings/zsh/powerline.zsh
 
+fpath=(~/.dot/l/zsh-custom-completion $fpath)
+
 source "${HOME}/.dot/l/shrc/both"
 
 #autoload -U compinit && compinit
