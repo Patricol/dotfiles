@@ -234,7 +234,7 @@ alias dfgmergeall_and_lock='dfgfullmerge_and_lock'
 
 alias dfgpushall='dfgk && dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
-alias gsf='sudo GIT_EDITOR="uvim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
+alias gsf='sudo GIT_EDITOR="svim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
 
 alias gsfk='gsf remote set-url origin git@github.com:Patricol/systemfiles.git'
 

@@ -120,7 +120,7 @@ __make_file_dict() {
     }
 
     local findargs
-    findargs=("-maxdepth" "1" "-mindepth" "1" "-type" "f")
+    findargs=("-maxdepth" "1" "-mindepth" "1" "!" "-type" "d")
 
     add_files "$(find ~/.dot/l/ ${findargs[@]})"
     add_files "$(find ~/.dot/l/aliases/ ${findargs[@]})"
