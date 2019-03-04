@@ -103,8 +103,6 @@ alias be='exec "${SHELL}"'
 alias ep='exec python'
 
 
-alias logs='sudo journalctl -xe'
-
 mountiso() {
 	declare device="$@"
 	sudo mount -o loop "${device}" /media/iso

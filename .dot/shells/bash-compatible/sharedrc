@@ -15,6 +15,10 @@ if ! [[ -d "${HOME}/.history/" ]]; then
 	mkdir -p "${HOME}/.history/"
 fi
 
+if [[ -d "${HOME}/.ssh/auto" ]]; then
+	add_ssh_keys $(find "${HOME}/.ssh/auto/" ! -type d)
+fi
+
 export EDITOR="vim"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
@@ -47,13 +51,6 @@ LANG="en_US.UTF-8" powerline-daemon -q # need to start powerline-daemon with uni
 
 
 stty -ixon # disable Ctrl-S
-
-
-#(dfg remote update &> /dev/null &) # run this regularly, but not here
-# add something to tell me when updates are available on bash start from ssh etc.
-
-# tty is changing colors because bold. neofetch color output must be bold; to be acting this way. need to have it not use the emphasis bit etc; or have tty-specific setups without bold stuff? but why would the background grey be missing for the cwd?
-
 
 ier yay --news # warns me of news I need to know before updating
 
