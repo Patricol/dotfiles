@@ -176,7 +176,7 @@ edit_file() {
 	    if [[ -L "${filepath}" ]]; then
 		filepath="$(readlink -f "${filepath}")"
 	    fi
-	    echo $filepath
+	    echo "${filepath}"
             filepaths+=("${filepath}")
         else
             echo "${file} not found; add it to the (__make_file_dict) function. (vc general)" >&2
