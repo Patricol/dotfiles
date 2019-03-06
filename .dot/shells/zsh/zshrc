@@ -15,15 +15,43 @@ SAVEHIST=2000000000
 zmodload zsh/terminfo
 RPS1="${RPS1%?}%{${(M)RPS1%?}${terminfo[cub1]}%}"
 
-#setup modes and incremental history search etc; should customize the bindkey stuff a lot.
-bindkey -d
-#bindkey "\e[A" history-search-backward
-#bindkey "\e0A" history-search-backward
-#bindkey "$terminfo[kcuu1]" history-substring-search-up
-#bindkey "$terminfo[kcuu1]" history-incremental-search-backward
-#bindkey "\e[B" history-search-forward
-#bindkey "\e[C" forward-char
-#bindkey "\e[D" backward-char
+
+resetkeys() {
+	#setup modes and incremental history search etc; should customize the bindkey stuff a lot.
+	#select to end of line, select next word, etc
+	#keep the vim mode pretty vanilla so that I can use it more once I learn more advanced vim shortcuts etc
+	#man terminfo, man zshzle,
+	#make modes that mimic usual gui editing etc;
+	bindkey -d # reset to defaults
+	bindkey -e # switch to emacs mode
+	#bindkey -N custom emacs # create new keymap based on emacs
+	#bindkey -A custom main # use the newly created keymap
+	local -A k
+	k[up]="${terminfo[kcuu1]}"
+	k[down]="${terminfo[kcud1]}"
+	k[left]="${terminfo[kcub1]}"
+	k[right]="${terminfo[kcuf1]}"
+	k[home]="${terminfo[khome]}"
+	k[end]="${terminfo[kend]}"
+	bindkey "${k[home]}" beginning-of-line
+	bindkey "${k[end]}" end-of-line
+	#bindkey "${k[up]}" history-search-backward
+	#bindkey "${k[up]}" history-substring-search-up
+	#bindkey "${k[up]}" history-incremental-search-backward
+	#bindkey "${k[down]}" history-search-forward
+	#bindkey "${k[right]}" forward-char
+	#bindkey "${k[left]}" backward-char
+	bindkey "^${k[left]}" beginning-of-line
+
+	autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+	zle -N up-line-or-beginning-search
+	zle -N down-line-or-beginning-search
+	bindkey "${k[up]}"   up-line-or-beginning-search
+	bindkey "${k[down]}" down-line-or-beginning-search
+}
+
+resetkeys
+
 
 setup_zsh_plugins() {
 	setup_zplug() {
@@ -110,11 +138,10 @@ source /usr/share/powerline/bindings/zsh/powerline.zsh
 
 fpath=(~/.dot/l/zsh-custom-completion $fpath)
 
-source "${HOME}/.dot/l/shrc/both"
 
-#autoload -U compinit && compinit
-#zplug update regularly?
-#"zplug clear" to clear cache
-alias zcc='yes | zplug clean && zplug clear && autoload -U compinit && compinit'
+source "${HOME}/.dot/l/shrc/both" # maybe emulate bash when doing this?
 
-#should setup right-side prompts on my powerline etc
+alias zrc='emulate zsh -c "autoload -Uz compinit" ; compinit -d ~/.cache/zcompdump'
+alias zcc='zplug clear ; zrc'
+
+zrc
