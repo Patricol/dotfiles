@@ -38,6 +38,8 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 bind '"\e[C": forward-char'
 bind '"\e[D": backward-char'
+bind '"C-\e[C": forward-word'
+bind '"C-\e[D": backward-word'
 
 #shopt -s globsta # If set, the pattern "**" used in a pathname expansion context will match all files and zero or more directories and subdirectories.
 
