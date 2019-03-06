@@ -36,7 +36,7 @@ gui_sudo_open() {
 	declare as_user="$1" ; shift
 	local program
 	program="$@"
-	gui_open "sudo --askpass --login --user=${as_user} -- ${program}"
+	gui_open "sudo --askpass --login --user=${as_user} -- env QT_QPA_PLATFORMTHEME=qt5ct ${program}"
 }
 
 alias sudo='sudo ' # allows me to use sudo before aliases
