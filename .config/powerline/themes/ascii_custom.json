@@ -44,10 +44,18 @@
 		},
 		"mode": {
 			"args": {
+				"default": "NONE",
 				"override": {
-					"viins": "I",
+					".safe": ".SAFE",
+					"command": "COMMAND",
+					"emacs": "E",
+					"isearch": "ISEARCH",
+					"main": "M",
+					"paste": "PASTE",
 					"vicmd": "C",
-					"emacs": "E"
+					"viins": "I",
+					"viopp": "VIOPP",
+					"visual": "VISUAL"
 				}
 			}
 		},

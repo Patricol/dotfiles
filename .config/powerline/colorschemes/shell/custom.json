@@ -4,7 +4,15 @@
 		"mode": "c-shell-mode"
 	},
 	"mode_translations": {
+		".safe": {"groups": {"mode": "c-shell-mode-.safe"}},
+		"command": {"groups": {"mode": "c-shell-mode-command"}},
+		"emacs": {"groups": {"mode": "c-shell-mode-emacs"}},
+		"isearch": {"groups": {"mode": "c-shell-mode-isearch"}},
+		"main": {"groups": {"mode": "c-shell-mode-main"}},
+		"paste": {"groups": {"mode": "c-shell-mode-paste"}},
 		"vicmd": {"groups": {"mode": "c-shell-mode-vicmd"}},
-		"emacs": {"groups": {"mode": "c-shell-mode-emacs"}}
+		"viins": {"groups": {"mode": "c-shell-mode-viins"}},
+		"viopp": {"groups": {"mode": "c-shell-mode-viopp"}},
+		"visual": {"groups": {"mode": "c-shell-mode-visual"}}
 	}
 }
