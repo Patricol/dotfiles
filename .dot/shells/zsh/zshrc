@@ -269,7 +269,14 @@ fpath=(~/.dot/l/zsh-custom-completion $fpath)
 
 source "${HOME}/.dot/l/shrc/both" # maybe emulate bash when doing this?
 
-alias zrc='emulate zsh -c "autoload -Uz compinit" ; compinit -d ~/.cache/zcompdump'
-alias zcc='zplug clear ; zrc'
+zrc() {
+	#keep this as a function; so it's expanded in update-zsh-plugins
+	emulate zsh -c "autoload -Uz compinit"
+	compinit -d ~/.cache/zcompdump
+}
+zcc() {
+	zplug clear
+	zrc
+}
 
 zrc
