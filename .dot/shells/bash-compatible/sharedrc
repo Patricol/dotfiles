@@ -29,18 +29,14 @@ source ~/.config/wpg/formats/colors-tty.sh || true # do this above neofetch. bla
 
 
 #(cat ~/.config/wpg/sequences &) # not needed; overrides custom cursor etc.
-
-if [[ -n "${SSH_CONNECTION}" ]]; then
-	neofetch
-	export LANG="en_US.UTF-8" # changing lang fixes vim powerline
-fi
-
 if [[ "${TERM}" == "linux" ]]; then
 	powerline_shell_theme="ext.shell.theme=\"${powerline_shell_theme}_oneline\";ext.shell.colorscheme=\"custom_tty\";ext.vim.colorscheme=\"custom_tty\";ext.tmux.colorscheme=\"custom_tty\""
 else
 	powerline_shell_theme="ext.shell.theme=\"${powerline_shell_theme}\""
 fi
-if [[ "${TERM}" == "linux" ]] || [[ -n "${SSH_CONNECTION}" ]]; then
+if [[ -z "${DISPLAY}" ]]; then
+	neofetch
+	export LANG="en_US.UTF-8" # changing lang fixes vim powerline
 	export POWERLINE_CONFIG_OVERRIDES="ext.vim.top_theme=\"ascii_custom\";common.default_top_theme=\"ascii_custom\";${powerline_shell_theme}"
 else
 	export POWERLINE_CONFIG_OVERRIDES="${powerline_shell_theme}"

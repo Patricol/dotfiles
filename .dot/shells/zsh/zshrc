@@ -11,43 +11,169 @@ SAVEHIST=2000000000
 # Treat these characters as part of a word.
 #WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
+zstyle ':completion:*' rehash true
+
 # https://www.zsh.org/mla/workers/2013/msg01176.html https://github.com/bhilburn/powerlevel9k/issues/110
 zmodload zsh/terminfo
 RPS1="${RPS1%?}%{${(M)RPS1%?}${terminfo[cub1]}%}"
 
+autoload -Uz run-help
+unalias run-help
+alias help=run-help
 
 resetkeys() {
 	#setup modes and incremental history search etc; should customize the bindkey stuff a lot.
 	#select to end of line, select next word, etc
 	#keep the vim mode pretty vanilla so that I can use it more once I learn more advanced vim shortcuts etc
+	#echo -n "${terminfo[khome]}" | od -a
 	#man terminfo, man zshzle,
 	#make modes that mimic usual gui editing etc;
 	bindkey -d # reset to defaults
 	bindkey -e # switch to emacs mode
-	#bindkey -N custom emacs # create new keymap based on emacs
-	#bindkey -A custom main # use the newly created keymap
-	local -A k
-	k[up]="${terminfo[kcuu1]}"
-	k[down]="${terminfo[kcud1]}"
-	k[left]="${terminfo[kcub1]}"
-	k[right]="${terminfo[kcuf1]}"
-	k[home]="${terminfo[khome]}"
-	k[end]="${terminfo[kend]}"
-	bindkey "${k[home]}" beginning-of-line
-	bindkey "${k[end]}" end-of-line
-	#bindkey "${k[up]}" history-search-backward
-	#bindkey "${k[up]}" history-substring-search-up
-	#bindkey "${k[up]}" history-incremental-search-backward
-	#bindkey "${k[down]}" history-search-forward
-	#bindkey "${k[right]}" forward-char
-	#bindkey "${k[left]}" backward-char
-	bindkey "^${k[left]}" beginning-of-line
+
+	local use_zkbd
+	if [[ "${use_zkbd}" ]]; then
+		autoload zkbd
+		local zkbd_dir keyfile
+		zkbd_dir="${HOME}/.dot/l/zkbd"
+		for keyfile in "${zkbd_dir}/${TERM}-${DISPLAY}" "${zkbd_dir}/${TERM}-${VENDOR}-${OSTYPE}"; do
+			[[ -f "${keyfile}" ]] && source "${keyfile}"
+		done
+		if ! [[ -v key ]]; then
+			zkbdsetup() {
+				echo "If using i3, first enter minbindings mode by pressing Win+Ctrl+Alt+Shift+Z."
+				echo "After zkbd finishes, be (exec zsh) to reapply keybindings."
+				zkbd
+			}
+			echo "Run zkbdsetup to enable advanced keybindings." >&2
+		fi
+	else
+		typeset -gA key
+		key[Backspace]="${terminfo[kbs]}"
+		key[Insert]="${terminfo[kich1]}"
+		key[Home]="${terminfo[khome]}"
+		key[PageUp]="${terminfo[kpp]}"
+		key[Delete]="${terminfo[kdch1]}"
+		key[End]="${terminfo[kend]}"
+		key[PageDown]="${terminfo[knp]}"
+		key[Up]="${terminfo[kcuu1]}"
+		key[Left]="${terminfo[kcub1]}"
+		key[Down]="${terminfo[kcud1]}"
+		key[Right]="${terminfo[kcuf1]}"
+		
+		key[Menu]="[29~"
+
+		key[SInsert]="${terminfo[kIC]}"
+		key[SHome]="${terminfo[kHOM]}"
+		key[SDelete]="${terminfo[kDC]}"
+		key[SEnd]="${terminfo[kEND]}"
+		key[SLeft]="${terminfo[kLFT]}"
+		key[SRight]="${terminfo[kRIT]}"
+		
+		#key[SBackspace]="" #identical to regualar Backspace
+		key[SUp]="[a"
+		key[SDown]="[b"
+		#key[SPageUp]="" # no keycode sent
+		#key[SPageDown]="" # no keycode sent
+
+		key[SMenu]="[29$"
+		
+		key[CBackspace]=""
+		key[CInsert]="[2^"
+		key[CHome]="[7^"
+		key[CPageUp]="[5^"
+		key[CDelete]="[3^"
+		key[CEnd]="[8^"
+		key[CPageDown]="[6^"
+		key[CUp]="Oa"
+		key[CLeft]="Od"
+		key[CDown]="Ob"
+		key[CRight]="Oc"
+		
+		key[CMenu]="[29^"
+		#manually set keys are for POK3R
+		key[GuacHome]="[1~"
+		key[GuacEnd]="[4~"
+		key[GuacUp]="OA"
+		key[GuacLeft]="OD"
+		key[GuacDown]="OB"
+		key[GuacRight]="OC"
+	fi
+
+	getterminfo() {
+		local key val thing
+		for key val in ${(kv)terminfo}; do
+			for thing in "${key}" "${val}"; do
+				echo -n "${thing}" | od -a -A n -w4096 | sed 's/esc/^[/g' | tr -d ' '
+			done | paste - -
+		done
+	}
+
+	zbindkey() {
+		declare usekey="${key[$1]}" action="$2"
+		[[ -n "${usekey}" ]] && [[ -n "${action}" ]] && bindkey -- "${usekey}" "${action}"
+	}
+
+	cd_back() {
+		popd
+		zle       reset-prompt
+	}
+
+	zle -N cd_back
 
 	autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 	zle -N up-line-or-beginning-search
 	zle -N down-line-or-beginning-search
-	bindkey "${k[up]}"   up-line-or-beginning-search
-	bindkey "${k[down]}" down-line-or-beginning-search
+
+	zbindkey Home		beginning-of-line
+	zbindkey End		end-of-line
+	#zbindkey Insert		overwrite-mode
+	zbindkey Backspace	backward-delete-char
+	zbindkey Delete		delete-char
+	#zbindkey Up		up-line-or-history
+	#zbindkey Down		down-line-or-history
+	#zbindkey Up		history-search-backward
+	#zbindkey Down		history-search-forward
+	#zbindkey Up		history-substring-search-up
+	#zbindkey Down		history-substring-search-down
+	#zbindkey Up		history-incremental-search-backward
+	#zbindkey Down		history-incremental-search-forward
+	zbindkey Up		up-line-or-beginning-search
+	zbindkey Down		down-line-or-beginning-search
+	zbindkey Left		backward-char
+	zbindkey Right		forward-char
+	zbindkey PageUp		beginning-of-buffer-or-history
+	zbindkey PageDown	end-of-buffer-or-history
+	zbindkey Menu		list-choices
+	
+	zbindkey GuacHome	beginning-of-line
+	zbindkey GuacEnd	end-of-line
+	zbindkey GuacUp		up-line-or-beginning-search
+	zbindkey GuacDown	down-line-or-beginning-search
+	zbindkey GuacLeft	backward-char
+	zbindkey GuacRight	forward-char
+	
+	zbindkey CBackspace	backward-delete-word
+	zbindkey CDelete	delete-word
+	zbindkey CDown		infer-next-history
+	zbindkey CEnd		end-of-line
+	zbindkey CHome		beginning-of-line
+	zbindkey CInsert	
+	zbindkey CLeft		backward-word
+	zbindkey CMenu		
+	zbindkey CPageDown	
+	zbindkey CPageUp	
+	zbindkey CRight		forward-word
+	zbindkey CUp		cd_back
+	zbindkey SDelete	kill-whole-line
+	zbindkey SDown		history-beginning-search-forward
+	zbindkey SEnd		end-of-line
+	zbindkey SHome		beginning-of-line
+	zbindkey SInsert	
+	zbindkey SLeft		
+	zbindkey SMenu		
+	zbindkey SRight 	
+	zbindkey SUp		history-beginning-search-backward
 }
 
 resetkeys
@@ -94,6 +220,8 @@ setup_zsh_plugins() {
 		export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 		unset ZSH_AUTOSUGGEST_USE_ASYNC # unset to disable
 		# setup keybindings etc: https://github.com/zsh-users/zsh-autosuggestions
+		ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(end-of-line vi-end-of-line vi-add-eol)
+		ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(forward-char vi-forward-char forward-word emacs-forward-word vi-forward-word vi-forward-word-end vi-forward-blank-word vi-forward-blank-word-end vi-find-next-char vi-find-next-char-skip)
 	fi
 	zplug "zsh-users/zsh-completions"
 	zplug "zsh-users/zsh-syntax-highlighting", defer:2
