@@ -94,10 +94,10 @@ resetkeys() {
 		#manually set keys are for POK3R
 		key[GuacHome]="[1~"
 		key[GuacEnd]="[4~"
-		key[GuacUp]="OA"
-		key[GuacLeft]="OD"
-		key[GuacDown]="OB"
-		key[GuacRight]="OC"
+		key[GuacUp]="[A" # in guac, terminfo reports "OA" etc for arrow keys, but outside of vim it's "[A" etc.; which matches non-guac but is overridden by what terminfo sees
+		key[GuacLeft]="[D"
+		key[GuacDown]="[B"
+		key[GuacRight]="[C"
 	fi
 
 	getterminfo() {
