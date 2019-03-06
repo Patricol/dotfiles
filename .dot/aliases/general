@@ -60,6 +60,8 @@ alias mnt='tldr'
 alias mnc='cheat'
 alias mn='mnt'
 
+alias sc-logs='sudo journalctl -u'
+
 #replace with nvim once I switch to it.
 alias ex='vim -e'
 alias exim='vim -E'
