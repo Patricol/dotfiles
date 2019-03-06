@@ -172,5 +172,5 @@ endif
 call plug#end()
 
 
-colorscheme wal
+silent! colorscheme wal
 
