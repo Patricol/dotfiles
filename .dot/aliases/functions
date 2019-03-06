@@ -172,7 +172,12 @@ edit_file() {
     local file filepath
     for file in $@; do
         if [[ "${__edit_file_dict[${file}]+exists}" ]]; then
-            filepaths+=("${__edit_file_dict[${file}]}")
+	    filepath="${__edit_file_dict[${file}]}"
+	    if [[ -L "${filepath}" ]]; then
+		filepath="$(readlink -f "${filepath}")"
+	    fi
+	    echo $filepath
+            filepaths+=("${filepath}")
         else
             echo "${file} not found; add it to the (__make_file_dict) function. (vc general)" >&2
         fi

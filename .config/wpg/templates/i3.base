@@ -442,3 +442,10 @@ mode "WORK" {{
         bindsym $ctrl+$alt+$shift+p     $exitmode
 }}
 
+set $minbindings "MINBINDINGS - Win+Ctrl+Alt+Shift+Z to exit."
+bindsym $win+$ctrl+$alt+$shift+z mode $minbindings
+mode $minbindings {{
+        bindsym $win+$ctrl+$alt+$shift+z     $exitmode
+}}
+
+
