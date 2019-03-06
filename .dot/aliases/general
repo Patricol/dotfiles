@@ -60,6 +60,7 @@ alias mnt='tldr'
 alias mnc='cheat'
 alias mn='mnt'
 
+#replace with nvim once I switch to it.
 alias ex='vim -e'
 alias exim='vim -E'
 alias rview='vim -RZ'
