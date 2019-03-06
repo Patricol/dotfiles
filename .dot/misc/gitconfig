@@ -5,3 +5,5 @@
 	autocrlf = input
 [mergetool]
 	keepBackup = false
+[color]
+	ui = auto
