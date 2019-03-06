@@ -60,6 +60,7 @@ alias mnt='tldr'
 alias mnc='cheat'
 alias mn='mnt'
 
+#replace with nvim once I switch to it.
 alias ex='vim -e'
 alias exim='vim -E'
 alias rview='vim -RZ'
@@ -163,6 +164,7 @@ alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
 alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
 
 alias epoch='date +%s'
+alias epochms='date +%s.%N'
 
 
 alias nmo='gui_open nemo $(pwd)'
