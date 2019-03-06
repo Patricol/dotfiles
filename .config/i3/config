@@ -357,7 +357,7 @@ set $facebook-messenger		exec --no-startup-id caprine
 # LAUNCHING HOTKEYS ###########################################################
 
 bindsym $mod+Return		$terminal
-#bindsym $mod2+Return	        $start_main_app
+#bindsym $mod2+Return		$start_main_app
 bindsym $mod+space		$launcher
 bindsym $mod2+space		$launcher
 bindsym $mod2+r			$launcher
@@ -372,7 +372,7 @@ bindsym Print			$screenshot
 bindsym $mod2+l			$lock
 bindsym $mod2+e			$files
 bindsym $ctrl+$shift+Escape	$task-manager
-bindsym $mod+$mod2+v	        $type-clipboard
+bindsym $mod+$mod2+v		$type-clipboard
 bindsym $alt+Tab		$window_switcher
 
 bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
