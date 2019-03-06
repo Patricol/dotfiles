@@ -7,37 +7,20 @@
 
 # AUTOSTART ###################################################################
 
-exec_always --no-startup-id systemctl --user restart polybar-main.service
-exec_always --no-startup-id systemctl --user restart polybar-wss.service
-exec_always --no-startup-id systemctl --user restart animated-wallpaper.service
-exec_always --no-startup-id systemctl --user start redshift-gtk.service
-exec_always --no-startup-id systemctl --user start network-manager-applet.service
-exec_always --no-startup-id systemctl --user start blueman-applet.service
-exec_always --no-startup-id systemctl --user start udiskie.service
-exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
-
-set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service network-manager-applet.service blueman-applet.service udiskie.service indicator-sound-switcher.service animated-wallpaper.service
-
-#exec --no-startup-id polybar main -r
-## No need for this; and can cover the one on my actual device.
-## exec --no-startup-id polybar wss -r
-#exec --no-startup-id xrdb ~/.Xresources
-#exec --no-startup-id startapp
+exec --no-startup-id polybar main -r
+# No need for this; and can cover the one on my actual device.
+# exec --no-startup-id polybar wss -r
+exec --no-startup-id xrdb ~/.Xresources
+exec --no-startup-id startapp
 
 
 # APPEARANCE ##################################################################
 
-gaps inner 1
-gaps outer 0
-smart_gaps on
-
 #border can be pixel, normal, or none.
 set $def_border pixel 1
-default_border $def_border
-default_floating_border $def_border
-#set $def_border_floating normal 1
-#new_window $def_border
-#new_float $def_border_floating
+set $def_border_floating normal 1
+new_window $def_border
+new_float $def_border_floating
 
 for_window [class=.*] border $def_border
 #adds border to things like GTK calculator and Chromium
@@ -357,7 +340,7 @@ set $facebook-messenger		exec --no-startup-id caprine
 # LAUNCHING HOTKEYS ###########################################################
 
 bindsym $mod+Return		$terminal
-#bindsym $mod2+Return		$start_main_app
+bindsym $mod2+Return		$start_main_app
 bindsym $mod+space		$launcher
 bindsym $mod2+space		$launcher
 bindsym $mod2+r			$launcher
