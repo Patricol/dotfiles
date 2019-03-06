@@ -169,7 +169,7 @@ alias epoch='date +%s'
 alias epochms='date +%s.%N'
 
 
-alias nmo='gui_open nemo $(pwd)'
+alias nmo='gui_open nemo "$(pwd)"'
 
 alias aecho='echo '
 
