@@ -98,7 +98,7 @@ client.urgent              $accent     $accent     $darkest    $dark     $accent
 client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
 client.background          $darkest
 
-#exec_always --no-startup-id xsetroot -solid "$darkest" #keep disabled; now that there's a wallpaper.service.
+#exec_always --no-startup-id xsetroot -solid "$darkest"
 
 
 
