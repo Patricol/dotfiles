@@ -163,6 +163,7 @@ alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
 alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
 
 alias epoch='date +%s'
+alias epochms='date +%s.%N'
 
 
 alias nmo='gui_open nemo $(pwd)'
