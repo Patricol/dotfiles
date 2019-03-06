@@ -20,6 +20,7 @@ if [[ -d "${HOME}/.ssh/auto" ]]; then
 fi
 
 export EDITOR="vim"
+export PAGER="less"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 
