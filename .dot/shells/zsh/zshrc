@@ -275,6 +275,7 @@ zrc() {
 	compinit -d ~/.cache/zcompdump
 }
 zcc() {
+	#keep this as a function; so it's expanded in update-zsh-plugins
 	zplug clear
 	zrc
 }
