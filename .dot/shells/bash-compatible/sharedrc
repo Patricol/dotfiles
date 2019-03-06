@@ -47,7 +47,7 @@ else
 fi
 unset powerline_shell_theme
 
-LANG="en_US.UTF-8" powerline-daemon -q # need to start powerline-daemon with unicode LANG regardless
+LANG="en_US.UTF-8" powerline-daemon -q # need to start powerline-daemon with unicode LANG regardless. Maybe start this using systemd instead?
 
 
 stty -ixon # disable Ctrl-S
