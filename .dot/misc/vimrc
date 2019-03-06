@@ -114,6 +114,7 @@ let g:gitgutter_grep=''
 
 " powerline doesn't support nvim yet: https://github.com/powerline/powerline/issues/1287
 if has('nvim')
+  " Not being auto-updated, as nvim +MAINTAIN hangs when run by systemd.
   Plug 'vim-airline/vim-airline'
   call s:check_installed('vim-airline')
   let g:airline#extensions#tabline#enabled = 1
@@ -172,5 +173,5 @@ endif
 call plug#end()
 
 
-colorscheme wal
+silent! colorscheme wal
 
