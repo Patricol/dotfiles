@@ -81,7 +81,7 @@ client.urgent              $accent     $accent     $darkest    $dark     $accent
 client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
 client.background          $darkest
 
-exec_always --no-startup-id xsetroot -solid "$darkest" #keep disabled; now that there's a wallpaper.service.
+exec_always --no-startup-id xsetroot -solid "$darkest"
 
 
 
@@ -101,11 +101,6 @@ workspace_auto_back_and_forth yes
 
 
 # BUTTON ALIASES ##############################################################
-
-# Alt
-set $mod Mod1
-# Win
-set $mod2 Mod4
 
 set $alt Mod1
 set $win Mod4
@@ -130,32 +125,32 @@ set $windows-key-code 133
 bindsym $mouse-right floating toggle
 
 #this covers the usual alt-right-click resizing that's so convenient.
-#bindsym --whole-window $mod+$mouse-right floating toggle
-bindsym --whole-window $mod+$mouse-left floating toggle
+#bindsym --whole-window $alt+$mouse-right floating toggle
+bindsym --whole-window $alt+$mouse-left floating toggle
 
-bindsym --whole-window $mod+$mouse-wheel-click kill
+bindsym --whole-window $alt+$mouse-wheel-click kill
 
 
 # The middle button over a titlebar kills the window
 bindsym --release $mouse-wheel-click kill
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Use Mouse+$alt to drag floating windows to their wanted position
+floating_modifier $alt
 
-bindsym --whole-window $mod+$mouse-wheel-left	move left
-bindsym --whole-window $mod+$mouse-wheel-down	move down
-bindsym --whole-window $mod+$mouse-wheel-up	move up
-bindsym --whole-window $mod+$mouse-wheel-right	move right
+bindsym --whole-window $alt+$mouse-wheel-left	move left
+bindsym --whole-window $alt+$mouse-wheel-down	move down
+bindsym --whole-window $alt+$mouse-wheel-up	move up
+bindsym --whole-window $alt+$mouse-wheel-right	move right
 
-bindsym --whole-window $mod+$shift+$mouse-wheel-left	move container to workspace prev
-bindsym --whole-window $mod+$shift+$mouse-wheel-down	move container to workspace next
-bindsym --whole-window $mod+$shift+$mouse-wheel-up	move container to workspace prev
-bindsym --whole-window $mod+$shift+$mouse-wheel-right	move container to workspace next
+bindsym --whole-window $alt+$shift+$mouse-wheel-left	move container to workspace prev
+bindsym --whole-window $alt+$shift+$mouse-wheel-down	move container to workspace next
+bindsym --whole-window $alt+$shift+$mouse-wheel-up	move container to workspace prev
+bindsym --whole-window $alt+$shift+$mouse-wheel-right	move container to workspace next
 
-bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-left	move container to workspace prev ; workspace prev
-bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-down	move container to workspace next ; workspace next
-bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-up	move container to workspace prev ; workspace prev
-bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-right	move container to workspace next ; workspace next
+bindsym --whole-window $ctrl+$alt+$shift+$mouse-wheel-left	move container to workspace prev ; workspace prev
+bindsym --whole-window $ctrl+$alt+$shift+$mouse-wheel-down	move container to workspace next ; workspace next
+bindsym --whole-window $ctrl+$alt+$shift+$mouse-wheel-up	move container to workspace prev ; workspace prev
+bindsym --whole-window $ctrl+$alt+$shift+$mouse-wheel-right	move container to workspace next ; workspace next
 
 
 
@@ -165,70 +160,70 @@ bindsym --whole-window $ctrl+$mod+$shift+$mouse-wheel-right	move container to wo
 
 set $exit_i3			exec --no-startup-id "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"
 bindsym $ctrl+$alt+Delete	$exit_i3
-bindsym $mod+$shift+e		$exit_i3
+bindsym $alt+$shift+e		$exit_i3
 
 # reload the configuration file
-bindsym $mod+$shift+c reload
+bindsym $alt+$shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+$shift+r restart
+bindsym $alt+$shift+r restart
 
-bindsym $mod+$shift+u $stop_services
+bindsym $alt+$shift+u $stop_services
 
 
 set $xkill exec --no-startup-id xkill
 # kill focused window
-bindsym $mod+$shift+q kill
-bindsym --release $mod+$ctrl+$shift+q $xkill
+bindsym $alt+$shift+q kill
+bindsym --release $alt+$ctrl+$shift+q $xkill
 bindsym $alt+F4 kill
 
-bindsym $mod+x split toggle
+bindsym $alt+x split toggle
 
 # enter fullscreen mode for the focused container
 #should also make this focus the window under mouse. if you exit fullscreen and your mouse is above a different window than the one that was just fullscreened, focus won't follow the mouse until you move it off that window.
-bindsym $mod+f fullscreen toggle
+bindsym $alt+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $alt+s layout stacking
+bindsym $alt+w layout tabbed
+bindsym $alt+e layout toggle split
 
 # change focus between tiling / floating windows
-bindsym $mod+d focus mode_toggle
+bindsym $alt+d focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $alt+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+#bindsym $alt+d focus child
 
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+i focus up
-bindsym $mod+l focus right
+bindsym $alt+j focus left
+bindsym $alt+k focus down
+bindsym $alt+i focus up
+bindsym $alt+l focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $alt+Left focus left
+bindsym $alt+Down focus down
+bindsym $alt+Up focus up
+bindsym $alt+Right focus right
 
 # move focused window
-bindsym $mod+$shift+j move left
-bindsym $mod+$shift+k move down
-bindsym $mod+$shift+i move up
-bindsym $mod+$shift+l move right
+bindsym $alt+$shift+j move left
+bindsym $alt+$shift+k move down
+bindsym $alt+$shift+i move up
+bindsym $alt+$shift+l move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+$shift+Left move left
-bindsym $mod+$shift+Down move down
-bindsym $mod+$shift+Up move up
-bindsym $mod+$shift+Right move right
+bindsym $alt+$shift+Left move left
+bindsym $alt+$shift+Down move down
+bindsym $alt+$shift+Up move up
+bindsym $alt+$shift+Right move right
 
 
 # capitalize modes so they look better in polybar. (font sizing etc.)
-bindsym $mod+r mode "RESIZE"
+bindsym $alt+r mode "RESIZE"
 mode "RESIZE" {
         set $big 10 px or 10 ppt
         set $small 1 px or 1 ppt
@@ -255,7 +250,7 @@ mode "RESIZE" {
         bindsym Return	$exit
         bindsym Escape	$exit
         bindsym space	$exit
-        bindsym $mod+r	$exit
+        bindsym $alt+r	$exit
 }
 
 
@@ -271,41 +266,41 @@ set $ws9 workspace number 9
 set $ws10 workspace number 10
 
 # switch to workspace
-bindsym $mod+1 $ws1
-bindsym $mod+2 $ws2
-bindsym $mod+3 $ws3
-bindsym $mod+4 $ws4
-bindsym $mod+5 $ws5
-bindsym $mod+6 $ws6
-bindsym $mod+7 $ws7
-bindsym $mod+8 $ws8
-bindsym $mod+9 $ws9
-bindsym $mod+0 $ws10
+bindsym $alt+1 $ws1
+bindsym $alt+2 $ws2
+bindsym $alt+3 $ws3
+bindsym $alt+4 $ws4
+bindsym $alt+5 $ws5
+bindsym $alt+6 $ws6
+bindsym $alt+7 $ws7
+bindsym $alt+8 $ws8
+bindsym $alt+9 $ws9
+bindsym $alt+0 $ws10
 
 # move focused container to workspace
-bindsym $mod+$shift+1 move container to $ws1
-bindsym $mod+$shift+2 move container to $ws2
-bindsym $mod+$shift+3 move container to $ws3
-bindsym $mod+$shift+4 move container to $ws4
-bindsym $mod+$shift+5 move container to $ws5
-bindsym $mod+$shift+6 move container to $ws6
-bindsym $mod+$shift+7 move container to $ws7
-bindsym $mod+$shift+8 move container to $ws8
-bindsym $mod+$shift+9 move container to $ws9
-bindsym $mod+$shift+0 move container to $ws10
+bindsym $alt+$shift+1 move container to $ws1
+bindsym $alt+$shift+2 move container to $ws2
+bindsym $alt+$shift+3 move container to $ws3
+bindsym $alt+$shift+4 move container to $ws4
+bindsym $alt+$shift+5 move container to $ws5
+bindsym $alt+$shift+6 move container to $ws6
+bindsym $alt+$shift+7 move container to $ws7
+bindsym $alt+$shift+8 move container to $ws8
+bindsym $alt+$shift+9 move container to $ws9
+bindsym $alt+$shift+0 move container to $ws10
 
 # move focused container to workspace AND switch to workspace
 # don't put a space between the first $wsx and the ";", causes some weird issues
-bindsym $mod+$shift+$ctrl+1 move container to $ws1; $ws1
-bindsym $mod+$shift+$ctrl+2 move container to $ws2; $ws2
-bindsym $mod+$shift+$ctrl+3 move container to $ws3; $ws3
-bindsym $mod+$shift+$ctrl+4 move container to $ws4; $ws4
-bindsym $mod+$shift+$ctrl+5 move container to $ws5; $ws5
-bindsym $mod+$shift+$ctrl+6 move container to $ws6; $ws6
-bindsym $mod+$shift+$ctrl+7 move container to $ws7; $ws7
-bindsym $mod+$shift+$ctrl+8 move container to $ws8; $ws8
-bindsym $mod+$shift+$ctrl+9 move container to $ws9; $ws9
-bindsym $mod+$shift+$ctrl+0 move container to $ws10; $ws10
+bindsym $alt+$shift+$ctrl+1 move container to $ws1; $ws1
+bindsym $alt+$shift+$ctrl+2 move container to $ws2; $ws2
+bindsym $alt+$shift+$ctrl+3 move container to $ws3; $ws3
+bindsym $alt+$shift+$ctrl+4 move container to $ws4; $ws4
+bindsym $alt+$shift+$ctrl+5 move container to $ws5; $ws5
+bindsym $alt+$shift+$ctrl+6 move container to $ws6; $ws6
+bindsym $alt+$shift+$ctrl+7 move container to $ws7; $ws7
+bindsym $alt+$shift+$ctrl+8 move container to $ws8; $ws8
+bindsym $alt+$shift+$ctrl+9 move container to $ws9; $ws9
+bindsym $alt+$shift+$ctrl+0 move container to $ws10; $ws10
 
 
 
@@ -316,7 +311,9 @@ bindsym $mod+$shift+$ctrl+0 move container to $ws10; $ws10
 set $start_main_app             exec --no-startup-id startapp
 set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
-set $screenshot			exec --no-startup-id scrot -q 100 -m -e 'mv $f ~/screenshots/'
+set $screenshot			exec --no-startup-id scrot "${HOME}/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp
+set $screenshot-window		exec --no-startup-id scrot "${HOME}/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp --focused
+set $screenshot-selection       exec --no-startup-id scrot "${HOME}/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp --select
 set $terminal			exec --no-startup-id urxvt
 set $chrome			exec chromium
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
@@ -339,23 +336,23 @@ set $facebook-messenger		exec --no-startup-id caprine
 
 # LAUNCHING HOTKEYS ###########################################################
 
-bindsym $mod+Return		$terminal
-bindsym $mod2+Return		$start_main_app
-bindsym $mod+space		$launcher
-bindsym $mod2+space		$launcher
-bindsym $mod2+r			$launcher
-bindsym $mod2+a			$text-editor
-bindsym $mod2+c			$chrome
-bindsym $mod2+s			$notes
-bindsym $mod2+f			$facebook-messenger
-bindsym $mod2+m			$music
-bindsym $mod2+n			$notes
-bindsym $mod2+Print		$screenshot
+bindsym $alt+Return		$terminal
+bindsym $win+Return		$start_main_app
+bindsym $alt+space		$launcher
+bindsym $win+space		$launcher
+bindsym $win+r			$launcher
+bindsym $win+a			$text-editor
+bindsym $win+c			$chrome
+bindsym $win+s			$notes
+bindsym $win+f			$facebook-messenger
+bindsym $win+m			$music
+bindsym $win+n			$notes
+bindsym $win+Print		$screenshot-window
 bindsym Print			$screenshot
-bindsym $mod2+l			$lock
-bindsym $mod2+e			$files
+bindsym $win+l			$lock
+bindsym $win+e			$files
 bindsym $ctrl+$shift+Escape	$task-manager
-bindsym $mod+$mod2+v		$type-clipboard
+bindsym $alt+$win+v		$type-clipboard
 bindsym $alt+Tab		$window_switcher
 
 bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
@@ -372,46 +369,46 @@ bindsym $ctrl+$alt+$shift+w mode "WORKISH"
 set $warnstopworking exec --no-startup-id "rofi -e 'Ctrl+Alt+Shift+P to stop working.'"
 set $exitmode mode "default"
 mode "WORKISH" {
-        bindsym $mod+f                  fullscreen toggle
-        bindsym $mod+space		$launcher
-        bindsym $mod2+l			$lock
+        bindsym $alt+f                  fullscreen toggle
+        bindsym $alt+space		$launcher
+        bindsym $win+l			$lock
 
         # switch to workspace
-        bindsym $mod+1 $ws1
-        bindsym $mod+2 $ws2
-        bindsym $mod+3 $ws3
-        bindsym $mod+4 $ws4
-        bindsym $mod+5 $ws5
-        bindsym $mod+6 $ws6
-        bindsym $mod+7 $ws7
-        bindsym $mod+8 $ws8
-        bindsym $mod+9 $ws9
-        bindsym $mod+0 $ws10
+        bindsym $alt+1 $ws1
+        bindsym $alt+2 $ws2
+        bindsym $alt+3 $ws3
+        bindsym $alt+4 $ws4
+        bindsym $alt+5 $ws5
+        bindsym $alt+6 $ws6
+        bindsym $alt+7 $ws7
+        bindsym $alt+8 $ws8
+        bindsym $alt+9 $ws9
+        bindsym $alt+0 $ws10
 
         # move focused container to workspace
-        bindsym $mod+$shift+1 move container to $ws1
-        bindsym $mod+$shift+2 move container to $ws2
-        bindsym $mod+$shift+3 move container to $ws3
-        bindsym $mod+$shift+4 move container to $ws4
-        bindsym $mod+$shift+5 move container to $ws5
-        bindsym $mod+$shift+6 move container to $ws6
-        bindsym $mod+$shift+7 move container to $ws7
-        bindsym $mod+$shift+8 move container to $ws8
-        bindsym $mod+$shift+9 move container to $ws9
-        bindsym $mod+$shift+0 move container to $ws10
+        bindsym $alt+$shift+1 move container to $ws1
+        bindsym $alt+$shift+2 move container to $ws2
+        bindsym $alt+$shift+3 move container to $ws3
+        bindsym $alt+$shift+4 move container to $ws4
+        bindsym $alt+$shift+5 move container to $ws5
+        bindsym $alt+$shift+6 move container to $ws6
+        bindsym $alt+$shift+7 move container to $ws7
+        bindsym $alt+$shift+8 move container to $ws8
+        bindsym $alt+$shift+9 move container to $ws9
+        bindsym $alt+$shift+0 move container to $ws10
 
         # move focused container to workspace AND switch to workspace
         # don't put a space between the first $wsx and the ";", causes some weird issues
-        bindsym $mod+$shift+$ctrl+1 move container to $ws1; $ws1
-        bindsym $mod+$shift+$ctrl+2 move container to $ws2; $ws2
-        bindsym $mod+$shift+$ctrl+3 move container to $ws3; $ws3
-        bindsym $mod+$shift+$ctrl+4 move container to $ws4; $ws4
-        bindsym $mod+$shift+$ctrl+5 move container to $ws5; $ws5
-        bindsym $mod+$shift+$ctrl+6 move container to $ws6; $ws6
-        bindsym $mod+$shift+$ctrl+7 move container to $ws7; $ws7
-        bindsym $mod+$shift+$ctrl+8 move container to $ws8; $ws8
-        bindsym $mod+$shift+$ctrl+9 move container to $ws9; $ws9
-        bindsym $mod+$shift+$ctrl+0 move container to $ws10; $ws10
+        bindsym $alt+$shift+$ctrl+1 move container to $ws1; $ws1
+        bindsym $alt+$shift+$ctrl+2 move container to $ws2; $ws2
+        bindsym $alt+$shift+$ctrl+3 move container to $ws3; $ws3
+        bindsym $alt+$shift+$ctrl+4 move container to $ws4; $ws4
+        bindsym $alt+$shift+$ctrl+5 move container to $ws5; $ws5
+        bindsym $alt+$shift+$ctrl+6 move container to $ws6; $ws6
+        bindsym $alt+$shift+$ctrl+7 move container to $ws7; $ws7
+        bindsym $alt+$shift+$ctrl+8 move container to $ws8; $ws8
+        bindsym $alt+$shift+$ctrl+9 move container to $ws9; $ws9
+        bindsym $alt+$shift+$ctrl+0 move container to $ws10; $ws10
         
         bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
         bindsym XF86AudioLowerVolume    $volume-unmute ; $volume-lower
@@ -422,7 +419,7 @@ mode "WORKISH" {
         bindsym $ctrl+$alt+$shift+p     $exitmode
 }
 mode "WORK" {
-        bindsym $mod2+l			$lock
+        bindsym $win+l			$lock
         
         bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
         bindsym XF86AudioLowerVolume    $volume-unmute ; $volume-lower
