@@ -1,12 +1,7 @@
 # vi:syntax=sh
 
 # Alias definitions.
-if [[ -d ~/.dot/aliases/ ]]; then
-	for alias_file in ~/.dot/aliases/*; do
-		source "${alias_file}"
-	done
-	unset alias_file
-fi
+source ~/.dot/l/source_aliases
 if [[ -f ~/.dot/shells/bash-compatible/jetbrainsrc ]]; then
 	source ~/.dot/shells/bash-compatible/jetbrainsrc
 fi

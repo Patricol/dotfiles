@@ -318,9 +318,9 @@ bindsym $alt+$shift+$ctrl+0 move container to $ws10; $ws10
 set $start_main_app             exec --no-startup-id startapp
 set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
-set $screenshot			exec --no-startup-id scrot "${{HOME}}/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp
-set $screenshot-window		exec --no-startup-id scrot "${{HOME}}/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp --focused
-set $screenshot-selection       exec --no-startup-id scrot "${{HOME}}/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp --select
+set $screenshot			exec --no-startup-id a screenshot
+set $screenshot-window		exec --no-startup-id a screenshot-window
+set $screenshot-selection       exec --no-startup-id a screenshot-focused
 set $terminal			exec --no-startup-id {TERMINAL}
 set $chrome			exec chromium
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
