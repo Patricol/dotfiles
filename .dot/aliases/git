@@ -2,9 +2,9 @@
 # systemfiles and dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 # dfg_* are intended for internal use only.
 
-dfg_git_dir='${HOME}/.dotfiles-repo'
-dfg_work_tree='${HOME}'
-alias dfg="git --git-dir=${dfg_git_dir} --work-tree=${dfg_work_tree}"
+dfg_git_dir="${HOME}/.dotfiles-repo"
+dfg_work_tree="${HOME}"
+alias dfg='git --git-dir=${dfg_git_dir} --work-tree=${dfg_work_tree}'
 
 
 dfgfixsym() {
