@@ -212,6 +212,7 @@ dfg_mtmf() {
 	fi
 }
 
+alias dfgpull='dfgk && dfg pull'
 alias dfgpullall='dfgk && dfgchp && dfg pull && dfgchw && dfg pull && dfgchda && dfg pull && dfgchdu && dfg pull && dfg_chm && dfg pull && dfgchp'
 
 alias dfg_fullmerge_nopull='dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
