@@ -2,7 +2,7 @@
 # systemfiles and dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 # dfg_* are intended for internal use only.
 
-dfg_git_dir='${HOME}/.dotfiles-repo/'
+dfg_git_dir='${HOME}/.dotfiles-repo'
 dfg_work_tree='${HOME}'
 alias dfg="git --git-dir=${dfg_git_dir} --work-tree=${dfg_work_tree}"
 
@@ -44,8 +44,8 @@ dfgfixsym() {
 colormsg_yellow() {
 	echo -e "\033[0;33m$@\033[0m" >&2
 }
-colormsg_red() {
-	echo -e "\033[0;31m$@\033[0m" >&2
+colormsg_light_magenta() {
+	echo -e "\033[1;35m$@\033[0m" >&2
 }
 
 alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && add_ssh_keys github'
@@ -182,7 +182,7 @@ dfg_lock_branchdiffs() {
 
 dfgcmtm() {
 	#continue merge to master
-	dfg merge HEAD && return 3
+	dfg merge HEAD &> /dev/null && return 3
 	local branch
 	branch="$(cat "${dfg_git_dir}/MERGE_MSG" | sed -E "s/(Merge branch )?'//g")"
 	dfgc --no-edit
@@ -211,7 +211,7 @@ dfg_mtmf() {
 			dfg_ommc "${branch}" || return "$?"
 			colormsg_yellow "MERGING NEW THINGS FROM $branch INTO master."
 			dfg_m "${branch}" || dfgmt
-			colormsg_red "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmtm TO COMMIT AND WRAP UP!" >&2
+			colormsg_light_magenta "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmtm TO COMMIT AND WRAP UP!" >&2
 			false
 			return "$?"
 		else
