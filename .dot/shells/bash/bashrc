@@ -4,8 +4,11 @@
 
 SHELL="/bin/bash"
 
-# If not running interactively, don't do anything
-[[ "$-" != *i* ]] && return
+# ssh/scp may still source bashrc in a noninteractive session; in a way that could seriously mess up file transfers.
+if [[ "${NONINTERACTIVEBASHRC}" != "yes" ]]; then
+	[[ "$-" != *i* ]] && return
+fi
+
 
 # History options
 HISTCONTROL="erasedups:ignoreboth" # don't put duplicate lines or lines starting with space in the history.
@@ -87,3 +90,4 @@ source /usr/share/powerline/bindings/bash/powerline.sh
 source /usr/share/doc/pkgfile/command-not-found.bash
 
 source "${HOME}/.dot/l/shrc/both"
+
