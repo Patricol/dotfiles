@@ -141,13 +141,14 @@ __make_file_dict() {
     add_files_with_prefix "wal/" "$(find ~/.config/wal/colorschemes/both/ ${findargs[@]})"
 
     add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile}
-    add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo,vconsole}.conf ~/.config/{mpv/mpv,kitty/kitty,wpg/wpg,redshift}.conf
+    add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo,vconsole}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift}.conf
     add_files_without_suffix "_config" /etc/ssh/{sshd,ssh}_config
     add_files_without_suffix ".txt" /root/setup.txt
     add_files_without_suffix ".json" ~/.config/indicator-sound-switcher.json
     add_files_without_suffix ".list" ~/.config/mimeapps.list
 
     __edit_file_dict["yay"]="${HOME}/.config/yay/config.json"
+    __edit_file_dict["wpg.conf"]="${HOME}/.config/wpg/wpg.conf"
 
     local key print_dict
     if [[ "${print_dict}" ]]; then
