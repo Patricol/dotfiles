@@ -1,0 +1,13 @@
+# vi:syntax=sh
+
+# This exists as a separate script so that I can run noninteractive bash/zsh shells that only source aliases.
+
+# Source aliases
+
+if [[ -d ~/.dot/aliases/ ]]; then
+	for alias_file in ~/.dot/aliases/*; do
+		source "${alias_file}"
+	done
+	unset alias_file
+fi
+
