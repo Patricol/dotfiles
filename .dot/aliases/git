@@ -2,7 +2,9 @@
 # systemfiles and dotfiles git (rather than dfr (dotfiles repo) which is too close to drf (docker run fast.)) also deathfire grasp.
 # dfg_* are intended for internal use only.
 
-alias dfg='git --git-dir=${HOME}/.dotfiles-repo/ --work-tree=${HOME}'
+dfg_git_dir="${HOME}/.dotfiles-repo"
+dfg_work_tree="${HOME}"
+alias dfg='git --git-dir=${dfg_git_dir} --work-tree=${dfg_work_tree}'
 
 
 dfgfixsym() {
@@ -39,8 +41,11 @@ dfgfixsym() {
 	done
 }
 
-dfg_warntext() {
+colormsg_yellow() {
 	echo -e "\033[0;33m$@\033[0m" >&2
+}
+colormsg_light_magenta() {
+	echo -e "\033[1;35m$@\033[0m" >&2
 }
 
 alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && add_ssh_keys github'
@@ -175,27 +180,12 @@ dfg_lock_branchdiffs() {
 }
 
 
-dfg_cmtmf() {
-	#continue merge to master from
-	declare branch="$1"
-	[[ -n "${branch}" ]] || return 3
-	dfgc --no-edit
-	dfgc --allow-empty -m "dummy commit to enable the next merge"
-	dfgch "${branch}"
-	dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
-	dfg_warntext "push after sanity-checking the changes made to this branch and master. (dfg diff origin/branch)"
-}
-alias dfg_cmtmfp='dfg_cmtmf archpatricol'
-alias dfg_cmtmfw='dfg_cmtmf archwork'
-alias dfg_cmtmfda='dfg_cmtmf dockerarch'
-alias dfg_cmtmfdu='dfg_cmtmf dockerubuntu'
-
 dfg_mfmt() {
 	# merge from master to branch
 	declare branch="$1"
 	dfgch "${branch}"
 	dfg_mm
-	dfg_warntext "MERGING NEW THINGS FROM MASTER INTO ${branch}; MAKE CHANGES AS NEEDED AND COMMIT."
+	colormsg_yellow "MERGING NEW THINGS FROM master INTO ${branch}; MAKE CHANGES AS NEEDED AND COMMIT."
 	dfg merge HEAD || dfgmt && dfgc
 	dfg merge HEAD # will error out if merge is in progress; if commit was aborted or otherwise failed because of merge conflicts
 }
@@ -207,9 +197,9 @@ dfg_mtmf() {
 		dfg_chm
 		if dfg_hum "${branch}"; then
 			dfg_ommc "${branch}" || return "$?"
-			dfg_warntext "MERGING NEW THINGS FROM $branch INTO MASTER"
+			colormsg_yellow "MERGING NEW THINGS FROM $branch INTO master."
 			dfg_m "${branch}" || dfgmt
-			dfg_warntext "CHECK CHANGES ARE GOOD, THEN MUST USE dfg_cmtmf* (${branch}) TO COMMIT AND WRAP UP!" >&2
+			colormsg_light_magenta "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmtm TO COMMIT AND WRAP UP!" >&2
 			false
 			return "$?"
 		else
@@ -224,12 +214,27 @@ dfg_mtmf() {
 
 alias dfgpullall='dfgk && dfgchp && dfg pull && dfgchw && dfg pull && dfgchda && dfg pull && dfgchdu && dfg pull && dfg_chm && dfg pull && dfgchp'
 
-alias dfgfullmerge='dfgpullall && dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
-alias dfgmergeall='dfgfullmerge'
+alias dfg_fullmerge_nopull='dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
+alias dfgfullmerge='dfgpullall && dfg_fullmerge_nopull'
+alias dfgfm='dfgfullmerge'
 alias dfgfullmerge_and_lock='dfgfullmerge && dfg_lock_branchdiffs'
-alias dfgmergeall_and_lock='dfgfullmerge_and_lock'
+alias dfgfmal='dfgfullmerge_and_lock'
 
 alias dfgpushall='dfgk && dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
+
+
+dfgcmtm() {
+	#continue merge to master
+	dfg merge HEAD &> /dev/null && return 3
+	local branch
+	branch="$(cat "${dfg_git_dir}/MERGE_MSG" | sed -E "s/(Merge branch )?'//g")"
+	dfgc --no-edit
+	dfgc --allow-empty -m "dummy commit to enable the next merge"
+	dfgch "${branch}"
+	dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
+	dfg_fullmerge_nopull
+}
+
 
 alias gsf='sudo GIT_EDITOR="svim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
 
