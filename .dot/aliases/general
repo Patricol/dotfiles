@@ -76,9 +76,14 @@ alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
 
 alias top='htop'
 
-fscrot() {
-	scrot -q 100 -m -e 'mv "$f" ~/screenshots/' $@
+
+
+screenshot() {
+	scrot "${HOME}/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp $@ # --quality 100 # for png, higher quality just makes it less compressed.
 }
+alias screenshot-window='screenshot --focused'
+alias screenshot-selection='screenshot --select'
+alias fscrot='screenshot'
 
 
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
