@@ -312,7 +312,7 @@ set $launcher			exec rofi -show combi
 set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id a screenshot
 set $screenshot-window		exec --no-startup-id a screenshot-window
-set $screenshot-selection       exec --no-startup-id a screenshot-focused
+set $screenshot-selection       exec --no-startup-id a screenshot-selection
 set $terminal			exec --no-startup-id {TERMINAL}
 set $chrome			exec chromium
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
