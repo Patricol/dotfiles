@@ -27,4 +27,4 @@ alias fmaterial='wpgsetfast material'
 
 alias nomaterial='wpg-default'
 
-alias colorscheme='cat ~/.config/wpg/custom/named-colors && wpg --preview'
+alias colorscheme='cat ~/.config/wpg/custom/named_colors && wpg --preview'
