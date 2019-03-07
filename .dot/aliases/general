@@ -44,8 +44,10 @@ alias s='sudo'
 
 alias sup='sudo -i -u patricol --'
 alias sip='sup'
+alias supa='sudo -i -u patricol -A --'
 alias supg='gui_sudo_open patricol'
 alias suw='sudo -i -u work --'
+alias suwa='sudo -i -u work -A --'
 alias siw='suw'
 alias suwg='gui_sudo_open work'
 alias sur='sudo -i -u root --'
@@ -53,7 +55,7 @@ alias sir='sur'
 alias surg='gui_sudo_open root'
 alias visudo='sudo -- visudo'
 
-alias mnas='sip mount /media/nas'
+alias mnas='sup mount /media/nas'
 alias umnas='umount /media/nas'
 
 alias mnt='tldr'
@@ -175,6 +177,8 @@ alias epochms='date +%s.%N'
 
 
 alias nmo='gui_open nemo "$(pwd)"'
+
+alias dk='a supa mount /media/nas && a supg digikam'
 
 alias aecho='echo '
 
