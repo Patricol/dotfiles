@@ -41,8 +41,11 @@ dfgfixsym() {
 	done
 }
 
-dfg_warntext() {
+colormsg_yellow() {
 	echo -e "\033[0;33m$@\033[0m" >&2
+}
+colormsg_red() {
+	echo -e "\033[0;31m$@\033[0m" >&2
 }
 
 alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && add_ssh_keys github'
@@ -194,7 +197,7 @@ dfg_mfmt() {
 	declare branch="$1"
 	dfgch "${branch}"
 	dfg_mm
-	dfg_warntext "MERGING NEW THINGS FROM MASTER INTO ${branch}; MAKE CHANGES AS NEEDED AND COMMIT."
+	colormsg_yellow "MERGING NEW THINGS FROM master INTO ${branch}; MAKE CHANGES AS NEEDED AND COMMIT."
 	dfg merge HEAD || dfgmt && dfgc
 	dfg merge HEAD # will error out if merge is in progress; if commit was aborted or otherwise failed because of merge conflicts
 }
@@ -206,9 +209,9 @@ dfg_mtmf() {
 		dfg_chm
 		if dfg_hum "${branch}"; then
 			dfg_ommc "${branch}" || return "$?"
-			dfg_warntext "MERGING NEW THINGS FROM $branch INTO MASTER"
+			colormsg_yellow "MERGING NEW THINGS FROM $branch INTO master."
 			dfg_m "${branch}" || dfgmt
-			dfg_warntext "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmtm TO COMMIT AND WRAP UP!" >&2
+			colormsg_red "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmtm TO COMMIT AND WRAP UP!" >&2
 			false
 			return "$?"
 		else
