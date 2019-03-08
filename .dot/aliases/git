@@ -138,15 +138,19 @@ alias dfga='dfg add'
 dfgaa() {
 	dfgfixsym
 	dfga -u
-     	for directory in ~/.{themes,dot} ~/.config/{feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wallpapers,wpg}; do
+     	for directory in ~/.{themes,dot} ~/.config/{custom/{wallpapers,watch},feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wpg}; do
 		if [[ -d "${directory}" ]]; then
      			dfga "${directory}"
 		else
 			echo "skipping missing dir (${directory})"
 		fi
 	done
+     	for directory in ~/.config/{htop}; do
+		if [[ -d "${directory}" ]]; then
+     			dfg reset HEAD -- "${directory}"
+		fi
+	done
 }
-alias dfgaae='dfgaa && dfg reset HEAD -- ~/.config/htop/htoprc'
 alias dfgchhtop='dfgch -- ~/.config/htop/htoprc'
 alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'

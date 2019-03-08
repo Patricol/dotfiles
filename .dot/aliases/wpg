@@ -1,18 +1,36 @@
 # vi:syntax=sh
 # Aliases for wpg
 
+__wpgsetfast_faster() {
+	# side effect removes the distinctions between color0/background, color15/foreground(?) and foreground/cursor
+	declare theme="$1" dummy="$2"
+	wpg -i "${dummy}" "${HOME}/.config/wal/colorschemes/both/${theme}" > /dev/null
+	wpg -ns "${dummy}"
+}
+__wpgsetfast_risky() {
+	# may have errors that are handled by using __wpgsetfast_exact instead.
+	declare theme="$1"
+	wpg -n --theme "${theme}"
+}
+__wpgsetfast_exact() {
+	# sets the theme twice (to avoid edge-case-errors which may or may not still exist)
+	declare theme="$1" dummy="$2"
+	wpg -ns "${dummy}" > /dev/null
+	wpg -n --theme "${theme}"
+}
+
 wpgsetfast() {
 	declare theme="$1"
-	wpg -ns dummy.png
-	wpg -n --theme "${theme}"
-	xrdb ~/.Xresources
+	__wpgsetfast_risky ${theme} "dummy.png" | grep --invert-match "^\[i\]" || true
+	xrdb "${HOME}/.Xresources"
 }
 
 wpgset() {
-	declare theme="$1"
+	declare theme="$1" oomox_dir="${HOME}/.config/oomox/colors"
 	wpgsetfast "${theme}"
-	oomox-cli -o oomox-wpg -t ~/.themes -d false -m all ~/.config/oomox/colors/oomox-wpg
-	oomox-materia-cli -o materia-wpg -d false ~/.config/oomox/colors/materia-wpg
+	parallel ::: \
+	"oomox-cli --output oomox-wpg --target-dir ${HOME}/.themes --hidpi false --make-opts all ${oomox_dir}/oomox-wpg" \
+	"oomox-materia-cli --output materia-wpg --hidpi false ${oomox_dir}/materia-wpg"
 }
 
 alias wpg-material='wpgset material'
@@ -27,4 +45,4 @@ alias fmaterial='wpgsetfast material'
 
 alias nomaterial='wpg-default'
 
-alias colorscheme='cat ~/.config/wpg/custom/named_colors && wpg --preview'
+alias colorscheme='cat ${HOME}/.config/wpg/custom/named_colors && wpg --preview'
