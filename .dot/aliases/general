@@ -104,6 +104,9 @@ ftypei() {
 alias findbrokenlinks='find -xtype l'
 
 
+alias scu-dr='systemctl --user daemon-reload'
+alias sc-dr='sudo systemctl daemon-reload'
+
 
 alias eb='exec bash'
 alias ebnrc='exec bash --norc --noprofile'

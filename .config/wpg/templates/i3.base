@@ -123,19 +123,18 @@ set $windows-key-code 133
 # MOUSE BINDINGS ##############################################################
 
 bindsym $mouse-right floating toggle
+bindsym --release $mouse-wheel-click kill
 
-#this covers the usual alt-right-click resizing that's so convenient.
-#bindsym --whole-window $alt+$mouse-right floating toggle
-bindsym --whole-window $alt+$mouse-left floating toggle
+# Use Mouse+$alt to drag (left click) and resize (right-click) floating windows
+floating_modifier $alt
 
 bindsym --whole-window $alt+$mouse-wheel-click kill
 
+bindsym --whole-window $shift+$alt+$mouse-left floating toggle
+bindsym --whole-window $shift+$alt+$mouse-right floating toggle
 
-# The middle button over a titlebar kills the window
-bindsym --release $mouse-wheel-click kill
 
-# Use Mouse+$alt to drag floating windows to their wanted position
-floating_modifier $alt
+
 
 bindsym --whole-window $alt+$mouse-wheel-left	move left
 bindsym --whole-window $alt+$mouse-wheel-down	move down
