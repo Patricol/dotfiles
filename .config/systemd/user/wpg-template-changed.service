@@ -1,0 +1,7 @@
+[Unit]
+Description=run wpg when one of its templates is edited
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/a wpgsetfast material
+

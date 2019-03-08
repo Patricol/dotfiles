@@ -1,0 +1,8 @@
+[Unit]
+Description=run wpg when one of its templates is edited
+
+[Path]
+PathModified=%h/.config/wpg/templates/
+
+[Install]
+WantedBy=multi-user.target
