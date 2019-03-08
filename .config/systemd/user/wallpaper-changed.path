@@ -1,0 +1,8 @@
+[Unit]
+Description=re-set wallpaper(s) and remove neofetch cache if a default wallpaper symlink changes.
+
+[Path]
+PathModified=%h/.config/custom/wallpapers/default/
+
+[Install]
+WantedBy=multi-user.target
