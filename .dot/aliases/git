@@ -223,6 +223,7 @@ alias dfgfmal='dfgfullmerge_and_lock'
 
 alias dfgpushall='dfgk && dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
 
+alias dfg_goback='dfg reset --hard HEAD~1 && dfgs'
 
 dfgcmtm() {
 	#continue merge to master
