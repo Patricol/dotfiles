@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+# This is called by i3; and should (re)start services that only make sense to run in a graphical session.
+# Services that contribute to the basic gui, like polybar, should be restarted here; which makes them restart whenever i3 does.
+# This is not put in /usr/local/bin because that is the domain of the systemfiles repo, and this functionality should work on computers with only dotfiles installed, not systemfiles. It's practically a part of the i3 config, but I split it out so that the i3 config file wouldn't need to have many branch-specific differences.
+
+main() {
+	scus() {
+		declare service="$1"
+		systemctl --user start "${service}.service"
+	}
+	scur() {
+		declare service="$1"
+		systemctl --user restart "${service}.service"
+	}
+	scur polybar-main
+	scur polybar-wss
+	scus wallpaper
+	scur animated-wallpaper
+	scur compton
+	scus redshift-gtk
+	scus udiskie
+	scus indicator-sound-switcher
+}
+
+main
+
