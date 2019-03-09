@@ -156,11 +156,11 @@ alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'
 
 alias dfgch='dfg checkout'
-alias dfg_chm='dfgch master'
-alias dfgchp='dfgch archpatricol'
-alias dfgchw='dfgch archwork'
-alias dfgchda='dfgch dockerarch'
-alias dfgchdu='dfgch dockerubuntu'
+alias dfg_chm='dfgch master --'
+alias dfgchp='dfgch archpatricol --'
+alias dfgchw='dfgch archwork --'
+alias dfgchda='dfgch dockerarch --'
+alias dfgchdu='dfgch dockerubuntu --'
 
 alias dfgpop='dfg stash pop'
 alias dfgpopall='while dfgpop; do :; done'
@@ -177,7 +177,7 @@ dfg_lock_branchdiffs() {
 	
 	local branch
 	for branch in archpatricol archwork dockerarch dockerubuntu; do
-		dfgch "${branch}"
+		dfgch "${branch}" --
 		dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
 	done
 	dfgchp
@@ -187,7 +187,7 @@ dfg_lock_branchdiffs() {
 dfg_mfmt() {
 	# merge from master to branch
 	declare branch="$1"
-	dfgch "${branch}"
+	dfgch "${branch}" --
 	dfg_mm
 	colormsg_yellow "MERGING NEW THINGS FROM master INTO ${branch}; MAKE CHANGES AS NEEDED AND COMMIT."
 	dfg merge HEAD || dfgmt && dfgc
@@ -236,7 +236,7 @@ dfgcmtm() {
 	branch="$(cat "${dfg_git_dir}/MERGE_MSG" | sed -E "s/(Merge branch )?'//g")"
 	dfgc --no-edit
 	dfgc --allow-empty -m "dummy commit to enable the next merge"
-	dfgch "${branch}"
+	dfgch "${branch}" --
 	dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
 	dfg_fullmerge_nopull
 }
