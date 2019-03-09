@@ -1,6 +1,6 @@
 # vi:syntax=sh
 
-alias logs='dmesg | less'
+alias logs='sudo journalctl -xe'
 
 alias syu='yay -Syu --devel && yay -S'
 alias pacs='syu'
