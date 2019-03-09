@@ -145,7 +145,7 @@ dfgaa() {
 			echo "skipping missing dir (${directory})"
 		fi
 	done
-     	for directory in ~/.config/{htop}; do
+     	for directory in ~/.config/htop; do
 		if [[ -d "${directory}" ]]; then
      			dfg reset HEAD -- "${directory}"
 		fi

@@ -34,6 +34,26 @@ pqd() {
 		pacman -Qd
 	fi
 }
+pqed() {
+	# find explicitly installed packages that depend (directly or indirectly) on the given package
+	declare package="$1"
+	if [[ -n "${package}" ]]; then
+		pacman -Qqe $(pactree --linear --unique --reverse ${package}) | sort
+	else
+		echo "usage: pqed package"
+	fi
+}
+pqedm() {
+	local package
+	for package in $@; do
+		if pacman -Q "${package}" &> /dev/null; then
+			echo "List of explicily installed packages that require ${package}:"
+			pqed "${package}"
+		fi
+	done
+}
+alias pqedqt='pqedm qt3 qt4 qt5-base'
+alias pqedgtk='pqedm gtk gtk2 gtk3'
 alias pqi='pacman -Qi'
 alias pqunneeded='pacman -Qittd'
 alias pqaur='pacman -Qm'
