@@ -172,22 +172,22 @@ alias dfgpopush='dfgpopall && dfgs && dfgp'
 
 dfg_lock_branchdiffs() {
 	# merge -s ours each branch, to lock in its differences from the master branch; so they don't need to be reapplied during the next merge. For example, customizations made while merging other branches' changes from master will be locked in by this.
-	dfg_chm || exit 1
+	dfg_chm || return 1
 	dfgc --allow-empty -m "dummy commit to enable the next merges"
 	
 	local branch
 	for branch in archpatricol archwork dockerarch dockerubuntu; do
-		dfgch "${branch}" -- || exit 1
+		dfgch "${branch}" -- || return 1
 		dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
 	done
-	dfgchp || exit 1
+	dfgchp || return 1
 }
 
 
 dfg_mfmt() {
 	# merge from master to branch
 	declare branch="$1"
-	dfgch "${branch}" -- || exit 1
+	dfgch "${branch}" -- || return 1
 	dfg_mm
 	colormsg_yellow "MERGING NEW THINGS FROM master INTO ${branch}; MAKE CHANGES AS NEEDED AND COMMIT."
 	dfg merge HEAD || dfgmt && dfgc
@@ -236,7 +236,7 @@ dfgcmtm() {
 	branch="$(cat "${dfg_git_dir}/MERGE_MSG" | sed -E "s/(Merge branch )?'//g")"
 	dfgc --no-edit
 	dfgc --allow-empty -m "dummy commit to enable the next merge"
-	dfgch "${branch}" --
+	dfgch "${branch}" -- || return 1
 	dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
 	dfg_fullmerge_nopull
 }
