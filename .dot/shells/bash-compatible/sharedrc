@@ -15,7 +15,14 @@ if [[ -d "${HOME}/.ssh/auto" ]]; then
 fi
 
 export EDITOR="vim"
+export VISUAL="vim"
 export PAGER="less"
+
+if [[ -n "$DISPLAY" ]]; then
+	export BROWSER=chromium
+else
+	export BROWSER=lynx
+fi
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 

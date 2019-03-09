@@ -39,8 +39,14 @@ default_floating_border $def_border
 #new_window $def_border
 #new_float $def_border_floating
 
+
+# reminder: use i3prop to get relevant window info
+
 for_window [class=.*] border $def_border
 #adds border to things like GTK calculator and Chromium
+
+# no easy way to distinguish the mini player; xprop -spy only sees a changed minimum size, which i3 doesn't handle. 
+for_window [class="Google Play Music Desktop Player" floating] resize set 512 512 
 
 for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
