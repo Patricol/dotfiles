@@ -83,6 +83,7 @@ __make_file_dict() {
     __edit_file_dict=()
     __edit_file_completions=()
 
+    # reduce the number of functions by making them handle arguments etc.
     __add_file_with_prefix_and_without_suffix() {
         declare prefix="$1" ; shift
         declare suffix="$1" ; shift
@@ -98,11 +99,18 @@ __make_file_dict() {
     add_files_with_prefix_and_without_suffix() {
         declare prefix="$1" ; shift
         declare suffix="$1" ; shift
-        local fix_whitespace
-        fix_whitespace=("tr" "\n" " ")
         for file in $(echo $@ | tr "\n" " "); do
             __add_file_with_prefix_and_without_suffix "${prefix}" "${suffix}" "${file}"
         done
+    }
+
+    add_found_files_with_prefix_and_without_suffix() {
+        declare prefix="$1" ; shift
+        declare suffix="$1" ; shift
+        declare dir="$1" ; shift
+	local findargs
+	findargs=("-maxdepth" "1" "-mindepth" "1" "!" "-type" "d")
+	add_files_with_prefix_and_without_suffix "${prefix}" "${suffix}" "$(find ${dir} ${findargs[@]} $@)"
     }
 
     add_files_without_suffix() {
@@ -110,45 +118,57 @@ __make_file_dict() {
         add_files_with_prefix_and_without_suffix "" "${suffix}" $@
     }
 
+    add_found_files_without_suffix() {
+        declare suffix="$1" ; shift
+        add_found_files_with_prefix_and_without_suffix "" "${suffix}" $@
+    }
+
     add_files_with_prefix() {
         declare prefix="$1" ; shift
         add_files_with_prefix_and_without_suffix "${prefix}" "" $@
+    }
+
+    add_found_files_with_prefix() {
+        declare prefix="$1" ; shift
+        add_found_files_with_prefix_and_without_suffix "${prefix}" "" $@
     }
 
     add_files() {
         add_files_with_prefix_and_without_suffix "" "" $@
     }
 
-    local findargs
-    findargs=("-maxdepth" "1" "-mindepth" "1" "!" "-type" "d")
+    add_found_files() {
+        add_found_files_with_prefix_and_without_suffix "" "" $@
+    }
 
-    add_files "$(find ~/.dot/l/ ${findargs[@]})"
-    add_files "$(find ~/.dot/l/aliases/ ${findargs[@]})"
-    add_files_with_prefix "aliases/" "$(find ~/.dot/l/aliases/ ${findargs[@]})"
-    add_files "$(find ~/.dot/l/shrc/ ${findargs[@]})"
-    add_files "$(find /usr/local/bin/ ${findargs[@]})"
-    add_files_with_prefix "bin/" "$(find /usr/local/bin/ ${findargs[@]})"
-    add_files "$(find /usr/local/sbin/ ${findargs[@]})"
-    add_files_with_prefix "sbin/" "$(find /usr/local/sbin/ ${findargs[@]})"
-    add_files_without_suffix ".base" "$(find ~/.config/wpg/templates/ ${findargs[@]} -name "*.base")"
-    add_files_with_prefix_and_without_suffix "nemo-" ".nemo_action" "$(find ~/.local/share/nemo/actions/ ${findargs[@]})"
-    add_files_with_prefix "feh/" "$(find ~/.config/feh/ ${findargs[@]})"
-    add_files_with_prefix_and_without_suffix "mpv/" ".conf" "$(find ~/.config/mpv/ ${findargs[@]})"
-    add_files_with_prefix_and_without_suffix "neofetch/" ".conf" "$(find ~/.config/neofetch/ ${findargs[@]})"
-    add_files_with_prefix_and_without_suffix "nvim/" ".vim" "$(find ~/.config/nvim/ ${findargs[@]})"
-    add_files_with_prefix "polybar/bin/" "$(find ~/.config/polybar/bin/ ${findargs[@]})"
-    add_files_with_prefix_and_without_suffix "systemd/user/" ".service" "$(find ~/.config/systemd/user/ ${findargs[@]})"
-    add_files_with_prefix "wal/" "$(find ~/.config/wal/colorschemes/both/ ${findargs[@]})"
+
+    add_found_files ~/.dot/l/
+    add_found_files ~/.dot/l/aliases/
+    add_found_files_with_prefix "aliases/" ~/.dot/l/aliases/
+    add_found_files ~/.dot/l/shrc/
+    add_found_files /usr/local/bin/
+    add_found_files_with_prefix "bin/" /usr/local/bin/
+    add_found_files /usr/local/sbin/
+    add_found_files_with_prefix "sbin/" /usr/local/sbin/
+    add_found_files_without_suffix ".base" ~/.config/wpg/templates/ -name "*.base"
+    add_found_files_with_prefix_and_without_suffix "nemo-" ".nemo_action" ~/.local/share/nemo/actions/
+    add_found_files_with_prefix "feh/" ~/.config/feh/
+    add_found_files_with_prefix_and_without_suffix "mpv/" ".conf" ~/.config/mpv/
+    add_found_files_with_prefix_and_without_suffix "neofetch/" ".conf" ~/.config/neofetch/
+    add_found_files_with_prefix_and_without_suffix "nvim/" ".vim" ~/.config/nvim/
+    add_found_files_with_prefix "polybar/bin/" ~/.config/polybar/bin/
+    add_found_files_with_prefix "systemd/user/" ~/.config/systemd/user/
+    add_found_files_with_prefix "wal/" ~/.config/wal/colorschemes/both/
 
     add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile}
-    add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo,vconsole}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift}.conf
+    add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo,vconsole}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct}.conf
     add_files_without_suffix "_config" /etc/ssh/{sshd,ssh}_config
     add_files_without_suffix ".txt" /root/setup.txt
     add_files_without_suffix ".json" ~/.config/indicator-sound-switcher.json
     add_files_without_suffix ".list" ~/.config/mimeapps.list
 
-    __edit_file_dict["yay"]="${HOME}/.config/yay/config.json"
-    __edit_file_dict["wpg.conf"]="${HOME}/.config/wpg/wpg.conf"
+    __edit_file_dict[yay]="${HOME}/.config/yay/config.json"
+    __edit_file_dict[wpg.conf]="${HOME}/.config/wpg/wpg.conf"
 
     local key print_dict
     if [[ "${print_dict}" ]]; then
@@ -195,6 +215,20 @@ alias atomc='edit_file satom'
 alias vc='vimc'
 alias ac='atomc'
 
+
+
+i3prop() {
+    echo "Click a window to watch its properties."
+    echo "Note that window_type value in i3 is one of: (normal|dialog|utility|toolbar|splash|menu|dropdown_menu|popup_menu|tooltip|notification)"
+    echo ""
+    xprop -spy _NET_WM_NAME WM_NAME WM_CLASS WM_WINDOW_ROLE _NET_WM_WINDOW_TYPE | sed -E \
+	-e 's/^_NET_WM_NAME.*?= /title=/g' \
+	-e 's/^WM_NAME.*?= /title(fallback)=/g' \
+	-e 's/^WM_CLASS.*?= (".*?"), (".*?")$/instance=\1\nclass=\2/g' \
+	-e 's/^WM_WINDOW_ROLE.*?= /window_role=/g' \
+	-e 's/^_NET_WM_WINDOW_TYPE.*?= /window_type=/g' \
+	-e 's/^window_type=_NET_WM_WINDOW_TYPE_/window_type=/g'
+}
 
 
 tif() {
