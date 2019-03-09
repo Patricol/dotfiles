@@ -7,16 +7,9 @@
 
 # AUTOSTART ###################################################################
 
-exec_always --no-startup-id systemctl --user restart polybar-main.service
-exec_always --no-startup-id systemctl --user restart polybar-wss.service
-exec_always --no-startup-id systemctl --user restart animated-wallpaper.service
-exec_always --no-startup-id systemctl --user start redshift-gtk.service
-exec_always --no-startup-id systemctl --user start network-manager-applet.service
-exec_always --no-startup-id systemctl --user start blueman-applet.service
-exec_always --no-startup-id systemctl --user start udiskie.service
-exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
+exec_always --no-startup-id ~/.config/custom/scripts/start-gui-services
 
-set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service network-manager-applet.service blueman-applet.service udiskie.service indicator-sound-switcher.service animated-wallpaper.service
+set $stop_services exec --no-startup-id ~/.config/custom/scripts/stop-gui-services
 
 
 
