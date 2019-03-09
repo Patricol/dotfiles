@@ -1,12 +1,1 @@
-# vi:syntax=sh
-
-alias logs='dmesg | less'
-
-alias syu='sudo apt-get update && sudo apt-get upgrade'
-alias pacs='sudo apt-get update && sudo apt-get install'
-alias aurs='pacs'
-alias pacr='sudo apt-get remove'
-alias aurr='pacr'
-alias aurrs='pacrs'
-
-alias listexplicitlyinstalled="dpkg-query --show --showformat='\${Installed-Size}\t\${Package}\n' | sort -rh | head -25 | awk '{print \$1/1024, \$2}'"
+oses/arch
