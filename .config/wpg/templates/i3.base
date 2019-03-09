@@ -9,12 +9,14 @@
 
 exec_always --no-startup-id systemctl --user restart polybar-main.service
 exec_always --no-startup-id systemctl --user restart polybar-wss.service
+exec_always --no-startup-id systemctl --user start wallpaper.service
 exec_always --no-startup-id systemctl --user restart animated-wallpaper.service
+exec_always --no-startup-id systemctl --user restart compton.service
 exec_always --no-startup-id systemctl --user start redshift-gtk.service
 exec_always --no-startup-id systemctl --user start udiskie.service
 exec_always --no-startup-id systemctl --user start indicator-sound-switcher.service
 
-set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service udiskie.service indicator-sound-switcher.service animated-wallpaper.service
+set $stop_services exec --no-startup-id systemctl --user stop redshift-gtk.service udiskie.service indicator-sound-switcher.service animated-wallpaper.service compton.service
 
 
 
