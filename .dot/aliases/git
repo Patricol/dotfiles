@@ -138,7 +138,7 @@ alias dfga='dfg add'
 dfgaa() {
 	dfgfixsym
 	dfga -u
-     	for directory in ~/.{themes,dot} ~/.config/{custom/wallpapers,feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wpg}; do
+     	for directory in ~/.{themes,dot} ~/.config/{custom/{scripts,wallpapers},feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wpg}; do
 		if [[ -d "${directory}" ]]; then
      			dfga "${directory}"
 		else
