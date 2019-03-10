@@ -5,7 +5,7 @@
 # This is not put in /usr/local/bin because that is the domain of the systemfiles repo, and this functionality should work on computers with only dotfiles installed, not systemfiles. It's practically a part of the i3 config, but I split it out so that the i3 config file wouldn't need to have many branch-specific differences.
 
 main() {
-	killall --user "${USER}" --quiet --wait polybar
+	#killall --user "${USER}" --quiet --wait polybar
 }
 
 main
