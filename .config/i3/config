@@ -11,11 +11,6 @@ exec_always --no-startup-id ~/.config/custom/scripts/start-gui-services
 
 set $stop_services exec --no-startup-id ~/.config/custom/scripts/stop-gui-services
 
-exec --no-startup-id polybar main -r
-# No need for this; and can cover the one on my actual device.
-# exec --no-startup-id polybar wss -r
-exec --no-startup-id xrdb ~/.Xresources
-exec --no-startup-id startapp
 
 
 # APPEARANCE ##################################################################
@@ -90,8 +85,6 @@ client.unfocused           $darkest    $darkest    $bright     $dark     $darkes
 client.urgent              $accent     $accent     $darkest    $dark     $accent
 client.placeholder         $darkest    $darkest    $bright     $dark     $darkest
 client.background          $darkest
-
-exec_always --no-startup-id xsetroot -solid "$darkest"
 
 
 
