@@ -7,6 +7,10 @@
 
 # AUTOSTART ###################################################################
 
+exec_always --no-startup-id ~/.config/custom/scripts/start-gui-services
+
+set $stop_services exec --no-startup-id ~/.config/custom/scripts/stop-gui-services
+
 exec --no-startup-id polybar main -r
 # No need for this; and can cover the one on my actual device.
 # exec --no-startup-id polybar wss -r
@@ -23,7 +27,7 @@ new_window $def_border
 new_float $def_border_floating
 
 
-# reminder: xprop to get window info
+# reminder: use i3prop to get relevant window info
 
 for_window [class=.*] border $def_border
 #adds border to things like GTK calculator and Chromium

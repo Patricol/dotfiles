@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# This is called by i3; and should stop less important services that were started by start-gui-services.
+# Services that contribute to the basic gui, like polybar, should not be stopped here. Also include oneshot services in case they are changed in the future.
+# This is not put in /usr/local/bin because that is the domain of the systemfiles repo, and this functionality should work on computers with only dotfiles installed, not systemfiles. It's practically a part of the i3 config, but I split it out so that the i3 config file wouldn't need to have many branch-specific differences.
+
+main() {
+	scux() {
+		declare service="$1"
+		systemctl --user stop "${service}.service"
+	}
+	scux wallpaper
+	scux animated-wallpaper
+	scux compton
+	scux redshift-gtk
+	scux udiskie
+	scux indicator-sound-switcher
+}
+
+main
+

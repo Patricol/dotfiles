@@ -110,7 +110,7 @@ __make_file_dict() {
         declare dir="$1" ; shift
 	local findargs
 	findargs=("-maxdepth" "1" "-mindepth" "1" "!" "-type" "d")
-	add_files_with_prefix_and_without_suffix "${prefix}" "${suffix}" "$(find ${dir} ${findargs[@]} $@)"
+	add_files_with_prefix_and_without_suffix "${prefix}" "${suffix}" "$(find ${dir} ${findargs[@]} $@ 2> /dev/null)"
     }
 
     add_files_without_suffix() {
@@ -149,6 +149,7 @@ __make_file_dict() {
     add_found_files /usr/local/bin/
     add_found_files_with_prefix "bin/" /usr/local/bin/
     add_found_files /usr/local/sbin/
+    add_found_files ~/.config/custom/scripts/
     add_found_files_with_prefix "sbin/" /usr/local/sbin/
     add_found_files_without_suffix ".base" ~/.config/wpg/templates/ -name "*.base"
     add_found_files_with_prefix_and_without_suffix "nemo-" ".nemo_action" ~/.local/share/nemo/actions/
@@ -156,12 +157,11 @@ __make_file_dict() {
     add_found_files_with_prefix_and_without_suffix "mpv/" ".conf" ~/.config/mpv/
     add_found_files_with_prefix_and_without_suffix "neofetch/" ".conf" ~/.config/neofetch/
     add_found_files_with_prefix_and_without_suffix "nvim/" ".vim" ~/.config/nvim/
-    add_found_files_with_prefix "polybar/bin/" ~/.config/polybar/bin/
     add_found_files_with_prefix "systemd/user/" ~/.config/systemd/user/
     add_found_files_with_prefix "wal/" ~/.config/wal/colorschemes/both/
 
     add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile}
-    add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo,vconsole}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct}.conf
+    add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo,vconsole}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
     add_files_without_suffix "_config" /etc/ssh/{sshd,ssh}_config
     add_files_without_suffix ".txt" /root/setup.txt
     add_files_without_suffix ".json" ~/.config/indicator-sound-switcher.json
