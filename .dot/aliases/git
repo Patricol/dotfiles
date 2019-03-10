@@ -78,6 +78,7 @@ dfg_getmsg_mbsd() {
 dfg_getc_mim() {
 	# last time changes from this branch were merged into master
 	local lmim
+	# NOTE: Don't edit this message without also fixing dfgcmtm!
 	lmim=$(dfg rev-list --merges --grep="Merge branch '${branch}'" "${branch}" | tac | tail -n1)
 	echo "${lmim}"
 }
