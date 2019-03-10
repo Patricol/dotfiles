@@ -78,6 +78,7 @@ dfg_getmsg_mbsd() {
 dfg_getc_mim() {
 	# last time changes from this branch were merged into master
 	local lmim
+	# NOTE: Don't edit this message without also fixing dfgcmtm!
 	lmim=$(dfg rev-list --merges --grep="Merge branch '${branch}'" "${branch}" | tac | tail -n1)
 	echo "${lmim}"
 }
@@ -234,10 +235,10 @@ dfgcmtm() {
 	#continue merge to master
 	dfg merge HEAD &> /dev/null && return 3
 	local branch
-	branch="$(cat "${dfg_git_dir}/MERGE_MSG" | sed -E "s/(Merge branch )?'//g")"
+	branch="$(head --lines=1 "${dfg_git_dir}/MERGE_MSG" | sed -E "s/(Merge branch )?'//g")"
 	dfgc --no-edit
 	dfgc --allow-empty -m "dummy commit to enable the next merge"
-	dfgch ${branch} -- || return 1 # this command seems to fail sometimes
+	dfgch ${branch} -- || return 1
 	dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
 	dfg_fullmerge_nopull
 }
