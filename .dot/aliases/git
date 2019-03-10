@@ -191,6 +191,7 @@ dfg_mfmt() {
 	dfg_mm
 	colormsg_yellow "MERGING NEW THINGS FROM master INTO ${branch}; MAKE CHANGES AS NEEDED AND COMMIT."
 	dfg merge HEAD || dfgmt && dfgc
+	dfg merge HEAD || dfgmt && dfgc # give a second chance to merge after editing 
 	dfg merge HEAD # will error out if merge is in progress; if commit was aborted or otherwise failed because of merge conflicts
 }
 
