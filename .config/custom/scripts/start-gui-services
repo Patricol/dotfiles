@@ -21,6 +21,22 @@ main() {
 	scus redshift-gtk
 	scus udiskie
 	scus indicator-sound-switcher
+
+	#killall --user "${USER}" --quiet --wait polybar
+
+	#polybar main -r
+	#polybar wss -r # No need for this; and can cover the one on my actual device.
+
+	#if [[ -f ~/.config/wpg/custom/named_colors ]]; then
+	#	source ~/.config/wpg/custom/named_colors
+	#else
+	#	local darkest
+	#	darkest="212121"
+	#fi
+	#xsetroot -solid "$darkest"
+
+	#xrdb ~/.Xresources
+	#startapp
 }
 
 main

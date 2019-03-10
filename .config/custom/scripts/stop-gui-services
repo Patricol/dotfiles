@@ -15,6 +15,7 @@ main() {
 	scux redshift-gtk
 	scux udiskie
 	scux indicator-sound-switcher
+	#killall --user "${USER}" --quiet --wait polybar
 }
 
 main
