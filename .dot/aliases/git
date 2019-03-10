@@ -236,7 +236,7 @@ dfgcmtm() {
 	branch="$(cat "${dfg_git_dir}/MERGE_MSG" | sed -E "s/(Merge branch )?'//g")"
 	dfgc --no-edit
 	dfgc --allow-empty -m "dummy commit to enable the next merge"
-	dfgch "${branch}" -- || return 1
+	dfgch ${branch} -- || return 1 # this command seems to fail sometimes
 	dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
 	dfg_fullmerge_nopull
 }
