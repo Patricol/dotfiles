@@ -66,14 +66,8 @@ extract() {
 	# extracting individual files from zip is faster. zip is also more ubiquitous.
 #}
 
-alias bal='vim -o ~/.dot/l/aliases/*'
+alias bal='vim -O ~/.dot/l/aliases/*'
 alias brc='vim -O ~/.dot/l/shrc/*'
-
-edit_wpg_template() {
-	declare editor="$1" config_filename="$2"
-	${editor} ~/.config/wpg/templates/"${config_filename}".base
-	echo "remember fmaterial"
-}
 
 
 declare -A __edit_file_dict
@@ -143,13 +137,13 @@ __make_file_dict() {
 
 
     add_found_files ~/.dot/l/
+    add_found_files ~/.dot/l/bin/
     add_found_files ~/.dot/l/aliases/
     add_found_files_with_prefix "aliases/" ~/.dot/l/aliases/
     add_found_files ~/.dot/l/shrc/
     add_found_files /usr/local/bin/
     add_found_files_with_prefix "bin/" /usr/local/bin/
     add_found_files /usr/local/sbin/
-    add_found_files ~/.config/custom/scripts/
     add_found_files_with_prefix "sbin/" /usr/local/sbin/
     add_found_files_without_suffix ".base" ~/.config/wpg/templates/ -name "*.base"
     add_found_files_with_prefix_and_without_suffix "nemo-" ".nemo_action" ~/.local/share/nemo/actions/
@@ -260,10 +254,9 @@ check() {
 chwp() {
 	declare new_wp="$1"
 	if [[ -n "${new_wp}" ]]; then
-		ln -sf "../animated/${new_wp}" ~/.config/wallpapers/default/animated
-		systemctl --user restart animated-wallpaper.service
+		ln -sf "../animated/${new_wp}" ~/.dot/l/wallpapers/default/animated
 	else
-		ls ~/.config/wallpapers/animated/
+		ls ~/.dot/l/wallpapers/animated/
 	fi
 }
 
