@@ -4,8 +4,8 @@
 
 # Source aliases
 
-if [[ -d ~/.dot/aliases/ ]]; then
-	for alias_file in ~/.dot/aliases/*; do
+if [[ -d ~/.dot/l/aliases/ ]]; then
+	for alias_file in ~/.dot/l/aliases/*; do
 		source "${alias_file}"
 	done
 	unset alias_file

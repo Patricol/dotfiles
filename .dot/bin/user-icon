@@ -4,8 +4,7 @@ main() {
 	local current_user
 	current_user="$(id -un)"
 
-	local user_icon
-	local font_index
+	local user_icon font_index
 	case "${current_user}" in
 		patricol)
 			font_index="8"

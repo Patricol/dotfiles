@@ -2,7 +2,7 @@
 Description=Sound input/output selector applet
 
 [Service]
-Environment=PYTHONPATH="/usr/lib/python3.6/site-packages"
+#Environment=PYTHONPATH="/usr/lib/python3.7/site-packages"
 ExecStart=indicator-sound-switcher
 
 [Install]

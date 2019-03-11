@@ -45,4 +45,4 @@ alias fmaterial='wpgsetfast material'
 
 alias nomaterial='wpg-default'
 
-alias colorscheme='cat ${HOME}/.config/wpg/custom/named_colors && wpg --preview'
+alias colorscheme='cat ${HOME}/.dot/l/bin/named-colors && wpg --preview'

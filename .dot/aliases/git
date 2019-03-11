@@ -139,16 +139,16 @@ alias dfga='dfg add'
 dfgaa() {
 	dfgfixsym
 	dfga -u
-     	for directory in ~/.{themes,dot} ~/.config/{custom/{scripts,wallpapers},feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wpg}; do
+     	for directory in ~/.{themes,dot} ~/.config/{feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wpg}; do
 		if [[ -d "${directory}" ]]; then
      			dfga "${directory}"
 		else
 			echo "skipping missing dir (${directory})"
 		fi
 	done
-     	for directory in ~/.config/htop; do
-		if [[ -d "${directory}" ]]; then
-     			dfg reset HEAD -- "${directory}"
+     	for dir_or_file in ~/.config/htop; do
+		if [[ -d "${dir_or_file}" ]]; then
+     			dfg reset HEAD -- "${dir_or_file}"
 		fi
 	done
 }
@@ -263,8 +263,12 @@ gsfaa() {
 			echo "skipping missing dir (${directory})"
 		fi
 	done
+     	for dir_or_file in /root/.dot/htoprc; do
+		if [[ -d "${dir_or_file}" ]]; then
+     			dfg reset HEAD -- "${dir_or_file}"
+		fi
+	done
 }
-alias gsfaae='gsfaa && gsf reset HEAD -- /root/.dot/htoprc'
 alias gsfc='gsf commit -v'
 alias gsfac='gsfaa && gsfc'
 

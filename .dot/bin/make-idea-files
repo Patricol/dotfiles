@@ -24,9 +24,8 @@ main() {
         echo "export ${var}_PROPERTIES=\""'${HOME}'"/${dir}/idea.properties\"" | tee -a "${jetbrainsrc}"
     }
     
-    local jetbrainsrc
-    jetbrainsrc="${HOME}/.dot/shells/bash-compatible/jetbrainsrc"
-    local num_ides
+    local jetbrainsrc num_ides
+    jetbrainsrc="${HOME}/.dot/l/jetbrainsrc"
     num_ides=${#dirs[@]}
     if [[ ${num_ides} -ne ${#vars[@]} ]]; then
         echo "unequal number of dirs and vars" >&2
