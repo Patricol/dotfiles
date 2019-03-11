@@ -382,18 +382,18 @@ ramp-capacity-9 = ${{symbols.usage-ramp-0}}
 
 [module/user-icon]
 type = custom/script
-exec = ~/.config/custom/scripts/user-icon
+exec = ~/.dot/l/bin/user-icon
 format-foreground = ${{colors.lowvis-fg}}
 interval = 9999
 
 [module/check-updates]
 type = custom/script
-exec = ~/.config/custom/scripts/check-updates
+exec = ~/.dot/l/bin/check-updates
 interval = 60
 
 [module/check-other-sessions]
 type = custom/script
-exec = ~/.config/custom/scripts/check-other-sessions
+exec = ~/.dot/l/bin/check-other-sessions
 interval = 60
 
 [module/start-terminal]
