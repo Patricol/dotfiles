@@ -2,9 +2,8 @@
 
 main() {
 	other_users() {
-		local current_user
+		local current_user others
 		current_user="$(id -un)"
-		local others
 		others="$(w -hs | grep -vE "^${current_user}" | wc -l)"
 		[[ "${others}" -gt 0 ]]
 		return "$?"
@@ -19,9 +18,8 @@ main() {
 
 	if other_sessions; then
 		# font index for polybar
-		local material_icons
+		local material_icons output
 		material_icons=5
-		local output
 		output="%{T${material_icons}}%{T-}"
 	fi
 	echo "${output}"

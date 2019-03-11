@@ -7,9 +7,9 @@
 
 # AUTOSTART ###################################################################
 
-exec_always --no-startup-id ~/.config/custom/scripts/start-gui-services
+exec_always --no-startup-id ~/.dot/l/bin/start-gui-services
 
-set $stop_services exec --no-startup-id ~/.config/custom/scripts/stop-gui-services
+set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services
 
 
 

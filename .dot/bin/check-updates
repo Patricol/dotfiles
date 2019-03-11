@@ -19,11 +19,9 @@ main() {
 
 	if [[ "${updates}" -gt 0 ]]; then
 		# font indexes for polybar
-		local material_icons
+		local material_icons monospace_fill output
 		material_icons=4
-		local monospace_fill
 		monospace_fill=3
-		local output
 		output="%{T${material_icons}}%{T-}%{T${monospace_fill}}${updates}%{T-}"
 	fi
 	echo "${output}"
