@@ -10,13 +10,13 @@ main() {
 	polybar main -r
 	#polybar wss -r # No need for this; and can cover the one on my actual device.
 
-	if [[ -f ~/.config/wpg/custom/named_colors ]]; then
-		source ~/.config/wpg/custom/named_colors
+	if [[ -f ~/.dot/l/bin/named-colors ]]; then
+		source ~/.dot/l/bin/named-colors
 	else
 		local darkest
 		darkest="212121"
 	fi
-	xsetroot -solid "$darkest"
+	xsetroot -solid "$darkest" # would need hsetroot to work with compton
 
 	xrdb ~/.Xresources
 	startapp
