@@ -146,9 +146,9 @@ dfgaa() {
 			echo "skipping missing dir (${directory})"
 		fi
 	done
-     	for path in ~/.config/htop; do
-		if [[ -d "${path}" ]]; then
-     			dfg reset HEAD -- "${path}"
+     	for dir_or_file in ~/.config/htop; do
+		if [[ -d "${dir_or_file}" ]]; then
+     			dfg reset HEAD -- "${dir_or_file}"
 		fi
 	done
 }
@@ -263,9 +263,9 @@ gsfaa() {
 			echo "skipping missing dir (${directory})"
 		fi
 	done
-     	for path in /root/.dot/htoprc; do
-		if [[ -d "${path}" ]]; then
-     			dfg reset HEAD -- "${path}"
+     	for dir_or_file in /root/.dot/htoprc; do
+		if [[ -d "${dir_or_file}" ]]; then
+     			dfg reset HEAD -- "${dir_or_file}"
 		fi
 	done
 }
