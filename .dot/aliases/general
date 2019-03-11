@@ -105,7 +105,9 @@ alias findbrokenlinks='find -xtype l'
 
 
 alias scu-dr='systemctl --user daemon-reload'
+alias scu-rd='scu-dr'
 alias sc-dr='sudo systemctl daemon-reload'
+alias sc-rd='sc-dr'
 
 
 alias eb='exec bash'
