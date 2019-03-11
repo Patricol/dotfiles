@@ -279,5 +279,6 @@ alias gsfac='gsfaa && gsfc'
 
 alias gsfp='gsfk && gsf push'
 
-alias gsfdtrpi='gsf fetch origin arch_rpi && gsf difftool -d -y -t meld arch_rpi --'
+alias gsfdt='gsf difftool -d -y -t meld'
+alias gsfdtrpi='gsf fetch origin arch_rpi:arch_rpi && gsf difftool -d -y -t meld arch_rpi --'
 
