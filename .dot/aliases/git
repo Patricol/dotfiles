@@ -244,7 +244,12 @@ dfgcmtm() {
 }
 
 
-alias gsf='sudo GIT_EDITOR="svim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
+gsf() {
+	local gsf_command full_command
+	gsf_command='GIT_EDITOR="svim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
+	full_command="add_ssh_keys /home/patricol/.ssh/github && ${gsf_command} $@"
+	sudo -i bash -ic -- "${full_command}"
+}
 
 alias gsfk='gsf remote set-url origin git@github.com:Patricol/systemfiles.git'
 
@@ -272,16 +277,8 @@ gsfaa() {
 alias gsfc='gsf commit -v'
 alias gsfac='gsfaa && gsfc'
 
-gsf_push() {
-	gsfk
-	local gsf_command
-	gsf_command="$(aecho gsf)"
-	gsf_command="${gsf_command:5}" # need to remove sudo from the start
-	local full_command
-	full_command="add_ssh_keys /home/patricol/.ssh/github && ${gsf_command} push"
-	sudo -i bash -ic -- "${full_command}"
-}
+alias gsfp='gsfk && gsf push'
 
-alias gsfp='gsf_push'
-
+alias gsfdt='gsf difftool -d -y -t meld'
+alias gsfdtrpi='gsf fetch origin arch_rpi:arch_rpi && gsf difftool -d -y -t meld arch_rpi --'
 
