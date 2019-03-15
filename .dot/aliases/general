@@ -62,7 +62,6 @@ alias mnt='tldr'
 alias mnc='cheat'
 alias mn='mnt'
 
-alias sc-logs='sudo journalctl -u'
 
 #replace with nvim once I switch to it.
 alias ex='vim -e'
@@ -88,7 +87,6 @@ alias screenshot-selection='screenshot --select'
 alias fscrot='screenshot'
 
 
-alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 alias fp='echo "fixing permissions..."; sudo /usr/local/sbin/fix-permissions'
 
 alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
@@ -102,13 +100,6 @@ ftypei() {
 }
 
 alias findbrokenlinks='find -xtype l'
-
-
-alias scu-dr='systemctl --user daemon-reload'
-alias scu-rd='scu-dr'
-alias sc-dr='sudo systemctl daemon-reload'
-alias sc-rd='sc-dr'
-
 
 alias eb='exec bash'
 alias ebnrc='exec bash --norc --noprofile'
