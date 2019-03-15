@@ -21,6 +21,8 @@
 ;It is possible to include a file with pre-defined key-value pairs using:
 ;include-file = /absolute/path/to/file
 
+; add touchscreen and vnc friendly options; to launch things. maybe mode for it in i3, which launches a polybar with touch friendly stuff.
+
 ;https://materialdesignicons.com/
 
 [all-colors]
@@ -425,7 +427,10 @@ click-right = rofi -show drun &
 ;scroll-up = echo scroll up
 ;scroll-down = echo scroll down
 
-[module/i3]
+
+; setup proper inheritance to reduce duplication between the i3 modules.
+
+[module/i3_base]
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
@@ -435,7 +440,7 @@ wrapping-scroll = false
 ; Only show workspaces on the same output as the bar
 pin-workspaces = false
 
-ws-label = %index%
+; ws-label = %index%
 ws-label-font = ${fonts.dark-material-numbers}
 
 ws-padding = 1
@@ -452,8 +457,6 @@ label-mode-background = ${colors.accent}
 
 ; focused = Active workspace on focused monitor
 label-focused = ${self.ws-label}
-label-focused-foreground = ${colors.bg}
-label-focused-background = ${colors.highvis-fg}
 label-focused-font = ${self.ws-label-font}
 label-focused-padding = ${self.ws-padding}
 label-focused-margin = ${self.ws-margin}
@@ -468,7 +471,6 @@ label-unfocused-spacing = ${self.ws-spacing}
 
 ; visible = Active workspace on unfocused monitor
 label-visible = ${self.ws-label}
-label-visible-background = ${colors.lowvis-fg}
 label-visible-font = ${self.ws-label-font}
 label-visible-padding = ${self.ws-padding}
 label-visible-margin = ${self.ws-margin}
@@ -476,8 +478,6 @@ label-visible-spacing = ${self.ws-spacing}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = ${self.ws-label}
-label-urgent-foreground = ${colors.bg}
-label-urgent-background = ${colors.accent}
 label-urgent-font = ${self.ws-label-font}
 label-urgent-padding = ${self.ws-padding}
 label-urgent-margin = ${self.ws-margin}
@@ -487,15 +487,24 @@ label-urgent-spacing = ${self.ws-spacing}
 ; label-separator = |
 
 
+[module/i3]
+type = internal/i3
+inherit = module/i3_base
+
+ws-label = %index%
+
+label-focused-foreground = ${colors.bg}
+label-focused-background = ${colors.highvis-fg}
+
+label-visible-background = ${colors.lowvis-fg}
+
+label-urgent-foreground = ${colors.bg}
+label-urgent-background = ${colors.accent}
+
+
 [module/i3-icons]
 type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-enable-click = true
-enable-scroll = true
-wrapping-scroll = false
-; Only show workspaces on the same output as the bar
-pin-workspaces = false
+inherit = module/i3_base
 
 ;ws-icon-0 = 1;%{T5}瞧%{T-}
 ;ws-icon-1 = 2;%{T5}爵%{T-}
@@ -522,44 +531,11 @@ ws-icon-default = %{T5}%{T-}
 
 ws-label = %icon%
 
-ws-padding = 1
-ws-margin = 0
-ws-spacing = 0
-
-; for modes like resize
-label-mode = %mode%
-label-mode-font = ${fonts.dark-text}
-label-mode-padding = 2
-label-mode-margin = 2
-label-mode-foreground = ${colors.bg}
-label-mode-background = ${colors.accent}
-
-; focused = Active workspace on focused monitor
-label-focused = ${self.ws-label}
 label-focused-foreground = ${colors.accent}
-label-focused-padding = ${self.ws-padding}
-label-focused-margin = ${self.ws-margin}
-label-focused-spacing = ${self.ws-spacing}
 
-; unfocused = Inactive workspace on any monitor
-label-unfocused = ${self.ws-label}
 label-unfocused-foreground = ${colors.lowvis-fg}
-label-unfocused-padding = ${self.ws-padding}
-label-unfocused-margin = ${self.ws-margin}
-label-unfocused-spacing = ${self.ws-spacing}
 
-; visible = Active workspace on unfocused monitor
-label-visible = ${self.ws-label}
-label-visible-padding = ${self.ws-padding}
-label-visible-margin = ${self.ws-margin}
-label-visible-spacing = ${self.ws-spacing}
-
-; urgent = Workspace with urgency hint set
-label-urgent = ${self.ws-label}
 label-urgent-background = ${colors.accent}
-label-urgent-padding = ${self.ws-padding}
-label-urgent-margin = ${self.ws-margin}
-label-urgent-spacing = ${self.ws-spacing}
 
 
 [module/mpd]

@@ -1,0 +1,2 @@
+" vi:syntax=vim
+let g:gitgutter_grep = ''
