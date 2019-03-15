@@ -8,7 +8,6 @@ let g:loaded_python_provider=1 " disables Python 2 support
 "let g:loaded_python3_provider=1 " disables Python 3 support
 set laststatus=2 " Always display the statusline in all windows
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-set showtabline=2 " Always display the tabline, even if there is only one tab
 autocmd VimResized * wincmd = " Adjust split sizes when window resizes
 
 
@@ -27,6 +26,7 @@ xnoremap p pgvy
 if exists("vimpager")
   let vimpager_scrolloff = 2
 else
+  set showtabline=2 " Always display the tabline, even if there is only one tab
   nnoremap <Left> :echoe "Use h"<CR>
   nnoremap <Right> :echoe "Use l"<CR>
   nnoremap <Up> :echoe "Use k"<CR>
