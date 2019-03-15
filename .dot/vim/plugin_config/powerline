@@ -1,0 +1,3 @@
+" vi:syntax=vim
+let g:powerline_pycmd="py3"
+set rtp+=~/.vim/plugged/powerline/powerline/bindings/vim

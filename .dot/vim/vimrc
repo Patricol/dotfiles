@@ -1,0 +1,44 @@
+" vi:syntax=vim
+
+set fileencodings=utf-8,cp936,gbk,utf-16le
+set mouse=a "To copy text like in every other program, need to hold shift when selecting it; which temporarily disables this setting.
+"let g:python_host_prog="/usr/bin/python2" " path to Python 2 interpreter
+let g:python3_host_prog="/usr/bin/python" " path to Python 3 interpreter
+let g:loaded_python_provider=1 " disables Python 2 support
+"let g:loaded_python3_provider=1 " disables Python 3 support
+set laststatus=2 " Always display the statusline in all windows
+set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+autocmd VimResized * wincmd = " Adjust split sizes when window resizes
+
+
+set viminfo='10000,<10,:10000,%
+if has('nvim')
+  set viminfo+=n~/.history/nviminfo
+else
+  set viminfo+=n~/.history/viminfo
+endif
+
+
+" Copies what was just pasted.
+xnoremap p pgvy
+
+
+if exists("vimpager")
+  let vimpager_scrolloff = 2
+else
+  set showtabline=2 " Always display the tabline, even if there is only one tab
+  nnoremap <Left> :echoe "Use h"<CR>
+  nnoremap <Right> :echoe "Use l"<CR>
+  nnoremap <Up> :echoe "Use k"<CR>
+  nnoremap <Down> :echoe "Use j"<CR>
+endif
+
+com! -bar TOTABS call s:switch_to_tabs()
+
+function! s:switch_to_tabs() abort
+  set tabstop=4
+  set noexpandtab
+  set %retab!
+endfunction
+
+source ~/.dot/l/vim/plugins

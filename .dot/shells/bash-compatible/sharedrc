@@ -16,7 +16,14 @@ fi
 
 export EDITOR="vim"
 export VISUAL="vim"
-export PAGER="less"
+
+if which vimpager &> /dev/null; then
+	export PAGER="vimpager"
+	#alias less=${PAGER}
+	#alias zless=${PAGER}
+else
+	export PAGER="less"
+fi
 
 if [[ -n "$DISPLAY" ]]; then
 	export BROWSER=chromium
