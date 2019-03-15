@@ -1,0 +1,100 @@
+" vi:syntax=vim
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+
+function! s:update_all() abort
+	PlugUpdate
+	q
+	PlugUpgrade
+	q
+	" This always exits.
+endfunction
+
+function! s:save_snapshot() abort
+	let snapshot_dir=$HOME.'/.vim/tmp/snapshot'
+	if !isdirectory(snapshot_dir)
+		call mkdir(snapshot_dir, 'p')
+	endif
+	exe 'PlugSnapshot! '.fnameescape(snapshot_dir.strftime('%d-%m_%H:%M').'.vim')
+	close
+endfunction
+
+function! s:snapshot_and_update() abort
+	call s:save_snapshot()
+	call s:update_all()
+endfunction
+
+function! s:maintenance_tasks() abort
+	call s:snapshot_and_update()
+endfunction
+
+com! -bar MAINTAIN call s:maintenance_tasks()
+
+
+let plugins_needing_installation = 0
+
+function! s:install_missing_plugins() abort
+	if g:plugins_needing_installation
+		set ma
+		PlugInstall
+		set noma
+		q
+		let g:plugins_needing_installation = 0
+	endif
+endfunction
+
+function! s:add_plugin(plugin_fullname) abort
+	let plugin_fullname=a:plugin_fullname
+
+	Plug plugin_fullname
+
+	let plugin_name=split(plugin_fullname, "/")[1]
+
+	let plugin_dir=$HOME.'/.vim/plugged/'.plugin_name
+	if !isdirectory(plugin_dir)
+		let g:plugins_needing_installation += 1
+	endif
+
+	let plugin_config=$HOME.'/.dot/l/vim/plugin_config/'.plugin_name
+	if filereadable(plugin_config)
+		exec 'source' plugin_config
+	else
+		call writefile(['" vi:syntax=vim'], plugin_config)
+	endif
+endfunction
+
+
+call plug#begin('~/.vim/plugged')
+
+" See examples: https://github.com/junegunn/vim-plug#example
+
+call s:add_plugin('dylanaraps/wal.vim')
+call s:add_plugin('tpope/vim-sensible')
+
+if exists("vimpager")
+else
+	call s:add_plugin('scrooloose/nerdtree')
+	call s:add_plugin('farmergreg/vim-lastplace')
+	call s:add_plugin('tpope/vim-sleuth')
+	call s:add_plugin('airblade/vim-gitgutter')
+endif
+
+" powerline doesn't support nvim yet: https://github.com/powerline/powerline/issues/1287
+if has('nvim')
+	" Not being auto-updated, as nvim +MAINTAIN hangs when run by systemd.
+	call s:add_plugin('vim-airline/vim-airline')
+else
+	call s:add_plugin('powerline/powerline')
+endif
+
+call s:install_missing_plugins()
+unlet plugins_needing_installation
+
+call plug#end()
+
+silent! colorscheme wal " Can't be done until after plug#end()

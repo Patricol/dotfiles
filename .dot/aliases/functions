@@ -78,6 +78,23 @@ __make_file_dict() {
     __edit_file_completions=()
 
     # reduce the number of functions by making them handle arguments etc.
+
+    add_name_for_file() {
+	declare nickname="$1" ; shift
+	declare filepath="$@"
+	if [[ -L "${filepath}" ]]; then
+	    filepath="$(readlink -f "${filepath}")"
+	fi
+	if [[ -d "${filepath}" ]]; then
+	    local echo_dirs
+	    if [[ -n "${echo_dirs}" ]]; then
+		echo "Skipping directory: ${filepath}"
+	    fi
+	else
+	    __edit_file_dict[${nickname}]="${filepath}"
+	    __edit_file_completions+=("${nickname}:${filepath}")
+	fi
+    }
     __add_file_with_prefix_and_without_suffix() {
         declare prefix="$1" ; shift
         declare suffix="$1" ; shift
@@ -86,8 +103,7 @@ __make_file_dict() {
         #filename="$(basename "${filepath}")"
         filename="${filepath##*/}" # needed something faster than subshell etc.
         nickname="${prefix}${filename%${suffix}}"
-        __edit_file_dict[${nickname}]="${filepath}"
-	__edit_file_completions+=("${nickname}:${filepath}")
+	add_name_for_file "${nickname}" "${filepath}"
     }
 
     add_files_with_prefix_and_without_suffix() {
@@ -153,16 +169,19 @@ __make_file_dict() {
     add_found_files_with_prefix_and_without_suffix "nvim/" ".vim" ~/.config/nvim/
     add_found_files_with_prefix "systemd/user/" ~/.config/systemd/user/
     add_found_files_with_prefix "wal/" ~/.config/wal/colorschemes/both/
+    add_found_files_with_prefix "vim-plugins/" ~/.dot/l/vim/plugin_config/
 
-    add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile}
+    add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile} ~/.config/wpg/wpg.conf
     add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
     add_files_without_suffix "_config" /etc/ssh/{sshd,ssh}_config
     add_files_without_suffix ".txt" /root/setup.txt
     add_files_without_suffix ".json" ~/.config/indicator-sound-switcher.json
     add_files_without_suffix ".list" ~/.config/mimeapps.list
 
-    __edit_file_dict[yay]="${HOME}/.config/yay/config.json"
-    __edit_file_dict[wpg.conf]="${HOME}/.config/wpg/wpg.conf"
+    add_name_for_file "yay" "${HOME}/.config/yay/config.json"
+    add_name_for_file "bat" "${HOME}/.config/bat/config"
+    add_name_for_file "vim-plugins" "${HOME}/.dot/l/vim/plugins"
+    add_name_for_file "vim" "${HOME}/.dot/l/vimrc"
 
     local key print_dict
     if [[ "${print_dict}" ]]; then
@@ -189,6 +208,7 @@ edit_file() {
         if [[ "${__edit_file_dict[${file}]+exists}" ]]; then
 	    filepath="${__edit_file_dict[${file}]}"
 	    if [[ -L "${filepath}" ]]; then
+		# keep this here just in case it is removed in __make_file_dict.
 		filepath="$(readlink -f "${filepath}")"
 	    fi
 	    echo "${filepath}"
