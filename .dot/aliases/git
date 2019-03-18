@@ -136,7 +136,7 @@ alias dfg_mm='dfg_m master'
 
 alias dfga='dfg add'
 
-dfgaa() {
+dfg_aa() {
 	dfgfixsym
 	dfga -u
      	for directory in ~/.{themes,dot} ~/.config/{feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wpg}; do
@@ -152,6 +152,9 @@ dfgaa() {
 		fi
 	done
 }
+
+alias dfgaa='dfg_aa && dfgs'
+
 alias dfgchhtop='dfgch -- ~/.config/htop/htoprc'
 alias dfgc='dfg commit -v'
 alias dfgac='dfgaa && dfgc'
