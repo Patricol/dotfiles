@@ -6,7 +6,9 @@
 
 if [[ -d ~/.dot/l/aliases/ ]]; then
 	for alias_file in ~/.dot/l/aliases/*; do
-		source "${alias_file}"
+		if ! [[ -d "${alias_file}" ]]; then
+			source "${alias_file}"
+		fi
 	done
 	unset alias_file
 fi
