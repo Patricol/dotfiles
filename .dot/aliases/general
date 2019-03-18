@@ -165,7 +165,7 @@ alias nfa='neofetch --ascii'
 alias nfs='neofetch --config ~/.config/neofetch/status.conf'
 
 
-alias rpl='LANG="en_US.UTF-8" powerline-daemon -qr'
+alias rpl='~/.dot/l/bin/restart-powerline-daemon'
 
 
 alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
