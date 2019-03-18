@@ -2,6 +2,7 @@
 
 main() {
 	systemctl --user start powerline-daemon.service
+	#LANG="en_US.UTF-8" powerline-daemon --quiet || true
 }
 
 main
