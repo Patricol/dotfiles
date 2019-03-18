@@ -1,0 +1,9 @@
+[Unit]
+Description=Daemon that improves powerline performance.
+
+[Service]
+Environment=LANG=en_US.UTF-8
+ExecStart=powerline-daemon --replace --foreground
+
+[Install]
+WantedBy=default.target
