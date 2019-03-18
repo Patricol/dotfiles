@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 main() {
-	systemctl --user restart powerline-daemon.service
+	LANG="en_US.UTF-8" powerline-daemon --quiet --replace
 }
 
 main
