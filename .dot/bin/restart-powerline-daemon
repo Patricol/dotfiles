@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+main() {
+	systemctl --user restart powerline-daemon.service
+}
+
+main
+
