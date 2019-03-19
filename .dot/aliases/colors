@@ -20,13 +20,47 @@ export LESS_TERMCAP_so=$'\e[01;44;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[01;32m'
 
-export LESS='-R -M'
+export LESS='--RAW-CONTROL-CHARS --status-column --hilite-unread --LONG-PROMPT'
 export GREP_COLOR='1;31'
 #export GREP_COLOR='ms=01;31:mc=01;31:sl=:cx=:fn=35:ln=32:bn=32:se=36'
 
-alias colorsx='for x in {0..8}; do for i in {30..37}; do for a in {40..47}; do echo -ne "\e[$x;$i;$a""m\\\e[$x;$i;$a""m\e[0;37;40m "; done; echo; done; done; echo ""'
+colorsx() {
+	local reset x i a code
+	reset="\e[0;37;40m"
+	for x in {0..8}; do
+		for i in {30..37} {90..97}; do
+			for a in {40..47} {100..107}; do
+				code="\e[${x};${i};${a}m"
+				echo -ne "${code}\\${code}${reset} "
+			done
+			echo
+		done
+	done
+	echo ""
+}
 
-alias colors='for i in {0..255} ; do printf "\x1b[38;5;${i}m%3d " "${i}"; if (( $i == 15 )) || (( $i > 15 )) && (( ($i-15) % 12 == 0 )); then echo; fi; done'
+colorsxt() {
+	local reset f b s code
+	reset="$(tput sgr0)"
+	for f in {0..15}; do
+		for b in {0..15}; do
+			code="$(tput setaf ${f})$(tput setab ${b})"
+			echo -ne "${code}\\${code}${reset} "
+		done
+		echo
+	done
+	echo ""
+}
+
+colors() {
+	local i
+	for i in {0..255} ; do
+		printf "\x1b[38;5;${i}m%3d " "${i}"
+		if (( ${i} % 16 == 15 )); then
+			echo
+		fi
+	done
+}
 alias colorst='msgcat --color=test'
 
 
