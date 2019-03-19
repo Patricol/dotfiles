@@ -42,6 +42,7 @@ if exists("g:vimpager")
   let g:vimpager = {}
   let g:less = {}
   let g:vimpager.enabled = 1
+  let g:vimpager.ansiesc = 1
   let g:less.enabled = 0 " disable less compatibility mode (re enable by pressing ,v)
   let g:vimpager.passthrough = 1 " passthrough text smaller than terminal height
   let g:less.scrolloff = 2
