@@ -302,7 +302,7 @@ URxvt.cursorColor2: #212121
 
 ! When font styles are not enabled, or this option is enabled [default], bold/blink font styles imply high intensity foreground/background colors.
 ! Disabling this option disables this behaviour, the high intensity colors are not reachable.
-URxvt.intensityStyles: false
+URxvt.intensityStyles: true
 
 
 
