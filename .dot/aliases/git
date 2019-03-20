@@ -253,6 +253,9 @@ gsf() {
 	full_command="add_ssh_keys /home/patricol/.ssh/github && ${gsf_command} $@"
 	sudo -i bash -ic -- "${full_command}"
 }
+glsf() {
+	GIT_EDITOR="svim" sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/ $@
+}
 
 alias gsfk='gsf remote set-url origin git@github.com:Patricol/systemfiles.git'
 
