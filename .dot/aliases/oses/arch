@@ -13,11 +13,13 @@ alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
 alias syu='yay -Syu --devel && yay -S'
 alias pacs='syu'
-alias aurs='pacs'
+alias pacsd='pacs --asdeps'
+alias pacse='yay -D --asexplicit'
+alias aurs='echo "use pacs"'
 alias pacr='yay -R'
 alias pacrs='yay -Rs'
-alias aurr='pacr'
-alias aurrs='pacrs'
+alias aurr='echo "use pacr"'
+alias aurrs='echo "use pacrs"'
 
 pq() {
 	declare search="$1"
