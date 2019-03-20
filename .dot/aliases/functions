@@ -279,4 +279,4 @@ chwp() {
 		ls ~/.dot/l/wallpapers/animated/
 	fi
 }
-
+alias cwp='chwp'
