@@ -288,3 +288,42 @@ alias gsfp='gsfk && gsf push'
 alias gsfdt='gsf difftool -d -y -t meld'
 alias gsfdtrpi='gsf fetch origin arch_rpi:arch_rpi && gsf difftool -d -y -t meld arch_rpi --'
 
+
+
+# generalize these more etc.
+# add way to easily grep all files in the repos.
+
+cgit() {
+	declare repo="$1" ; shift
+	case "${repo}" in
+		dfg)
+			dfg $@
+			;;
+		gsf)
+			gsf $@
+			;;
+		*)
+			return 1
+			;;
+	esac
+}
+
+ggrep() {
+	declare gitalias="$1" ; shift
+	cd "${HOME}"
+	local filepath
+	declare -a syms files
+	cgit "${gitalias}" ls-tree -r --name-only --full-tree HEAD | while read filepath; do
+		if [[ -L "${filepath}" ]]; then
+			syms+="${filepath}"
+		else
+			files+="${filepath}"
+		fi
+	done
+	ls -l --almost-all ${syms[@]} | grep $@
+	ls -1 ${files[@]} | grep $@
+	grep $@ ${files[@]}
+}
+
+alias dfggrep="ggrep dfg"
+alias gsfgrep="ggrep gsf"
