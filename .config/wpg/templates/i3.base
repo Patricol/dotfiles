@@ -37,11 +37,16 @@ for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
 
 #Ensure chromium starts on the current workspace. Often opens on workspace 1 first time post login.
-for_window [urgent="latest" class="^chromium$"] move window to workspace current
-for_window [urgent="latest" class="^Chromium$"] move window to workspace current
+#for_window [urgent="latest" class="^chromium$"] move window to workspace current
+#for_window [urgent="latest" class="^Chromium$"] move window to workspace current
+#Actually causes problems more often than not. Try being more targeted:
+for_window [urgent="latest" instance="chromium" class="Chromium" window_role="browser" window_type="normal" title="Untitled - Chromium"] move window to workspace current
 
 #Hide vncconfig window. closing it could prevent copy/paste from working.
 for_window [title="VNC config"] move scratchpad
+
+
+for_window [title="Audio Recorder" class="Audio-recorder" instance="audio-recorder"] floating disable
 
 font pango:{FONT_MONOSPACE} 8
 font pango:{FONT_ICONS} 8
