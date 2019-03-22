@@ -43,6 +43,9 @@ for_window [urgent="latest" class="^Chromium$"] move window to workspace current
 #Hide vncconfig window. closing it could prevent copy/paste from working.
 for_window [title="VNC config"] move scratchpad
 
+
+for_window [title="Audio Recorder" class="Audio-recorder" instance="audio-recorder"] floating disable
+
 font pango:Source Code Pro 8
 font pango:Material Design Icons 8
 font pango:Unifont 8

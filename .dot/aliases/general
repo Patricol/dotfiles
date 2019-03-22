@@ -80,7 +80,7 @@ alias top='htop'
 
 
 screenshot() {
-	scrot "${HOME}/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp $@ # --quality 100 # for png, higher quality just makes it less compressed.
+	scrot "${HOME}/.dot/l/f/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp $@ # --quality 100 # for png, higher quality just makes it less compressed.
 }
 alias screenshot-window='screenshot --focused'
 alias screenshot-selection='screenshot --select'
@@ -144,6 +144,8 @@ alias cdnas='cd /media/nas'
 alias cdn='cdnas'
 alias cddots='cd ~/.dot'
 alias cdd='cddots'
+alias cddotsl='cd ~/.dot/l'
+alias cddl='cddotsl'
 alias c='clear'
 alias cls='clear && ls'
 alias cl='cls'
