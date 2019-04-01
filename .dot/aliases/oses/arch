@@ -12,6 +12,7 @@ alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
 
 alias syu='yay -Syu --devel && yay -S'
+alias syuchoose='yay -Syu --devel --noanswerupgrade && yay -S'
 alias pacs='syu'
 alias pacsd='pacs --asdeps'
 alias pacse='yay -D --asexplicit'
