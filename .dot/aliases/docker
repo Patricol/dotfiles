@@ -1,6 +1,9 @@
 # vi:syntax=sh
 alias docker='sudo docker'
 
+alias docker-compose='sudo docker-compose'
+alias dcf='docker-compose'
+
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 
