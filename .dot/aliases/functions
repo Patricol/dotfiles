@@ -288,3 +288,14 @@ chwp() {
 	fi
 }
 alias cwp='chwp'
+
+merge() {
+    if [[ "$#" -ne 2 ]]; then
+	echo "usage: merge from to" >&2
+	return 1
+    fi
+    declare from="$1" to="$2"
+    rsync --remove-source-files -abviuAP "${from}" "${to}" \
+ && find "${from}" -depth -type d -empty -delete
+}
+
