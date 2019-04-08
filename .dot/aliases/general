@@ -118,8 +118,6 @@ alias umountiso='sudo umount /media/iso'
 
 alias fkill='sudo killall -KILL'
 
-alias merge='rsync --remove-source-files -abviuAP'
-
 alias cdup='cd ..'
 alias cdu='cdup'
 alias ..='cd ..'
