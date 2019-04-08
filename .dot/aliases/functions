@@ -59,9 +59,17 @@ extract() {
 		esac
 	done
 }
-#maketxz() {
+
+maketxz() {
 	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
-#}
+	if [[ "$#" -ne 1 ]]; then
+	    echo "provide only a single folder or file as an argument" >&2
+	    return 1
+	fi
+	declare target="$1"
+	tar --create --verbose --auto-compress --file="${target}.txz" "${target}"
+}
+
 #makezip() {
 	# extracting individual files from zip is faster. zip is also more ubiquitous.
 #}
