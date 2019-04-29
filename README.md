@@ -12,7 +12,7 @@ Do not use this (master) branch; it's used to simplify merging, and could have i
   * One exception is that it's alright to include configs that are entirely manually created; not through a GUI.
 
 * Add to a new computer with:
-  * git clone -b ADD_BRANCH_NAME_HERE --bare git@github.com/Patricol/dotfiles.git ~/.dotfiles-repo
+  * git clone -b ADD_BRANCH_NAME_HERE --bare https://github.com/Patricol/dotfiles.git ~/.dotfiles-repo
   * alias dfg='git --git-dir=$HOME/.dotfiles-repo/ --work-tree=$HOME'
   * dfg config --local status.showUntrackedFiles no
   * dfg checkout
