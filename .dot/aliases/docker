@@ -1,4 +1,4 @@
-# vi:syntax=sh
+# vim:filetype=sh
 alias docker='sudo docker'
 
 alias docker-compose='sudo docker-compose'
@@ -27,11 +27,15 @@ alias drfarch='dprf patricol/riced:arch'
 alias arch='drfarch'
 alias drfa='drfarch'
 
+drf_g() {
+	declare rdp_or_vnc="$1" ; shift
+	dpf $1 && drf -e RDP_OR_VNC="${rdp_or_vnc}" -p 3389:3389 -p 5920:5900 $@
+}
 drfg() {
-	dpf $1 && drf -e RDP_OR_VNC="RDP" -p 3389:3389 -p 5900:5900 $@
+	drf_g RDP $@
 }
 drfgv() {
-	dpf $1 && drf -e RDP_OR_VNC="VNC" -p 3389:3389 -p 5900:5900 $@
+	drf_g VNC $@
 }
 alias drfgui='drfg patricol/gui_base:arch'
 

@@ -1,4 +1,4 @@
-# vi:syntax=sh
+# vim:filetype=sh
 # Enable colors etc.
 
 if [[ -x /usr/bin/dircolors ]]; then
