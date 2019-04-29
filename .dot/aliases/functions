@@ -182,6 +182,7 @@ __make_file_dict() {
     add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile} ~/.config/wpg/wpg.conf
     add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
     add_files_without_suffix "_config" /etc/ssh/{sshd,ssh}_config
+    add_files_without_suffix "rc" ~/.config/dunst/dunstrc
     add_files_without_suffix ".txt" /root/setup.txt
     add_files_without_suffix ".json" ~/.config/indicator-sound-switcher.json
     add_files_without_suffix ".list" ~/.config/mimeapps.list
@@ -222,7 +223,7 @@ edit_file() {
 	    echo "${filepath}"
             filepaths+=("${filepath}")
         else
-            echo "${file} not found; add it to the (__make_file_dict) function. (vc general)" >&2
+            echo "${file} not found; add it to the (__make_file_dict) function. (vc functions)" >&2
         fi
     done
     
