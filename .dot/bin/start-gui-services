@@ -18,6 +18,7 @@ main() {
 	scus wallpaper
 	scur animated-wallpaper
 	scur compton
+	scur dunst
 	scus redshift-gtk
 	scus udiskie
 	scus indicator-sound-switcher

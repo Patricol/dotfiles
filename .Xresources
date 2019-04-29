@@ -59,9 +59,9 @@ URxvt.termName: rxvt-unicode-256color
 
 ! Select the fonts to be used. This is a comma separated list of font names that are checked in order when trying to find glyphs for characters. The first font defines the cell size for characters; other fonts might be smaller, but not (in general) larger. A (hopefully) reasonable default font list is always appended to it. Each font can either be a standard X11 core font (XLFD) name, with optional prefix "x:" or a Xft font (Compile xft), prefixed with "xft:". In addition, each font can be prefixed with additional hints and specifications enclosed in square brackets ("[]"). The only available hint currently is "codeset=codeset-name", and this is only used for Xft fonts. Note that the base font (the first one named) defines the character cell grid size.
 ! NOTE ABOUT SYMBOLS: Need to set symbol fonts to a smaller size than the main font. If individual characters are too large; they will not be printed.
-URxvt.font: xft:Source Code Pro:size=10,\
-	    xft:SauceCodePro Nerd Font Mono:size=10,\
-            xft:PowerlineSymbols:size=10,\
+URxvt.font: xft:Source Code Pro:size=11,\
+	    xft:SauceCodePro Nerd Font Mono:size=11,\
+            xft:PowerlineSymbols:size=11,\
             xft:Material Design Icons:size=20,\
             xft:Material Design Icons:size=19,\
             xft:Material Design Icons:size=18,\
@@ -86,9 +86,9 @@ URxvt.font: xft:Source Code Pro:size=10,\
 ! (bold)(italic) fonts. Common to all 3: If specified and non-empty, then the syntax is the same as for the font-resource, and the given font list will be used as is, which makes it possible to substitute completely different font styles for bold and italic. If unset (the default), a suitable font list will be synthesized by "morphing" the normal text font list into the desired shape. If that is not possible, replacement fonts of the desired shape will be tried. If set, but empty, then this specific style is disabled and the normal text font will being used for the given style.
 
 ! The font list to use for displaying bold characters.
-URxvt.boldFont: xft:Source Code Pro:bold:size=10,\
-	        xft:SauceCodePro Nerd Font Mono:size=10,\
-            	xft:PowerlineSymbols:size=10,\
+URxvt.boldFont: xft:Source Code Pro:bold:size=11,\
+	        xft:SauceCodePro Nerd Font Mono:size=11,\
+            	xft:PowerlineSymbols:size=11,\
                 xft:Material Design Icons:size=20,\
                 xft:Material Design Icons:size=19,\
                 xft:Material Design Icons:size=18,\
@@ -111,9 +111,9 @@ URxvt.boldFont: xft:Source Code Pro:bold:size=10,\
                 xft:Unifont:size=14
 
 ! The font list to use for displaying italic characters.
-URxvt.italicFont: xft:Source Code Pro:italic:size=10,\
-	          xft:SauceCodePro Nerd Font Mono:size=10,\
-            	  xft:PowerlineSymbols:size=10,\
+URxvt.italicFont: xft:Source Code Pro:italic:size=11,\
+	          xft:SauceCodePro Nerd Font Mono:size=11,\
+            	  xft:PowerlineSymbols:size=11,\
                   xft:Material Design Icons:size=20,\
                   xft:Material Design Icons:size=19,\
                   xft:Material Design Icons:size=18,\
@@ -136,9 +136,9 @@ URxvt.italicFont: xft:Source Code Pro:italic:size=10,\
                   xft:Unifont:size=14
 
 ! The font list to use for displaying bold italic characters.
-URxvt.boldItalicFont: xft:Source Code Pro:bold:italic:size=10,\
-	              xft:SauceCodePro Nerd Font Mono:size=10,\
-		      xft:PowerlineSymbols:size=10,\
+URxvt.boldItalicFont: xft:Source Code Pro:bold:italic:size=11,\
+	              xft:SauceCodePro Nerd Font Mono:size=11,\
+		      xft:PowerlineSymbols:size=11,\
                       xft:Material Design Icons:size=20,\
                       xft:Material Design Icons:size=19,\
                       xft:Material Design Icons:size=18,\
