@@ -1,4 +1,4 @@
-# vi:syntax=sh
+# vim:filetype=sh
 
 # This exists as a separate script so that I can run noninteractive bash/zsh shells that only source aliases.
 
