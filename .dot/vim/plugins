@@ -1,4 +1,4 @@
-" vi:syntax=vim
+" vim:filetype=vim
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -48,10 +48,8 @@ function! s:install_missing_plugins() abort
 	endif
 endfunction
 
-function! s:add_plugin(plugin_fullname) abort
+function! s:after_add_plugin(plugin_fullname) abort
 	let plugin_fullname=a:plugin_fullname
-
-	Plug plugin_fullname
 
 	let plugin_name=split(plugin_fullname, "/")[1]
 
@@ -64,10 +62,31 @@ function! s:add_plugin(plugin_fullname) abort
 	if filereadable(plugin_config)
 		exec 'source' plugin_config
 	else
-		call writefile(['" vi:syntax=vim'], plugin_config)
+		call writefile(['" vim:filetype=vim'], plugin_config)
 	endif
 endfunction
 
+function! s:add_plugin_with_args(plugin_fullname, extra_args) abort
+	let plugin_fullname=a:plugin_fullname
+	let extra_args=a:extra_args
+
+	Plug plugin_fullname, extra_args
+
+	call s:after_add_plugin(plugin_fullname)
+endfunction
+
+function! s:add_plugin(plugin_fullname) abort
+	let plugin_fullname=a:plugin_fullname
+	Plug plugin_fullname
+	call s:after_add_plugin(plugin_fullname)
+endfunction
+
+function! s:add_plugin_and_do(plugin_fullname, funcname) abort
+	let plugin_fullname=a:plugin_fullname
+	let funcname=a:funcname
+	Plug plugin_fullname, { 'do': function(funcname) }
+	call s:after_add_plugin(plugin_fullname)
+endfunction
 
 call plug#begin('~/.vim/plugged')
 
@@ -82,6 +101,32 @@ else
 	call s:add_plugin('farmergreg/vim-lastplace')
 	call s:add_plugin('tpope/vim-sleuth')
 	call s:add_plugin('airblade/vim-gitgutter')
+	call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
+	call s:add_plugin('tpope/vim-surround')
+	call s:add_plugin('tpope/vim-fugitive')
+	call s:add_plugin('tpope/vim-commentary')
+	call s:add_plugin('tpope/vim-eunuch')
+	call s:add_plugin('tpope/vim-unimpaired')
+	call s:add_plugin('tpope/vim-repeat')
+	call s:add_plugin('tpope/vim-abolish')
+	call s:add_plugin('tpope/vim-dispatch')
+	call s:add_plugin('nathanaelkane/vim-indent-guides')
+	call s:add_plugin('terryma/vim-multiple-cursors')
+	call s:add_plugin('sirver/ultisnips')
+	call s:add_plugin('mbbill/undotree')
+	call s:add_plugin('roxma/vim-paste-easy')
+	" call s:add_plugin('')
+
+	function! BuildYCM(info)
+		" info is a dictionary with 3 fields
+		" - name:   name of the plugin
+		" - status: 'installed', 'updated', or 'unchanged'
+		" - force:  set on PlugInstall! or PlugUpdate!
+		if a:info.status == 'installed' || a:info.force
+			!./install.py
+		endif
+	endfunction
+	" call s:add_plugin_and_do('Valloric/YouCompleteMe', 'BuildYCM') " Needs cmake
 endif
 
 " powerline doesn't support nvim yet: https://github.com/powerline/powerline/issues/1287

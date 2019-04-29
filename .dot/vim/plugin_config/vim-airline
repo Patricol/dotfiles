@@ -1,4 +1,4 @@
-" vi:syntax=vim
+" vim:filetype=vim
 
 let g:airline#extensions#tabline#enablM#Bed = 1
 let g:airline#extensions#tabline#left_sep = ''

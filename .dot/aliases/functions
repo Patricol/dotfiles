@@ -1,4 +1,4 @@
-# vi:syntax=sh
+# vim:filetype=sh
 # Standalone functions that don't fit into the other sections.
 
 
@@ -297,5 +297,11 @@ merge() {
     declare from="$1" to="$2"
     rsync --remove-source-files -abviuAP "${from}" "${to}" \
  && find "${from}" -depth -type d -empty -delete
+}
+
+rvimgrep() {
+    declare search_terms="$@"
+    grep -Rn "${search_terms}" | awk -F ':' '{print "+" $2 " " $1}' | sed -Ee 's/$/" +"sp /g' | paste -d '' - - - - - - - - - - | sed -Ee 's/......$//g' -e 's/^([^ ]*) /\1 "/' | xargs -L 1 vim
+    reset
 }
 

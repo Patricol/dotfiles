@@ -1,4 +1,4 @@
-" vi:syntax=vim
+" vim:filetype=vim
 
 source ~/.dot/l/vim/plugins
 
@@ -26,6 +26,8 @@ else
   set viminfo+=n~/.history/viminfo
 endif
 
+set undofile
+set undodir=~/.vim/undo
 
 " Copies what was just pasted.
 xnoremap p pgvy
@@ -58,4 +60,6 @@ else
   nnoremap <Right> :echoe "Use l"<CR>
   nnoremap <Up> :echoe "Use k"<CR>
   nnoremap <Down> :echoe "Use j"<CR>
+  set relativenumber
+  set number
 endif
