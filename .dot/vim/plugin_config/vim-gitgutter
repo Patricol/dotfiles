@@ -1,2 +1,2 @@
-" vi:syntax=vim
+" vim:filetype=vim
 let g:gitgutter_grep = ''

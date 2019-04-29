@@ -1,4 +1,4 @@
-# vi:syntax=sh
+# vim:filetype=sh
 
 alias logs='sudo journalctl -xe'
 
@@ -10,6 +10,7 @@ alias sc-logs='sudo journalctl --lines=10000 --pager-end --unit'
 alias scu-logs='journalctl --user --lines=10000 --pager-end --unit'
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
+alias pacf='yay -Y'
 
 alias syu='yay -Syu --devel && yay -S'
 alias syuchoose='yay -Syu --devel --noanswerupgrade && yay -S'

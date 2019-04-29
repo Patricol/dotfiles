@@ -1,4 +1,4 @@
-# vi:syntax=sh
+# vim:filetype=sh
 # Aliases for wpg
 
 __wpgsetfast_faster() {

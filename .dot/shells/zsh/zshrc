@@ -1,4 +1,4 @@
-# vi:syntax=zsh
+# vim:filetype=zsh
 
 #zmodload zsh/zprof #uncomment for profiling (run zprof after exec zsh)
 

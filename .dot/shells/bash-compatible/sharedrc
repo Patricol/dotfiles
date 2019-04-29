@@ -1,4 +1,4 @@
-# vi:syntax=sh
+# vim:filetype=sh
 
 # Alias definitions.
 source ~/.dot/l/source-aliases
