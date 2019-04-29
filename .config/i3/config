@@ -358,7 +358,7 @@ bindsym $win+f			$facebook-messenger
 bindsym $win+m			$music
 bindsym $win+n			$notes
 bindsym $win+Print		$screenshot-window
-bindsym $win+$alt+Print		$screenshot-selection
+#bindsym $win+$alt+Print		$screenshot-selection # Doesn't work currently
 bindsym Print			$screenshot
 bindsym $win+l			$lock
 bindsym $win+e			$files
