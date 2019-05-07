@@ -116,7 +116,7 @@ __make_file_dict() {
 	argue_options=("f,should_find,noarg" "s,without_suffix,arg" "p,with_prefix,arg" "r,recurse,noarg" ",find_name,arg")
 	source "$(which argue)"
 
-	local all_files
+	local -a all_files
 	if [[ -n "${should_find}" ]]; then
 	    findargs=("-maxdepth" "1")
 	    if [[ -z "${recurse}" ]]; then
@@ -193,7 +193,7 @@ edit_file() {
     declare editor="$1" ; shift
     declare filepaths=()
 
-    if ! [[ -v __edit_file_dict[@] ]]; then
+    if [[ ${#__edit_file_dict[@]} -eq 0 ]]; then
         __make_file_dict
     fi
     
