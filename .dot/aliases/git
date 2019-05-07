@@ -247,17 +247,17 @@ dfgcmtm() {
 }
 
 
-gsf() {
+gsfauthed() {
 	local gsf_command full_command
 	gsf_command='GIT_EDITOR="svim" git --git-dir=/root/systemfiles-repo/ --work-tree=/'
 	full_command="add_ssh_keys /home/patricol/.ssh/github && ${gsf_command} $@"
 	sudo -i bash -ic -- "${full_command}"
 }
-glsf() {
+gsf() {
 	GIT_EDITOR="svim" sudo git --git-dir=/root/systemfiles-repo/ --work-tree=/ $@
 }
 
-alias gsfk='gsf remote set-url origin git@github.com:Patricol/systemfiles.git'
+alias gsfk='gsfauthed remote set-url origin git@github.com:Patricol/systemfiles.git'
 
 alias gsfs='gsf status --ahead-behind'
 
@@ -267,7 +267,7 @@ alias gsfdc='gsfd --cached'
 alias gsfa='gsf add'
 gsfaa() {
 	gsfa -u
-     	for directory in /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/pacman.d/hooks; do
+     	for directory in /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/{pacman.d/hooks,systemd/{l.conf.d,system}}; do
 		if sudo test -d "${directory}"; then
      			gsfa "${directory}"
 		else
@@ -276,18 +276,18 @@ gsfaa() {
 	done
      	for dir_or_file in /root/.dot/htoprc; do
 		if [[ -d "${dir_or_file}" ]]; then
-     			dfg reset HEAD -- "${dir_or_file}"
+     			gsf reset HEAD -- "${dir_or_file}"
 		fi
 	done
 }
 alias gsfc='gsf commit -v'
 alias gsfac='gsfaa && gsfc'
 
-alias gsfp='gsfk && gsf push'
+alias gsfp='gsfk && gsfauthed push'
 
 alias gsfdt='gsf difftool -d -y -t meld'
 alias gsfdtrpi='gsf fetch origin arch_rpi:arch_rpi && gsf difftool -d -y -t meld arch_rpi --'
-
+# might need gsfauthed?
 
 
 # generalize these more etc.
@@ -309,8 +309,13 @@ cgit() {
 }
 
 ggrep() {
+	# check if sudo is needed in ls etc. via touch -a 
 	declare gitalias="$1" ; shift
-	cd "${HOME}"
+	if [[ "${gitalias}" == "dfg" ]]; then
+		cd "${HOME}"
+	elif [[ "${gitalias}" == "gsf" ]]; then
+		cd "/"
+	fi
 	local filepath
 	declare -a syms files
 	cgit "${gitalias}" ls-tree -r --name-only --full-tree HEAD | while read filepath; do

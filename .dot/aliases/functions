@@ -15,15 +15,13 @@ extract() {
 	declare archives="$@"
 	if [[ -z "${archives}" ]]; then
 		echo "provide archive(s)" >&2
-		false
-		return "$?"
+		return 1
 	fi
 	local archive
 	for archive in ${archives}; do
 		if [[ ! -f "${archive}" ]]; then
 			echo "given archive (${archive}) does not exist" >&2
-			false
-			return "$?"
+			return 1
 		fi
 		case "${archive%,}" in
 			*.tar|*.tgz|*.tar.gz|*.txz|*.tar.xz|*.tbz2|*.tar.bz2)
@@ -62,7 +60,7 @@ extract() {
 
 maketxz() {
 	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
-	if [[ "$#" -ne 1 ]]; then
+	if [[ $# -ne 1 ]]; then
 	    echo "provide only a single folder or file as an argument" >&2
 	    return 1
 	fi
@@ -114,83 +112,70 @@ __make_file_dict() {
 	add_name_for_file "${nickname}" "${filepath}"
     }
 
-    add_files_with_prefix_and_without_suffix() {
-        declare prefix="$1" ; shift
-        declare suffix="$1" ; shift
-        for file in $(echo $@ | tr "\n" " "); do
-            __add_file_with_prefix_and_without_suffix "${prefix}" "${suffix}" "${file}"
+    add_files() { #recursive behavior not fully implemented; will ignore intermediate dirs in output name
+	argue_options=("f,should_find,noarg" "s,without_suffix,arg" "p,with_prefix,arg" "r,recurse,noarg" ",find_name,arg")
+	source "$(which argue)"
+
+	local all_files
+	if [[ -n "${should_find}" ]]; then
+	    findargs=("-maxdepth" "1")
+	    if [[ -z "${recurse}" ]]; then
+		findargs+=("-mindepth" "1")
+	    fi	
+	    findargs+=("!" "-type" "d")
+	    if [[ -n "${find_name}" ]]; then
+		findargs+=("-name" "${find_name}")
+	    fi	
+	    local dir
+	    local -a files
+	    for dir in "$@"; do
+		if [[ "${SHELL}" == *"/zsh" ]]; then
+		    IFS=$'\n' read -d '' -r -A files < <(find ${dir} ${findargs[@]} 2> /dev/null)
+		else
+		    # echo "find ${dir} ${findargs[@]}"
+		    mapfile -t files < <(find ${dir} ${findargs[@]} 2> /dev/null)
+		    # echo "${files[@]}"
+		fi
+		all_files+=(${files[@]})
+	    done
+	else
+	    all_files=($@)
+	fi
+        for file in ${all_files[@]}; do
+            __add_file_with_prefix_and_without_suffix "${with_prefix}" "${without_suffix}" "${file}"
         done
     }
 
-    add_found_files_with_prefix_and_without_suffix() {
-        declare prefix="$1" ; shift
-        declare suffix="$1" ; shift
-        declare dir="$1" ; shift
-	local findargs
-	findargs=("-maxdepth" "1" "-mindepth" "1" "!" "-type" "d")
-	add_files_with_prefix_and_without_suffix "${prefix}" "${suffix}" "$(find ${dir} ${findargs[@]} $@ 2> /dev/null)"
-    }
-
-    add_files_without_suffix() {
-        declare suffix="$1" ; shift
-        add_files_with_prefix_and_without_suffix "" "${suffix}" $@
-    }
-
-    add_found_files_without_suffix() {
-        declare suffix="$1" ; shift
-        add_found_files_with_prefix_and_without_suffix "" "${suffix}" $@
-    }
-
-    add_files_with_prefix() {
-        declare prefix="$1" ; shift
-        add_files_with_prefix_and_without_suffix "${prefix}" "" $@
-    }
-
-    add_found_files_with_prefix() {
-        declare prefix="$1" ; shift
-        add_found_files_with_prefix_and_without_suffix "${prefix}" "" $@
-    }
-
-    add_files() {
-        add_files_with_prefix_and_without_suffix "" "" $@
-    }
-
-    add_found_files() {
-        add_found_files_with_prefix_and_without_suffix "" "" $@
-    }
-
-
-    add_found_files ~/.dot/l/
-    add_found_files ~/.dot/l/bin/
-    add_found_files ~/.dot/l/aliases/
-    add_found_files_with_prefix "aliases/" ~/.dot/l/aliases/
-    add_found_files ~/.dot/l/shrc/
-    add_found_files /usr/local/bin/
-    add_found_files_with_prefix "bin/" /usr/local/bin/
-    add_found_files /usr/local/sbin/
-    add_found_files_with_prefix "sbin/" /usr/local/sbin/
-    add_found_files_without_suffix ".base" ~/.config/wpg/templates/ -name "*.base"
-    add_found_files_with_prefix_and_without_suffix "nemo-" ".nemo_action" ~/.local/share/nemo/actions/
-    add_found_files_with_prefix "feh/" ~/.config/feh/
-    add_found_files_with_prefix_and_without_suffix "mpv/" ".conf" ~/.config/mpv/
-    add_found_files_with_prefix_and_without_suffix "neofetch/" ".conf" ~/.config/neofetch/
-    add_found_files_with_prefix_and_without_suffix "nvim/" ".vim" ~/.config/nvim/
-    add_found_files_with_prefix "systemd/user/" ~/.config/systemd/user/
-    add_found_files_with_prefix "wal/" ~/.config/wal/colorschemes/both/
-    add_found_files_with_prefix "vim-plugins/" ~/.dot/l/vim/plugin_config/
+    add_files -f ~/.dot/l/ ~/.dot/l/bin/ ~/.dot/l/aliases/ ~/.dot/l/shrc/ /usr/local/bin/ /usr/local/sbin/
+    add_files -f -p "aliases/" ~/.dot/l/aliases/
+    add_files -f -p "bin/" /usr/local/bin/
+    add_files -f -p "sbin/" /usr/local/sbin/
+    add_files -f -s ".base" ~/.config/wpg/templates/ --find_name '*.base'
+    add_files -f -p "nemo-" -s ".nemo_action" ~/.local/share/nemo/actions/
+    add_files -f -p "feh/" ~/.config/feh/
+    add_files -f -p "mpv/" -s ".conf" ~/.config/mpv/
+    add_files -f -p "neofetch/" -s ".conf" ~/.config/neofetch/
+    add_files -f -p "nvim/" -s ".vim" ~/.config/nvim/
+    add_files -f -p "systemd/user/" ~/.config/systemd/user/
+    add_files -f -p "wal/" ~/.config/wal/colorschemes/both/
+    add_files -f -p "vim-plugins/" ~/.dot/l/vim/plugin_config/
+    add_files -f -p "systemd/conf/" /etc/systemd/l.conf.d/
+    add_files -f -p "systemd/system/" /etc/systemd/system/ # add recursively from this
 
     add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile} ~/.config/wpg/wpg.conf
-    add_files_without_suffix ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
-    add_files_without_suffix "_config" /etc/ssh/{sshd,ssh}_config
-    add_files_without_suffix "rc" ~/.config/dunst/dunstrc
-    add_files_without_suffix ".txt" /root/setup.txt
-    add_files_without_suffix ".json" ~/.config/indicator-sound-switcher.json
-    add_files_without_suffix ".list" ~/.config/mimeapps.list
+    add_files -s ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
+    add_files -s "_config" /etc/ssh/{sshd,ssh}_config
+    add_files -s "rc" ~/.config/dunst/dunstrc
+    add_files -s ".txt" /root/setup.txt
+    add_files -s ".json" ~/.config/indicator-sound-switcher.json
+    add_files -s ".list" ~/.config/mimeapps.list
 
     add_name_for_file "yay" "${HOME}/.config/yay/config.json"
     add_name_for_file "bat" "${HOME}/.config/bat/config"
     add_name_for_file "vim-plugins" "${HOME}/.dot/l/vim/plugins"
     add_name_for_file "vim" "${HOME}/.dot/l/vimrc"
+    add_name_for_file "compose/docker-compose.yml" "/root/.dot/l/compose/docker-compose.yml"
+    add_name_for_file "compose/env" "/root/.dot/l/compose/.env"
 
     local key print_dict
     if [[ "${print_dict}" ]]; then
@@ -291,7 +276,7 @@ chwp() {
 alias cwp='chwp'
 
 merge() {
-    if [[ "$#" -ne 2 ]]; then
+    if [[ $# -ne 2 ]]; then
 	echo "usage: merge from to" >&2
 	return 1
     fi
