@@ -113,7 +113,7 @@ __make_file_dict() {
     }
 
     add_files() { #recursive behavior not fully implemented; will ignore intermediate dirs in output name
-	argue_options=("f,should_find,noarg" "s,without_suffix,arg" "p,with_prefix,arg" "r,recurse,noarg" ",find_name,arg")
+	argue_options=("f,should_find,noarg" "s,without_suffix,arg" "p,with_prefix,arg" "r,recurse,noarg" ",find_name,arg" ",exclude_name,arg")
 	source "$(which argue)"
 
 	local -a all_files
@@ -125,6 +125,9 @@ __make_file_dict() {
 	    findargs+=("!" "-type" "d")
 	    if [[ -n "${find_name}" ]]; then
 		findargs+=("-name" "${find_name}")
+	    fi	
+	    if [[ -n "${exclude_name}" ]]; then
+		findargs+=("!" "-name" "${exclude_name}")
 	    fi	
 	    local dir
 	    local -a files
@@ -160,7 +163,7 @@ __make_file_dict() {
     add_files -f -p "wal/" ~/.config/wal/colorschemes/both/
     add_files -f -p "vim-plugins/" ~/.dot/l/vim/plugin_config/
     add_files -f -p "systemd/conf/" /etc/systemd/l.conf.d/
-    add_files -f -p "systemd/system/" /etc/systemd/system/ # add recursively from this
+    add_files -f -p "systemd/system/" /etc/systemd/system/ --exclude_name '*.target' # add recursively from this
 
     add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile} ~/.config/wpg/wpg.conf
     add_files -s ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
