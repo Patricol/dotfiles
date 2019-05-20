@@ -9,7 +9,7 @@
 		"wal-cyan": [6, "00b8d4"],
 		"wal-bright": [7, "bdbdbd"],
 		"wal-dark": [8, "616161"],
-		"wal-light-red": [9, "ff5252"],
+		"wal-light-red": [9, "e53935"],
 		"wal-light-green": [10, "69f0ae"],
 		"wal-light-yellow": [11, "ffff00"],
 		"wal-light-blue": [12, "448aff"],
