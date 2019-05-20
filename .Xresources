@@ -254,8 +254,8 @@ URxvt*borderColor:  [100]#212121
 *color7: #bdbdbd
 *.color8: #616161
 *color8: #616161
-*.color9: #ff5252
-*color9: #ff5252
+*.color9: #e53935
+*color9: #e53935
 *.color10: #69f0ae
 *color10: #69f0ae
 *.color11: #ffff00
@@ -273,7 +273,7 @@ URxvt*borderColor:  [100]#212121
 URxvt.borderColor: #212121
 
 ! Use the specified color to display bold characters when the foreground color is the default. If font styles are not available (Compile styles) and this option is unset, reverse video is used instead.
-URxvt.colorBD: #ff5252
+URxvt.colorBD: #e53935
 
 ! Use the specified color to display italic characters when the foreground color is the default. If font styles are not available (Compile styles) and this option is unset, reverse video is used instead.
 URxvt.colorIT: #ffff00

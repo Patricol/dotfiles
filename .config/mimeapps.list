@@ -182,3 +182,4 @@ video/x-flv=mpv.desktop;
 [Removed Associations]
 application/vnd.comicbook+zip=calibre-gui.desktop;okularApplication_comicbook.desktop;
 application/vnd.comicbook-rar=okularApplication_comicbook.desktop;
+application/vnd.adobe.flash.movie=vlc.desktop;
