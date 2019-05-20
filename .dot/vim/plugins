@@ -60,6 +60,9 @@ function! s:after_add_plugin(plugin_fullname) abort
 
 	let plugin_config=$HOME.'/.dot/l/vim/plugin_config/'.plugin_name
 	if filereadable(plugin_config)
+		if !isdirectory(plugin_dir)
+			call s:install_missing_plugins() " Can have errors if we try to source plugin-specific config files before those plugins are installed.
+		endif
 		exec 'source' plugin_config
 	else
 		call writefile(['" vim:filetype=vim'], plugin_config)
