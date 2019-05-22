@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-main() {
-	systemctl --user start powerline-daemon.service
-}
-
-main
-

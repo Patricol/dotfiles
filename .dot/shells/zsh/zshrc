@@ -238,7 +238,7 @@ setup_zsh_plugins() {
 	#zplug "modules/editor",		from:prezto # evaluate
 	#zplug "modules/gpg",			from:prezto # evaluate
 	#zplug "modules/utility",		from:prezto # evaluate
-	#zplug "bhilburn/powerlevel9k",		as:theme # my powerline will override, but this is the most similar theme for fallback.
+	zplug "bhilburn/powerlevel9k",		as:theme # my powerline will override, but this is the most similar theme for fallback.
 	#zplug "Tarrasch/zsh-bd"
 	#zplug "wting/autojump"
 	#zplug "chriskempson/base16-shell"
@@ -260,9 +260,6 @@ setup_zsh_plugins() {
 	unset -f setup_zplug install_missing_plugins
 }
 setup_zsh_plugins
-
-powerline_shell_theme='custom'
-source /usr/share/powerline/bindings/zsh/powerline.zsh
 
 fpath=(~/.dot/l/zsh-custom-completion/ $fpath)
 

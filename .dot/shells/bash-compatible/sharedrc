@@ -2,10 +2,6 @@
 
 # Alias definitions.
 source ~/.dot/l/source-aliases
-if [[ -f ~/.dot/l/jetbrainsrc ]]; then
-	source ~/.dot/l/jetbrainsrc
-fi
-
 if ! [[ -d "${HOME}/.history" ]]; then
 	mkdir -p "${HOME}/.history"
 fi
@@ -25,36 +21,14 @@ else
 	export PAGER="less"
 fi
 
-if [[ -n "$DISPLAY" ]]; then
-	export BROWSER=chromium
-else
-	export BROWSER=lynx
-fi
-
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export BROWSER=lynx
 
 export LESSHISTFILE="${HOME}/.history/less"
 
-source ~/.config/wpg/formats/colors-tty.sh || true # do this above neofetch. blanks the terminal; though it only runs if on tty.
 
-
-#(cat ~/.config/wpg/sequences &) # not needed; overrides custom cursor etc.
-if [[ "${TERM}" == "linux" ]]; then
-	powerline_shell_theme="ext.shell.theme=\"${powerline_shell_theme}_oneline\";ext.shell.colorscheme=\"custom_tty\";ext.vim.colorscheme=\"custom_tty\";ext.tmux.colorscheme=\"custom_tty\""
-else
-	powerline_shell_theme="ext.shell.theme=\"${powerline_shell_theme}\""
-fi
 if [[ -z "${DISPLAY}" ]]; then
 	neofetch
-	export LANG="en_US.UTF-8" # changing lang fixes vim powerline
-	export POWERLINE_CONFIG_OVERRIDES="ext.vim.top_theme=\"ascii_custom\";common.default_top_theme=\"ascii_custom\";${powerline_shell_theme}"
-else
-	export POWERLINE_CONFIG_OVERRIDES="${powerline_shell_theme}"
 fi
-unset powerline_shell_theme
-
-~/.dot/l/bin/start-powerline-daemon
-
 
 stty -ixon # disable Ctrl-S
 
