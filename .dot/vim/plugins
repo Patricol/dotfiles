@@ -100,18 +100,18 @@ call s:add_plugin('tpope/vim-sensible')
 
 if exists("vimpager")
 else
-	call s:add_plugin('scrooloose/nerdtree')
+	" call s:add_plugin('scrooloose/nerdtree')
 	call s:add_plugin('farmergreg/vim-lastplace')
 	call s:add_plugin('tpope/vim-sleuth')
 	call s:add_plugin('airblade/vim-gitgutter')
-	call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
+	" call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
 	call s:add_plugin('tpope/vim-surround')
 	call s:add_plugin('tpope/vim-fugitive')
 	call s:add_plugin('tpope/vim-commentary')
 	call s:add_plugin('tpope/vim-eunuch')
 	call s:add_plugin('tpope/vim-unimpaired')
 	call s:add_plugin('tpope/vim-repeat')
-	call s:add_plugin('tpope/vim-abolish')
+	" call s:add_plugin('tpope/vim-abolish')
 	call s:add_plugin('tpope/vim-dispatch')
 	call s:add_plugin('nathanaelkane/vim-indent-guides')
 	call s:add_plugin('terryma/vim-multiple-cursors')
