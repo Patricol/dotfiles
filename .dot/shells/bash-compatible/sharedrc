@@ -30,6 +30,8 @@ if [[ -z "${DISPLAY}" ]]; then
 	neofetch
 fi
 
+export TERM=linux # otherwise things mess up for urxvt (via ssh) etc.
+
 stty -ixon # disable Ctrl-S
 
 ier yay --news # warns me of news I need to know before updating
