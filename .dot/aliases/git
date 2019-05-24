@@ -160,7 +160,7 @@ alias dfg_mm='dfg_m master'
 dfg_aa() {
 	dfgfixsym
 	dfga -u
-     	for directory in ~/.{themes,dot} ~/.config/{feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wpg}; do
+     	for directory in ~/.dot; do
 		if [[ -d "${directory}" ]]; then
      			dfga "${directory}"
 		else
@@ -269,7 +269,7 @@ alias gsfk='gsfauthed remote set-url origin git@github.com:Patricol/systemfiles.
 
 gsf_aa() {
 	gsfa -u
-     	for directory in /root/{.dot,info,efivars} /boot/loader /boot/EFI/refind/{drivers*,theme} /usr/local/{bin,sbin} /etc/{pacman.d/hooks,systemd/{l.conf.d,system}}; do
+     	for directory in /root/{.dot,info} /boot/loader /usr/local/{bin,sbin} /etc/pacman.d/hooks; do
 		if sudo test -d "${directory}"; then
      			gsfa "${directory}"
 		else

@@ -10,18 +10,12 @@ alias sc-logs='sudo journalctl --lines=10000 --pager-end --unit'
 alias scu-logs='journalctl --user --lines=10000 --pager-end --unit'
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
-alias pacf='yay -Y'
-
-alias syu='yay -Syu --devel && yay -S'
-alias syuchoose='yay -Syu --devel --noanswerupgrade && yay -S'
+alias syu='pacman -Syu && pacman -S'
 alias pacs='syu'
 alias pacsd='pacs --asdeps'
-alias pacse='yay -D --asexplicit'
-alias aurs='echo "use pacs"'
-alias pacr='yay -R'
-alias pacrs='yay -Rs'
-alias aurr='echo "use pacr"'
-alias aurrs='echo "use pacrs"'
+alias pacse='pacman -D --asexplicit'
+alias pacr='pacman -R'
+alias pacrs='pacman -Rs'
 
 pq() {
 	declare search="$1"
@@ -65,11 +59,8 @@ pqedm() {
 		fi
 	done
 }
-alias pqedqt='pqedm qt3 qt4 qt5-base'
-alias pqedgtk='pqedm gtk gtk2 gtk3'
 alias pqi='pacman -Qi'
 alias pqunneeded='pacman -Qittd'
-alias pqaur='pacman -Qm'
 
 pcps() {
 	# check package size; also prints the package names
@@ -79,26 +70,6 @@ pcps() {
 }
 
 
-pcpes() {
-	# check package effective size; also prints the package names
-	declare packages="$@"
-
-	pcpesnn() {
-		# check package effective size
-		declare package="$1"
-		echo n | yay -Rns "${package}" 2> /dev/null | egrep "^Total Removed Size:" | cut -f2 -d":" | xargs
-	}
-
-	local package
-	for package in ${packages}; do
-		pcpesnn "${package}"
-		expac '%-20n\t%10d' "${package}"
-	done
-	unset -f pcpesnn
-}
-
 alias pqenb='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)'
-alias listexplicitlyinstalled='expac -H M "%011m\t%-20n\t%10d" $(pqenb) | sort -n'
-alias listexplicitlyinstalledtruesize='pcpes "$(pqenb)" | paste - - | sort -n'
-alias listexplicitlyinstalleduniversal='pcps "$(pqenb)"'
+alias listexplicitlyinstalled='pcps "$(pqenb)"'
 
