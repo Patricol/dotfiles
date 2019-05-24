@@ -1,48 +1,8 @@
 # vim:filetype=sh
-alias docker='sudo docker'
 
-alias docker-compose='sudo docker-compose'
-alias dcf='docker-compose'
+alias docker='sudo docker'
 
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 
 alias drf='docker run --rm -it'
-alias dpf='docker pull'
-dprf() {
-	declare container="$1" command="$@"
-	#Can only use when no options are provided before the container name; fix that later.
-	dpf "${container}"
-	drf "${command}"
-}
-
-alias drfalpine='dprf alpine /bin/ash'
-alias alpine='drfalpine'
-
-alias drfubuntu='dprf patricol/riced:ubuntu_rolling'
-alias ubuntu='drfubuntu'
-alias drfu='drfubuntu'
-
-alias drfarch='dprf patricol/riced:arch'
-alias arch='drfarch'
-alias drfa='drfarch'
-
-drf_g() {
-	declare rdp_or_vnc="$1" ; shift
-	dpf $1 && drf -e RDP_OR_VNC="${rdp_or_vnc}" -p 3389:3389 -p 5925:5900 $@
-}
-drfg() {
-	drf_g RDP $@
-}
-drfgv() {
-	drf_g VNC $@
-}
-alias drfgui='drfg patricol/gui_base:arch'
-
-
-checliver() {
-	docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /home/docker/che:/data eclipse/che-cli:$@
-}
-checli() {
-	checliver $(cat /home/docker/che/instance/che.ver.do_not_modify) $@
-}

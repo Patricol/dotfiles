@@ -2,15 +2,12 @@
 
 alias logs='sudo journalctl -xe'
 
-alias scu-dr='systemctl --user daemon-reload'
-alias scu-rd='scu-dr'
-alias sc-dr='sudo systemctl daemon-reload'
-alias sc-rd='sc-dr'
 alias sc-logs='sudo journalctl --lines=10000 --pager-end --unit'
 alias scu-logs='journalctl --user --lines=10000 --pager-end --unit'
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
-alias syu='pacman -Syu && pacman -S'
+alias pacman='sudo pacman'
+alias syu='pacman -Syu'
 alias pacs='syu'
 alias pacsd='pacs --asdeps'
 alias pacse='pacman -D --asexplicit'

@@ -1,9 +1,4 @@
 # vim:filetype=sh
-# Alias definitions.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-# Better to just include commands (from other dotfile branches) even if they don't run because (e.g) this account cant sudo etc.
-# Easier to maintain/merge; and can use those aliases when checking out a branch in an environment it's not meant for, etc.
 
 alias rgrep='grep -r'
 
@@ -27,65 +22,14 @@ alias md='mkdir -p'
 
 alias cloc='curl -L -C - -O' # follow redirects, download as original name, continue
 
-gui_open() {
-	declare program="$@"
-	i3-msg exec "${program}"
-}
-
-gui_sudo_open() {
-	declare as_user="$1" ; shift
-	local program
-	program="$@"
-	gui_open "sudo --askpass --login --user=${as_user} -- env QT_QPA_PLATFORMTHEME=qt5ct ${program}"
-}
-
 alias sudo='sudo ' # allows me to use sudo before aliases
 alias s='sudo'
 
-alias sup='sudo -i -u patricol --'
-alias sip='sup'
-alias supa='sudo -i -u patricol -A --'
-alias supg='gui_sudo_open patricol'
-alias suw='sudo -i -u work --'
-alias suwa='sudo -i -u work -A --'
-alias siw='suw'
-alias suwg='gui_sudo_open work'
 alias sur='sudo -i -u root --'
 alias sir='sur'
-alias surg='gui_sudo_open root'
 alias visudo='sudo -- visudo'
 
-alias mnas='sup mount /media/nas'
-alias umnas='umount /media/nas'
-
-alias mnt='tldr'
-alias mnc='cheat'
-alias mn='mnt'
-
-
-#replace with nvim once I switch to it.
-alias ex='vim -e'
-alias exim='vim -E'
-alias rview='vim -RZ'
-alias rvim='vim -Z'
-alias view='vim -R'
-alias vimdiff='vim -d'
-
 alias diff='diff -s'
-
-alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
-
-alias top='htop'
-
-
-
-screenshot() {
-	scrot "${HOME}/.dot/l/f/screenshots/scrot_%Y-%m-%d_%H-%M-%S.png" --multidisp $@ # --quality 100 # for png, higher quality just makes it less compressed.
-}
-alias screenshot-window='screenshot --focused'
-alias screenshot-selection='screenshot --select'
-alias fscrot='screenshot'
-
 
 alias fp='echo "fixing permissions..."; sudo /usr/local/sbin/fix-permissions'
 
@@ -103,23 +47,10 @@ alias findbrokenlinks='find -xtype l'
 
 alias eb='exec bash'
 alias ebnrc='exec bash --norc --noprofile'
-alias ez='exec zsh'
 alias be='exec "${SHELL}"'
-
-alias ep='exec python'
-
-
-mountiso() {
-	declare device="$@"
-	sudo mount -o loop "${device}" /media/iso
-}
-
-alias umountiso='sudo umount /media/iso'
 
 alias fkill='sudo killall -KILL'
 
-alias cdup='cd ..'
-alias cdu='cdup'
 alias ..='cd ..'
 alias ..2='cd ../..'
 alias ..3='cd ../../..'
@@ -136,61 +67,16 @@ alias cdback='cd -'
 alias cdb='cdback'
 alias cdhome='cd ~'
 alias cdh='cdhome'
-alias cdshared='cd /home/shared'
-alias cds='cdshared'
-alias cdnas='cd /media/nas'
-alias cdn='cdnas'
-alias cddots='cd ~/.dot'
-alias cdd='cddots'
-alias cddotsl='cd ~/.dot/l'
-alias cddl='cddotsl'
 alias c='clear'
 alias cls='clear && ls'
 alias cl='cls'
 alias x='exit'
 
-alias nas='add_ssh_keys fcdcbda_key && ssh patrick@nas'
-
-alias d='dirs -v'
-#for index ({1..9}) alias "$index"="cd +${index}"; unset index
-
-#open vim to bottom of file.
-alias vimbottom='vim "+ normal GA"'
-
-alias bell='printf \\a'
-
-alias mineofetch='neofetch --config ~/.config/neofetch/mini.conf'
-alias mnf='mineofetch'
-alias nfm='mnf'
-alias nf='neofetch'
-alias nfa='neofetch --ascii'
-alias nfs='neofetch --config ~/.config/neofetch/status.conf'
-
-
-alias rpl='~/.dot/l/bin/restart-powerline-daemon'
-
-
-alias gputemp='nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits'
-
 alias epoch='date +%s'
 alias epochms='date +%s.%N'
 
-
-alias nmo='gui_open nemo "$(pwd)"'
-
-alias dk='a supa mount /media/nas && a supg digikam'
-
-alias aecho='echo '
-
-
 alias fn='find . -name'
 fa() {
-	#local ignore_dirs
-	#ignore_dirs=""
-	#for dir in /var; do
-	#	ignore_dirs="${ignore_dirs} -path ${dir} -prune -o"
-	#done
-	#find / -mount ${ignore_dirs} $@ -print 2> /dev/null
 	find / -mount ${ignore_dirs} $@ -print
 }
 
@@ -199,5 +85,4 @@ fan() {
 }
 
 alias pingf='ping -c 1 1.1.1.1'
-
 

@@ -82,80 +82,7 @@ dfgfixsym() {
 	done
 }
 
-colormsg_yellow() {
-	echo -e "\033[0;33m$@\033[0m" >&2
-}
-colormsg_light_magenta() {
-	echo -e "\033[1;35m$@\033[0m" >&2
-}
-
 alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && add_ssh_keys github'
-
-dfg_getmsg_mbsd() {
-	declare branch="$1"
-	[[ -n "${branch}" ]] || return 4
-	# get message for merging branch-specific differences. should avoid changing it, as it breaks automatic merging.
-	echo "merge ${branch} again to re-add branch-specific differences"
-}
-
-dfg_getc_mim() {
-	# last time changes from this branch were merged into master
-	local lmim
-	# NOTE: Don't edit this message without also fixing dfgcmtm!
-	lmim=$(dfg rev-list --merges --grep="Merge branch '${branch}'" "${branch}" | tac | tail -n1)
-	echo "${lmim}"
-}
-dfg_getc_mbsdfm() {
-	#find 'merge branch-specific differences from master' commit (last time they were re-merged into a non-master branch using -s ours etc.)
-	declare branch="$1"
-	local msgfmbsd
-	msgfmbsd="$(dfg_getmsg_mbsd ${branch})"
-	local lmsgfmbsd # last time branch-specific changes were merged into this branch after changes from this branch were merged into master
-	lmsgfmbsd=$(dfg rev-list --merges --grep="${msgfmbsd}" "${branch}" | tac | tail -n1)
-	echo "${lmsgfmbsd}"
-}
-dfg_getc_mfm() {
-	# last time changes from master were merged into this branch
-	declare branch="$1"
-	local lmfm
-	lmfm=$(dfg rev-list --merges --grep="Merge branch 'master' into ${branch}" "${branch}" | tac | tail -n1)
-	echo "${lmfm}"
-}
-
-dfg_getc_new() {
-	# get new commits (ones that originated in this branch and haven't been merged into master yet)
-	declare branch="$1"
-	dfg rev-list --no-merges --first-parent "$(dfg_getc_mbsdfm ${branch})..${branch}"
-}
-
-dfg_hum() {
-	declare branch="$1"
-	if [[ "$(dfg_getc_new "${branch}" | wc -l)" -ge 1 ]]; then
-		echo "${branch} has unmerged changes."
-		true
-		return "$?"
-	else
-		echo "${branch} has no unmerged changes." >&2
-		false
-		return "$?"
-	fi
-}
-
-
-dfg_ommc() {
-	# ours-merge merge commit
-	declare branch="$1"
-	local mbsdfmc
-	mbsdfmc="$(dfg_getc_mbsdfm "${branch}")"
-	[[ -n "${mbsdfmc}" ]] || return 5
-	local message
-	message="ours-merge to avoid pulling in branch-specific differences"
-	dfg merge -s ours -m "${message}" --no-edit "${mbsdfmc}" 
-}
-
-
-alias dfg_m='dfg merge --edit --no-ff --no-commit'
-alias dfg_mm='dfg_m master'
 
 dfg_aa() {
 	dfgfixsym
@@ -174,86 +101,7 @@ dfg_aa() {
 	done
 }
 
-alias dfgchhtop='dfgch -- ~/.config/htop/htoprc'
-
-alias dfg_chm='dfgch master --'
-alias dfgchp='dfgch archpatricol --'
-alias dfgchw='dfgch archwork --'
-alias dfgchda='dfgch dockerarch --'
-alias dfgchdu='dfgch dockerubuntu --'
-
 alias dfgp='dfgk && dfg push'
-
-
-dfg_lock_branchdiffs() {
-	# merge -s ours each branch, to lock in its differences from the master branch; so they don't need to be reapplied during the next merge. For example, customizations made while merging other branches' changes from master will be locked in by this.
-	dfg_chm || return 1
-	dfgc --allow-empty -m "dummy commit to enable the next merges"
-	
-	local branch
-	for branch in archpatricol archwork dockerarch dockerubuntu; do
-		dfgch "${branch}" -- || return 1
-		dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
-	done
-	dfgchp || return 1
-}
-
-
-dfg_mfmt() {
-	# merge from master to branch
-	declare branch="$1"
-	dfgch "${branch}" -- || return 1
-	dfg_mm
-	colormsg_yellow "MERGING NEW THINGS FROM master INTO ${branch}; MAKE CHANGES AS NEEDED AND COMMIT."
-	dfg merge HEAD || dfgmt && dfgc
-	dfg merge HEAD || dfgmt && dfgc # give a second chance to merge after editing 
-	dfg merge HEAD # will error out if merge is in progress; if commit was aborted or otherwise failed because of merge conflicts
-}
-
-dfg_mtmf() {
-	# merge to master from branch
-	declare branch="$1"
-	if dfg_mfmt "${branch}"; then
-		dfg_chm
-		if dfg_hum "${branch}"; then
-			dfg_ommc "${branch}" || return "$?"
-			colormsg_yellow "MERGING NEW THINGS FROM $branch INTO master."
-			dfg_m "${branch}" || dfgmt
-			colormsg_light_magenta "CHECK CHANGES ARE GOOD, THEN MUST USE dfgcmtm TO COMMIT AND WRAP UP!" >&2
-			false
-			return "$?"
-		else
-			true
-			return "$?"
-		fi
-	else
-		false
-		return "$?"
-	fi
-}
-
-alias dfgpullall='dfgk && dfgchp && dfg pull && dfgchw && dfg pull && dfgchda && dfg pull && dfgchdu && dfg pull && dfg_chm && dfg pull && dfgchp'
-
-alias dfg_fullmerge_nopull='dfg_mtmf archpatricol && dfg_mtmf archwork && dfg_mtmf dockerarch && dfg_mtmf dockerubuntu && dfgchp'
-alias dfgfullmerge='dfgpullall && dfg_fullmerge_nopull'
-alias dfgfm='dfgfullmerge'
-alias dfgfullmerge_and_lock='dfgfullmerge && dfg_lock_branchdiffs'
-alias dfgfmal='dfgfullmerge_and_lock'
-
-alias dfgpushall='dfgk && dfg_chm && dfgpopush && dfgchdu && dfgpopush && dfgchda && dfgpopush && dfgchw && dfgpopush && dfgchp && dfgpopush'
-
-dfgcmtm() {
-	#continue merge to master
-	dfg merge HEAD &> /dev/null && return 3
-	local branch
-	branch="$(head --lines=1 "${__git_git_dirs[dfg]}/MERGE_MSG" | sed -E "s/(Merge branch )?'//g")"
-	dfgc --no-edit
-	dfgc --allow-empty -m "dummy commit to enable the next merge"
-	dfgch ${branch} -- || return 1
-	dfg merge -s ours -m "$(dfg_getmsg_mbsd ${branch})" --no-edit master
-	dfg_fullmerge_nopull
-}
-
 
 gsfauthed() {
 	local gsf_command full_command
@@ -284,13 +132,6 @@ gsf_aa() {
 }
 
 alias gsfp='gsfk && gsfauthed push'
-
-alias gsfdtrpi='gsf fetch origin arch_rpi:arch_rpi && gsf difftool -d -y -t meld arch_rpi --'
-# might need gsfauthed?
-
-
-# generalize these more etc.
-# add way to easily grep all files in the repos.
 
 cgit() {
 	declare repo="$1" ; shift
