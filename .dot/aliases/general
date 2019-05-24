@@ -14,13 +14,8 @@ alias l='ls -CF'
 alias l1='ls -1'
 alias lsgd='ls --group-directories-first'
 
-alias edit='${EDITOR}'
-alias pager='${PAGER}'
-
 alias rd='rmdir'
 alias md='mkdir -p'
-
-alias cloc='curl -L -C - -O' # follow redirects, download as original name, continue
 
 alias sudo='sudo ' # allows me to use sudo before aliases
 alias s='sudo'
@@ -32,16 +27,6 @@ alias visudo='sudo -- visudo'
 alias diff='diff -s'
 
 alias fp='echo "fixing permissions..."; sudo /usr/local/sbin/fix-permissions'
-
-alias counttypes='find . -type f -exec basename {} \; | sed -n "s/..*\.//p" | sort | uniq -c | sort -nr'
-ftype() {
-	declare extension="$1"
-	find . -type f -name "*.${extension}"
-}
-ftypei() {
-	declare extension="$1"
-	find . -type f -name "*.${extension}" -exec file {} \;
-}
 
 alias findbrokenlinks='find -xtype l'
 
