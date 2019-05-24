@@ -80,7 +80,5 @@ if ! shopt -oq posix; then
 	fi
 fi
 
-source /usr/share/doc/pkgfile/command-not-found.bash
-
 source "${HOME}/.dot/l/shrc/both"
 

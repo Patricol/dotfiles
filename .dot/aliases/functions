@@ -7,71 +7,6 @@ add_ssh_keys() {
 }
 
 
-extract() {
-	# should probably not use 7z for all. e.g. extracting tar as root with 7z doesn't preserve permissions and ownership, but doing so with tar -xvzf does.
-	# if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
-	# it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
-	# anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
-	declare archives="$@"
-	if [[ -z "${archives}" ]]; then
-		echo "provide archive(s)" >&2
-		return 1
-	fi
-	local archive
-	for archive in ${archives}; do
-		if [[ ! -f "${archive}" ]]; then
-			echo "given archive (${archive}) does not exist" >&2
-			return 1
-		fi
-		case "${archive%,}" in
-			*.tar|*.tgz|*.tar.gz|*.txz|*.tar.xz|*.tbz2|*.tar.bz2)
-				tar -xvf "${archive}"
-				;;
-			*.rar|*.cbr)
-				unrar x "${archive}"
-				;;
-			*.lzma)
-				unlzma "${archive}"
-				;;
-			*.bz2)
-				bunzip2 "${archive}"
-				;;
-			*.gz)
-				gunzip "${archive}"
-				;;
-			*.zip|*.cbz)
-				unzip "${archive}"
-				;;
-			*.z)
-				uncompress "${archive}"
-				;;
-			*.xz)
-				unxz "${archive}"
-				;;
-			*.exe)
-				cabextract "${archive}"
-				;;
-			*)
-				7z x "${archive}"
-				;;
-		esac
-	done
-}
-
-maketxz() {
-	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
-	if [[ $# -ne 1 ]]; then
-	    echo "provide only a single folder or file as an argument" >&2
-	    return 1
-	fi
-	declare target="$1"
-	tar --create --verbose --auto-compress --file="${target}.txz" "${target}"
-}
-
-#makezip() {
-	# extracting individual files from zip is faster. zip is also more ubiquitous.
-#}
-
 alias bal='vim -O ~/.dot/l/aliases/*'
 alias brc='vim -O ~/.dot/l/shrc/*'
 
@@ -221,35 +156,8 @@ edit_file() {
 }
 
 alias vimc='edit_file svim'
-alias atomc='edit_file satom'
 
 alias vc='vimc'
-alias ac='atomc'
-
-
-
-i3prop() {
-    echo "Click a window to watch its properties."
-    echo "Note that window_type value in i3 is one of: (normal|dialog|utility|toolbar|splash|menu|dropdown_menu|popup_menu|tooltip|notification)"
-    echo ""
-    xprop -spy _NET_WM_NAME WM_NAME WM_CLASS WM_WINDOW_ROLE _NET_WM_WINDOW_TYPE | sed -E \
-	-e 's/^_NET_WM_NAME.*?= /title=/g' \
-	-e 's/^WM_NAME.*?= /title(fallback)=/g' \
-	-e 's/^WM_CLASS.*?= (".*?"), (".*?")$/instance=\1\nclass=\2/g' \
-	-e 's/^WM_WINDOW_ROLE.*?= /window_role=/g' \
-	-e 's/^_NET_WM_WINDOW_TYPE.*?= /window_type=/g' \
-	-e 's/^window_type=_NET_WM_WINDOW_TYPE_/window_type=/g'
-}
-
-
-tif() {
-	#test if statement
-	if [[ $@ ]]; then
-		echo "True"
-	else
-		echo "False"
-	fi
-}
 
 ier() {
 	#if exists, run.
@@ -260,37 +168,8 @@ ier() {
 	fi
 }
 
-alias i3env='i3-msg "exec env > ~/i3env"'
-
 check() {
 	declare program_name="$1"
 	cat "$(which "${program_name}")"
-}
-
-
-chwp() {
-	declare new_wp="$1"
-	if [[ -n "${new_wp}" ]]; then
-		ln -sf "../animated/${new_wp}" ~/.dot/l/wallpapers/default/animated
-	else
-		ls ~/.dot/l/wallpapers/animated/
-	fi
-}
-alias cwp='chwp'
-
-merge() {
-    if [[ $# -ne 2 ]]; then
-	echo "usage: merge from to" >&2
-	return 1
-    fi
-    declare from="$1" to="$2"
-    rsync --remove-source-files -abviuAP "${from}" "${to}" \
- && find "${from}" -depth -type d -empty -delete
-}
-
-rvimgrep() {
-    declare search_terms="$@"
-    grep -Rn "${search_terms}" | awk -F ':' '{print "+" $2 " " $1}' | sed -Ee 's/$/" +"sp /g' | paste -d '' - - - - - - - - - - | sed -Ee 's/......$//g' -e 's/^([^ ]*) /\1 "/' | xargs -L 1 vim
-    reset
 }
 

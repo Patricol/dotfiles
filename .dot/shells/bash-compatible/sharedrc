@@ -13,15 +13,7 @@ fi
 export EDITOR="vim"
 export VISUAL="vim"
 
-if which vimpager &> /dev/null; then
-	export PAGER="vimpager"
-	#alias less=${PAGER}
-	#alias zless=${PAGER}
-else
-	export PAGER="less"
-fi
-
-export BROWSER=lynx
+export PAGER="less"
 
 export LESSHISTFILE="${HOME}/.history/less"
 
