@@ -150,6 +150,7 @@ alias cl='cls'
 alias x='exit'
 
 alias nas='add_ssh_keys fcdcbda_key && ssh patrick@nas'
+alias pam='add_ssh_keys fcdcbda_key && ssh patricol@pam'
 
 alias d='dirs -v'
 #for index ({1..9}) alias "$index"="cd +${index}"; unset index
