@@ -18,6 +18,8 @@ export PAGER="less"
 export LESSHISTFILE="${HOME}/.history/less"
 
 
+dps
+
 if [[ -z "${DISPLAY}" ]]; then
 	neofetch
 fi
@@ -25,4 +27,3 @@ fi
 export TERM=linux # otherwise things mess up for urxvt (via ssh) etc.
 
 stty -ixon # disable Ctrl-S
-
