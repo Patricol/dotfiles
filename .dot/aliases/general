@@ -102,7 +102,7 @@ ftypei() {
 alias findbrokenlinks='find -xtype l'
 
 alias eb='exec bash'
-alias ebnrc='exec bash --norc --noprofile'
+alias ebnrc='bash --norc --noprofile' # don't exec; so it's easier to get back to the previous shell
 alias ez='exec zsh'
 alias be='exec "${SHELL}"'
 
