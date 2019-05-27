@@ -3,6 +3,7 @@ Description=Wallpaper
 
 [Service]
 Type=oneshot
+Environment=DISPLAY=:%i
 ExecStart=feh --bg-fill --no-fehbg --force-aliasing %h/.dot/l/wallpapers/default/fehbg.png
 
 [Install]

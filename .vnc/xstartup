@@ -1,14 +1,5 @@
 #!/bin/sh
 
-unset SESSION_MANAGER
-# exec /etc/X11/xinit/xinitrc
-source /etc/X11/xinit/xinitrc
-
-# if [[ -x /etc/vnc/xstartup ]]; then
-# 	exec /etc/vnc/xstartup
-# fi
-# if [[ -r "${HOME}/.Xresources" ]]; then
-# 	xrdb "${HOME}/.Xresources"
-# fi
-# exec i3
+#source /etc/X11/xinit/xinitrc
+source "${HOME}/.xinitrc"
 

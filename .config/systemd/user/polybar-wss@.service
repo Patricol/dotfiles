@@ -2,6 +2,7 @@
 Description=Polybar wss bar
 
 [Service]
+Environment=DISPLAY=:%i
 ExecStart=polybar wss
 
 [Install]

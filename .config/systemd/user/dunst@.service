@@ -2,6 +2,7 @@
 Description=Dunst Notification Daemon
 
 [Service]
+Environment=DISPLAY=:%i
 ExecStart=dunst
 
 [Install]

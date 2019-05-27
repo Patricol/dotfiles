@@ -294,3 +294,8 @@ rvimgrep() {
     reset
 }
 
+# rename() {
+#     rename -nv $@
+#     # have this show what would be done; then prompt whether it should be done.
+# }
+

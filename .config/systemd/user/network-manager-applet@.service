@@ -2,6 +2,7 @@
 Description=Applet for managing network connections
 
 [Service]
+Environment=DISPLAY=:%i
 ExecStart=nm-applet
 
 [Install]

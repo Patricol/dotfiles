@@ -2,6 +2,7 @@
 Description=Polybar main bar
 
 [Service]
+Environment=DISPLAY=:%i
 ExecStart=polybar main
 
 [Install]
