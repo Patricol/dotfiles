@@ -201,4 +201,5 @@ fan() {
 
 alias pingf='ping -c 1 1.1.1.1'
 
-
+alias heapssh='ssh -i ~/.ssh/heap_onsite patrickcollins@patrickcollins.heap.engineering'
+alias heapdeploy='scp -i ~/.ssh/heap_onsite -r /home/shared/programming/scratch/heap patrickcollins@patrickcollins.heap.engineering:/home/patrickcollins/redis-search'

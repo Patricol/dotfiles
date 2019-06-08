@@ -47,6 +47,7 @@ make_basic_aliases() {
 }
 
 make_basic_aliases
+alias gsfpull="gsfk && gsfauthed pull"
 
 dfgfixsym() {
 	# fix symlinks for dotfiles

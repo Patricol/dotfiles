@@ -272,6 +272,7 @@ chwp() {
 	declare new_wp="$1"
 	if [[ -n "${new_wp}" ]]; then
 		ln -sf "../animated/${new_wp}" ~/.dot/l/wallpapers/default/animated
+		scu-restart "wallpaper-changed@${DISPLAY#:}.service"
 	else
 		ls ~/.dot/l/wallpapers/animated/
 	fi
