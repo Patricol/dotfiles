@@ -91,6 +91,13 @@ function! s:add_plugin_and_do(plugin_fullname, funcname) abort
 	call s:after_add_plugin(plugin_fullname)
 endfunction
 
+function! s:add_plugin_for(plugin_fullname, thingfor) abort
+	let plugin_fullname=a:plugin_fullname
+	let thingfor=a:thingfor
+	Plug plugin_fullname, { 'for': thingfor }
+	call s:after_add_plugin(plugin_fullname)
+endfunction
+
 call plug#begin('~/.vim/plugged')
 
 " See examples: https://github.com/junegunn/vim-plug#example
@@ -119,6 +126,13 @@ else
 	call s:add_plugin('mbbill/undotree')
 	call s:add_plugin('roxma/vim-paste-easy')
 	" call s:add_plugin('')
+
+	if crowdai == "yes"
+	  " CrowdAI
+	  call s:add_plugin('neomake/neomake')
+	  call s:add_plugin('sbdchd/neoformat')
+	  call s:add_plugin_for('aykamko/vim-python-pep8-indent', 'python')
+	endif
 
 	function! BuildYCM(info)
 		" info is a dictionary with 3 fields

@@ -1,16 +1,20 @@
 " vim:filetype=vim
 
+let g:python_expected_path="/usr/bin/python"
+let g:python2_expected_path="/usr/bin/python2"
+
+source ~/.dot/l/vim/crowdai
 source ~/.dot/l/vim/plugins
 
 set fileencodings=utf-8,cp936,gbk,utf-16le
 
-if filereadable("/usr/bin/python")
-  let g:python3_host_prog="/usr/bin/python" " path to Python 3 interpreter
+if filereadable(python_expected_path)
+  let g:python3_host_prog=python_expected_path
 else
   let g:loaded_python3_provider=1 " disables Python 3 support
 endif
-if filereadable("/usr/bin/python2")
-  let g:python_host_prog="/usr/bin/python2" " path to Python 2 interpreter
+if filereadable(python2_expected_path)
+  let g:python_host_prog=python2_expected_path
 else
   let g:loaded_python_provider=1 " disables Python 2 support
 endif
