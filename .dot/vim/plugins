@@ -111,7 +111,6 @@ else
 	call s:add_plugin('farmergreg/vim-lastplace')
 	call s:add_plugin('tpope/vim-sleuth')
 	call s:add_plugin('airblade/vim-gitgutter')
-	call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
 	call s:add_plugin('tpope/vim-surround')
 	call s:add_plugin('tpope/vim-fugitive')
 	call s:add_plugin('tpope/vim-commentary')
@@ -132,6 +131,8 @@ else
 	  call s:add_plugin('neomake/neomake')
 	  call s:add_plugin('sbdchd/neoformat')
 	  call s:add_plugin_for('aykamko/vim-python-pep8-indent', 'python')
+	else
+	  call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
 	endif
 
 	function! BuildYCM(info)
