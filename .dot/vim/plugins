@@ -128,7 +128,9 @@ else
 
 	if crowdai == "yes"
 	  " CrowdAI
-	  source ~/.dot/l/vim/office/crowdai-plugins
+	  call s:add_plugin('neomake/neomake')
+	  call s:add_plugin('sbdchd/neoformat')
+	  call s:add_plugin_for('aykamko/vim-python-pep8-indent', 'python')
 	else
 	  call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
 	endif
