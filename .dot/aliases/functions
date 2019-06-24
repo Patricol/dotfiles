@@ -151,6 +151,7 @@ __make_file_dict() {
 
     add_files -f ~/.dot/l/ ~/.dot/l/bin/ ~/.dot/l/aliases/ ~/.dot/l/shrc/ /usr/local/bin/ /usr/local/sbin/
     add_files -f -p "aliases/" ~/.dot/l/aliases/
+    add_files -f -p "office/" ~/.dot/l/vim/office/
     add_files -f -p "bin/" /usr/local/bin/
     add_files -f -p "sbin/" /usr/local/sbin/
     add_files -f -s ".base" ~/.config/wpg/templates/ --find_name '*.base'

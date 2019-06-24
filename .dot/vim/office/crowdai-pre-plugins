@@ -5,10 +5,11 @@ let g:crowdai = 'no'
 
 if isdirectory(crowdai_dir)
 	if expand('%:p:h') =~ 'crowdai'
-		" the following two lines are necessary to let vim plugins work correctly
+		let g:crowdai = 'yes'
 
 		let g:python_expected_path=$HOME.'/.pyenv/shims/python'
 
+		" the following two lines are necessary to let vim plugins work correctly
 		set nocompatible
 		set encoding=utf-8
 
@@ -16,7 +17,7 @@ if isdirectory(crowdai_dir)
 
 		set autoindent  " tell vim to indent new lines correctly
 
-		let s:inca_root = '/home/patricol/files/crowdai/inca'  " make sure the path is absolute! e.g. starts from /Users/blah/
+		let g:inca_root=$HOME.'/files/crowdai/inca'  " make sure the path is absolute! e.g. starts from /Users/blah/
 
 		" automagically set indent to 2 for python
 		autocmd FileType python setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab

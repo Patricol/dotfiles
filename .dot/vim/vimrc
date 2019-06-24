@@ -3,8 +3,9 @@
 let g:python_expected_path="/usr/bin/python"
 let g:python2_expected_path="/usr/bin/python2"
 
-source ~/.dot/l/vim/crowdai
+source ~/.dot/l/vim/office/crowdai-pre-plugins
 source ~/.dot/l/vim/plugins
+source ~/.dot/l/vim/office/crowdai-post-plugins
 
 set fileencodings=utf-8,cp936,gbk,utf-16le
 
