@@ -106,7 +106,7 @@ alias ebnrc='bash --norc --noprofile' # don't exec; so it's easier to get back t
 alias ez='exec zsh'
 alias be='exec "${SHELL}"'
 
-alias ep='exec python'
+alias ep='python'
 
 
 mountiso() {
@@ -146,6 +146,8 @@ alias cddotsl='cd ~/.dot/l'
 alias cddl='cddotsl'
 alias cdfiles='cd ~/files/'
 alias cdf='cdfiles'
+alias cdinca='cd ~/files/crowdai/inca'
+alias cdi='cdinca'
 alias c='clear'
 alias cls='clear && ls'
 alias cl='cls'
@@ -203,5 +205,15 @@ fan() {
 
 alias pingf='ping -c 1 1.1.1.1'
 
-alias heapssh='ssh -i ~/.ssh/heap_onsite patrickcollins@patrickcollins.heap.engineering'
-alias heapdeploy='scp -i ~/.ssh/heap_onsite -r /home/shared/programming/scratch/heap patrickcollins@patrickcollins.heap.engineering:/home/patrickcollins/redis-search'
+
+switch_to_vnc_resolution() {
+	declare resolution="$1"
+	${HOME}/.dot/l/bin/add-vnc-mode-if-needed "${resolution}"
+	xrandr -s "${resolution}"
+}
+
+alias vnclf='switch_to_vnc_resolution 1920x1080'
+alias vncbf='switch_to_vnc_resolution 2560x1080'
+alias vncl='switch_to_vnc_resolution 1920x1001'
+alias vncb='switch_to_vnc_resolution 2560x1001'
+
