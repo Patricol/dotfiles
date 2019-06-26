@@ -3,23 +3,26 @@
 let crowdai_dir=$HOME.'/.crowdai/'
 let g:crowdai = 'no'
 
-if isdirectory(crowdai_dir)
-	if expand('%:p:h') =~ 'crowdai'
-		let g:crowdai = 'yes'
+if exists("vimpager")
+else
+	if isdirectory(crowdai_dir)
+		if expand('%:p:h') =~ 'crowdai'
+			let g:crowdai = 'yes'
 
-		let g:python_expected_path=$HOME.'/.pyenv/shims/python'
+			let g:python_expected_path=$HOME.'/.pyenv/shims/python'
 
-		" the following two lines are necessary to let vim plugins work correctly
-		set nocompatible
-		set encoding=utf-8
+			" the following two lines are necessary to let vim plugins work correctly
+			set nocompatible
+			set encoding=utf-8
 
-		filetype plugin indent on  " end plugin manager block
+			filetype plugin indent on  " end plugin manager block
 
-		set autoindent  " tell vim to indent new lines correctly
+			set autoindent  " tell vim to indent new lines correctly
 
-		let g:inca_root=$HOME.'/files/crowdai/inca'  " make sure the path is absolute! e.g. starts from /Users/blah/
+			let g:inca_root=$HOME.'/files/crowdai/inca'  " make sure the path is absolute! e.g. starts from /Users/blah/
 
-		" automagically set indent to 2 for python
-		autocmd FileType python setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+			" automagically set indent to 2 for python
+			autocmd FileType python setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+		endif
 	endif
 endif
