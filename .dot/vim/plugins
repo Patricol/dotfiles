@@ -128,12 +128,11 @@ else
 
 	if crowdai == "yes"
 	  " CrowdAI
-	  call s:add_plugin('neomake/neomake')
+	  " call s:add_plugin('neomake/neomake')
 	  call s:add_plugin('sbdchd/neoformat')
 	  call s:add_plugin_for('aykamko/vim-python-pep8-indent', 'python')
-	else
-	  call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
 	endif
+	call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
 
 	function! BuildYCM(info)
 		" info is a dictionary with 3 fields
