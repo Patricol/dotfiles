@@ -1,9 +1,9 @@
 [Unit]
-Description=Applet for managing network connections
+Description=Slack
 
 [Service]
 Environment=DISPLAY=:%i
-ExecStart=nm-applet
+ExecStart=slack
 
 [Install]
 WantedBy=default.target

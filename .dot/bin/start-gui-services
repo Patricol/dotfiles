@@ -24,6 +24,7 @@ main() {
 	scus redshift-gtk
 	scus udiskie
 	scus indicator-sound-switcher
+	scus slack 
 }
 
 main
