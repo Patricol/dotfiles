@@ -618,7 +618,7 @@ StScrollView StScrollBar {
   .system-status-icon.warning {
     color: #ffff00; }
   .system-status-icon.error {
-    color: #ff5252; }
+    color: #e53935; }
 
 .panel-status-button {
   -natural-hpadding: 4px;

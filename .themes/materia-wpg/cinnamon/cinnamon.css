@@ -242,7 +242,7 @@ stage {
 }
 
 .cinnamon-link {
-  color: #2962ff;
+  color: #ff0000;
   font-style: italic;
 }
 
@@ -291,7 +291,7 @@ StScrollView StScrollBar {
   font-size: 9pt;
   font-weight: 400;
   padding: 6px 8px;
-  color: #ff0000;
+  color: white;
   text-align: center;
   border-radius: 6px;
   background-color: rgba(33, 33, 33, 0.9);
@@ -693,7 +693,7 @@ StScrollView StScrollBar {
 }
 
 .system-status-icon.error {
-  color: #ff5252;
+  color: #e53935;
 }
 
 #overview {
@@ -919,7 +919,7 @@ StScrollView StScrollBar {
 }
 
 .calendar-day-with-events {
-  color: #2962ff;
+  color: #ff0000;
   font-weight: normal;
   text-decoration: underline;
   background-image: none;
@@ -961,7 +961,7 @@ StScrollView StScrollBar {
 }
 
 #notification .url-highlighter {
-  link-color: #2962ff;
+  link-color: #ff0000;
 }
 
 .notification-with-image {
@@ -1092,7 +1092,7 @@ StScrollView StScrollBar {
 }
 
 .run-dialog-error-label {
-  color: #ff5252;
+  color: #e53935;
 }
 
 .run-dialog-error-box {
@@ -1360,7 +1360,7 @@ StScrollView StScrollBar {
 }
 
 .window-list-item-demands-attention {
-  background-color: #448aff;
+  background-color: #69f0ae;
   color: rgba(255, 0, 0, 0.7);
 }
 
@@ -1428,7 +1428,7 @@ StScrollView StScrollBar {
 }
 
 .grouped-window-list-item-demands-attention {
-  background-color: #448aff;
+  background-color: #69f0ae;
   color: rgba(255, 0, 0, 0.7);
 }
 
