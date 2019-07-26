@@ -148,7 +148,9 @@ alias cddl='cddotsl'
 alias cdfiles='cd ~/files/'
 alias cdf='cdfiles'
 alias cdinca='cd ~/files/crowdai/inca'
+alias cdinca-dev='cd ~/files/crowdai/inca-dev'
 alias cdi='cdinca'
+alias cdid='cdinca-dev'
 alias c='clear'
 alias ca='reset' # fully clear scrollback; though this does more than that
 alias cls='clear && ls'
@@ -218,15 +220,36 @@ switch_to_vnc_resolution() {
 	xrandr -s "${resolution}"
 }
 
+make_crowdai_aliases() {
+	local -A base_commands
+	base_commands=( ["inca"]="cdi" )
+	base_commands[incad]="cdid"
+	local ba bc # base_alias base_command
+	local unbound
+	unbound="-f docker-compose.unbound.yml"
+	for ba in inca incad; do
+		bc="${base_commands[${ba}]}"
+		alias "${ba}build"="${bc} && dcf build"
+		alias "${ba}"="${ba}build && dcf up -d"
+		alias "${ba}b"="${bc} && dcf ${unbound} build && dcf ${unbound} up -d"
+		alias "${ba}_sh"="${ba} && dcf exec inca-tb /bin/bash"
+		alias "${ba}sh"="${ba}_sh ; dcf down"
+		alias "${ba}shp"="${ba}_sh -ic ipython"
+		alias "${ba}_bsh"="${ba}b && dcf ${unbound} exec inca-tb /bin/bash"
+		alias "${ba}bsh"="${ba}_bsh ; dcf ${unbound} down"
+		alias "${ba}bshp"="${ba}_bsh -c ipython"
+		alias "${ba}lint"="${bc} && ./bin/inca-mypy && ./bin/inca-lint"
+		alias "${ba}tests"="${bc} && INCATEST_COMPOSE_PROJECT_NAME=${ba}test ./bin/inca-test --down" #-x -n 8"
+		alias "${ba}test"="${ba}tests inca/t/unit && ${ba}tests inca/t/integration"
+		alias "${ba}t"="${ba}lint && ${ba}build && ${ba}test"
+	done
+}
+
+make_crowdai_aliases
+
 alias vnclf='switch_to_vnc_resolution 1920x1080'
 alias vncbf='switch_to_vnc_resolution 2560x1080'
 alias vncl='switch_to_vnc_resolution 1920x1001'
 alias vncb='switch_to_vnc_resolution 2560x1001'
 
-alias inca='cdi && dcf build && dcf up -d'
-alias incash='cdi && dcf exec inca-tb /bin/bash'
-alias incalint='cdi && ./bin/inca-mypy && ./bin/inca-lint'
-alias incatest='cdi && ./bin/inca-test inca/t/unit && ./bin/inca-test inca/t/integration'
-alias incatests='cdi && ./bin/inca-test'
-alias incat='incalint && inca && incatest'
 #alias jupyter='docker run -p 8888:8888 jupyter/scipy-notebook:latest'
