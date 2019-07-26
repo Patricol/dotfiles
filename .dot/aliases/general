@@ -147,10 +147,6 @@ alias cddotsl='cd ~/.dot/l'
 alias cddl='cddotsl'
 alias cdfiles='cd ~/files/'
 alias cdf='cdfiles'
-alias cdinca='cd ~/files/crowdai/inca'
-alias cdinca-dev='cd ~/files/crowdai/inca-dev'
-alias cdi='cdinca'
-alias cdid='cdinca-dev'
 alias c='clear'
 alias ca='reset' # fully clear scrollback; though this does more than that
 alias cls='clear && ls'
@@ -224,6 +220,8 @@ make_crowdai_aliases() {
 	local -A base_commands
 	base_commands=( ["inca"]="cdi" )
 	base_commands[incad]="cdid"
+	alias cdi='cd ~/files/crowdai/inca'
+	alias cdid='cd ~/files/crowdai/inca-dev'
 	local ba bc # base_alias base_command
 	local unbound
 	unbound="-f docker-compose.unbound.yml"
