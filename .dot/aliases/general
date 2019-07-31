@@ -107,7 +107,7 @@ alias ebnrc='bash --norc --noprofile' # don't exec; so it's easier to get back t
 alias ez='exec zsh'
 alias be='exec "${SHELL}"'
 
-alias ep='python'
+alias ep='ipython'
 
 
 mountiso() {
@@ -208,6 +208,7 @@ fan() {
 }
 
 alias pingf='ping -c 1 1.1.1.1'
+alias pingl='ping -c 1000 1.1.1.1'
 
 
 switch_to_vnc_resolution() {
@@ -230,12 +231,12 @@ make_crowdai_aliases() {
 		alias "${ba}build"="${bc} && dcf build"
 		alias "${ba}"="${ba}build && dcf up -d"
 		alias "${ba}b"="${bc} && dcf ${unbound} build && dcf ${unbound} up -d"
-		alias "${ba}_sh"="${ba} && dcf exec inca-tb /bin/bash"
-		alias "${ba}sh"="${ba}_sh ; dcf down"
-		alias "${ba}shp"="${ba}_sh -ic ipython"
-		alias "${ba}_bsh"="${ba}b && dcf ${unbound} exec inca-tb /bin/bash"
-		alias "${ba}bsh"="${ba}_bsh ; dcf ${unbound} down"
-		alias "${ba}bshp"="${ba}_bsh -c ipython"
+		alias "${ba}_fsh"="${ba} && dcf exec inca-tb /bin/bash"
+		alias "${ba}fsh"="${ba}_fsh ; dcf down"
+		alias "${ba}fp"="${ba}_fsh -ic ipython"
+		alias "${ba}_sh"="${ba}b && dcf ${unbound} exec inca-tb /bin/bash"
+		alias "${ba}sh"="${ba}_sh ; dcf ${unbound} down"
+		alias "${ba}p"="${ba}_sh -c ipython"
 		alias "${ba}lint"="${bc} && ./bin/inca-mypy && ./bin/inca-lint"
 		alias "${ba}tests"="${bc} && INCATEST_COMPOSE_PROJECT_NAME=${ba}test ./bin/inca-test --down" #-x -n 8"
 		alias "${ba}test"="${ba}tests inca/t/unit && ${ba}tests inca/t/integration"
