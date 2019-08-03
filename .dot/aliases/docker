@@ -1,7 +1,21 @@
 # vim:filetype=sh
-alias docker='sudo docker'
 
-alias docker-compose='sudo docker-compose'
+docker() {
+	if [[ " docker "~=" $(groups) " ]]; then
+		docker $@
+	else
+		sudo docker $@
+	fi
+}
+
+docker-compose() {
+	if [[ " docker "~=" $(groups) " ]]; then
+		docker-compose $@
+	else
+		sudo docker-compose $@
+	fi
+}
+
 alias dcf='docker-compose'
 
 alias dps='docker ps'
