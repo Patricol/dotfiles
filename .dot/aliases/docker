@@ -1,6 +1,6 @@
 # vim:filetype=sh
 
-docker() {
+docker_sudo_if_needed() {
 	if [[ " docker "~=" $(groups) " ]]; then
 		docker $@
 	else
@@ -8,7 +8,7 @@ docker() {
 	fi
 }
 
-docker-compose() {
+docker_compose_sudo_if_needed() {
 	if [[ " docker "~=" $(groups) " ]]; then
 		docker-compose $@
 	else
@@ -16,6 +16,8 @@ docker-compose() {
 	fi
 }
 
+alias docker='docker_sudo_if_needed'
+alias docker-compose='docker_compose_sudo_if_needed'
 alias dcf='docker-compose'
 
 alias dps='docker ps'
