@@ -58,14 +58,22 @@ extract() {
 	done
 }
 
-maketxz() {
-	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
-	if [[ $# -ne 1 ]]; then
+make_archive() {
+	if [[ $# -ne 2 ]]; then
 	    echo "provide only a single folder or file as an argument" >&2
 	    return 1
 	fi
-	declare target="$1"
-	tar --create --verbose --auto-compress --file="${target}.txz" "${target}"
+	declare extension="$1" target="$2"
+	tar --create --verbose --auto-compress --file="${target}.${extension}" "${target}"
+}
+
+maketxz() {
+	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
+	make_archive "txz" $@
+}
+
+maketar() {
+	make_archive "tar" $@
 }
 
 #makezip() {

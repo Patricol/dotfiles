@@ -253,4 +253,9 @@ alias vncbf='switch_to_vnc_resolution 2560x1080'
 alias vncl='switch_to_vnc_resolution 1920x1001'
 alias vncb='switch_to_vnc_resolution 2560x1001'
 
+alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
+
 #alias jupyter='docker run -p 8888:8888 jupyter/scipy-notebook:latest'
+
+alias upload-key='gpg --keyserver keys.gnupg.net --send-key'
+alias get-key='gpg --keyserver keys.gnupg.net --send-key'
