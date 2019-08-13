@@ -200,7 +200,8 @@ fa() {
 	#	ignore_dirs="${ignore_dirs} -path ${dir} -prune -o"
 	#done
 	#find / -mount ${ignore_dirs} $@ -print 2> /dev/null
-	find / -mount ${ignore_dirs} $@ -print
+	# find / -mount ${ignore_dirs} $@ -print
+	sudo find / -mount $@ 
 }
 
 fan() {
@@ -254,6 +255,7 @@ alias vncl='switch_to_vnc_resolution 1920x1001'
 alias vncb='switch_to_vnc_resolution 2560x1001'
 
 alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
+alias tfcc='rm -rf $(find -type d -name ".terraform")'
 
 #alias jupyter='docker run -p 8888:8888 jupyter/scipy-notebook:latest'
 
