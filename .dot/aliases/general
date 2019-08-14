@@ -244,6 +244,7 @@ make_crowdai_aliases() {
 		alias "${ba}test_integration"="${ba}tests inca/t/integration"
 		alias "${ba}test"="${ba}test_unit && ${ba}test_integration"
 		alias "${ba}t"="${ba}lint && ${ba}build && ${ba}test"
+		alias "${ba}pdb"="rpdb ${ba}test_inca-tasks_1"
 	done
 }
 
@@ -258,6 +259,7 @@ alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
 
 rpdb() {
+	declare stack_name="$1"
 	local container_id
 	until [[ -n "${container_id}" ]] && docker exec -it "${container_id}" telnet 127.0.0.1 4444; do
 		container_id="$(docker inspect -f"{{.Id}}" incatest_inca-tasks_1)"
