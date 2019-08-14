@@ -257,6 +257,14 @@ alias vncb='switch_to_vnc_resolution 2560x1001'
 alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
 
+rpdb() {
+	local container_id
+	until [[ -n "${container_id}" ]] && docker exec -it "${container_id}" telnet 127.0.0.1 4444; do
+		container_id="$(docker inspect -f"{{.Id}}" incatest_inca-tasks_1)"
+		sleep 1
+	done
+}
+
 #alias jupyter='docker run -p 8888:8888 jupyter/scipy-notebook:latest'
 
 alias upload-key='gpg --keyserver keys.gnupg.net --send-key'
