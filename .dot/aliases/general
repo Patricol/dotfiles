@@ -260,22 +260,12 @@ alias tfcc='rm -rf $(find -type d -name ".terraform")'
 alias tcc='tgcc && tfcc'
 
 tgp() {
-	local plugin_dir
-	plugin_dir="$(pwd)/../plugins"
 	tcc
-	terragrunt init -plugin-dir="${plugin_dir}"
 	terragrunt plan
 }
 
 tgpa() {
-	local dir plugin_dir
-	plugin_dir="$(pwd)/plugins"
 	tcc
-	for dir in $(find -mindepth 1 -maxdepth 1 -type d); do
-		cd "${dir}"
-		terragrunt init -plugin-dir="${plugin_dir}"
-		cd -
-	done
 	terragrunt plan-all
 }
 
