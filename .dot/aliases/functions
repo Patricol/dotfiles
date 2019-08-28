@@ -58,15 +58,24 @@ extract() {
 	done
 }
 
-maketxz() {
-	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
-	if [[ $# -ne 1 ]]; then
+make_archive() {
+	if [[ $# -ne 2 ]]; then
 	    echo "provide only a single folder or file as an argument" >&2
 	    return 1
 	fi
-	declare target="$1"
+	declare extension="$1" target="$2"
 	target="$(realpath --relative-to=. "${target}")"
-	tar --create --verbose --auto-compress --file="${target}.txz" "${target}"
+	tar --create --verbose --auto-compress --file="${target}.${extension}" "${target}"
+	# TODO fix these to use parallelized versions of the compression stuff
+}
+
+maketxz() {
+	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
+	make_archive "txz" $@
+}
+
+maketar() {
+	make_archive "tar" $@
 }
 
 #makezip() {
@@ -302,25 +311,3 @@ rvimgrep() {
 #     # have this show what would be done; then prompt whether it should be done.
 # }
 
-
-transfer() {
-    declare file="$1"
-    if [[ -z "${file}" ]]; then
-	echo "No arguments specified. Usage:"
-	echo "echo transfer /tmp/test.md"
-	echo "cat /tmp/test.md | transfer test.md"
-	return 1
-    fi
-
-    local tmpfile basefile
-    tmpfile="$(mktemp -t transferXXX)"
-
-    if tty -s; then
-	basefile="$(basename "${file}" | sed -e 's/[^a-zA-Z0-9._-]/-/g')"
-	curl --progress-bar --upload-file "${file}" "https://transfer.sh/${basefile}" >> "${tmpfile}"
-    else
-	curl --progress-bar --upload-file "-" "https://transfer.sh/${file}" >> "${tmpfile}"
-    fi
-    cat "${tmpfile}"
-    rm -f "${tmpfile}"
-}

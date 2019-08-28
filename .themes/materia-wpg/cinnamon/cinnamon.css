@@ -111,8 +111,8 @@
 
 .separator, .popup-separator-menu-item {
   -gradient-height: 1px;
-  -gradient-start: rgba(0, 0, 0, 0.26);
-  -gradient-end: rgba(0, 0, 0, 0.26);
+  -gradient-start: rgba(238, 238, 238, 0.12);
+  -gradient-end: rgba(238, 238, 238, 0.12);
   -margin-horizontal: 4px;
   height: 1.5em;
 }
@@ -210,7 +210,7 @@
 
 .tile-preview, .tile-hud {
   background-color: rgba(0, 0, 0, 0.3);
-  border: 2px solid rgba(0, 0, 0, 0.26);
+  border: 2px solid rgba(238, 238, 238, 0.12);
 }
 
 .tile-preview.snap, .tile-hud.snap {
@@ -763,14 +763,14 @@ StScrollView StScrollBar {
 }
 
 .window-border {
-  border: 1px solid rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(238, 238, 238, 0.12);
 }
 
 .window-close-area {
   background-image: url(assets/trash-icon.png);
   background-size: 100px;
   background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(238, 238, 238, 0.12);
   border-bottom-width: 0;
   border-radius: 20px 20px 0 0;
   height: 120px;
@@ -786,7 +786,7 @@ StScrollView StScrollBar {
 }
 
 .expo-workspace-thumbnail-frame {
-  border: 1px solid rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(238, 238, 238, 0.12);
 }
 
 .expo-workspace-thumbnail-frame#active {
@@ -946,7 +946,7 @@ StScrollView StScrollBar {
 #notification {
   background-color: #616161;
   border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(238, 238, 238, 0.12);
   padding: 8px;
   spacing-rows: 4px;
   spacing-columns: 8px;
@@ -1030,7 +1030,7 @@ StScrollView StScrollBar {
 
 .switcher-list .separator {
   width: 1px;
-  background: rgba(0, 0, 0, 0.26);
+  background: rgba(238, 238, 238, 0.12);
 }
 
 .switcher-list-item-container {
@@ -1174,7 +1174,7 @@ StScrollView StScrollBar {
 }
 
 .magnifier-zoom-region {
-  border: 3px solid rgba(0, 0, 0, 0.26);
+  border: 3px solid rgba(238, 238, 238, 0.12);
 }
 
 .magnifier-zoom-region.full-screen {
@@ -1360,7 +1360,7 @@ StScrollView StScrollBar {
 }
 
 .window-list-item-demands-attention {
-  background-color: #69f0ae;
+  background-color: #212121;
   color: rgba(255, 0, 0, 0.7);
 }
 
@@ -1428,7 +1428,7 @@ StScrollView StScrollBar {
 }
 
 .grouped-window-list-item-demands-attention {
-  background-color: #69f0ae;
+  background-color: #212121;
   color: rgba(255, 0, 0, 0.7);
 }
 
@@ -1447,7 +1447,7 @@ StScrollView StScrollBar {
 }
 
 .grouped-window-list-thumbnail-menu .item-box:outlined {
-  border: 2px solid rgba(0, 0, 0, 0.26);
+  border: 2px solid rgba(238, 238, 238, 0.12);
   color: #ff0000;
 }
 
@@ -1486,7 +1486,7 @@ StScrollView StScrollBar {
 
 .grouped-window-list-thumbnail-menu .separator {
   width: 1px;
-  background: rgba(0, 0, 0, 0.26);
+  background: rgba(238, 238, 238, 0.12);
 }
 
 .sound-player StButton:small {
@@ -1546,12 +1546,12 @@ StScrollView StScrollBar {
 
 .workspace-graph .workspace {
   background-color: #010101;
-  border: 1px solid rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(238, 238, 238, 0.12);
 }
 
 .workspace-graph .workspace:active {
   background-color: rgba(255, 0, 0, 0.3);
-  border: 1px solid rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(238, 238, 238, 0.12);
 }
 
 .workspace-graph .workspace:active .windows {
@@ -1731,7 +1731,7 @@ StScrollView StScrollBar {
 }
 
 .about-scrollBox {
-  border: 1px solid rgba(0, 0, 0, 0.26);
+  border: 1px solid rgba(238, 238, 238, 0.12);
   border-radius: 6px;
 }
 

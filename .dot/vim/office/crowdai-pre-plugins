@@ -23,6 +23,9 @@ else
 
 			" automagically set indent to 2 for python
 			autocmd FileType python setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+			autocmd BufRead,BufNewFile *.tfvars setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+			autocmd BufRead,BufNewFile *.tf setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+			autocmd BufRead,BufNewFile *.hcl setlocal shiftwidth=2 tabstop=2 softtabstop=2 expandtab
 		endif
 	endif
 endif
