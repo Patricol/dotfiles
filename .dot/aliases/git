@@ -47,6 +47,13 @@ make_basic_aliases() {
 }
 
 make_basic_aliases
+alias gsfpull="gsfk && gsfauthed pull"
+
+gprr() {
+	declare branch="$1"
+	g fetch origin "${branch}"
+	gch "${branch}"
+}
 
 dfgfixsym() {
 	# fix symlinks for dotfiles
