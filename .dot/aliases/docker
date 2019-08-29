@@ -16,6 +16,14 @@ docker_compose_sudo_if_needed() {
 	fi
 }
 
+dexec() {
+	declare name="$1" ; shift
+	declare commands="$@"
+	local container_id
+	container_id="$(docker inspect "${name}" -f "{{.Id}}")"
+	docker exec -it "${container_id}" ${commands}
+}
+
 alias docker='docker_sudo_if_needed'
 alias docker-compose='docker_compose_sudo_if_needed'
 alias dcf='docker-compose'
