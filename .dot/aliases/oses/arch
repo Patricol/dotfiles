@@ -11,6 +11,7 @@ alias scu-logs='journalctl --user --lines=10000 --pager-end --unit'
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
 alias pacf='yay -Y'
+alias syuf='pacf'
 
 alias syu='yay -Syu --devel && yay -S'
 alias syuchoose='yay -Syu --devel --noanswerupgrade && yay -S'
