@@ -1,7 +1,7 @@
 # vim:filetype=sh
 
 docker_sudo_if_needed() {
-	if [[ " docker "~=" $(groups) " ]]; then
+	if groups | grep -qw "docker"; then
 		docker $@
 	else
 		sudo docker $@
@@ -9,7 +9,7 @@ docker_sudo_if_needed() {
 }
 
 docker_compose_sudo_if_needed() {
-	if [[ " docker "~=" $(groups) " ]]; then
+	if groups | grep -qw "docker"; then
 		docker-compose $@
 	else
 		sudo docker-compose $@
