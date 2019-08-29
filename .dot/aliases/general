@@ -157,8 +157,9 @@ alias cnf='clear && nf'
 alias nfc='cnf'
 alias x='exit'
 
-alias nas='add_ssh_keys fcdcbda_key && ssh patrick@nas'
-alias pam='add_ssh_keys fcdcbda_key && ssh patricol@pam'
+alias nas='add_ssh_keys fcdcbda_key && ssh -p 51722 patrick@nas.p47.co'
+alias ede='add_ssh_keys fcdcbda_key && ssh -p 51522 rancher@94158.p4t.co'
+alias pam='add_ssh_keys fcdcbda_key && ssh -p 51522 rancher@pam.p47.co'
 
 alias d='dirs -v'
 #for index ({1..9}) alias "$index"="cd +${index}"; unset index

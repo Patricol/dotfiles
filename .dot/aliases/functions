@@ -64,6 +64,7 @@ make_archive() {
 	    return 1
 	fi
 	declare extension="$1" target="$2"
+	target="$(realpath --relative-to=. "${target}")"
 	tar --create --verbose --auto-compress --file="${target}.${extension}" "${target}"
 	# TODO fix these to use parallelized versions of the compression stuff
 }
