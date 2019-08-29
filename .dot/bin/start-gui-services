@@ -7,6 +7,10 @@
 main() {
 	local dispnum
 	dispnum="${DISPLAY#:}"
+	scuss() { # shared between sessions
+		declare service="$1"
+		systemctl --user start "${service}.service"
+	}
 	scus() {
 		declare service="$1"
 		systemctl --user start "${service}@${dispnum}.service"
@@ -27,8 +31,8 @@ main() {
 	scurs dunst
 	scus redshift-gtk
 	scus udiskie
-	scus indicator-sound-switcher
-	scus slack 
+	scuss indicator-sound-switcher
+	scuss slack 
 }
 
 main
