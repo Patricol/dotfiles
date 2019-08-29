@@ -1,8 +1,0 @@
-[Unit]
-Description=Animated Wallpaper
-
-[Service]
-ExecStart=video-bg %h/.dot/l/wallpapers/default/animated
-
-[Install]
-WantedBy=default.target

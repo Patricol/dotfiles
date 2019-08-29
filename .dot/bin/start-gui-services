@@ -5,23 +5,30 @@
 # This is not put in /usr/local/bin because that is the domain of the systemfiles repo, and this functionality should work on computers with only dotfiles installed, not systemfiles. It's practically a part of the i3 config, but I split it out so that the i3 config file wouldn't need to have many branch-specific differences.
 
 main() {
+	local dispnum
+	dispnum="${DISPLAY#:}"
 	scus() {
 		declare service="$1"
-		systemctl --user start "${service}.service"
+		systemctl --user start "${service}@${dispnum}.service"
+	}
+	scurs() { # shared between sessions
+		declare service="$1"
+		systemctl --user restart "${service}.service"
 	}
 	scur() {
 		declare service="$1"
-		systemctl --user restart "${service}.service"
+		systemctl --user restart "${service}@${dispnum}.service"
 	}
 	scur polybar-main
 	scur polybar-wss
 	scus wallpaper
 	scur animated-wallpaper
 	scur compton
-	scur dunst
+	scurs dunst
 	scus redshift-gtk
 	scus udiskie
 	scus indicator-sound-switcher
+	scus slack
 
 	#killall --user "${USER}" --quiet --wait polybar
 

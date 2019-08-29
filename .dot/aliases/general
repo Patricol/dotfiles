@@ -71,6 +71,7 @@ alias rvim='vim -Z'
 alias view='vim -R'
 alias vimdiff='vim -d'
 
+alias diffdir='diff -r'
 alias diff='diff -s'
 
 alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
@@ -102,11 +103,11 @@ ftypei() {
 alias findbrokenlinks='find -xtype l'
 
 alias eb='exec bash'
-alias ebnrc='exec bash --norc --noprofile'
+alias ebnrc='bash --norc --noprofile' # don't exec; so it's easier to get back to the previous shell
 alias ez='exec zsh'
 alias be='exec "${SHELL}"'
 
-alias ep='exec python'
+alias ep='ipython'
 
 
 mountiso() {
@@ -144,12 +145,21 @@ alias cddots='cd ~/.dot'
 alias cdd='cddots'
 alias cddotsl='cd ~/.dot/l'
 alias cddl='cddotsl'
+alias cdfiles='cd ~/files/'
+alias cdf='cdfiles'
 alias c='clear'
+alias ca='reset' # fully clear scrollback; though this does more than that
 alias cls='clear && ls'
 alias cl='cls'
+alias cll='clear && ll'
+alias cla='clear && la'
+alias cnf='clear && nf'
+alias nfc='cnf'
 alias x='exit'
 
-alias nas='add_ssh_keys fcdcbda_key && ssh patrick@nas'
+alias nas='add_ssh_keys fcdcbda_key && ssh -p 51722 patrick@nas.p47.co'
+alias ede='add_ssh_keys fcdcbda_key && ssh -p 51522 rancher@94158.p4t.co'
+alias pam='add_ssh_keys fcdcbda_key && ssh -p 51522 rancher@pam.p47.co'
 
 alias d='dirs -v'
 #for index ({1..9}) alias "$index"="cd +${index}"; unset index
@@ -191,7 +201,8 @@ fa() {
 	#	ignore_dirs="${ignore_dirs} -path ${dir} -prune -o"
 	#done
 	#find / -mount ${ignore_dirs} $@ -print 2> /dev/null
-	find / -mount ${ignore_dirs} $@ -print
+	# find / -mount ${ignore_dirs} $@ -print
+	sudo find / -mount $@ 
 }
 
 fan() {
@@ -199,5 +210,76 @@ fan() {
 }
 
 alias pingf='ping -c 1 1.1.1.1'
+alias pingl='ping 1.1.1.1'
 
 
+switch_to_vnc_resolution() {
+	declare resolution="$1"
+	${HOME}/.dot/l/bin/add-vnc-mode-if-needed "${resolution}"
+	xrandr -s "${resolution}"
+}
+
+make_crowdai_aliases() {
+	local -A base_commands
+	base_commands=( ["inca"]="cdi" )
+	base_commands[incad]="cdid"
+	alias cdi='cd ~/files/crowdai/inca'
+	alias cdid='cd ~/files/crowdai/inca-dev'
+	local ba bc # base_alias base_command
+	local unbound
+	unbound="-f docker-compose.unbound.yml"
+	for ba in inca incad; do
+		bc="${base_commands[${ba}]}"
+		alias "${ba}build"="${bc} && dcf build"
+		alias "${ba}"="${ba}build && dcf up -d"
+		alias "${ba}b"="${bc} && dcf ${unbound} build && dcf ${unbound} up -d"
+		alias "${ba}_fsh"="${ba} && dcf exec inca-tasks /bin/bash"
+		alias "${ba}fsh"="${ba}_fsh ; dcf down"
+		alias "${ba}fp"="${ba}_fsh -ic ipython"
+		alias "${ba}_sh"="${ba}b && dcf ${unbound} exec inca-tasks /bin/bash"
+		alias "${ba}sh"="${ba}_sh ; dcf ${unbound} down"
+		alias "${ba}p"="${ba}_sh -c ipython"
+		alias "${ba}lint"="${bc} && ./bin/inca-mypy && ./bin/inca-lint"
+		alias "${ba}tests"="${bc} && INCATEST_COMPOSE_PROJECT_NAME=${ba}test ./bin/inca-test --down" #-x -n 8"
+		alias "${ba}test_unit"="${ba}tests inca/t/unit"
+		alias "${ba}test_integration"="${ba}tests inca/t/integration"
+		alias "${ba}test"="${ba}test_unit && ${ba}test_integration"
+		alias "${ba}t"="${ba}lint && ${ba}build && ${ba}test"
+		alias "${ba}pdb"="rpdb ${ba}test_inca-tasks_1"
+	done
+}
+
+make_crowdai_aliases
+
+alias vnclf='switch_to_vnc_resolution 1920x1080'
+alias vncbf='switch_to_vnc_resolution 2560x1080'
+alias vncl='switch_to_vnc_resolution 1920x1001'
+alias vncb='switch_to_vnc_resolution 2560x1001'
+
+alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
+alias tfcc='rm -rf $(find -type d -name ".terraform")'
+alias tcc='tgcc && tfcc'
+
+tgp() {
+	tcc
+	terragrunt plan
+}
+
+tgpa() {
+	tcc
+	terragrunt plan-all
+}
+
+rpdb() {
+	declare container_name="$1"
+	local container_id
+	until [[ -n "${container_id}" ]] && docker exec -it "${container_id}" telnet 127.0.0.1 4444; do
+		container_id="$(docker inspect -f"{{.Id}}" "${container_name}")"
+		sleep 1
+	done
+}
+
+#alias jupyter='docker run -p 8888:8888 jupyter/scipy-notebook:latest'
+
+alias upload-key='gpg --keyserver keys.gnupg.net --send-key'
+alias get-key='gpg --keyserver keys.gnupg.net --send-key'
