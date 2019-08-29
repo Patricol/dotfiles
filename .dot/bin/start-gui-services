@@ -11,6 +11,10 @@ main() {
 		declare service="$1"
 		systemctl --user start "${service}@${dispnum}.service"
 	}
+	scurs() { # shared between sessions
+		declare service="$1"
+		systemctl --user restart "${service}.service"
+	}
 	scur() {
 		declare service="$1"
 		systemctl --user restart "${service}@${dispnum}.service"
@@ -20,7 +24,7 @@ main() {
 	scus wallpaper
 	scur animated-wallpaper
 	scur compton
-	scur dunst
+	scurs dunst
 	scus redshift-gtk
 	scus udiskie
 	scus indicator-sound-switcher
