@@ -1,0 +1,9 @@
+[Unit]
+Description=Removable disk automounter with tray icon
+
+[Service]
+Environment=DISPLAY=:%i
+ExecStart=udiskie -s
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Compton Compositor
+
+[Service]
+Environment=DISPLAY=:%i
+ExecStart=compton
+
+[Install]
+WantedBy=default.target
