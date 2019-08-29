@@ -75,10 +75,10 @@
 #mainbox {{
     //border:  30%;
     spacing: @row-spacing;
-    children: [sidebar,inputbar,message,listview];
+    children: [mode-switcher,inputbar,message,listview];
 }}
 
-#sidebar {{
+#mode-switcher {{
     spacing: @column-spacing;
     background-color: @button-row-background;
     border-radius:  @rounded-radius;

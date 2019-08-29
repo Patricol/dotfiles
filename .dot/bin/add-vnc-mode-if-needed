@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+main() {
+	declare resolution="$1"
+
+	local helper_script
+	helper_script="${HOME}/.dot/l/bin/add-vnc-mode"
+
+	# handles missing resolution gracefully; might not if things are changed.
+
+	if ! xrandr | grep "${resolution}" &> /dev/null; then
+		${helper_script} "${resolution}"
+	fi
+}
+
+main "$@"

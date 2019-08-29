@@ -1,8 +1,0 @@
-[Unit]
-Description=Polybar main bar
-
-[Service]
-ExecStart=polybar main
-
-[Install]
-WantedBy=default.target

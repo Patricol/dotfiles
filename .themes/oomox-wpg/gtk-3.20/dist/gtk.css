@@ -33,11 +33,11 @@
 @define-color question_fg_color #424242;
 @define-color question_bg_color #448aff;
 @define-color error_fg_color #424242;
-@define-color error_bg_color #ff5252;
+@define-color error_bg_color #e53935;
 @define-color link_color #2962ff;
 @define-color success_color #69f0ae;
 @define-color warning_color #ffff00;
-@define-color error_color #ff5252;
+@define-color error_color #e53935;
 /* widget colors */
 @define-color titlebar_bg_focused @dark_bg_color;
 @define-color titlebar_bg_unfocused @theme_bg_color;
@@ -785,35 +785,35 @@ entry, menuitem entry, popover.background entry, .osd entry,
   entry.error, popover.background entry.error,
   #XfceNotifyWindow entry.error, #login_window entry.error {
     color: #424242;
-    border-color: #ff0f0f;
-    background-color: mix(#424242,#ff5252,0.6); }
+    border-color: #c81e1a;
+    background-color: mix(#424242,#e53935,0.6); }
     entry.error image, #XfceNotifyWindow entry.error image, #login_window entry.error image {
       color: #424242; }
     entry.error:focus,
     #XfceNotifyWindow entry.error:focus, #login_window entry.error:focus {
       color: #424242;
-      border-color: mix(#ff0000,#ff5252,0.3);
-      background-color: #ff5252;
+      border-color: mix(#ff0000,#e53935,0.3);
+      background-color: #e53935;
       box-shadow: none; }
     entry.error selection, #XfceNotifyWindow entry.error selection, #login_window entry.error selection {
       background-color: #424242;
-      color: #ff5252; }
+      color: #e53935; }
   entry.search-missing, popover.background entry.search-missing,
   #XfceNotifyWindow entry.search-missing, #login_window entry.search-missing {
     color: #424242;
-    border-color: #ff0f0f;
-    background-color: mix(#424242,#ff5252,0.6); }
+    border-color: #c81e1a;
+    background-color: mix(#424242,#e53935,0.6); }
     entry.search-missing image, #XfceNotifyWindow entry.search-missing image, #login_window entry.search-missing image {
       color: #424242; }
     entry.search-missing:focus,
     #XfceNotifyWindow entry.search-missing:focus, #login_window entry.search-missing:focus {
       color: #424242;
-      border-color: mix(#ff0000,#ff5252,0.3);
-      background-color: #ff5252;
+      border-color: mix(#ff0000,#e53935,0.3);
+      background-color: #e53935;
       box-shadow: none; }
     entry.search-missing selection, #XfceNotifyWindow entry.search-missing selection, #login_window entry.search-missing selection {
       background-color: #424242;
-      color: #ff5252; }
+      color: #e53935; }
 
 entry {
   background-color: #424242;
@@ -1955,7 +1955,7 @@ searchbar,
       color: rgba(105, 240, 174, 0.85); }
 
 .destructive-action {
-  background-color: #ff5252;
+  background-color: #e53935;
   background-image: none;
   border-color: rgba(26, 26, 26, 0.32);
   color: #212121;
@@ -2010,12 +2010,12 @@ searchbar,
       box-shadow: inset 0 -1px mix(#ff0000,rgba(255, 0, 0, 0.36),0.3); }
   .destructive-action.flat {
     color: #212121;
-    border-color: rgba(255, 82, 82, 0);
-    background-color: rgba(255, 82, 82, 0);
+    border-color: rgba(229, 57, 53, 0);
+    background-color: rgba(229, 57, 53, 0);
     background-image: none;
     box-shadow: none; }
   .destructive-action:hover, .destructive-action.flat:hover {
-    background-color: #ff6363;
+    background-color: #e74541;
     background-image: none;
     border-color: rgba(26, 26, 26, 0.4);
     color: #212121;
@@ -2029,7 +2029,7 @@ searchbar,
     .destructive-action:hover:active:disabled, .destructive-action:hover:checked:disabled, .destructive-action.flat:hover:active:disabled, .destructive-action.flat:hover:checked:disabled {
       border-color: rgba(26, 26, 26, 0.4); }
   .destructive-action:focus, .destructive-action.flat:focus {
-    background-color: #ff6363;
+    background-color: #e74541;
     background-image: none;
     border-color: rgba(33, 33, 33, 0.32);
     outline-color: rgba(255, 0, 0, 0.5);
@@ -2039,7 +2039,7 @@ searchbar,
     color: #212121;
     box-shadow: 0 1px 2px -1px rgba(48, 48, 48, 0.32); }
     .destructive-action:focus:hover, .destructive-action.flat:focus:hover {
-      background-color: #ff7474;
+      background-color: #e8514e;
       background-image: none;
       border-color: rgba(26, 26, 26, 0.4);
       box-shadow: 0 1px 2px -1px rgba(48, 48, 48, 0.38); }
@@ -2074,14 +2074,14 @@ searchbar,
   .destructive-action:focus, .destructive-action:hover, .destructive-action.flat:focus, .destructive-action.flat:hover {
     color: #212121; }
   .destructive-action:disabled:disabled, .destructive-action.flat:disabled:disabled {
-    background-color: alpha(mix(#ff5252,#212121,0.2),0.4);
+    background-color: alpha(mix(#e53935,#212121,0.2),0.4);
     background-image: none;
     /*border: 1px solid alpha($bg, .2);*/
     opacity: .6;
-    color: mix(#ff5252,#212121,0.6);
+    color: mix(#e53935,#212121,0.6);
     box-shadow: none; }
     .destructive-action:disabled:disabled :disabled, .destructive-action.flat:disabled:disabled :disabled {
-      color: mix(#ff5252,#212121,0.6); }
+      color: mix(#e53935,#212121,0.6); }
   .destructive-action:active:disabled, .destructive-action:checked:disabled, .destructive-action.flat:active:disabled, .destructive-action.flat:checked:disabled {
     background-color: rgba(255, 0, 0, 0.6);
     background-image: none;
@@ -2091,9 +2091,9 @@ searchbar,
       color: rgba(33, 33, 33, 0.85); }
   .destructive-action.separator, .destructive-action .separator {
     border: 1px solid currentColor;
-    color: rgba(255, 82, 82, 0.9); }
+    color: rgba(229, 57, 53, 0.9); }
     .destructive-action.separator:disabled, .destructive-action .separator:disabled {
-      color: rgba(255, 82, 82, 0.85); }
+      color: rgba(229, 57, 53, 0.85); }
 
 /******************
  ! Selection mode *
@@ -3567,14 +3567,14 @@ infobar {
       infobar.question button.separator:disabled, infobar.question button .separator:disabled {
         color: rgba(68, 138, 255, 0.85); }
   infobar.error, infobar.error:backdrop {
-    background-color: #ff5252;
+    background-color: #e53935;
     background-image: none;
-    border: 1px solid #ff0f0f;
+    border: 1px solid #c81e1a;
     caret-color: currentColor; }
     infobar.error label, infobar.error, infobar.error:backdrop label, infobar.error:backdrop {
       color: #424242; }
   infobar.error button {
-    background-color: #ff5252;
+    background-color: #e53935;
     background-image: none;
     border-color: rgba(53, 53, 53, 0.32);
     color: #424242;
@@ -3629,12 +3629,12 @@ infobar {
         box-shadow: inset 0 -1px mix(#ff0000,rgba(255, 0, 0, 0.36),0.3); }
     infobar.error button.flat {
       color: #424242;
-      border-color: rgba(255, 82, 82, 0);
-      background-color: rgba(255, 82, 82, 0);
+      border-color: rgba(229, 57, 53, 0);
+      background-color: rgba(229, 57, 53, 0);
       background-image: none;
       box-shadow: none; }
     infobar.error button:hover, infobar.error button.flat:hover {
-      background-color: #ff6363;
+      background-color: #e74541;
       background-image: none;
       border-color: rgba(53, 53, 53, 0.4);
       color: #424242;
@@ -3648,7 +3648,7 @@ infobar {
       infobar.error button:hover:active:disabled, infobar.error button:hover:checked:disabled, infobar.error button.flat:hover:active:disabled, infobar.error button.flat:hover:checked:disabled {
         border-color: rgba(53, 53, 53, 0.4); }
     infobar.error button:focus, infobar.error button.flat:focus {
-      background-color: #ff6363;
+      background-color: #e74541;
       background-image: none;
       border-color: rgba(66, 66, 66, 0.32);
       outline-color: rgba(255, 0, 0, 0.5);
@@ -3658,7 +3658,7 @@ infobar {
       color: #424242;
       box-shadow: 0 1px 2px -1px rgba(48, 48, 48, 0.32); }
       infobar.error button:focus:hover, infobar.error button.flat:focus:hover {
-        background-color: #ff7474;
+        background-color: #e8514e;
         background-image: none;
         border-color: rgba(53, 53, 53, 0.4);
         box-shadow: 0 1px 2px -1px rgba(48, 48, 48, 0.38); }
@@ -3693,14 +3693,14 @@ infobar {
     infobar.error button:focus, infobar.error button:hover, infobar.error button.flat:focus, infobar.error button.flat:hover {
       color: #424242; }
     infobar.error button:disabled:disabled, infobar.error button.flat:disabled:disabled {
-      background-color: alpha(mix(#ff5252,#424242,0.2),0.4);
+      background-color: alpha(mix(#e53935,#424242,0.2),0.4);
       background-image: none;
       /*border: 1px solid alpha($bg, .2);*/
       opacity: .6;
-      color: mix(#ff5252,#424242,0.6);
+      color: mix(#e53935,#424242,0.6);
       box-shadow: none; }
       infobar.error button:disabled:disabled :disabled, infobar.error button.flat:disabled:disabled :disabled {
-        color: mix(#ff5252,#424242,0.6); }
+        color: mix(#e53935,#424242,0.6); }
     infobar.error button:active:disabled, infobar.error button:checked:disabled, infobar.error button.flat:active:disabled, infobar.error button.flat:checked:disabled {
       background-color: rgba(255, 0, 0, 0.6);
       background-image: none;
@@ -3710,9 +3710,9 @@ infobar {
         color: rgba(33, 33, 33, 0.85); }
     infobar.error button.separator, infobar.error button .separator {
       border: 1px solid currentColor;
-      color: rgba(255, 82, 82, 0.9); }
+      color: rgba(229, 57, 53, 0.9); }
       infobar.error button.separator:disabled, infobar.error button .separator:disabled {
-        color: rgba(255, 82, 82, 0.85); }
+        color: rgba(229, 57, 53, 0.85); }
 
 /*********
  ! Entry *
@@ -3824,35 +3824,35 @@ entry, menuitem entry, popover.background entry, .osd entry,
   entry.error, popover.background entry.error,
   #XfceNotifyWindow entry.error, #login_window entry.error {
     color: #424242;
-    border-color: #ff0f0f;
-    background-color: mix(#424242,#ff5252,0.6); }
+    border-color: #c81e1a;
+    background-color: mix(#424242,#e53935,0.6); }
     entry.error image, #XfceNotifyWindow entry.error image, #login_window entry.error image {
       color: #424242; }
     entry.error:focus,
     #XfceNotifyWindow entry.error:focus, #login_window entry.error:focus {
       color: #424242;
-      border-color: mix(#ff0000,#ff5252,0.3);
-      background-color: #ff5252;
+      border-color: mix(#ff0000,#e53935,0.3);
+      background-color: #e53935;
       box-shadow: none; }
     entry.error selection, #XfceNotifyWindow entry.error selection, #login_window entry.error selection {
       background-color: #424242;
-      color: #ff5252; }
+      color: #e53935; }
   entry.search-missing, popover.background entry.search-missing,
   #XfceNotifyWindow entry.search-missing, #login_window entry.search-missing {
     color: #424242;
-    border-color: #ff0f0f;
-    background-color: mix(#424242,#ff5252,0.6); }
+    border-color: #c81e1a;
+    background-color: mix(#424242,#e53935,0.6); }
     entry.search-missing image, #XfceNotifyWindow entry.search-missing image, #login_window entry.search-missing image {
       color: #424242; }
     entry.search-missing:focus,
     #XfceNotifyWindow entry.search-missing:focus, #login_window entry.search-missing:focus {
       color: #424242;
-      border-color: mix(#ff0000,#ff5252,0.3);
-      background-color: #ff5252;
+      border-color: mix(#ff0000,#e53935,0.3);
+      background-color: #e53935;
       box-shadow: none; }
     entry.search-missing selection, #XfceNotifyWindow entry.search-missing selection, #login_window entry.search-missing selection {
       background-color: #424242;
-      color: #ff5252; }
+      color: #e53935; }
 
 /*********
  ! Menubar
@@ -4860,7 +4860,7 @@ notebook {
         padding: 0;
         color: mix(#212121,#eeeeee,0.35); }
         notebook > header > tabs > tab button.flat:hover {
-          color: #ff9f9f; }
+          color: #ee7b79; }
         notebook > header > tabs > tab button.flat:active, notebook > header > tabs > tab button.flat:active:hover {
           color: #ff0000; }
     notebook > header.top > tabs > tab:hover:not(:checked) {
@@ -7627,7 +7627,7 @@ frame.border-inset > border,
 frame.border-outset > border,
 frame.border-groove > border,
 frame.border-ridge > border {
-  border: 1px solid alpha(mix(#212121,#eeeeee,0.18),0.32941); }
+  border: 1px solid alpha(mix(#212121,#eeeeee,0.18),0.3294117647); }
 
 .content-view {
   background-color: mix(#424242,#212121,0.28);
@@ -8022,7 +8022,7 @@ GeditViewFrame .gedit-search-slider {
   border-color: #353535;
   background-color: #424242; }
   GeditViewFrame .gedit-search-slider .not-found {
-    background-color: #ff5252;
+    background-color: #e53935;
     background-image: none;
     color: #424242; }
 
@@ -8096,10 +8096,10 @@ paned.titlebar {
 
 .conflict-row.activatable, .conflict-row.activatable:active {
   color: #424242;
-  background-color: #ff5252; }
+  background-color: #e53935; }
 
 .conflict-row.activatable:hover {
-  background-color: #ff7474; }
+  background-color: #e8514e; }
 
 .conflict-row.activatable:selected {
   color: #212121;
@@ -8726,7 +8726,7 @@ SheetStyleDialog.unity-force-quit {
 
 /* shutdown button */
 #shutdown_button button {
-  background-color: #ff5252;
+  background-color: #e53935;
   background-image: none;
   border-color: rgba(53, 53, 53, 0.32);
   color: #424242;
@@ -8781,12 +8781,12 @@ SheetStyleDialog.unity-force-quit {
       box-shadow: inset 0 -1px mix(#ff0000,rgba(255, 0, 0, 0.36),0.3); }
   #shutdown_button button.flat {
     color: #424242;
-    border-color: rgba(255, 82, 82, 0);
-    background-color: rgba(255, 82, 82, 0);
+    border-color: rgba(229, 57, 53, 0);
+    background-color: rgba(229, 57, 53, 0);
     background-image: none;
     box-shadow: none; }
   #shutdown_button button:hover, #shutdown_button button.flat:hover {
-    background-color: #ff6363;
+    background-color: #e74541;
     background-image: none;
     border-color: rgba(53, 53, 53, 0.4);
     color: #424242;
@@ -8800,7 +8800,7 @@ SheetStyleDialog.unity-force-quit {
     #shutdown_button button:hover:active:disabled, #shutdown_button button:hover:checked:disabled, #shutdown_button button.flat:hover:active:disabled, #shutdown_button button.flat:hover:checked:disabled {
       border-color: rgba(53, 53, 53, 0.4); }
   #shutdown_button button:focus, #shutdown_button button.flat:focus {
-    background-color: #ff6363;
+    background-color: #e74541;
     background-image: none;
     border-color: rgba(66, 66, 66, 0.32);
     outline-color: rgba(255, 0, 0, 0.5);
@@ -8810,7 +8810,7 @@ SheetStyleDialog.unity-force-quit {
     color: #424242;
     box-shadow: 0 1px 2px -1px rgba(48, 48, 48, 0.32); }
     #shutdown_button button:focus:hover, #shutdown_button button.flat:focus:hover {
-      background-color: #ff7474;
+      background-color: #e8514e;
       background-image: none;
       border-color: rgba(53, 53, 53, 0.4);
       box-shadow: 0 1px 2px -1px rgba(48, 48, 48, 0.38); }
@@ -8845,14 +8845,14 @@ SheetStyleDialog.unity-force-quit {
   #shutdown_button button:focus, #shutdown_button button:hover, #shutdown_button button.flat:focus, #shutdown_button button.flat:hover {
     color: #424242; }
   #shutdown_button button:disabled:disabled, #shutdown_button button.flat:disabled:disabled {
-    background-color: alpha(mix(#ff5252,#424242,0.2),0.4);
+    background-color: alpha(mix(#e53935,#424242,0.2),0.4);
     background-image: none;
     /*border: 1px solid alpha($bg, .2);*/
     opacity: .6;
-    color: mix(#ff5252,#424242,0.6);
+    color: mix(#e53935,#424242,0.6);
     box-shadow: none; }
     #shutdown_button button:disabled:disabled :disabled, #shutdown_button button.flat:disabled:disabled :disabled {
-      color: mix(#ff5252,#424242,0.6); }
+      color: mix(#e53935,#424242,0.6); }
   #shutdown_button button:active:disabled, #shutdown_button button:checked:disabled, #shutdown_button button.flat:active:disabled, #shutdown_button button.flat:checked:disabled {
     background-color: rgba(255, 0, 0, 0.6);
     background-image: none;
@@ -8862,9 +8862,9 @@ SheetStyleDialog.unity-force-quit {
       color: rgba(33, 33, 33, 0.85); }
   #shutdown_button button.separator, #shutdown_button button .separator {
     border: 1px solid currentColor;
-    color: rgba(255, 82, 82, 0.9); }
+    color: rgba(229, 57, 53, 0.9); }
     #shutdown_button button.separator:disabled, #shutdown_button button .separator:disabled {
-      color: rgba(255, 82, 82, 0.85); }
+      color: rgba(229, 57, 53, 0.85); }
 
 /* restart button */
 #restart_button button {
