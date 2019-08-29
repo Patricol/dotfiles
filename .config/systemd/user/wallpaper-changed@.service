@@ -1,0 +1,10 @@
+[Unit]
+Description=re-set wallpaper(s) and remove neofetch cache if a default wallpaper symlink changes.
+
+[Service]
+Type=oneshot
+Environment=DISPLAY=:%i
+ExecStart=/usr/bin/rm -rf %h/.cache/thumbnails/neofetch
+ExecStart=/usr/bin/systemctl --user restart animated-wallpaper@%i.service
+#animated-wallpaper affects wallpaper, so run it first.
+ExecStart=/usr/bin/systemctl --user restart wallpaper@%i.service

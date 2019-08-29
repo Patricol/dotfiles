@@ -1,8 +1,0 @@
-[Unit]
-Description=Compton Compositor
-
-[Service]
-ExecStart=compton
-
-[Install]
-WantedBy=default.target

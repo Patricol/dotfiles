@@ -1,0 +1,11 @@
+[Unit]
+Description=Bluetooth manager applet
+
+[Service]
+Environment=DISPLAY=:%i
+Type=dbus
+BusName=org.blueman.Applet
+ExecStart=blueman-applet
+
+[Install]
+WantedBy=default.target

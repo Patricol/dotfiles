@@ -1,13 +1,30 @@
 # vim:filetype=sh
-alias docker='sudo docker'
 
-alias docker-compose='sudo docker-compose'
+docker_sudo_if_needed() {
+	if groups | grep -qw "docker"; then
+		docker $@
+	else
+		sudo docker $@
+	fi
+}
+
+docker_compose_sudo_if_needed() {
+	if groups | grep -qw "docker"; then
+		docker-compose $@
+	else
+		sudo docker-compose $@
+	fi
+}
+
+alias docker='docker_sudo_if_needed'
+alias docker-compose='docker_compose_sudo_if_needed'
 alias dcf='docker-compose'
 
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 
 alias drf='docker run --rm -it'
+alias drdf='docker run --rm -d'
 alias dpf='docker pull'
 dprf() {
 	declare container="$1" command="$@"
@@ -26,6 +43,14 @@ alias drfu='drfubuntu'
 alias drfarch='dprf patricol/riced:arch'
 alias arch='drfarch'
 alias drfa='drfarch'
+
+
+redis() {
+	dpf redis:latest
+	docker stop redis &> /dev/null | true
+	drdf --name redis -p 6379:6379 redis:latest
+	docker logs --tail all --details redis
+}
 
 drf_g() {
 	declare rdp_or_vnc="$1" ; shift

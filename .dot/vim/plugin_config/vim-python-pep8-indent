@@ -1,0 +1,9 @@
+" vim:filetype=vim
+
+if crowdai == "yes"
+  " configure hanging indent in Python to 4 spaces per Google's pylintrc, e.g.
+  " function_call(
+  "     arg1, arg2, arg3)
+  " ^^^^
+  let g:python_pep8_hanging_indent_width = 4
+endif
