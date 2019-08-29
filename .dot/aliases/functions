@@ -179,7 +179,6 @@ __make_file_dict() {
     add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile,X11/xinit/xinitrc} ~/.config/wpg/wpg.conf
     add_files -s ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
     add_files -s "_config" /etc/ssh/{sshd,ssh}_config
-    add_files -s "rc" ~/.config/dunst/dunstrc
     add_files -s ".txt" /root/setup.txt
     add_files -s ".json" ~/.config/indicator-sound-switcher.json
     add_files -s ".list" ~/.config/mimeapps.list
@@ -190,6 +189,7 @@ __make_file_dict() {
     add_name_for_file "vim" "${HOME}/.dot/l/vimrc"
     add_name_for_file "compose/docker-compose.yml" "/root/.dot/l/compose/docker-compose.yml"
     add_name_for_file "compose/env" "/root/.dot/l/compose/.env"
+    add_name_for_file "mirrorlist" "/etc/pacman.d/mirrorlist"
 
     local key print_dict
     if [[ "${print_dict}" ]]; then

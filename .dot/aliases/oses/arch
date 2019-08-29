@@ -2,6 +2,7 @@
 
 alias logs='sudo journalctl -xe'
 
+alias scu='systemctl --user'
 alias scu-dr='systemctl --user daemon-reload'
 alias scu-rd='scu-dr'
 alias sc-dr='sudo systemctl daemon-reload'
