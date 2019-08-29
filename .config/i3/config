@@ -327,6 +327,7 @@ set $screenshot-selection       exec --no-startup-id a screenshot-selection
 set $terminal			exec --no-startup-id urxvt
 set $chrome			exec chromium --profile-directory="Default"
 set $chrome-h			exec chromium --profile-directory="H"
+set $chrome-altwork		exec chromium --profile-directory="AltWork"
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -355,6 +356,7 @@ bindsym $win+r			$launcher
 bindsym $win+a			$text-editor
 bindsym $win+c			$chrome
 bindsym $win+h			$chrome-h
+bindsym $win+d			$chrome-altwork
 bindsym $win+s			$notes
 bindsym $win+f			$facebook-messenger
 bindsym $win+m			$music

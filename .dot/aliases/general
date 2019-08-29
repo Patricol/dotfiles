@@ -255,9 +255,44 @@ alias vncbf='switch_to_vnc_resolution 2560x1080'
 alias vncl='switch_to_vnc_resolution 1920x1001'
 alias vncb='switch_to_vnc_resolution 2560x1001'
 
+alias cdt='cd ~/files/crowdai/devops/terraform'
+alias cdtl='cd ~/files/crowdai/devops/terraform-live'
+alias cdo='cd ~/files/crowdai/devops/olmec'
+
 alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
 alias tcc='tgcc && tfcc'
+
+
+oatp() {
+	# olmec all test plan
+	argue_options=("n,no_rebuild_cache,noarg")
+	source "$(which argue)"
+	local d
+	cdo
+	# if [[ -n "${no_rebuild_cache}" ]]
+	tcc
+	for d in $(find terraform/live -name "*.tf" -exec dirname {} \; | uniq); do
+		echo "${d}"
+		cd "${d}"
+		terraform init
+		terraform plan
+		cdo
+	done
+	for d in $(find terragrunt -name "*.tf" -exec dirname {} \; | uniq); do
+		echo "${d}"
+		cd "${d}"
+		terragrunt plan
+		cdo
+	done
+	cd "${startdir}"
+}
+
+tfp() {
+	tcc
+	terraform init
+	terraform plan
+}
 
 tgp() {
 	tcc
