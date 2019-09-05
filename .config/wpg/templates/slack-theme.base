@@ -2,8 +2,6 @@
 
 #{CONFIG_EDITING_WARNING}
 
-#212121,#424242,#2962FF,#EEEEEE,#424242,#EEEEEE,#00C853,#E53935
-
 column_bg='{darkest.strip}'
 menu_bg_hover='{darker.strip}'
 active_item='{blue.strip}'

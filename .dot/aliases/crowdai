@@ -1,0 +1,105 @@
+# vim:filetype=sh
+# CrowdAI Alias definitions.
+
+make_crowdai_aliases() {
+	local -A base_commands
+	base_commands=( ["inca"]="cdi" )
+	base_commands[incad]="cdid"
+	alias cdi='cd ~/files/crowdai/inca'
+	alias cdid='cd ~/files/crowdai/inca-dev'
+	local ba bc # base_alias base_command
+	local unbound
+	unbound="-f docker-compose.unbound.yml"
+	for ba in inca incad; do
+		bc="${base_commands[${ba}]}"
+		alias "${ba}build"="${bc} && dcf build"
+		alias "${ba}"="${ba}build && dcf up -d"
+		alias "${ba}b"="${bc} && dcf ${unbound} build && dcf ${unbound} up -d"
+		alias "${ba}_fsh"="${ba} && dcf exec inca-tasks /bin/bash"
+		alias "${ba}fsh"="${ba}_fsh ; dcf down"
+		alias "${ba}fp"="${ba}_fsh -ic ipython"
+		alias "${ba}_sh"="${ba}b && dcf ${unbound} exec inca-tasks /bin/bash"
+		alias "${ba}sh"="${ba}_sh ; dcf ${unbound} down"
+		alias "${ba}p"="${ba}_sh -c ipython"
+		alias "${ba}lint"="${bc} && ./bin/inca-mypy && ./bin/inca-lint"
+		alias "${ba}tests"="${bc} && INCATEST_COMPOSE_PROJECT_NAME=${ba}test ./bin/inca-test --down" #-x -n 8"
+		alias "${ba}test_unit"="${ba}tests inca/t/unit"
+		alias "${ba}test_integration"="${ba}tests inca/t/integration"
+		alias "${ba}test"="${ba}test_unit && ${ba}test_integration"
+		alias "${ba}t"="${ba}lint && ${ba}build && ${ba}test"
+		alias "${ba}pdb"="rpdb ${ba}test_inca-tasks_1"
+	done
+}
+
+make_crowdai_aliases
+
+alias cdt='cd ~/files/crowdai/devops/terraform'
+alias cdtl='cd ~/files/crowdai/devops/terraform-live'
+alias cdo='cd ~/files/crowdai/devops/olmec'
+
+alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
+alias tfcc='rm -rf $(find -type d -name ".terraform")'
+alias tcc='tgcc && tfcc'
+
+cai_auth() {
+	declare profile="$1"
+	ln -sf "credentials-${profile}" "${HOME}/.aws/credentials"
+	# need to cd so the python shim works
+	rm -f "${HOME}/.vault-token"
+	cd "${HOME}/files/crowdai"
+	ssh-crowdai/bin/crowdai-vault-login admin
+}
+alias caiauth-patrick='cai_auth patrick'
+alias caiauth-pau='cai_auth pau'
+alias caiauth-test='cai_auth test'
+
+oatp() {
+	# olmec all test plan
+	argue_options=("n,no_rebuild_cache,noarg")
+	source "$(which argue)"
+	local d
+	cdo
+	# if [[ -n "${no_rebuild_cache}" ]]
+	tcc
+	for d in $(find terraform/live -name "*.tf" -exec dirname {} \; | uniq); do
+		echo "${d}"
+		cd "${d}"
+		terraform init
+		terraform plan
+		cdo
+	done
+	for d in $(find terragrunt -name "*.tf" -exec dirname {} \; | uniq); do
+		echo "${d}"
+		cd "${d}"
+		terragrunt plan
+		cdo
+	done
+	cd "${startdir}"
+}
+
+tfp() {
+	tcc
+	terraform init
+	terraform plan
+}
+
+tgp() {
+	tcc
+	terragrunt plan
+}
+
+tgpa() {
+	tcc
+	terragrunt plan-all
+}
+
+rpdb() {
+	declare container_name="$1"
+	local container_id
+	until [[ -n "${container_id}" ]] && docker exec -it "${container_id}" telnet 127.0.0.1 4444; do
+		container_id="$(docker inspect -f"{{.Id}}" "${container_name}")"
+		sleep 1
+	done
+}
+
+#alias jupyter='docker run -p 8888:8888 jupyter/scipy-notebook:latest'
