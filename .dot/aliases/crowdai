@@ -112,7 +112,7 @@ k8s_plugin_setup() {
 	declare version="$1" repolink="$2"
 	go get -u "${repolink}"
 	mkdir -p ~/.terraform.d/plugins/
-	rm ~/.terraform.d/plugins/*
+	rm -f ~/.terraform.d/plugins/*
 	k8s_provider="$(find ${GOPATH:-~/go} -type f -name "terraform-provider-k8s" | grep "/bin/" | tail -n1)"
 	if [[ -n "${k8s_provider}" ]]; then
 	    ln -s "${k8s_provider}" "${HOME}/.terraform.d/plugins/terraform-provider-k8s_v${version}"
