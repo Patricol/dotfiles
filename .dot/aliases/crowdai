@@ -1,6 +1,10 @@
 # vim:filetype=sh
 # CrowdAI Alias definitions.
 
+if hash crowdai-env 2> /dev/null; then
+	eval "$(crowdai-env)"
+fi
+
 make_crowdai_aliases() {
 	local -A base_commands
 	base_commands=( ["inca"]="cdi" )
@@ -47,7 +51,7 @@ cai_auth() {
 	# need to cd so the python shim works
 	rm -f "${HOME}/.vault-token"
 	cd "${HOME}/files/crowdai"
-	ssh-crowdai/bin/crowdai-vault-login admin
+	crowdai-vault-login admin
 }
 alias caiauth-patrick='cai_auth patrick'
 alias caiauth-pau='cai_auth pau'
