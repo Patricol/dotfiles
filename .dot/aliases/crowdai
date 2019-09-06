@@ -107,3 +107,19 @@ rpdb() {
 }
 
 #alias jupyter='docker run -p 8888:8888 jupyter/scipy-notebook:latest'
+
+terrdown() {
+	git clone https://aur.archlinux.org/terragrunt-bin.git /tmp/terragrunt-bin
+	cd /tmp/terragrunt-bin
+	git checkout 1d237f33114efcdc0317bd6cd999b07434ec5463
+	makepkg -scir --noconfirm
+	cd -
+	rm -rf /tmp/terragrunt-bin
+	echo "CHOOSE 0.11.14"
+	downgrade terraform
+}
+
+terrup() {
+	yay --noconfirm -R terraform terragrunt-bin
+	yay --noconfirm --answerdiff None -S terraform terragrunt-bin
+}
