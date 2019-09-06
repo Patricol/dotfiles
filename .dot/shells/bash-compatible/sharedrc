@@ -58,9 +58,6 @@ unset powerline_shell_theme
 if which pyenv &> /dev/null; then
 	eval "$(pyenv init -)"
 fi
-if hash crowdai-env 2> /dev/null; then
-	eval "$(crowdai-env)"
-fi
 
 stty -ixon # disable Ctrl-S
 
