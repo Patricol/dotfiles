@@ -65,13 +65,18 @@ drf_g() {
 	dpf $1
 	drf -e RDP_OR_VNC="${rdp_or_vnc}" -p 3389:3389 -p 5925:5900 $@
 }
-drfg() {
+alias drfg="drfgv"
+drfgr() {
 	drf_g RDP $@
 }
 drfgv() {
 	drf_g VNC $@
 }
+drfgd() {
+	drf_g DEBUG $@
+}
 alias drfgui='drfg patricol/gui_base:arch'
+alias drfguid='drfgd patricol/gui_base:arch'
 
 
 checliver() {
