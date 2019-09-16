@@ -91,6 +91,7 @@ application/vnd.comicbook-rar=mcomix.desktop
 inode/directory=nemo.desktop
 video/x-flv=mpv.desktop
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/sgnl=signal-desktop.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;chromium.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;
