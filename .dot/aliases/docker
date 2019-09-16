@@ -62,7 +62,8 @@ redis() {
 
 drf_g() {
 	declare rdp_or_vnc="$1" ; shift
-	dpf $1 && drf -e RDP_OR_VNC="${rdp_or_vnc}" -p 3389:3389 -p 5925:5900 $@
+	dpf $1
+	drf -e RDP_OR_VNC="${rdp_or_vnc}" -p 3389:3389 -p 5925:5900 $@
 }
 drfg() {
 	drf_g RDP $@
