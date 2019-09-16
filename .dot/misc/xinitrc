@@ -12,5 +12,8 @@
 # pwd | tee ~/vncpwd
 cd "${HOME}"
 
-exec /etc/lightdm/Xsession i3
-# exec i3
+if [[ -f "/etc/lightdm/Xsession" ]]; then
+	exec /etc/lightdm/Xsession i3
+else
+	exec i3
+fi
