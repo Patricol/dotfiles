@@ -121,20 +121,40 @@ k8s_plugin_setup() {
 	fi
 }
 
-terrdown() {
-	git clone https://aur.archlinux.org/terragrunt-bin.git /tmp/terragrunt-bin
-	cd /tmp/terragrunt-bin
-	git checkout 1d237f33114efcdc0317bd6cd999b07434ec5463
+downgrade_aur() {
+	declare package="$1" commit="$2"
+	local start_dir temp_dir
+	start_dir="$(pwd)"
+	temp_dir="$(mktemp -d)"
+	cd "${temp_dir}"
+	git clone "https://aur.archlinux.org/${package}.git"
+	cd "${package}"
+	git checkout "${commit}"
 	makepkg -scir --noconfirm
-	cd -
-	rm -rf /tmp/terragrunt-bin
+	cd "${start_dir}"
+	rm -rf "${temp_dir}"
+}
+
+terrdown() {
+	downgrade_aur terragrunt-bin 1d237f33114efcdc0317bd6cd999b07434ec5463
+	downgrade_aur kubernetes-helm d2ed21f2fe6fdd563895c585b88da825349116e0
 	echo "CHOOSE 0.11.14"
 	downgrade terraform
 	k8s_plugin_setup "0.0.16" "github.com/ericchiang/terraform-provider-k8s"
 }
 
 terrup() {
-	yay --noconfirm -R terraform terragrunt-bin
-	yay --noconfirm --answerdiff None -S terraform terragrunt-bin
+	yay --noconfirm -R terraform terragrunt-bin kubernetes-helm
+	yay --noconfirm --answerdiff None -S terraform terragrunt-bin kubernetes-helm
 	k8s_plugin_setup "0.2.0.0" "github.com/crowd-ai/terraform-provider-k8s"
 }
+
+k_cluster() {
+	declare cluster_name="$1"
+	aws eks update-kubeconfig --name "${cluster_name}"
+	kubectl exec -it "$(kubectl get pods | cut -c1-45 | grep -m 1 "web")" bash
+}
+
+alias kprod="k_cluster core-production"
+alias kstaging="k_cluster core-staging"
+
