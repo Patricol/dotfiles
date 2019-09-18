@@ -12,7 +12,7 @@ make_crowdai_aliases() {
 	base_commands=( ["inca"]="cdi" )
 	base_commands[incad]="cdid"
 	alias cdi='cd ~/files/crowdai/inca'
-	alias cdid='cd ~/files/crowdai/inca-dev'
+	alias cdid='cd ~/files/crowdai/fresh/inca'
 	local ba bc # base_alias base_command
 	local unbound
 	unbound="-f docker-compose.unbound.yml"
