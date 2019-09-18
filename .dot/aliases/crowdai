@@ -5,6 +5,8 @@ if hash crowdai-env 2> /dev/null; then
 	eval "$(crowdai-env)"
 fi
 
+alias cdc='cd ~/files/crowdai'
+
 make_crowdai_aliases() {
 	local -A base_commands
 	base_commands=( ["inca"]="cdi" )
@@ -37,9 +39,9 @@ make_crowdai_aliases() {
 
 make_crowdai_aliases
 
-alias cdt='cd ~/files/crowdai/devops/terraform'
-alias cdtl='cd ~/files/crowdai/devops/terraform-live'
-alias cdo='cd ~/files/crowdai/devops/olmec'
+alias cdtg='cd ~/files/crowdai/olmec/terragrunt'
+alias cdtf='cd ~/files/crowdai/olmec/terraform'
+alias cdo='cd ~/files/crowdai/olmec'
 
 alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
@@ -114,7 +116,7 @@ k8s_plugin_setup() {
 	gopath="${GOPATH:-${HOME}/go}"
 	go get -u "${repolink}"
 	rm -rf ~/.terraform.d/plugins
-	mkdir -p ~/.terraform.d/plugins/
+	mkdir -p ~/.terraform.d/plugins
 	k8s_provider="$(find ${gopath} -type f -name "terraform-provider-k8s" | grep "/bin/" | tail -n1)"
 	if [[ -n "${k8s_provider}" ]]; then
 	    ln -s "${k8s_provider}" "${HOME}/.terraform.d/plugins/terraform-provider-k8s_v${version}"
