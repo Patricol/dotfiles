@@ -47,17 +47,26 @@ alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
 alias tcc='tgcc && tfcc'
 
+cai_vault_auth() {
+	declare team="$1"
+	rm -f "${HOME}/.vault-token"
+	# need to cd so the python shim works
+	cdc
+	crowdai-vault-login "${team}"
+	cd -
+}
+alias caiva='cai_vault_auth admin'
+alias caivsa='cai_vault_auth sudo-admin'
+
 cai_auth() {
 	declare profile="$1"
 	ln -sf "credentials-${profile}" "${HOME}/.aws/credentials"
-	# need to cd so the python shim works
-	rm -f "${HOME}/.vault-token"
-	cd "${HOME}/files/crowdai"
-	crowdai-vault-login admin
+	caiva
 }
 alias caiauth-patrick='cai_auth patrick'
 alias caiauth-pau='cai_auth pau'
 alias caiauth-test='cai_auth test'
+
 
 oatp() {
 	# olmec all test plan
@@ -160,3 +169,13 @@ k_cluster() {
 alias kprod="k_cluster core-production"
 alias kstaging="k_cluster core-staging"
 
+a_eks_switch() {
+	declare name="$1"
+	local new_context
+	new_context="$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
+	kubectl config use-context "${new_context}"
+	kubectl get pods
+	helm list
+}
+alias eks-staging="a_eks_switch core-staging"
+alias eks-production="a_eks_switch core-production"
