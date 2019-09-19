@@ -175,7 +175,7 @@ a_eks_switch() {
 	new_context="$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
 	kubectl config use-context "${new_context}"
 	kubectl get pods
-	helm list
+	helm list -a
 }
 alias eks-staging="a_eks_switch core-staging"
 alias eks-production="a_eks_switch core-production"

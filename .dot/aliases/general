@@ -226,3 +226,10 @@ alias vncb='switch_to_vnc_resolution 2560x1001'
 
 alias upload-key='gpg --keyserver keys.gnupg.net --send-key'
 alias get-key='gpg --keyserver keys.gnupg.net --send-key'
+
+pbr() {
+	for m in $(polybar --list-monitors | cut -d":" -f1); do
+		MONITOR=$m polybar --reload main &
+		MONITOR=$m polybar --reload wss &
+	done
+}
