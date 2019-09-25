@@ -171,11 +171,14 @@ alias kstaging="k_cluster core-staging"
 
 a_eks_switch() {
 	declare name="$1"
+	cdc
 	local new_context
 	new_context="$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
 	kubectl config use-context "${new_context}"
 	kubectl get pods
 	helm list -a
+	cd -
 }
 alias eks-staging="a_eks_switch core-staging"
 alias eks-production="a_eks_switch core-production"
+alias eks-eq="a_eks_switch experiment-queue"
