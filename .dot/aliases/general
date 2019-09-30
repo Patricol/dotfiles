@@ -233,3 +233,12 @@ pbr() {
 		MONITOR=$m polybar --reload wss &
 	done
 }
+
+loop() {
+	declare wait_between="$1"
+	shift
+	while true; do
+		$@
+		sleep "${wait_between}"
+	done
+}
