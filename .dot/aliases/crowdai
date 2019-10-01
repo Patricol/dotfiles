@@ -96,18 +96,18 @@ oatp() {
 }
 
 tfp() {
-	tcc
+	# tcc
 	terraform init
 	terraform plan
 }
 
 tgp() {
-	tcc
+	# tcc
 	terragrunt plan
 }
 
 tgpa() {
-	tcc
+	# tcc
 	terragrunt plan-all
 }
 
@@ -152,14 +152,15 @@ downgrade_aur() {
 terrdown() {
 	downgrade_aur terragrunt-bin 1d237f33114efcdc0317bd6cd999b07434ec5463
 	downgrade_aur kubernetes-helm d2ed21f2fe6fdd563895c585b88da825349116e0
+	downgrade_aur kubectl-bin 48b01da4624997dd2cd5e371a58c788f5a93ab44
 	echo "CHOOSE 0.11.14"
 	downgrade terraform
 	k8s_plugin_setup "0.0.16" "github.com/ericchiang/terraform-provider-k8s"
 }
 
 terrup() {
-	yay --noconfirm -R terraform terragrunt-bin kubernetes-helm
-	yay --noconfirm --answerdiff None -S terraform terragrunt-bin kubernetes-helm
+	yay --noconfirm -R terraform terragrunt-bin kubernetes-helm kubectl-bin
+	yay --noconfirm --answerdiff None -S terraform terragrunt-bin kubernetes-helm kubectl-bin
 	k8s_plugin_setup "0.2.0.0" "github.com/crowd-ai/terraform-provider-k8s"
 }
 
