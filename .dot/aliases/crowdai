@@ -96,18 +96,18 @@ oatp() {
 }
 
 tfp() {
-	# tcc
+	tcc
 	terraform init
 	terraform plan
 }
 
 tgp() {
-	# tcc
+	tcc
 	terragrunt plan
 }
 
 tgpa() {
-	# tcc
+	tcc
 	terragrunt plan-all
 }
 
