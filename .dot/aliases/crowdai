@@ -176,6 +176,7 @@ alias kstaging="k_cluster core-staging"
 a_eks_switch() {
 	declare name="$1"
 	cdc
+	rm ~/.kube/config
 	local new_context
 	new_context="$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
 	kubectl config use-context "${new_context}"
@@ -184,6 +185,21 @@ a_eks_switch() {
 	helm list -a
 	cd -
 }
+
+a_eks_switch_local() {
+	rm ~/.kube/config
+	if [[ -f ./kubeconfig ]]; then
+		ln -sf "$(pwd)/kubeconfig" ~/.kube/config
+		kubectl get pods
+		helm list -a
+	else
+		echo "No ./kubeconfig file found." >&2
+	fi
+}
+
 alias eks-staging="a_eks_switch core-staging"
 alias eks-production="a_eks_switch core-production"
 alias eks-eq="a_eks_switch experiment-queue"
+alias eks-local="a_eks_switch_local"
+
+alias testenv="cdc && scratch/run testenv test bumped"
