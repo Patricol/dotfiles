@@ -188,12 +188,12 @@ a_eks_switch() {
 
 a_eks_switch_local() {
 	declare kubeconfig="$1"
-	rm ~/.kube/config
 	if [[ -f "${kubeconfig}" ]]; then
 		ln -sf "$(realpath "${kubeconfig}")" ~/.kube/config
 		kubectl get pods
 		helm list -a
 	else
+		rm -f ~/.kube/config
 		echo "No ${kubeconfig} file found." >&2
 	fi
 }
