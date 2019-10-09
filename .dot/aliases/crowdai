@@ -187,19 +187,20 @@ a_eks_switch() {
 }
 
 a_eks_switch_local() {
+	declare kubeconfig="$1"
 	rm ~/.kube/config
-	if [[ -f ./kubeconfig ]]; then
-		ln -sf "$(pwd)/kubeconfig" ~/.kube/config
+	if [[ -f "${kubeconfig}" ]]; then
+		ln -sf "$(realpath "${kubeconfig}")" ~/.kube/config
 		kubectl get pods
 		helm list -a
 	else
-		echo "No ./kubeconfig file found." >&2
+		echo "No ${kubeconfig} file found." >&2
 	fi
 }
 
 alias eks-staging="a_eks_switch core-staging"
 alias eks-production="a_eks_switch core-production"
 alias eks-eq="a_eks_switch experiment-queue"
-alias eks-local="a_eks_switch_local"
+alias eks-local="a_eks_switch_local ../kubeconfig"
 
 alias testenv="cdc && scratch/run testenv test bumped"
