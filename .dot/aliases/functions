@@ -290,6 +290,8 @@ chwp() {
 }
 alias cwp='chwp'
 
+alias vbgs='video-bg --sample'
+
 merge() {
     if [[ $# -ne 2 ]]; then
 	echo "usage: merge from to" >&2
