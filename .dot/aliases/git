@@ -31,6 +31,7 @@ make_basic_aliases() {
 		alias "${ba}mt"="${ba} mergetool -t meld"
 		alias "${ba}l"="${ba} log --relative-date --graph"
 		alias "${ba}lc"="${ba} --pretty=format:'%Cgreen%h%x09%Cred%ad%x09%Creset%s%Cblue%d'"
+		alias "${ba}lo"="${ba} log --graph --decorate --oneline --all"
 		alias "${ba}ch"="${ba} checkout"
 		alias "${ba}pop"="${ba} stash pop"
 		alias "${ba}popall"="while ${ba}pop; do :; done"
