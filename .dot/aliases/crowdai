@@ -37,27 +37,41 @@ make_crowdai_aliases() {
 	done
 }
 
+alias "aztec"="cd ~/files/crowdai/aztec_platform && dcf build && dcf up -d"
 make_crowdai_aliases
 
 alias cdtg='cd ~/files/crowdai/olmec/terragrunt'
 alias cdtf='cd ~/files/crowdai/olmec/terraform'
 alias cdo='cd ~/files/crowdai/olmec'
+alias cdot='cd /home/docker/olmec/testenv/olmec'
+alias cdob='cd /home/docker/olmec/bumped/olmec'
 
 alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
 alias tcc='tgcc && tfcc'
 
+alias tga='terragrunt apply'
+alias tgd='terragrunt destroy'
+
+cai_vault_auth() {
+	declare team="$1"
+	rm -f "${HOME}/.vault-token"
+	# need to cd so the python shim works
+	cdc
+	crowdai-vault-login "${team}"
+	cd -
+}
+alias caiva='cai_vault_auth admin'
+alias caivsa='cai_vault_auth sudo-admin'
+
 cai_auth() {
 	declare profile="$1"
 	ln -sf "credentials-${profile}" "${HOME}/.aws/credentials"
-	# need to cd so the python shim works
-	rm -f "${HOME}/.vault-token"
-	cd "${HOME}/files/crowdai"
-	crowdai-vault-login admin
+	caiva
 }
 alias caiauth-patrick='cai_auth patrick'
-alias caiauth-pau='cai_auth pau'
 alias caiauth-test='cai_auth test'
+
 
 oatp() {
 	# olmec all test plan
@@ -98,6 +112,23 @@ tgpa() {
 	tcc
 	terragrunt plan-all
 }
+
+# tgta() {
+# 	local resource
+# 	for resource in $(terragrunt state list); do
+# 		terragrunt taint "${resource}"
+# 	done
+# }
+
+# tguta() {
+# 	local resource
+# 	for resource in $(terragrunt state list); do
+# 		terragrunt untaint "${resource}"
+# 	done
+# }
+
+alias tfsp='terraform state pull | less'
+alias tgsp='terragrunt state pull | less'
 
 rpdb() {
 	declare container_name="$1"
@@ -140,14 +171,15 @@ downgrade_aur() {
 terrdown() {
 	downgrade_aur terragrunt-bin 1d237f33114efcdc0317bd6cd999b07434ec5463
 	downgrade_aur kubernetes-helm d2ed21f2fe6fdd563895c585b88da825349116e0
+	downgrade_aur kubectl-bin 48b01da4624997dd2cd5e371a58c788f5a93ab44
 	echo "CHOOSE 0.11.14"
 	downgrade terraform
 	k8s_plugin_setup "0.0.16" "github.com/ericchiang/terraform-provider-k8s"
 }
 
 terrup() {
-	yay --noconfirm -R terraform terragrunt-bin kubernetes-helm
-	yay --noconfirm --answerdiff None -S terraform terragrunt-bin kubernetes-helm
+	yay --noconfirm -R terraform terragrunt-bin kubernetes-helm kubectl-bin
+	yay --noconfirm --answerdiff None -S terraform terragrunt-bin kubernetes-helm kubectl-bin
 	k8s_plugin_setup "0.2.0.0" "github.com/crowd-ai/terraform-provider-k8s"
 }
 
@@ -160,3 +192,65 @@ k_cluster() {
 alias kprod="k_cluster core-production"
 alias kstaging="k_cluster core-staging"
 
+a_eks_switch() {
+	declare name="$1"
+	cdc
+	rm -f ~/.kube/config
+	local new_context
+	new_context="$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
+	kubectl config use-context "${new_context}"
+	# kubectl --namespace=kube-system
+	kubectl get pods
+	helm list -a
+	cd -
+}
+
+a_eks_switch_local() {
+	declare kubeconfig="$1"
+	if [[ -f "${kubeconfig}" ]]; then
+		ln -sf "$(realpath "${kubeconfig}")" ~/.kube/config
+		kubectl get pods
+		helm list -a
+	else
+		rm -f ~/.kube/config
+		echo "No ${kubeconfig} file found." >&2
+	fi
+}
+
+alias eks-staging="a_eks_switch core-staging"
+alias eks-production="a_eks_switch core-production"
+alias eks-eq="a_eks_switch experiment-queue"
+alias eks-misc="a_eks_switch misc"
+alias eks-bumptest="a_eks_switch bumptest"
+alias eks-local="a_eks_switch_local ../kubeconfig"
+
+alias testenv="cdot && scripts/runtime/run testenv test bumped"
+alias prebump="cdo && scripts/runtime/run prebump patrick prebump"
+alias bumped="cdob && scripts/runtime/run bumped patrick bumped"
+
+alias ku="kubectl"
+alias kg="ku get"
+alias kgaa="kg all -A"
+alias kgp="kg pods"
+alias kd="ku describe"
+alias kdp="kd pods"
+alias ke="ku exec"
+alias kei="ke -i -t"
+alias kdel="ku delete"
+alias kl="ku logs"
+alias klf="kl -f"
+alias klscale="kl --namespace=kube-system svc/cluster-autoscaler-aws-cluster-autoscaler"
+
+
+# klp() {
+# 	# TODO make this get logs from a pod, pulling its namespace and name.
+# 	kgaa | grep -E"\t$1"
+# }
+
+sshc_aws() {
+	declare instance_id="$1"
+	local ip_address
+	ip_address="$(aws ec2 describe-instances --instance-ids "${instance_id}" | grep PublicIpAddress | grep -Eo '[0-9]{0,3}\.[0-9]{0,3}\.[0-9]{0,3}\.[0-9]{0,3}')"
+	sshc "ubuntu@${ip_address}"
+}
+alias samplename="sshc_aws i-04c4e5a401932bf43"

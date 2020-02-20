@@ -25,6 +25,8 @@ alias pacrs='yay -Rs'
 alias aurr='echo "use pacr"'
 alias aurrs='echo "use pacrs"'
 
+alias syukeyring='s pacman -S archlinux-keyring'
+
 pq() {
 	declare search="$1"
 	if [[ -n "${search}" ]]; then
@@ -75,16 +77,12 @@ alias pqaur='pacman -Qm'
 
 pcps() {
 	# check package size; also prints the package names
-	declare packages="$@"
-	pacman -Qi ${packages} | egrep "^(Name|Description|Installed)" | cut -f2 -d":" | paste - - - | awk -F "\t" '{ print $3 "\t" $1 "\t" $2 }' | sort -k 2,2 -k 1n,1n
-	# cannot have quotes around ${packages}
+	pacman -Qi $@ | egrep "^(Name|Description|Installed)" | cut -f2 -d":" | paste - - - | awk -F "\t" '{ print $3 "\t" $1 "\t" $2 }' | sort -k 2,2 -k 1n,1n
 }
 
 
 pcpes() {
 	# check package effective size; also prints the package names
-	declare packages="$@"
-
 	pcpesnn() {
 		# check package effective size
 		declare package="$1"
@@ -92,15 +90,15 @@ pcpes() {
 	}
 
 	local package
-	for package in ${packages}; do
+	for package in $@; do
 		pcpesnn "${package}"
 		expac '%-20n\t%10d' "${package}"
 	done
 	unset -f pcpesnn
 }
 
-alias pqenb='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort)'
+alias pqenb='comm -23 <(pacman -Qqe | sort) <(pacman -Qqg base base-devel | sort) | tr "\n" " "'
 alias listexplicitlyinstalled='expac -H M "%011m\t%-20n\t%10d" $(pqenb) | sort -n'
-alias listexplicitlyinstalledtruesize='pcpes "$(pqenb)" | paste - - | sort -n'
-alias listexplicitlyinstalleduniversal='pcps "$(pqenb)"'
+alias listexplicitlyinstalledtruesize='pcpes $(pqenb) | paste - - | sort -n'
+alias listexplicitlyinstalleduniversal='pcps $(pqenb)'
 
