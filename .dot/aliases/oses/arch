@@ -25,6 +25,8 @@ alias pacrs='yay -Rs'
 alias aurr='echo "use pacr"'
 alias aurrs='echo "use pacrs"'
 
+alias syukeyring='s pacman -S archlinux-keyring'
+
 pq() {
 	declare search="$1"
 	if [[ -n "${search}" ]]; then

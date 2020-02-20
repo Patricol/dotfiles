@@ -147,6 +147,8 @@ alias cddotsl='cd ~/.dot/l'
 alias cddl='cddotsl'
 alias cdfiles='cd ~/files/'
 alias cdf='cdfiles'
+alias cdterraform='cd /home/docker/projects/terraform/'
+alias cdt='cdterraform'
 alias c='clear'
 alias ca='reset' # fully clear scrollback; though this does more than that
 alias cls='clear && ls'
@@ -157,9 +159,18 @@ alias cnf='clear && nf'
 alias nfc='cnf'
 alias x='exit'
 
-alias nas='add_ssh_keys fcdcbda_key && ssh -p 51722 patrick@nas.p47.co'
-alias ede='add_ssh_keys fcdcbda_key && ssh -p 51522 rancher@94158.p4t.co'
-alias pam='add_ssh_keys fcdcbda_key && ssh -p 51522 rancher@pam.p47.co'
+ssh_to() {
+	declare port="$1" ; shift
+	declare userhost="$1" ; shift
+	add_ssh_keys fcdcbda_key
+	ssh -p "${port}" "${userhost}" $@
+}
+alias nas='ssh_to 51722 patrick@nas.p47.co'
+alias nasroot='ssh_to 51722 root@nas.p47.co'
+alias ede='ssh_to 51522 rancher@ede.p47.co'
+alias pam='ssh_to 51522 rancher@pam.p47.co'
+
+alias dtf='cdt && scripts/runtime/run terraform gcloud'
 
 alias d='dirs -v'
 #for index ({1..9}) alias "$index"="cd +${index}"; unset index
