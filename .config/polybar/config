@@ -600,7 +600,7 @@ type = internal/temperature
 interval = 1
 ; for options, run:
 ; for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
-thermal-zone = 0
+thermal-zone = 1
 
 ; Display warning label at this temperature.
 warn-temperature = 80
