@@ -32,7 +32,11 @@ main() {
 	scus redshift-gtk
 	scus udiskie
 	scuss indicator-sound-switcher
-	scuss slack 
+	scuss slack
+	if [[ -f "/etc/xdg/autostart/spice-vdagent.desktop" ]]; then
+		dex /etc/xdg/autostart/spice-vdagent.desktop
+	fi
+	# dex -ae i3 # TODO convert this into a service; add a counterpart in stop-gui-services
 }
 
 main
