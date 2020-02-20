@@ -37,11 +37,14 @@ make_crowdai_aliases() {
 	done
 }
 
+alias "aztec"="cd ~/files/crowdai/aztec_platform && dcf build && dcf up -d"
 make_crowdai_aliases
 
 alias cdtg='cd ~/files/crowdai/olmec/terragrunt'
 alias cdtf='cd ~/files/crowdai/olmec/terraform'
 alias cdo='cd ~/files/crowdai/olmec'
+alias cdot='cd /home/docker/olmec/testenv/olmec'
+alias cdob='cd /home/docker/olmec/bumped/olmec'
 
 alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
@@ -192,7 +195,7 @@ alias kstaging="k_cluster core-staging"
 a_eks_switch() {
 	declare name="$1"
 	cdc
-	rm ~/.kube/config
+	rm -f ~/.kube/config
 	local new_context
 	new_context="$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
 	kubectl config use-context "${new_context}"
@@ -217,13 +220,17 @@ a_eks_switch_local() {
 alias eks-staging="a_eks_switch core-staging"
 alias eks-production="a_eks_switch core-production"
 alias eks-eq="a_eks_switch experiment-queue"
+alias eks-misc="a_eks_switch misc"
+alias eks-bumptest="a_eks_switch bumptest"
 alias eks-local="a_eks_switch_local ../kubeconfig"
 
-alias testenv="cdo && scripts/runtime/run testenv test bumped"
-alias bumped="cdo && scripts/runtime/run bumped patrick bumped"
+alias testenv="cdot && scripts/runtime/run testenv test bumped"
+alias prebump="cdo && scripts/runtime/run prebump patrick prebump"
+alias bumped="cdob && scripts/runtime/run bumped patrick bumped"
 
 alias ku="kubectl"
 alias kg="ku get"
+alias kgaa="kg all -A"
 alias kgp="kg pods"
 alias kd="ku describe"
 alias kdp="kd pods"
@@ -231,3 +238,19 @@ alias ke="ku exec"
 alias kei="ke -i -t"
 alias kdel="ku delete"
 alias kl="ku logs"
+alias klf="kl -f"
+alias klscale="kl --namespace=kube-system svc/cluster-autoscaler-aws-cluster-autoscaler"
+
+
+# klp() {
+# 	# TODO make this get logs from a pod, pulling its namespace and name.
+# 	kgaa | grep -E"\t$1"
+# }
+
+sshc_aws() {
+	declare instance_id="$1"
+	local ip_address
+	ip_address="$(aws ec2 describe-instances --instance-ids "${instance_id}" | grep PublicIpAddress | grep -Eo '[0-9]{0,3}\.[0-9]{0,3}\.[0-9]{0,3}\.[0-9]{0,3}')"
+	sshc "ubuntu@${ip_address}"
+}
+alias samplename="sshc_aws i-04c4e5a401932bf43"
