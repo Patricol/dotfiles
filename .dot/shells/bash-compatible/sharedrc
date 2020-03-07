@@ -38,6 +38,12 @@ export LESSHISTFILE="${HOME}/.history/less"
 source ~/.config/wpg/formats/colors-tty.sh || true # do this above neofetch. blanks the terminal; though it only runs if on tty.
 
 
+if [[ -n "${DESKTOP_SESSION}" ]]; then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
+
+
 #(cat ~/.config/wpg/sequences &) # not needed; overrides custom cursor etc.
 if [[ "${TERM}" == "linux" ]]; then
 	powerline_shell_theme="ext.shell.theme=\"${powerline_shell_theme}_oneline\";ext.shell.colorscheme=\"custom_tty\";ext.vim.colorscheme=\"custom_tty\";ext.tmux.colorscheme=\"custom_tty\""

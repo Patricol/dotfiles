@@ -254,3 +254,5 @@ sshc_aws() {
 	sshc "ubuntu@${ip_address}"
 }
 alias samplename="sshc_aws i-04c4e5a401932bf43"
+
+alias jenkins="ssh -i ~/.ssh/crowdai-master -t ubuntu@ec2-34-196-187-153.compute-1.amazonaws.com 'cd /var/lib/jenkins ; bash'"
