@@ -1,0 +1,9 @@
+[Unit]
+Description=Agent for spice guests
+
+[Service]
+Environment=DISPLAY=:%i
+ExecStart=/usr/bin/spice-vdagent --foreground --display=:%i --debug
+
+[Install]
+WantedBy=default.target
