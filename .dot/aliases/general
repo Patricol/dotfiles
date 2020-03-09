@@ -57,6 +57,8 @@ alias visudo='sudo -- visudo'
 
 alias mnas='sup mount /media/nas'
 alias umnas='umount /media/nas'
+alias marcade='sup mount /media/arcade'
+alias umarcade='umount /media/arcade'
 
 alias mnt='tldr'
 alias mnc='cheat'
@@ -167,6 +169,8 @@ ssh_to() {
 }
 alias nas='ssh_to 51722 patrick@nas.p47.co'
 alias nasroot='ssh_to 51722 root@nas.p47.co'
+alias arcade='ssh_to 51722 patrick@arcade.p47.co'
+alias arcaderoot='ssh_to 51722 root@arcade.p47.co'
 alias ede='ssh_to 51522 rancher@ede.p47.co'
 alias pam='ssh_to 51522 rancher@pam.p47.co'
 
@@ -253,3 +257,5 @@ loop() {
 		sleep "${wait_between}"
 	done
 }
+
+alias tfrun='/home/docker/projects/terraform/scripts/runtime/run'
