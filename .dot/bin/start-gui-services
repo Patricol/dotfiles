@@ -23,6 +23,13 @@ main() {
 		declare service="$1"
 		systemctl --user restart "${service}@${dispnum}.service"
 	}
+	if [[ -f "/etc/xdg/autostart/spice-vdagent.desktop" ]]; then
+		scus spice-vdagent
+		# dex /etc/xdg/autostart/spice-vdagent.desktop
+		sleep 3s # NOTE need to wait for resolution to be changed; so polybar and wallpaper etc. can be started with the new resolution
+		# TODO see if I can avoid the sleep when vdagent is already running.
+	fi
+	# dex -ae i3 # TODO convert this into a service; add a counterpart in stop-gui-services
 	scur polybar-main
 	scur polybar-wss
 	scus wallpaper
@@ -33,10 +40,6 @@ main() {
 	scus udiskie
 	scuss indicator-sound-switcher
 	scuss slack
-	if [[ -f "/etc/xdg/autostart/spice-vdagent.desktop" ]]; then
-		dex /etc/xdg/autostart/spice-vdagent.desktop
-	fi
-	# dex -ae i3 # TODO convert this into a service; add a counterpart in stop-gui-services
 }
 
 main
