@@ -8,19 +8,19 @@ main() {
 	case "${current_user}" in
 		patricol)
 			font_index="8"
-			user_icon=""
+			user_icon="󰀄"
 			;;
 		work)
 			font_index="5"
-			user_icon=""
+			user_icon="󰃖"
 			;;
 		user)
 			font_index="8"
-			user_icon=""
+			user_icon="󰡨"
 			;;
 		*)
 			font_index="8"
-			user_icon="וּ"
+			user_icon="󰭙"
 			;;
 	esac
 	local output
