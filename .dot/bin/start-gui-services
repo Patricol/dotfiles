@@ -38,7 +38,7 @@ main() {
 	scurs dunst
 	scus redshift-gtk
 	scus udiskie
-	scuss indicator-sound-switcher
+	scus indicator-sound-switcher
 	scuss slack
 }
 
