@@ -1,0 +1,10 @@
+[Unit]
+Description=Polybar wss bar
+
+[Service]
+Environment=MONITOR=%i
+Environment=DISPLAY=:0
+ExecStart=polybar --reload wss
+
+[Install]
+WantedBy=default.target

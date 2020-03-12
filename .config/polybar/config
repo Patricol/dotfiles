@@ -210,13 +210,16 @@ arrow-ramp-4 = %{T5}󰧇%{T-}
 
 
 [bar/wss]
+monitor = ${env:MONITOR:}
 width = 1
 offset-x = 100%:-1
 height = 1
 modules-center = i3-min
 override-redirect = true
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+; scroll-up = i3wm-wsnext
+scroll-up = i3msg workspace next_on_output
+; scroll-down = i3wm-wsprev
+scroll-down = i3msg workspace prev_on_output
 background = ${colors.bg}
 foreground = ${self.background}
 [module/i3-min]
@@ -316,7 +319,9 @@ tray-scale = 1.0
 wm-restack = i3
 
 scroll-up = i3wm-wsnext
+; scroll-up = i3msg workspace next_on_output
 scroll-down = i3wm-wsprev
+; scroll-down = i3msg workspace prev_on_output
 
 [module/font-testing]
 type = custom/text

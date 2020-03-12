@@ -40,6 +40,10 @@ main() {
 	scus udiskie
 	scus indicator-sound-switcher
 	scuss slack
+	# TODO move this to the script that sets up xrandr; once that's merged etc.
+	if [[ "$(cat /etc/hostname)"=="fcdcbda" ]]; then
+		scurs "polybar-wss-extra@HDMI-1"
+	fi
 }
 
 main
