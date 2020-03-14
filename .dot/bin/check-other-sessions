@@ -20,7 +20,7 @@ main() {
 		# font index for polybar
 		local material_icons output
 		material_icons=5
-		output="%{T${material_icons}}%{T-}"
+		output="%{T${material_icons}}󰀎%{T-}"
 	fi
 	echo "${output}"
 }

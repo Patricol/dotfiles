@@ -22,7 +22,7 @@ main() {
 		local material_icons monospace_fill output
 		material_icons=4
 		monospace_fill=3
-		output="%{T${material_icons}}%{T-}%{T${monospace_fill}}${updates}%{T-}"
+		output="%{T${material_icons}}󰚰%{T-}%{T${monospace_fill}}${updates}%{T-}"
 	fi
 	echo "${output}"
 }

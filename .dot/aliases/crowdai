@@ -226,7 +226,7 @@ alias eks-local="a_eks_switch_local ../kubeconfig"
 
 alias testenv="cdot && scripts/runtime/run testenv test bumped"
 alias prebump="cdo && scripts/runtime/run prebump patrick prebump"
-alias bumped="cdob && scripts/runtime/run bumped patrick bumped"
+alias bumped="cdob && sudo scripts/runtime/run bumped patrick bumped"
 
 alias ku="kubectl"
 alias kg="ku get"

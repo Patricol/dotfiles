@@ -58,106 +58,106 @@ cpu =   ${all-colors.blue}
 
 [symbols]
 ; Keep all the symbols here, so if an incompatible font is used to edit this file, they're at least properly labeled.
-; more misc useful material icons: ﱺﱻﱼﱽﱾﱿﲀﲁﲂﲃﲄﲅﲆﲇﲈﲉﲊﲋﲌﲍﲎﲏ着暴狼車賈蘭鸞濫藍拉臘廊朗
+; more misc useful material icons: 󰲞󰲟󰲠󰲡󰲢󰲣󰲤󰲥󰲦󰲧󰲨󰲩󰲪󰲫󰲬󰲭󰲮󰲯󰲰󰲱󰲲󰲳󰪫󰨇󰤬󰃚󰄈󰄓󰅇󰅈󰅌󰌢󰌣󰌤󰌥󰍹󰍺󰎡󰎣󰎤󰎦󰎧󰎩󰎪󰎬󰎭󰎮󰎱󰎰󰎳󰎵󰎶󰎸󰎹󰎻󰎼󰎾󰏝󰐎󰐥󰐦󰐽󰑙󰑚󰒓󰒔󰒭󰒮󰓕󰓖󰓗󰓘󰔂󰔚󰕇󰖁󰖵󰗠󰗡󰚘󰛸󰝝󰝞󰝣󰝤󰟀󰟗󰟘󰡖󰢻󰣒󰣴󰣵󰣶󰣷󰣸󰣹󰣺󰣻󰣼󰣽󰣾󰤃󰤄󰤠󰤡󰤣󰤤󰤦󰤧󰤩󰤪󰣀
 
-; all-currently-set = %{T5}串豈更瞧爵犯猪瑱甆画瘝料隸療龍阮%{T-}%{T6}冷蠟來郎浪爛嵐襤%{T-}%{T7}肋輸遲醙鉶陼難%{T-}%{T8}%{T-}%{T9}%{T-}
-circle-check = %{T7}%{T-}
-circle-x = %{T7}%{T-}
-square-check = %{T5}%{T-}
-square-x = %{T5}%{T-}
+; all-currently-set = %{T5}󰄲󰅗󰝟󰕿󰖀󰕾󰅐󰤆󰤁󰤂󰀦󰀪󰀧󰀨󰗖󰀩󰚰󰋊󰣇󰑖󰑘󰝦󰪞󰪟󰪠󰪡󰪢󰪣󰪤󰪥󰦿󰦹󰧂󰧅󰧇󰝥%{T-}%{T6}󰈀󰈁󰈂󰤯󰤨󰖩󰤮󰤭󰖪󰤫󰤟󰤢󰤥%{T-}%{T7}󰠔󰃖󰄳󰅙󰔐󰔏󰥔󰙤󰙣󰙧󰙦󰐍󰐌󰏦󰏥󰙢󰙡󰋙󰫃󰫄󰫅󰫆󰫇󰫈󰋘%{T-}%{T8}󰇪󰒝%{T-}%{T9}󰇅%{T-}
+circle-check = %{T7}󰄳%{T-}
+circle-x = %{T7}󰅙%{T-}
+square-check = %{T5}󰄲%{T-}
+square-x = %{T5}󰅗%{T-}
 check = ${self.circle-check}
 x = ${self.circle-x}
 yes = ${self.check}
 no = ${self.x}
-thermometer-lines = %{T7}%{T-}
-thermometer = %{T7}%{T-}
-speaker-mute = %{T5}%{T-}
-speaker-low = %{T5}%{T-}
-speaker-medium = %{T5}%{T-}
-speaker-high = %{T5}%{T-}
-clock-solid = %{T7}肋%{T-}
-clock-outline = %{T5}%{T-}
+thermometer-lines = %{T7}󰔐%{T-}
+thermometer = %{T7}󰔏%{T-}
+speaker-mute = %{T5}󰝟%{T-}
+speaker-low = %{T5}󰕿%{T-}
+speaker-medium = %{T5}󰖀%{T-}
+speaker-high = %{T5}󰕾%{T-}
+clock-solid = %{T7}󰥔%{T-}
+clock-outline = %{T5}󰅐%{T-}
 clock = ${self.clock-solid}
-power = %{T5}串%{T-}
-reboot = %{T5}豈%{T-}
-poweroff = %{T5}更%{T-}
-computer = %{T9}%{T-}
-briefcase-outline = %{T7}%{T-}
-briefcase-solid = %{T7}%{T-}
+power = %{T5}󰤆%{T-}
+reboot = %{T5}󰤁%{T-}
+poweroff = %{T5}󰤂%{T-}
+computer = %{T9}󰇅%{T-}
+briefcase-outline = %{T7}󰠔%{T-}
+briefcase-solid = %{T7}󰃖%{T-}
 briefcase = ${self.briefcase-solid}
-ethernet-port = %{T6}%{T-}
-ethernet-cable = %{T6}%{T-}
-ethernet-disconnected = %{T6}%{T-}
+ethernet-port = %{T6}󰈀%{T-}
+ethernet-cable = %{T6}󰈁%{T-}
+ethernet-disconnected = %{T6}󰈂%{T-}
 ethernet-connected = ${self.ethernet-port}
-warning-triangle-solid = %{T5}%{T-}
-warning-triangle-outline = %{T5}%{T-}
-warning-box-solid = %{T5}%{T-}
-warning-circle-solid = %{T5}%{T-}
-warning-circle-outline = %{T5}%{T-}
-warning-octagon-solid = %{T5}%{T-}
+warning-triangle-solid = %{T5}󰀦%{T-}
+warning-triangle-outline = %{T5}󰀪%{T-}
+warning-box-solid = %{T5}󰀧%{T-}
+warning-circle-solid = %{T5}󰀨%{T-}
+warning-circle-outline = %{T5}󰗖%{T-}
+warning-octagon-solid = %{T5}󰀩%{T-}
 warning-solid = ${self.warning-triangle-solid}
 warning-outline = ${self.warning-triangle-outline}
 warning = ${self.warning-solid}
-console = %{T7}%{T-}
-console-line = %{T8}%{T-}
-menu = %{T7}%{T-}
-docker = %{T8}%{T-}
-unknown-user = %{T8}וּ%{T-}
-general-user = %{T8}%{T-}
+console = %{T7}󰆍%{T-}
+console-line = %{T8}󰞷%{T-}
+menu = %{T7}󰍜%{T-}
+docker = %{T8}󰡨%{T-}
+unknown-user = %{T8}󰭙%{T-}
+general-user = %{T8}󰀄%{T-}
 
-update = %{T5}%{T-}
+update = %{T5}󰚰%{T-}
 
-wifi-connected-outline = %{T6}冷%{T-}
-wifi-connected-solid = %{T6}蠟%{T-}
-wifi-connected-bars = %{T6}%{T-}
+wifi-connected-outline = %{T6}󰤯%{T-}
+wifi-connected-solid = %{T6}󰤨%{T-}
+wifi-connected-bars = %{T6}󰖩%{T-}
 wifi-connected = ${self.wifi-connected-solid}
-wifi-disconnected-outline = %{T6}來%{T-}
-wifi-disconnected-solid = %{T6}郎%{T-}
-wifi-disconnected-bars = %{T6}%{T-}
+wifi-disconnected-outline = %{T6}󰤮%{T-}
+wifi-disconnected-solid = %{T6}󰤭%{T-}
+wifi-disconnected-bars = %{T6}󰖪%{T-}
 wifi-disconnected = ${self.wifi-disconnected-solid}
 
 wifi-empty = ${self.wifi-connected-outline}
-wifi-empty-warning = %{T6}浪%{T-}
+wifi-empty-warning = %{T6}󰤫%{T-}
 ; The dot in this one's exclamation mark hits where an underline would normally go if given the default size; that's why all wifi symbols were set to another size.
 
 wifi-signal-0 = ${self.wifi-connected-outline}
-wifi-signal-1 = %{T6}爛%{T-}
-wifi-signal-2 = %{T6}嵐%{T-}
-wifi-signal-3 = %{T6}襤%{T-}
+wifi-signal-1 = %{T6}󰤟%{T-}
+wifi-signal-2 = %{T6}󰤢%{T-}
+wifi-signal-3 = %{T6}󰤥%{T-}
 wifi-signal-4 = ${self.wifi-connected-solid}
 
-hdd = %{T5}%{T-}
-eject = %{T8}%{T-}
-arch-linux = %{T5}%{T-}
+hdd = %{T5}󰋊%{T-}
+eject = %{T8}󰇪%{T-}
+arch-linux = %{T5}󰣇%{T-}
 
-media-prev-outline = %{T7}%{T-}
-media-prev-solid = %{T7}%{T-}
+media-prev-outline = %{T7}󰙤%{T-}
+media-prev-solid = %{T7}󰙣%{T-}
 media-prev = ${self.media-prev-solid}
-media-stop-outline = %{T7}%{T-}
-media-stop-solid = %{T7}%{T-}
+media-stop-outline = %{T7}󰙧%{T-}
+media-stop-solid = %{T7}󰙦%{T-}
 media-stop = ${self.media-stop-solid}
-media-play-outline = %{T7}%{T-}
-media-play-solid = %{T7}%{T-}
+media-play-outline = %{T7}󰐍%{T-}
+media-play-solid = %{T7}󰐌%{T-}
 media-play = ${self.media-play-solid}
-media-pause-outline = %{T7}%{T-}
-media-pause-solid = %{T7}%{T-}
+media-pause-outline = %{T7}󰏦%{T-}
+media-pause-solid = %{T7}󰏥%{T-}
 media-pause = ${self.media-pause-solid}
-media-next-outline = %{T7}%{T-}
-media-next-solid = %{T7}%{T-}
+media-next-outline = %{T7}󰙢%{T-}
+media-next-solid = %{T7}󰙡%{T-}
 media-next = ${self.media-next-solid}
-media-random = %{T8}%{T-}
-media-repeat = %{T5}%{T-}
-media-single = %{T5}%{T-}
+media-random = %{T8}󰒝%{T-}
+media-repeat = %{T5}󰑖%{T-}
+media-single = %{T5}󰑘%{T-}
 
 
-hex-empty = %{T7}%{T-}
-hex-1-of-6 = %{T7}輸%{T-}
-hex-2-of-6 = %{T7}遲%{T-}
-hex-3-of-6 = %{T7}醙%{T-}
-hex-4-of-6 = %{T7}鉶%{T-}
-hex-5-of-6 = %{T7}陼%{T-}
-hex-6-of-6 = %{T7}難%{T-}
-hex-full = %{T7}%{T-}
+hex-empty = %{T7}󰋙%{T-}
+hex-1-of-6 = %{T7}󰫃%{T-}
+hex-2-of-6 = %{T7}󰫄%{T-}
+hex-3-of-6 = %{T7}󰫅%{T-}
+hex-4-of-6 = %{T7}󰫆%{T-}
+hex-5-of-6 = %{T7}󰫇%{T-}
+hex-6-of-6 = %{T7}󰫈%{T-}
+hex-full = %{T7}󰋘%{T-}
 
 hex-0 = ${self.hex-empty}
 hex-1 = ${self.hex-1-of-6}
@@ -168,16 +168,16 @@ hex-5 = ${self.hex-5-of-6}
 hex-6 = ${self.hex-6-of-6}
 hex-7 = ${self.hex-full}
 
-circle-empty = %{T5}%{T-}
-circle-1-of-8 = %{T5}瞧%{T-}
-circle-2-of-8 = %{T5}爵%{T-}
-circle-3-of-8 = %{T5}犯%{T-}
-circle-4-of-8 = %{T5}猪%{T-}
-circle-5-of-8 = %{T5}瑱%{T-}
-circle-6-of-8 = %{T5}甆%{T-}
-circle-7-of-8 = %{T5}画%{T-}
-circle-8-of-8 = %{T5}瘝%{T-}
-circle-full = %{T5}%{T-}
+circle-empty = %{T5}󰝦%{T-}
+circle-1-of-8 = %{T5}󰪞%{T-}
+circle-2-of-8 = %{T5}󰪟%{T-}
+circle-3-of-8 = %{T5}󰪠%{T-}
+circle-4-of-8 = %{T5}󰪡%{T-}
+circle-5-of-8 = %{T5}󰪢%{T-}
+circle-6-of-8 = %{T5}󰪣%{T-}
+circle-7-of-8 = %{T5}󰪤%{T-}
+circle-8-of-8 = %{T5}󰪥%{T-}
+circle-full = %{T5}󰝥%{T-}
 ; circle-full is slightly different in size; but the difference becomes less noticeable at higher resolutions; so just ignore that.
 
 circle-0 = ${self.circle-empty}
@@ -202,21 +202,24 @@ usage-ramp-7 = ${self.circle-7}
 usage-ramp-8 = ${self.circle-8}
 usage-ramp-9 = ${self.circle-9}
 
-arrow-ramp-0 = %{T5}料%{T-}
-arrow-ramp-1 = %{T5}隸%{T-}
-arrow-ramp-2 = %{T5}療%{T-}
-arrow-ramp-3 = %{T5}龍%{T-}
-arrow-ramp-4 = %{T5}阮%{T-}
+arrow-ramp-0 = %{T5}󰦿%{T-}
+arrow-ramp-1 = %{T5}󰦹%{T-}
+arrow-ramp-2 = %{T5}󰧂%{T-}
+arrow-ramp-3 = %{T5}󰧅%{T-}
+arrow-ramp-4 = %{T5}󰧇%{T-}
 
 
 [bar/wss]
+monitor = ${env:MONITOR:}
 width = 1
 offset-x = 100%:-1
 height = 1
 modules-center = i3-min
 override-redirect = true
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+; scroll-up = i3wm-wsnext
+scroll-up = i3msg workspace next_on_output
+; scroll-down = i3wm-wsprev
+scroll-down = i3msg workspace prev_on_output
 background = ${colors.bg}
 foreground = ${self.background}
 [module/i3-min]
@@ -318,7 +321,9 @@ tray-scale = 1.0
 wm-restack = i3
 
 scroll-up = i3wm-wsnext
+; scroll-up = i3msg workspace next_on_output
 scroll-down = i3wm-wsprev
+; scroll-down = i3msg workspace prev_on_output
 
 [module/font-testing]
 type = custom/text
@@ -332,7 +337,7 @@ source-sans-pro-test-chars = dfgjlpyIQ27
 
 
 ;T1 is just for spacing.
-content = %{T1}T1: %{T2}T2:I27 %{T3}T3:I27 %{T4}T4:dfgjlpyIQ27 %{T5}T5:更瘝 %{T6}T6:浪 %{T7}T7: %{T8}T8:וּ %{T9}T9: %{T10}T10:1234567890 %{T11}T11:Xyj@ %{T-}
+content = %{T1}T1: %{T2}T2:I27 %{T3}T3:I27 %{T4}T4:dfgjlpyIQ27 %{T5}T5:󰄲󰕾󰤂󰀧󰀨󰪥󰝥 %{T6}T6:󰈂󰤫 %{T7}T7:󰠔󰅙󰔐󰏦󰏥󰋙󰋘 %{T8}T8:󰡨󰭙󰀄󰒝 %{T9}T9:󰇅 %{T10}T10:1234567890 %{T11}T11:Xyj@ %{T-}
 ; "content" has the same properties as "format-NAME"
 content-background = ${colors.highvis-fg}
 content-foreground = ${colors.bg}
@@ -506,28 +511,28 @@ label-urgent-background = ${colors.accent}
 type = internal/i3
 inherit = module/i3_base
 
-;ws-icon-0 = 1;%{T5}瞧%{T-}
-;ws-icon-1 = 2;%{T5}爵%{T-}
-;ws-icon-2 = 3;%{T5}犯%{T-}
-;ws-icon-3 = 4;%{T5}猪%{T-}
-;ws-icon-4 = 5;%{T5}瑱%{T-}
-;ws-icon-5 = 6;%{T5}甆%{T-}
-;ws-icon-6 = 7;%{T5}画%{T-}
-;ws-icon-7 = 8;%{T5}瘝%{T-}
-;ws-icon-8 = 9;%{T5}%{T-}
-;ws-icon-9 = 10;%{T5}%{T-}
-;ws-icon-default = %{T5}%{T-}
-ws-icon-0 = 1;%{T5}%{T-}
-ws-icon-1 = 2;%{T5}%{T-}
-ws-icon-2 = 3;%{T5}%{T-}
-ws-icon-3 = 4;%{T5}%{T-}
-ws-icon-4 = 5;%{T5}%{T-}
-ws-icon-5 = 6;%{T5}%{T-}
-ws-icon-6 = 7;%{T5}%{T-}
-ws-icon-7 = 8;%{T5}%{T-}
-ws-icon-8 = 9;%{T5}%{T-}
-ws-icon-9 = 10;%{T5}%{T-}
-ws-icon-default = %{T5}%{T-}
+;ws-icon-0 = 1;%{T5}󰪞%{T-}
+;ws-icon-1 = 2;%{T5}󰪟%{T-}
+;ws-icon-2 = 3;%{T5}󰪠%{T-}
+;ws-icon-3 = 4;%{T5}󰪡%{T-}
+;ws-icon-4 = 5;%{T5}󰪢%{T-}
+;ws-icon-5 = 6;%{T5}󰪣%{T-}
+;ws-icon-6 = 7;%{T5}󰪤%{T-}
+;ws-icon-7 = 8;%{T5}󰪥%{T-}
+;ws-icon-8 = 9;%{T5}󰝥%{T-}
+;ws-icon-9 = 10;%{T5}󰝦%{T-}
+;ws-icon-default = %{T5}󰝦%{T-}
+ws-icon-0 = 1;%{T5}󰎤%{T-}
+ws-icon-1 = 2;%{T5}󰎧%{T-}
+ws-icon-2 = 3;%{T5}󰎪%{T-}
+ws-icon-3 = 4;%{T5}󰎭%{T-}
+ws-icon-4 = 5;%{T5}󰎱%{T-}
+ws-icon-5 = 6;%{T5}󰎳%{T-}
+ws-icon-6 = 7;%{T5}󰎶%{T-}
+ws-icon-7 = 8;%{T5}󰎹%{T-}
+ws-icon-8 = 9;%{T5}󰎼%{T-}
+ws-icon-9 = 10;%{T5}󰎡%{T-}
+ws-icon-default = %{T5}󰎿%{T-}
 
 ws-label = %icon%
 

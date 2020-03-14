@@ -38,8 +38,12 @@ main() {
 	scurs dunst
 	scus redshift-gtk
 	scus udiskie
-	scuss indicator-sound-switcher
+	scus indicator-sound-switcher
 	scuss slack
+	# TODO move this to the script that sets up xrandr; once that's merged etc.
+	if [[ "$(cat /etc/hostname)"=="fcdcbda" ]]; then
+		scurs "polybar-wss-extra@HDMI-1"
+	fi
 
 	#killall --user "${USER}" --quiet --wait polybar
 
