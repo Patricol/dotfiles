@@ -3,7 +3,8 @@
 
 
 add_ssh_keys() {
-        eval "$(keychain --eval --quiet $@)"
+	echo "skipping add_ssh_keys $@"
+        # eval "$(keychain --eval --quiet $@)"
 }
 
 

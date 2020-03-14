@@ -165,7 +165,7 @@ ssh_to() {
 	declare port="$1" ; shift
 	declare userhost="$1" ; shift
 	add_ssh_keys fcdcbda_key
-	ssh -p "${port}" "${userhost}" $@
+	ssh -i ~/.ssh/fcdcbda_key -p "${port}" "${userhost}" $@
 }
 alias nas='ssh_to 51722 patrick@nas.p47.co'
 alias nasroot='ssh_to 51722 root@nas.p47.co'
