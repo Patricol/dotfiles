@@ -10,9 +10,9 @@ if ! [[ -d "${HOME}/.history" ]]; then
 	mkdir -p "${HOME}/.history"
 fi
 
-if [[ -d "${HOME}/.ssh/auto" ]]; then
-	add_ssh_keys $(find "${HOME}/.ssh/auto" ! -type d)
-fi
+# if [[ -d "${HOME}/.ssh/auto" ]]; then
+# 	add_ssh_keys $(find "${HOME}/.ssh/auto" ! -type d)
+# fi
 
 export EDITOR="vim"
 export VISUAL="vim"
