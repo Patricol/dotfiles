@@ -97,7 +97,7 @@ colormsg_light_magenta() {
 	echo -e "\033[1;35m$@\033[0m" >&2
 }
 
-alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && add_ssh_keys github'
+alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git'
 
 dfg_getmsg_mbsd() {
 	declare branch="$1"
@@ -266,7 +266,7 @@ dfgcmtm() {
 gsfauthed() {
 	local gsf_command full_command
 	gsf_command="GIT_EDITOR=\"svim\" git --git-dir=${__git_git_dirs[gsf]} --work-tree=${__git_work_trees[gsf]}"
-	full_command="add_ssh_keys /home/patricol/.ssh/github && ${gsf_command} $@"
+	full_command="add_ssh_keys /home/patricol/.ssh/fcdcbda && ${gsf_command} $@"
 	sudo -i bash -ic -- "${full_command}"
 }
 # gsf() {
