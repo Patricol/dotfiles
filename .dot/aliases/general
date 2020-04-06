@@ -55,9 +55,9 @@ alias sir='sur'
 alias surg='gui_sudo_open root'
 alias visudo='sudo -- visudo'
 
-alias mnas='sup mount /media/nas'
+alias mnas='mount /media/nas'
 alias umnas='umount /media/nas'
-alias marcade='sup mount /media/arcade'
+alias marcade='mount /media/arcade'
 alias umarcade='umount /media/arcade'
 
 alias mnt='tldr'
@@ -161,18 +161,10 @@ alias cnf='clear && nf'
 alias nfc='cnf'
 alias x='exit'
 
-ssh_to() {
-	declare port="$1" ; shift
-	declare userhost="$1" ; shift
-	add_ssh_keys fcdcbda_key
-	ssh -i ~/.ssh/fcdcbda_key -p "${port}" "${userhost}" $@
-}
-alias nas='ssh_to 51722 patrick@nas.p47.co'
-alias nasroot='ssh_to 51722 root@nas.p47.co'
-alias arcade='ssh_to 51722 patrick@arcade.p47.co'
-alias arcaderoot='ssh_to 51722 root@arcade.p47.co'
-alias ede='ssh_to 51522 rancher@ede.p47.co'
-alias pam='ssh_to 51522 rancher@pam.p47.co'
+alias nas='ssh nas'
+alias arcade='ssh arcade'
+alias ede='ssh ede'
+alias pam='ssh pam'
 
 alias dtf='cdt && scripts/runtime/run terraform gcloud'
 
