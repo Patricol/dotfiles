@@ -226,19 +226,29 @@ alias eks-local="a_eks_switch_local ../kubeconfig"
 
 alias testenv="cdot && scripts/runtime/run testenv test bumped"
 alias prebump="cdo && scripts/runtime/run prebump patrick prebump"
-alias bumped="cdob && scripts/runtime/run bumped patrick bumped"
+alias bumped="cdob && sudo scripts/runtime/run bumped patrick bumped"
 
 alias ku="kubectl"
+alias kus="kubectl -n kube-system"
 alias kg="ku get"
+alias ksg="kus get"
 alias kgaa="kg all -A"
 alias kgp="kg pods"
+alias ksgp="ksg pods"
 alias kd="ku describe"
+alias ksd="kus describe"
 alias kdp="kd pods"
+alias ksdp="ksd pods"
 alias ke="ku exec"
+alias kse="kus exec"
 alias kei="ke -i -t"
+alias ksei="kse -i -t"
 alias kdel="ku delete"
+alias ksdel="kus delete"
 alias kl="ku logs"
+alias ksl="kus logs"
 alias klf="kl -f"
+alias kslf="kl -f"
 alias klscale="kl --namespace=kube-system svc/cluster-autoscaler-aws-cluster-autoscaler"
 
 
@@ -256,3 +266,22 @@ sshc_aws() {
 alias samplename="sshc_aws i-04c4e5a401932bf43"
 
 alias jenkins="ssh -i ~/.ssh/crowdai-master -t ubuntu@ec2-34-196-187-153.compute-1.amazonaws.com 'cd /var/lib/jenkins ; bash'"
+
+maketar_enclave() {
+	if [[ $# -ne 1 ]]; then
+		echo "provide only a single folder or file as an argument" >&2
+		return 1
+	fi
+	declare target="$1"
+	target="$(realpath --relative-to=. "${target}")"
+	tar -cvf - "${target}" | split -b 100M - "${target}.tar."
+}
+maketxz_enclave() {
+	if [[ $# -ne 1 ]]; then
+		echo "provide only a single folder or file as an argument" >&2
+		return 1
+	fi
+	declare target="$1"
+	target="$(realpath --relative-to=. "${target}")"
+	tar -cvJf - "${target}" | split -b 200M - "${target}.txz"
+}

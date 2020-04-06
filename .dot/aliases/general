@@ -55,8 +55,10 @@ alias sir='sur'
 alias surg='gui_sudo_open root'
 alias visudo='sudo -- visudo'
 
-alias mnas='sup mount /media/nas'
+alias mnas='mount /media/nas'
 alias umnas='umount /media/nas'
+alias marcade='mount /media/arcade'
+alias umarcade='umount /media/arcade'
 
 alias mnt='tldr'
 alias mnc='cheat'
@@ -147,6 +149,8 @@ alias cddotsl='cd ~/.dot/l'
 alias cddl='cddotsl'
 alias cdfiles='cd ~/files/'
 alias cdf='cdfiles'
+alias cdterraform='cd /home/docker/projects/terraform/'
+alias cdt='cdterraform'
 alias c='clear'
 alias ca='reset' # fully clear scrollback; though this does more than that
 alias cls='clear && ls'
@@ -157,9 +161,12 @@ alias cnf='clear && nf'
 alias nfc='cnf'
 alias x='exit'
 
-alias nas='add_ssh_keys fcdcbda_key && ssh -p 51722 patrick@nas.p47.co'
-alias ede='add_ssh_keys fcdcbda_key && ssh -p 51522 rancher@94158.p4t.co'
-alias pam='add_ssh_keys fcdcbda_key && ssh -p 51522 rancher@pam.p47.co'
+alias nas='ssh nas'
+alias arcade='ssh arcade'
+alias ede='ssh ede'
+alias pam='ssh pam'
+
+alias dtf='cdt && scripts/runtime/run terraform gcloud'
 
 alias d='dirs -v'
 #for index ({1..9}) alias "$index"="cd +${index}"; unset index
@@ -242,3 +249,5 @@ loop() {
 		sleep "${wait_between}"
 	done
 }
+
+alias tfrun='/home/docker/projects/terraform/scripts/runtime/run'
