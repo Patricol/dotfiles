@@ -97,8 +97,7 @@ colormsg_light_magenta() {
 	echo -e "\033[1;35m$@\033[0m" >&2
 }
 
-alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git'
-# && add_ssh_keys github'
+alias dfgk='dfg remote set-url origin git@github.com:Patricol/dotfiles.git && add_ssh_keys github'
 
 dfg_getmsg_mbsd() {
 	declare branch="$1"
