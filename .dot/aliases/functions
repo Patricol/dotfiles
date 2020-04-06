@@ -2,9 +2,9 @@
 # Standalone functions that don't fit into the other sections.
 
 
-add_ssh_keys() {
+add_ssh_keys() { # NOTE: using gnome-keychain instead.
 	echo "skipping add_ssh_keys $@"
-        # eval "$(keychain --eval --quiet $@)"
+#         eval "$(keychain --eval --quiet $@)"
 }
 
 
@@ -72,6 +72,7 @@ make_archive() {
 
 maketxz() {
 	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
+	# TODO make these archiving commands use multiple threads
 	make_archive "txz" $@
 }
 
