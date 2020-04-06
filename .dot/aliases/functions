@@ -2,10 +2,10 @@
 # Standalone functions that don't fit into the other sections.
 
 
-add_ssh_keys() {
-	# echo "skipping add_ssh_keys $@"
-        eval "$(keychain --eval --quiet $@)"
-}
+# add_ssh_keys() { # NOTE: using gnome-keychain instead.
+# 	# echo "skipping add_ssh_keys $@"
+#         eval "$(keychain --eval --quiet $@)"
+# }
 
 
 extract() {
