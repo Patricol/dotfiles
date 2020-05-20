@@ -149,6 +149,8 @@ media-random = %{T8}󰒝%{T-}
 media-repeat = %{T5}󰑖%{T-}
 media-single = %{T5}󰑘%{T-}
 
+error-system = %{T8}󰳤%{T-}
+error-user = %{T5}󰗖%{T-}
 
 hex-empty = %{T7}󰋙%{T-}
 hex-1-of-6 = %{T7}󰫃%{T-}
@@ -307,7 +309,7 @@ modules-left = user-icon time i3-icons start-terminal start-rofi keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
-modules-right = pulseaudio check-updates filesystem memory temperature cpu
+modules-right = pulseaudio check-status check-updates filesystem memory temperature cpu
 
 tray-position = right
 tray-padding = 2
@@ -335,7 +337,7 @@ source-sans-pro-test-chars = dfgjlpyIQ27
 
 
 ;T1 is just for spacing.
-content = %{T1}T1: %{T2}T2:I27 %{T3}T3:I27 %{T4}T4:dfgjlpyIQ27 %{T5}T5:󰄲󰕾󰤂󰀧󰀨󰪥󰝥 %{T6}T6:󰈂󰤫 %{T7}T7:󰠔󰅙󰔐󰏦󰏥󰋙󰋘 %{T8}T8:󰡨󰭙󰀄󰒝 %{T9}T9:󰇅 %{T10}T10:1234567890 %{T11}T11:Xyj@ %{T-}
+content = %{T1}T1: %{T2}T2:I27 %{T3}T3:I27 %{T4}T4:dfgjlpyIQ27 %{T5}T5:󰗖󰄲󰕾󰤂󰀧󰀨󰪥󰝥 %{T6}T6:󰈂󰤫 %{T7}T7:󰠔󰅙󰔐󰏦󰏥󰋙󰋘 %{T8}T8:󰳤󰡨󰭙󰀄󰒝 %{T9}T9:󰇅 %{T10}T10:1234567890 %{T11}T11:Xyj@ %{T-}
 ; "content" has the same properties as "format-NAME"
 content-background = ${colors.highvis-fg}
 content-foreground = ${colors.bg}
@@ -397,6 +399,11 @@ interval = 9999
 type = custom/script
 exec = ~/.dot/l/bin/check-updates
 interval = 6000
+
+[module/check-status]
+type = custom/script
+exec = ~/.dot/l/bin/check-status
+interval = 60
 
 [module/check-other-sessions]
 type = custom/script

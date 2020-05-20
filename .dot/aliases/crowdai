@@ -265,6 +265,8 @@ sshc_aws() {
 }
 alias samplename="sshc_aws i-04c4e5a401932bf43"
 
+alias jenkins="ssh -i ~/.ssh/crowdai-master -t ubuntu@ec2-34-196-187-153.compute-1.amazonaws.com 'cd /var/lib/jenkins ; bash'"
+
 maketar_enclave() {
 	if [[ $# -ne 1 ]]; then
 		echo "provide only a single folder or file as an argument" >&2
@@ -272,7 +274,7 @@ maketar_enclave() {
 	fi
 	declare target="$1"
 	target="$(realpath --relative-to=. "${target}")"
-	tar -cvf - "${target}" | split -b 100M - "${target}.tar."
+	tar -cvf - "${target}" | split -b 10M - "${target}.tar."
 }
 maketxz_enclave() {
 	if [[ $# -ne 1 ]]; then

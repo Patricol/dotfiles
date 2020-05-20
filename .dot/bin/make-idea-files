@@ -18,7 +18,7 @@ main() {
         mkdir -p "${real_dir}"
 
         reset_file "${real_file}"
-        for subdir in "config" "system"; do
+        for subdir in "config" "system" "log" "plugins"; do
             echo "idea.${subdir}.path="'${user.home}'"/${dir}/${subdir}" | tee -a "${real_file}"
         done
         echo "export ${var}_PROPERTIES=\""'${HOME}'"/${dir}/idea.properties\"" | tee -a "${jetbrainsrc}"
