@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+
+
+main() {
+	local system_failed user_failed system_output user_output material_icons monospace_fill 
+	system_failed=$(systemctl --failed --no-legend --no-pager 2> /dev/null | wc -l)
+	user_failed=$(systemctl --user --failed --no-legend --no-pager 2> /dev/null | wc -l)
+
+	# font indexes for polybar
+	material_icons=4
+	material_icons_alt=8
+	monospace_fill=3
+
+	if [[ ${system_failed} -gt 0 ]]; then
+		system_output="%{T${material_icons_alt}}󰳤%{T-}%{T${monospace_fill}}${system_failed}%{T-}"
+	fi
+	if [[ ${user_failed} -gt 0 ]]; then
+		system_output="%{T${material_icons}}󰗖%{T-}%{T${monospace_fill}}${user_failed}%{T-}"
+	fi
+	echo "${system_output}${user_output}"
+}
+
+main
+

@@ -1,4 +1,4 @@
-.osd-window, .info-osd, .workspace-osd, .overview-empty-placeholder, .menu-applications-inner-box StScrollView, .starkmenu-favorites-box .menu-context-menu, .menu-context-menu, .popup-sub-menu, .panel-top, .panel-bottom .window-list-item-box, .sound-player-overlay, .workspace-graph .workspace, #LookingGlassDialog, .switcher-list, .window-caption, .expo-background, .expo-workspaces-name-entry {
+.expo-workspaces-name-entry, .expo-background, .window-caption, .switcher-list, #LookingGlassDialog, .workspace-graph .workspace, .sound-player-overlay, .panel-bottom .window-list-item-box, .panel-top, .popup-sub-menu, .starkmenu-favorites-box .menu-context-menu, .menu-context-menu, .menu-applications-inner-box StScrollView, .info-osd, .workspace-osd, .overview-empty-placeholder, .osd-window {
   background-gradient-direction: vertical;
   background-gradient-start: #212121;
   background-gradient-end: #212121; }
@@ -8,17 +8,17 @@
   background-gradient-start: #232323;
   background-gradient-end: #232323; }
 
-.sound-player StButton, .keyboard-key, .notification-button, .notification-icon-button, .modal-dialog-button {
+.modal-dialog-button, .notification-icon-button, .notification-button, .keyboard-key, .sound-player StButton {
   background-gradient-direction: vertical;
   background-gradient-start: #424242;
   background-gradient-end: #424242; }
 
-.sound-player StButton:hover, .keyboard-key:hover, .notification-button:hover, .notification-icon-button:hover, .modal-dialog-button:hover {
+.modal-dialog-button:hover, .notification-icon-button:hover, .notification-button:hover, .keyboard-key:hover, .sound-player StButton:hover {
   background-gradient-direction: vertical;
   background-gradient-start: #454545;
   background-gradient-end: #454545; }
 
-.panel-top .window-list-item-box, .panel-bottom {
+.panel-bottom, .panel-top .window-list-item-box {
   background-gradient-direction: vertical;
   background-gradient-start: #212121;
   background-gradient-end: #212121; }
@@ -28,7 +28,7 @@
   background-gradient-start: #232323;
   background-gradient-end: #232323; }
 
-.sound-player StButton:active, .keyboard-key:active, .notification-button:active, .notification-icon-button:active, .modal-dialog-button:active, .modal-dialog-button:pressed, .panel-bottom .window-list-item-box:active, .panel-bottom .window-list-item-box:checked, .panel-bottom .window-list-item-box:focus, .panel-bottom .window-list-item-box:running, .workspace-graph .workspace:active, .calendar-today, .switcher-list .item-box:selected, .window-caption:focus, .window-caption#selected, .expo-workspaces-name-entry#selected {
+.expo-workspaces-name-entry#selected, .window-caption:focus, .window-caption#selected, .switcher-list .item-box:selected, .calendar-today, .workspace-graph .workspace:active, .panel-bottom .window-list-item-box:active, .panel-bottom .window-list-item-box:checked, .panel-bottom .window-list-item-box:focus, .panel-bottom .window-list-item-box:running, .modal-dialog-button:pressed, .modal-dialog-button:active, .notification-icon-button:active, .notification-button:active, .keyboard-key:active, .sound-player StButton:active {
   background-gradient-direction: vertical;
   background-gradient-start: #ff0000;
   background-gradient-end: #ff0000; }
@@ -48,12 +48,12 @@
   background-gradient-start: #ff0d0d;
   background-gradient-end: #ff0d0d; }
 
-.desklet-with-borders, .desklet-with-borders-and-header, .desklet-header, .photoframe-box, .menu, .popup-combo-menu, .menu-favorites-box, .menu-applications-inner-box, .menu-applications-outer-box, .panel-left, .panel-right .window-list-item-box, .window-list-preview, .grouped-window-list-thumbnail-menu, #notification, .modal-dialog {
+.modal-dialog, #notification, .grouped-window-list-thumbnail-menu, .window-list-preview, .panel-right .window-list-item-box, .panel-left, .menu-applications-outer-box, .menu-applications-inner-box, .menu-favorites-box, .popup-combo-menu, .menu, .photoframe-box, .desklet-header, .desklet-with-borders-and-header, .desklet-with-borders {
   background-gradient-direction: horizontal;
   background-gradient-start: #212121;
   background-gradient-end: #212121; }
 
-.panel-left .window-list-item-box, .panel-right {
+.panel-right, .panel-left .window-list-item-box {
   background-gradient-direction: horizontal;
   background-gradient-start: #212121;
   background-gradient-end: #212121; }
@@ -88,17 +88,17 @@
   background-gradient-start: #ff0d0d;
   background-gradient-end: #ff0d0d; }
 
-#menu-search-entry, #notification StEntry, .run-dialog-entry, #Tooltip {
+#Tooltip, .run-dialog-entry, #notification StEntry, #menu-search-entry {
   background-gradient-direction: vertical;
   background-gradient-start: #212121;
   background-gradient-end: #212121; }
 
-.osd-window, .info-osd, .workspace-osd, .overview-empty-placeholder {
+.info-osd, .workspace-osd, .overview-empty-placeholder, .osd-window {
   border: 1px solid #901111;
   border-radius: 6px;
   color: #ff0000; }
 
-.slider, .popup-slider-menu-item, .sound-player .slider {
+.sound-player .slider, .popup-slider-menu-item, .slider {
   height: 1.2em;
   min-width: 15em;
   color: #424242;
@@ -112,14 +112,14 @@
   -slider-handle-radius: 8px;
   -slider-handle-border-color: rgba(255, 0, 0, 0.32); }
 
-.separator, .popup-separator-menu-item {
+.popup-separator-menu-item, .separator {
   -gradient-height: 3px;
   -gradient-start: #ff0000;
   -gradient-end: #212121;
   -margin-horizontal: 4px;
   height: 1em; }
 
-#menu-search-entry, #notification StEntry, .run-dialog-entry {
+.run-dialog-entry, #notification StEntry, #menu-search-entry {
   padding: 4px;
   border-radius: 6px;
   color: #eeeeee;
@@ -132,69 +132,69 @@
   height: 1.5em;
   transition-duration: 150; }
 
-.desklet-with-borders, .desklet-with-borders-and-header, .desklet-header, .photoframe-box {
+.photoframe-box, .desklet-header, .desklet-with-borders-and-header, .desklet-with-borders {
   color: #ff0000;
   padding: 8px;
   border: 1px solid #901111; }
 
-.calendar-change-month-back, .calendar-change-month-forward {
+.calendar-change-month-forward, .calendar-change-month-back {
   width: 16px;
   height: 16px;
   border-radius: 6px;
   transition-duration: 150; }
 
-.sound-player StButton, .keyboard-key, .notification-button, .notification-icon-button, .modal-dialog-button {
+.modal-dialog-button, .notification-icon-button, .notification-button, .keyboard-key, .sound-player StButton {
   border: 1px solid rgba(255, 0, 0, 0.32);
   border-radius: 6px;
   text-align: center;
   color: #ff0000;
   transition-duration: 150; }
 
-.sound-player StButton:hover, .keyboard-key:hover, .notification-button:hover, .notification-icon-button:hover, .modal-dialog-button:hover {
+.modal-dialog-button:hover, .notification-icon-button:hover, .notification-button:hover, .keyboard-key:hover, .sound-player StButton:hover {
   border: 1px solid #d70606; }
 
-.sound-player StButton:active, .keyboard-key:active, .notification-button:active, .notification-icon-button:active, .modal-dialog-button:active, .modal-dialog-button:pressed {
+.modal-dialog-button:pressed, .modal-dialog-button:active, .notification-icon-button:active, .notification-button:active, .keyboard-key:active, .sound-player StButton:active {
   color: #212121; }
 
-.menu, .popup-combo-menu {
+.popup-combo-menu, .menu {
   padding: 8px;
   border: 1px solid #901111;
   border-radius: 6px;
   color: #ff0000; }
 
-.menu-application-button-label:ltr, .menu-category-button-label:ltr {
+.menu-category-button-label:ltr, .menu-application-button-label:ltr {
   padding-left: 4px; }
 
-.menu-application-button-label:rtl, .menu-category-button-label:rtl {
+.menu-category-button-label:rtl, .menu-application-button-label:rtl {
   padding-right: 4px; }
 
-.popup-menu-item, .popup-combobox-item, .menu-favorites-button, .menu-application-button, .menu-application-button-selected, .menu-category-button, .menu-category-button-greyed, .menu-category-button-selected {
+.menu-category-button-selected, .menu-category-button-greyed, .menu-category-button, .menu-application-button-selected, .menu-application-button, .menu-favorites-button, .popup-combobox-item, .popup-menu-item {
   padding: 4px; }
 
-.show-processes-dialog-subject, .mount-question-dialog-subject {
+.mount-question-dialog-subject, .show-processes-dialog-subject {
   font-weight: bold;
   color: #ff0000;
   padding-top: 10px;
   padding-left: 17px;
   padding-bottom: 6px; }
 
-.show-processes-dialog-subject:rtl, .mount-question-dialog-subject:rtl {
+.mount-question-dialog-subject:rtl, .show-processes-dialog-subject:rtl {
   padding-left: 0;
   padding-right: 17px; }
 
-.show-processes-dialog-description, .mount-question-dialog-description {
+.mount-question-dialog-description, .show-processes-dialog-description {
   color: #ff0000;
   padding-left: 17px;
   width: 28em; }
 
-.menu-applications-inner-box StScrollView, .starkmenu-favorites-box .menu-context-menu, .menu-context-menu {
+.starkmenu-favorites-box .menu-context-menu, .menu-context-menu, .menu-applications-inner-box StScrollView {
   padding: 8px;
   margin: 8px 0;
   border-radius: 6px;
   border: 1px solid rgba(255, 0, 0, 0.32); }
-  .menu-applications-inner-box StScrollView StIcon:ltr, .menu-context-menu StIcon:ltr {
+  .menu-context-menu StIcon:ltr, .menu-applications-inner-box StScrollView StIcon:ltr {
     padding-right: 4px; }
-  .menu-applications-inner-box StScrollView StIcon:rtl, .menu-context-menu StIcon:rtl {
+  .menu-context-menu StIcon:rtl, .menu-applications-inner-box StScrollView StIcon:rtl {
     padding-left: 4px; }
 
 .panel-top .window-list-item-box:active, .panel-top .window-list-item-box:checked, .panel-top .window-list-item-box:focus, .panel-top .window-list-item-box:running {
@@ -209,22 +209,22 @@
 .panel-right .window-list-item-box:active, .panel-right .window-list-item-box:checked, .panel-right .window-list-item-box:focus, .panel-right .window-list-item-box:running {
   color: #212121; }
 
-.check-box StBin, .check-box:focus StBin {
+.check-box:focus StBin, .check-box StBin {
   width: 16px;
   height: 16px;
   background-image: url(assets/checkbox-off.svg); }
 
-.radiobutton StBin, .radiobutton:focus StBin {
+.radiobutton:focus StBin, .radiobutton StBin {
   width: 16px;
   height: 16px;
   background-image: url(assets/radiobutton-off.svg);
   border-radius: 6px; }
 
-.tile-preview, .tile-hud {
+.tile-hud, .tile-preview {
   background-color: rgba(33, 33, 33, 0.5);
   border: 2px solid #901111; }
 
-.tile-preview.snap, .tile-hud.snap {
+.tile-hud.snap, .tile-preview.snap {
   background-color: rgba(33, 33, 33, 0.5);
   border: 2px solid #d70606; }
 

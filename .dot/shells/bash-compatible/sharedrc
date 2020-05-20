@@ -10,11 +10,14 @@ if ! [[ -d "${HOME}/.history" ]]; then
 	mkdir -p "${HOME}/.history"
 fi
 
-# eval "$(keychain --eval --quiet)" #NOTE: starting to use the gnome ssh-agent instead, so keyring can unlock everything.
-# if [[ -d "${HOME}/.ssh/auto" ]] && ! ssh-add -L > /dev/null; then
-# 	echo "adding keys from ~/.ssh/auto"
-# 	add_ssh_keys $(find "${HOME}/.ssh/auto" ! -type d)
-# fi
+if [[ -z "${SSH_AUTH_SOCK}" ]]; then
+    # NOTE: starting to use the gnome ssh-agent instead, so keyring can unlock everything.
+    eval "$(keychain --eval --quiet)"
+    if [[ -d "${HOME}/.ssh/auto" ]] && ! ssh-add -L > /dev/null; then
+	    echo "adding keys from ~/.ssh/auto"
+	    eval "$(keychain --eval --quiet "$(add_ssh_keys $(find "${HOME}/.ssh/auto" ! -type d))")"
+    fi
+fi
 
 export EDITOR="vim"
 export VISUAL="vim"
@@ -38,6 +41,12 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 export LESSHISTFILE="${HOME}/.history/less"
 
 source ~/.config/wpg/formats/colors-tty.sh || true # do this above neofetch. blanks the terminal; though it only runs if on tty.
+
+
+if [[ -n "${DESKTOP_SESSION}" ]]; then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
 
 
 #(cat ~/.config/wpg/sequences &) # not needed; overrides custom cursor etc.

@@ -143,6 +143,8 @@ alias cdshared='cd /home/shared'
 alias cds='cdshared'
 alias cdnas='cd /media/nas'
 alias cdn='cdnas'
+alias cdarcade='cd /media/arcade'
+alias cda='cdarcade'
 alias cddots='cd ~/.dot'
 alias cdd='cddots'
 alias cddotsl='cd ~/.dot/l'
@@ -250,4 +252,4 @@ loop() {
 	done
 }
 
-alias tfrun='/home/docker/projects/terraform/scripts/runtime/run'
+alias tfrun='/home/docker/projects/terraform/scripts/runtime/run terraform'
