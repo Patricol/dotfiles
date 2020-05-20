@@ -10,11 +10,14 @@ if ! [[ -d "${HOME}/.history" ]]; then
 	mkdir -p "${HOME}/.history"
 fi
 
-# eval "$(keychain --eval --quiet)" #NOTE: starting to use the gnome ssh-agent instead, so keyring can unlock everything.
-# if [[ -d "${HOME}/.ssh/auto" ]] && ! ssh-add -L > /dev/null; then
-# 	echo "adding keys from ~/.ssh/auto"
-# 	add_ssh_keys $(find "${HOME}/.ssh/auto" ! -type d)
-# fi
+if [[ -z "${SSH_AUTH_SOCK}" ]]; then
+    # NOTE: starting to use the gnome ssh-agent instead, so keyring can unlock everything.
+    eval "$(keychain --eval --quiet)"
+    if [[ -d "${HOME}/.ssh/auto" ]] && ! ssh-add -L > /dev/null; then
+	    echo "adding keys from ~/.ssh/auto"
+	    eval "$(keychain --eval --quiet "$(add_ssh_keys $(find "${HOME}/.ssh/auto" ! -type d))")"
+    fi
+fi
 
 export EDITOR="vim"
 export VISUAL="vim"

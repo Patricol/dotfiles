@@ -42,7 +42,8 @@ main() {
 	scuss slack
 	case "$(cat /etc/hostname)" in
 		fcdcbda)
-			scurs "polybar-wss-extra@HDMI-1"
+			# scurs "polybar-wss-extra@HDMI-A-0"
+			scurs "polybar-wss-extra@DisplayPort-0"
 			;;
 		mojave-express)
 			scurs "polybar-wss-extra@DisplayPort-0"

@@ -274,7 +274,7 @@ maketar_enclave() {
 	fi
 	declare target="$1"
 	target="$(realpath --relative-to=. "${target}")"
-	tar -cvf - "${target}" | split -b 100M - "${target}.tar."
+	tar -cvf - "${target}" | split -b 10M - "${target}.tar."
 }
 maketxz_enclave() {
 	if [[ $# -ne 1 ]]; then
