@@ -92,6 +92,7 @@ inode/directory=nemo.desktop
 video/x-flv=mpv.desktop
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/sgnl=signal-desktop.desktop
+application/x-x509-ca-cert=atom.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;chromium.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;
@@ -162,7 +163,7 @@ audio/flac=vlc.desktop;
 image/jpeg=feh.desktop;
 video/mp4=chromium.desktop;vlc.desktop;mpv.desktop;
 video/quicktime=vlc.desktop;
-application/pdf=okularApplication_pdf.desktop;
+application/pdf=chromium.desktop;okularApplication_pdf.desktop;
 application/x-mswinurl=chromium.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=libreoffice-writer.desktop;
 audio/x-ms-wma=vlc.desktop;
@@ -179,6 +180,7 @@ image/x-xcf=gimp.desktop;
 application/vnd.comicbook+zip=mcomix.desktop;
 application/vnd.comicbook-rar=mcomix.desktop;
 video/x-flv=mpv.desktop;
+application/x-x509-ca-cert=atom.desktop;
 
 [Removed Associations]
 application/vnd.comicbook+zip=calibre-gui.desktop;okularApplication_comicbook.desktop;
