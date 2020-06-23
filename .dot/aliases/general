@@ -118,6 +118,7 @@ mountiso() {
 }
 
 alias umountiso='sudo umount /media/iso'
+alias fumount='sudo fusermount -uz'
 
 alias fkill='sudo killall -KILL'
 
