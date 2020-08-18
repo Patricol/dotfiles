@@ -1,0 +1,8 @@
+[Unit]
+Description=Waybar main bar
+
+[Service]
+ExecStart=waybar
+
+[Install]
+WantedBy=default.target

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 main() {
+	declare display_server="$1"
 	local current_user
 	current_user="$(id -un)"
 
@@ -24,9 +25,16 @@ main() {
 			;;
 	esac
 	local output
-	output="%{T${font_index}}${user_icon}%{T-}"
+	case "${display_server}" in
+		wayland)
+			output="{\"text\":\"${user_icon}\"}"
+			;;
+		*)
+			output="%{T${font_index}}${user_icon}%{T-}"
+			;;
+	esac
 	echo "${output}"
 }
 
-main
+main $@
 

@@ -7,6 +7,8 @@
 
 # AUTOSTART ###################################################################
 
+exec xrdb ~/.Xresources
+
 # exec_always --no-startup-id ~/.dot/l/bin/start-gui-services
 
 set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services
