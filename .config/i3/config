@@ -326,6 +326,7 @@ set $screenshot			exec --no-startup-id a screenshot
 set $screenshot-window		exec --no-startup-id a screenshot-window
 set $screenshot-selection       exec --no-startup-id a screenshot-selection
 set $terminal			exec --no-startup-id urxvt
+set $safe-terminal		exec --no-startup-id urxvt -e bash --norc --noprofile
 set $chrome			exec chromium --profile-directory="Default"
 set $chrome-h			exec chromium --profile-directory="H"
 set $chrome-altwork		exec chromium --profile-directory="AltWork"
@@ -351,6 +352,7 @@ set $facebook-messenger		exec --no-startup-id caprine
 # LAUNCHING HOTKEYS ###########################################################
 
 bindsym $alt+Return		$terminal
+bindsym $ctrl+$alt+$shift+Return	$safe-terminal
 #bindsym $win+Return		$start_main_app
 bindsym $alt+space		$launcher
 bindsym $win+space		$launcher
