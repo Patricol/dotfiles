@@ -183,6 +183,9 @@ __make_file_dict() {
 
     add_name_for_file "yay" "${HOME}/.config/yay/config.json"
     add_name_for_file "bat" "${HOME}/.config/bat/config"
+    add_name_for_file "alacritty" "${HOME}/.config/alacritty/alacritty.yml"
+    add_name_for_file "oguri" "${HOME}/.config/oguri/config"
+    add_name_for_file "waybar" "${HOME}/.config/waybar/config"
     add_name_for_file "vim-plugins" "${HOME}/.dot/l/vim/plugins"
     add_name_for_file "vim" "${HOME}/.dot/l/vimrc"
     add_name_for_file "compose/docker-compose.yml" "/root/.dot/l/compose/docker-compose.yml"

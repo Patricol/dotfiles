@@ -93,6 +93,7 @@ video/x-flv=mpv.desktop
 x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/sgnl=signal-desktop.desktop
 application/x-x509-ca-cert=atom.desktop
+x-scheme-handler/postman=Postman.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;chromium.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;

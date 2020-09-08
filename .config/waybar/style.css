@@ -4,7 +4,7 @@
     font-size: 12px;
     min-height: 0;
 }
-/*
+
 window#waybar {
     background-color: #212121;
     color: #eeeeee;
@@ -15,7 +15,7 @@ window#waybar {
 window#waybar.hidden {
     opacity: 0.2;
 }
-*/
+
 /*
 window#waybar.empty {
     background-color: transparent;
@@ -24,54 +24,63 @@ window#waybar.solo {
     background-color: #eeeeee;
 }
 */
-/*
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
 
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
+/* window#waybar.chromium { */
+/*     background-color: #000000; */
+/*     border: none; */
+/* } */
 
 #workspaces button {
     background-color: transparent;
-    color: #eeeeee;
+    color: #616161;
+    padding: 0;
 }
 
-// https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
     box-shadow: inherit;
+    text-shadow: inherit;
+    background: transparent;
+    border: transparent;
+    padding: 0;
+}
+
+#workspaces button.persistent {
+    color: #424242;
+}
+
+#workspaces button.visible {
+    color: #bdbdbd;
+}
+
+/* #workspaces button.current_output { */
+/*     color: #00c853; */
+/* } */
+
+#workspaces button.urgent {
+    background-color: #ff0000;
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-}
-
-#workspaces button.urgent {
-    background-color: #eb4d4b;
+    color: #ff0000;
 }
 
 #mode {
     background-color: #64727D;
 }
 
-#clock,
 #battery,
-#cpu,
 #memory,
 #temperature,
 #backlight,
 #network,
-#pulseaudio,
 #custom-media,
 #tray,
 #mode,
 #idle_inhibitor,
 
 #clock {
-    background-color: #64727D;
+    color: #bdbdbd;
 }
 
 
@@ -88,12 +97,11 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+    color: #2962ff;
 }
 
 #memory {
-    background-color: #9b59b6;
+    color: #d50000;
 }
 
 #network {
@@ -105,13 +113,11 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
-    color: #000000;
+    color: #bdbdbd;
 }
 
-#pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+#pulseaudio.muted.out {
+    color: #616161;
 }
 
 #temperature {
@@ -136,22 +142,10 @@ label:focus {
     background-color: #ecf0f1;
     color: #2d3436;
 }
-*/
+
 /*
-#2980b9
-#2a5c45
-#2ecc71
-#90b1b1
-#eb4d4b
-#f1c40f
-#f53c3c
 
-#ecf0f1
-#64727d
-#3f3f3f
-#2d3436
-#000000
-
+stop hovered workspace from moving around
 
 accent = #ff0000
 warning = #ff00ff
