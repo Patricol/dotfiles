@@ -16,7 +16,10 @@ adjust calendar tooltip font
 //  "modules-center": ["custom/font-testing"],
 //  "modules-right": ["pulseaudio#out", "pulseaudio#in", "custom/check-status", "custom/check-updates", "memory", "cpu", "tray"],
   "modules-right": ["memory", "cpu", "pulseaudio#out", "pulseaudio#in", "custom/check-status", "custom/check-updates", "tray"],
-
+  "sway/window": {
+    "on-click-middle": "swaymsg kill",
+    "on-click-right": "swaymsg floating toggle"
+  },
   "sway/workspaces": {
 //    "all-outputs": true,
     "disable-scroll-wraparound": true,
