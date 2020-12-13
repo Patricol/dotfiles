@@ -9,9 +9,10 @@
 exec export ELM_DISPLAY=wl
 exec xrdb ~/.Xresources
 
-# exec_always --no-startup-id ~/.dot/l/bin/start-gui-services
+exec mako
+exec_always --no-startup-id ~/.dot/l/bin/start-gui-services-wayland
 
-set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services
+set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services-wayland
 
 
 
@@ -38,6 +39,7 @@ for_window [class="Google Play Music Desktop Player" floating] resize set 512 51
 for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="win0" class="jetbrains-idea"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
+for_window [title="OpenSSH Authentication Passphrase request"] floating enable
 
 #Ensure chromium starts on the current workspace. Often opens on workspace 1 first time post login.
 #for_window [urgent="latest" class="^chromium$"] move window to workspace current
@@ -338,7 +340,7 @@ set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 set $volume-toggle-mute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 set $text-editor		exec --no-startup-id atom
 set $ide		        exec --no-startup-id env _JAVA_AWT_WM_NONREPARENTING=1 intellij-idea-ultimate-edition
-set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
+set $type-clipboard		exec --no-startup-id type-clipboard -ws
 set $lock			exec --no-startup-id lock
 set $files			exec --no-startup-id nemo
 set $task-manager		exec --no-startup-id {TERMINAL} -e htop
@@ -475,15 +477,21 @@ input type:mouse {{
 # output * background ~/.dot/l/wallpapers/default/animated fill #212121
 # output * background ~/.dot/l/wallpapers/default/fehbg.png fill #212121
 
-output HDMI-A-1 dpms on pos 1920 640
-output DP-1 dpms on pos 0 1000
-output DP-2 dpms on pos 5560 0 transform 90
-output DP-3 dpms on pos 4480 0 transform 270
+# swaymsg output HDMI-A-1 toggle
+# swaymsg output HDMI-A-1 toggle
+# output HDMI-A-1 dpms on pos 1920 640
+# output DP-1 dpms on pos 0 1000
+# output DP-2 dpms on pos 5560 0 transform 90
+# output DP-3 dpms on pos 4480 0 transform 270
+output HDMI-A-1 dpms on pos 1920 1080
+output DP-1 dpms on pos 0 1080
+output DP-2 dpms on pos 1280 0 transform 180
+output DP-3 dpms on pos 3200 0 transform 180
 
 workspace 1 output DP-1
-workspace 2 output HDMI-A-1
-workspace 3 output DP-3
-workspace 4 output DP-2
+workspace 2 output DP-2
+workspace 3 output HDMI-A-1
+workspace 4 output DP-3
 
 bar {{
         swaybar_command waybar

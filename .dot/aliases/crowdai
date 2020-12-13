@@ -228,7 +228,9 @@ alias eks-local="a_eks_switch_local ../kubeconfig"
 alias eks-vault="a_eks_switch primary-vault"
 
 alias testenv="cdot && scripts/runtime/run testenv test bumped"
-alias olmec="cdob && sudo scripts/runtime/run bumped patrick bumped"
+alias olmec="cdob && sudo scripts/runtime/run bumped patrick"
+alias olmec-test="cdob && sudo scripts/runtime/run bumped patrick-test"
+alias govcloud="cdob && sudo scripts/runtime/run bumped /home/docker/olmec/awscreds/govcloud"
 
 alias ku="kubectl"
 alias kus="kubectl -n kube-system"

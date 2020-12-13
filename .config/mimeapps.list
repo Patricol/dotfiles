@@ -94,6 +94,7 @@ x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
 x-scheme-handler/sgnl=signal-desktop.desktop
 application/x-x509-ca-cert=atom.desktop
 x-scheme-handler/postman=Postman.desktop
+x-scheme-handler/gitkraken=GitKraken.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;chromium.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;
