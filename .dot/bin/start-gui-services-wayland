@@ -16,7 +16,6 @@ main() {
 	# dex -ae i3 # TODO convert this into a service; add a counterpart in stop-gui-services
 	# scur mako # handled in sway config? or elsewhere?
 	# scus udiskie
-	# scus slack
 }
 
 main

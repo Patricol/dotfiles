@@ -1,8 +1,0 @@
-[Unit]
-Description=Slack
-
-[Service]
-ExecStart=slack
-
-[Install]
-WantedBy=default.target
