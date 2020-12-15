@@ -34,7 +34,6 @@ main() {
 	scur polybar-wss
 	scus wallpaper
 	scur animated-wallpaper
-	scur compton
 	scurs dunst
 	scus redshift-gtk
 	scus udiskie

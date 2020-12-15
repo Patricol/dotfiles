@@ -173,7 +173,7 @@ __make_file_dict() {
     add_files -f -p "systemd/system/" /etc/systemd/system/ --exclude_name '*.target' # add recursively from this
 
     add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile} ~/.config/wpg/wpg.conf
-    add_files -s ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{atool,makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
+    add_files -s ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{atool,makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct}.conf
     add_files -s "_config" /etc/ssh/{sshd,ssh}_config
     add_files -s ".txt" /root/setup.txt
     add_files -s ".json" ~/.config/indicator-sound-switcher.json
