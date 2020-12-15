@@ -1,4 +1,5 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
+# {CONFIG_EDITING_WARNING}
 
 # Import additional configuration files
 #
@@ -11,7 +12,7 @@
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
 # set by alacritty itself.
-#env:
+env:
   # TERM variable
   #
   # This value is used to set the `$TERM` environment variable for
@@ -19,18 +20,19 @@
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
+  TERM: xterm-256color
 
-#window:
+window:
   # Window padding (changes require restart)
   #
   # Blank space added around the window in pixels. This padding is scaled
   # by DPI and the specified value is always added at both opposing sides.
-  #padding:
-  #  x: 0
-  #  y: 0
+  padding:
+    x: 0
+    y: 0
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: false
 
   # Window decorations
   #
@@ -58,10 +60,10 @@
   # Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-#scrolling:
+scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  #history: 10000
+  history: 8192
 
   # Scrolling distance multiplier.
   #multiplier: 3
@@ -74,7 +76,7 @@ font:
     #
     # Default:
     #   - (Linux/BSD) monospace
-    family: Source Code Pro
+    family: {FONT_MONOSPACE}
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -113,7 +115,7 @@ font:
     #style: Bold Italic
 
   # Point size
-  size: 10.0
+  size: {FONT_MONOSPACE_TERMINAL_SIZE}
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -130,13 +132,14 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
+draw_bold_text_with_bright_colors: true
 
 # Colors (Tomorrow Night)
-#colors:
+colors:
   # Default colors
-  #primary:
-  #  background: '#1d1f21'
-  #  foreground: '#c5c8c6'
+  primary:
+    background: '{background}'
+    foreground: '{foreground}'
 
     # Bright and dim foreground colors
     #
@@ -152,9 +155,11 @@ font:
   #
   # Allowed values are CellForeground and CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
-  #cursor:
+  cursor:
   #  text: CellBackground
+    text: '{background}'
   #  cursor: CellForeground
+    cursor: '{accent}'
 
   # Vi mode cursor colors
   #
@@ -172,9 +177,11 @@ font:
   #
   # Allowed values are CellForeground and CellBackground, which reference the
   # affected cell, or hexadecimal colors like #ff00ff.
-  #selection:
+  selection:
   #  text: CellBackground
+    text: '{background}'
   #  background: CellForeground
+    background: '{accent}'
 
   # Search colors
   #
@@ -191,26 +198,26 @@ font:
     #  foreground: '#1d1f21'
 
   # Normal colors
-  #normal:
-  #  black:   '#1d1f21'
-  #  red:     '#cc6666'
-  #  green:   '#b5bd68'
-  #  yellow:  '#f0c674'
-  #  blue:    '#81a2be'
-  #  magenta: '#b294bb'
-  #  cyan:    '#8abeb7'
-  #  white:   '#c5c8c6'
+  normal:
+    black:   '{darkest}'
+    red:     '{red}'
+    green:   '{green}'
+    yellow:  '{yellow}'
+    blue:    '{blue}'
+    magenta: '{magenta}'
+    cyan:    '{cyan}'
+    white:   '{bright}'
 
   # Bright colors
-  #bright:
-  #  black:   '#666666'
-  #  red:     '#d54e53'
-  #  green:   '#b9ca4a'
-  #  yellow:  '#e7c547'
-  #  blue:    '#7aa6da'
-  #  magenta: '#c397d8'
-  #  cyan:    '#70c0b1'
-  #  white:   '#eaeaea'
+  bright:
+    black:   '{dark}'
+    red:     '{light_red}'
+    green:   '{light_green}'
+    yellow:  '{light_yellow}'
+    blue:    '{light_blue}'
+    magenta: '{light_magenta}'
+    cyan:    '{light_cyan}'
+    white:   '{brightest}'
 
   # Dim colors
   #
@@ -283,14 +290,15 @@ font:
 # The value `0.0` is completely transparent and `1.0` is opaque.
 #background_opacity: 1.0
 
-#selection:
+selection:
   # This string contains all characters that are used as separators for "semantic words" in Alacritty.
   #semantic_escape_chars: ",│`|:\"' ()[]{{}}<>\t"
+  semantic_escape_chars: ",│`|:\"' ()[]{{}}<>\t.&*;=?@^/\\"
 
   # When set to `true`, selected text will be copied to the primary clipboard.
   #save_to_clipboard: false
 
-#cursor:
+cursor:
   # Cursor style
   #
   # Values for `style`:
@@ -298,6 +306,7 @@ font:
   #   - _ Underline
   #   - | Beam
   #style: Block
+  # style: Beam
 
   # Vi mode cursor style
   #
@@ -305,7 +314,7 @@ font:
   # the style of the active value of the normal cursor.
   #
   # See `cursor.style` for available options.
-  #vi_mode_style: None
+  vi_mode_style: Block
 
   # If this is `true`, the cursor will be rendered as a hollow box when the
   # window is not focused.
@@ -313,7 +322,7 @@ font:
 
   # Thickness of the cursor relative to the cell width as floating point number
   # from `0.0` to `1.0`.
-  #thickness: 0.15
+  #thickness: 0.2
 
 # Live config reload (changes require restart)
 #live_config_reload: true

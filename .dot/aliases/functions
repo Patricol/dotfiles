@@ -315,13 +315,13 @@ rvimgrep() {
 #     # have this show what would be done; then prompt whether it should be done.
 # }
 
-0x0_st() {
-    if [[ $# -eq 0 ]]; then
-	echo -e "No arguments specified. Usage:\ntransfer test.md"
-	return 1
-    fi
-    curl -F"file=@$1" "https://0x0.st"
-}
+# 0x0_st() {
+#     if [[ $# -eq 0 ]]; then
+# 	echo -e "No arguments specified. Usage:\ntransfer test.md"
+# 	return 1
+#     fi
+#     curl -F"file=@$1" "https://0x0.st"
+# }
 
 transfer_sh() {
     if [[ $# -eq 0 ]]; then

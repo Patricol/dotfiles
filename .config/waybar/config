@@ -73,7 +73,7 @@ adjust calendar tooltip font
     "interval": 60,
     "return-type": "json",
     "exec": "~/.dot/l/bin/check-updates wayland",
-    "on-click": "urxvt -e $SHELL -c 'yay -Syu --devel'; pkill -SIGRTMIN+8 waybar",
+    "on-click": "alacritty -e $SHELL -c 'yay -Syu --devel'; pkill -SIGRTMIN+8 waybar",
     "signal": 8
   },
   "idle_inhibitor": {

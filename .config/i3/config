@@ -328,8 +328,8 @@ set $window_switcher		exec rofi -show window
 set $screenshot			exec --no-startup-id a screenshot
 set $screenshot-window		exec --no-startup-id a screenshot-window
 set $screenshot-selection       exec --no-startup-id a screenshot-selection
-set $terminal			exec --no-startup-id urxvt
-set $safe-terminal		exec --no-startup-id urxvt -e bash --norc --noprofile
+set $terminal			exec --no-startup-id alacritty
+set $safe-terminal		exec --no-startup-id alacritty -e bash --norc --noprofile
 set $chrome			exec chromium --profile-directory="Default"
 set $chrome-h			exec chromium --profile-directory="H"
 set $chrome-altwork		exec chromium --profile-directory="Profile 5"
@@ -342,7 +342,7 @@ set $ide		        exec --no-startup-id intellij-idea-ultimate-edition
 set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
 set $lock			exec --no-startup-id lock
 set $files			exec --no-startup-id nemo
-set $task-manager		exec --no-startup-id urxvt -e htop
+set $task-manager		exec --no-startup-id alacritty -e htop
 set $calculator			exec gnome-calculator
 set $music			exec --no-startup-id gpmdp
 set $notes			exec --no-startup-id standardnotes-desktop
