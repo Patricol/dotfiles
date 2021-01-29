@@ -9,50 +9,32 @@ add_ssh_keys() { # NOTE: using gnome-keychain instead.
 
 
 extract() {
-	# should probably not use 7z for all. e.g. extracting tar as root with 7z doesn't preserve permissions and ownership, but doing so with tar -xvzf does.
-	# if the format is like .tar.gz, it'll give you a tar file. maybe handle that here. also maybe have it always extract into a new folder sharing the name of the archive. and ask before overwriting; and other similar options.
-	# it also does that for .tgz. should just list the contents, and if the archive contains one single tar file, run different command.
-	# anything handled by the tar command, do with tar. everything else goes through 7z; which lets me benefit from wide compatibility while using the most up-to-date kernel stuff for tar-related archives, which are the most critical and likely what I should standardize on.
 	declare archives="$@"
 	if [[ -z "${archives}" ]]; then
 		echo "provide archive(s)" >&2
 		return 1
 	fi
 	local archive
-	for archive in ${archives}; do
+	for archive in $@; do # TODO figure out how to get it to expand while using declared name
 		if [[ ! -f "${archive}" ]]; then
 			echo "given archive (${archive}) does not exist" >&2
 			return 1
 		fi
 		case "${archive%,}" in
-			*.tar|*.tgz|*.tar.gz|*.txz|*.tar.xz|*.tbz2|*.tar.bz2)
-				tar -xvf "${archive}"
+			*.7z|*.a|*.ace|*.alz|*.arc|*.arj|*.bz|*.bz2|*.cab|*.cpio|*.deb|*.gz|*.jar|*.lha|*.lrz|*.lz|*.lzh|*.lzma|*.lzo|*.rar|*.rpm|*.rz|*.t7z|*.tar|*.tar.7z|*.tar.bz|*.tar.bz2|*.tar.gz|*.tar.lz|*.tar.lzo|*.tar.xz|*.tar.[Zz]|*.tbz|*.tbz2|*.tgz|*.tlz|*.txz|*.t[Zz]|*.tzo|*.war|*.xz|*.[Zz]|*.zip)
+				aunpack --subdir "${archive}"
 				;;
-			*.rar|*.cbr)
-				unrar x "${archive}"
+			*.cbr)
+				aunpack --subdir --format=rar "${archive}"
 				;;
-			*.lzma)
-				unlzma "${archive}"
-				;;
-			*.bz2)
-				bunzip2 "${archive}"
-				;;
-			*.gz)
-				gunzip "${archive}"
-				;;
-			*.zip|*.cbz)
-				unzip "${archive}"
-				;;
-			*.z)
-				uncompress "${archive}"
-				;;
-			*.xz)
-				unxz "${archive}"
+			*.cbz)
+				aunpack --subdir --format=zip "${archive}"
 				;;
 			*.exe)
-				cabextract "${archive}"
+				aunpack --subdir --format=cab "${archive}"
 				;;
 			*)
+				echo "unknown archive type; falling back on 7z" >&2
 				7z x "${archive}"
 				;;
 		esac
@@ -70,14 +52,26 @@ make_archive() {
 	# TODO fix these to use parallelized versions of the compression stuff
 }
 
+make_archive_atool() {
+	if [[ $# -ne 2 ]]; then
+	    echo "provide only a single folder or file as an argument" >&2
+	    return 1
+	fi
+	declare extension="$1" target="$2"
+	target="$(realpath --relative-to=. "${target}")"
+	apack "${target}.${extension}" "${target}"
+}
+
 maketxz() {
 	# txz is best for compression, efficiency etc. seems to be more resistant to corruption than gzip.
 	# TODO make these archiving commands use multiple threads
-	make_archive "txz" $@
+	# make_archive "txz" $@
+	make_archive_atool "txz" $@
 }
 
 maketar() {
-	make_archive "tar" $@
+	# make_archive "tar" $@
+	make_archive_atool "tar" $@
 }
 
 #makezip() {
@@ -178,20 +172,26 @@ __make_file_dict() {
     add_files -f -p "systemd/conf/" /etc/systemd/l.conf.d/
     add_files -f -p "systemd/system/" /etc/systemd/system/ --exclude_name '*.target' # add recursively from this
 
-    add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile,X11/xinit/xinitrc} ~/.config/wpg/wpg.conf
-    add_files -s ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct,compton/compton}.conf
+    add_files /etc/{bash.bash_logout,bash.bashrc,environment,fstab,motd,profile} ~/.config/wpg/wpg.conf
+    add_files -s ".conf" /etc/lightdm/{lightdm,lightdm-webkit2-greeter,slick-greeter}.conf /etc/{atool,makepkg,mkinitcpio,pacman,sudo}.conf ~/.config/{mpv/mpv,kitty/kitty,redshift,qt5ct/qt5ct}.conf
     add_files -s "_config" /etc/ssh/{sshd,ssh}_config
     add_files -s ".txt" /root/setup.txt
     add_files -s ".json" ~/.config/indicator-sound-switcher.json
     add_files -s ".list" ~/.config/mimeapps.list
 
+    add_files -p "ssh/" ~/.ssh/{config,known_hosts}
+
     add_name_for_file "yay" "${HOME}/.config/yay/config.json"
     add_name_for_file "bat" "${HOME}/.config/bat/config"
+    add_name_for_file "oguri" "${HOME}/.config/oguri/config"
+    add_name_for_file "waybar" "${HOME}/.config/waybar/config"
     add_name_for_file "vim-plugins" "${HOME}/.dot/l/vim/plugins"
     add_name_for_file "vim" "${HOME}/.dot/l/vimrc"
     add_name_for_file "compose/docker-compose.yml" "/root/.dot/l/compose/docker-compose.yml"
     add_name_for_file "compose/env" "/root/.dot/l/compose/.env"
     add_name_for_file "mirrorlist" "/etc/pacman.d/mirrorlist"
+    add_name_for_file "xinitrc-user" "${HOME}/.dot/l/xinitrc"
+    add_name_for_file "xinitrc-system" "/etc/X11/xinit/xinitrc.d/99-systemfiles.sh"
 
     local key print_dict
     if [[ "${print_dict}" ]]; then
@@ -315,13 +315,13 @@ rvimgrep() {
 #     # have this show what would be done; then prompt whether it should be done.
 # }
 
-0x0_st() {
-    if [[ $# -eq 0 ]]; then
-	echo -e "No arguments specified. Usage:\ntransfer test.md"
-	return 1
-    fi
-    curl -F"file=@$1" "https://0x0.st"
-}
+# 0x0_st() {
+#     if [[ $# -eq 0 ]]; then
+# 	echo -e "No arguments specified. Usage:\ntransfer test.md"
+# 	return 1
+#     fi
+#     curl -F"file=@$1" "https://0x0.st"
+# }
 
 transfer_sh() {
     if [[ $# -eq 0 ]]; then

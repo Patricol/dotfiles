@@ -1,0 +1,5 @@
+# {CONFIG_EDITING_WARNING}
+
+# To test: 'notify-send test'
+
+font = Source Code Sans 20

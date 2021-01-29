@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-
-
-main() {
-	local system_failed user_failed system_output user_output material_icons monospace_fill 
+xorg() {
+	local system_failed user_failed system_output user_output material_icons material_icons_alt monospace_fill 
 	system_failed=$(systemctl --failed --no-legend --no-pager 2> /dev/null | wc -l)
 	user_failed=$(systemctl --user --failed --no-legend --no-pager 2> /dev/null | wc -l)
 
@@ -16,10 +14,41 @@ main() {
 		system_output="%{T${material_icons_alt}}󰳤%{T-}%{T${monospace_fill}}${system_failed}%{T-}"
 	fi
 	if [[ ${user_failed} -gt 0 ]]; then
-		system_output="%{T${material_icons}}󰗖%{T-}%{T${monospace_fill}}${user_failed}%{T-}"
+		user_output="%{T${material_icons}}󰗖%{T-}%{T${monospace_fill}}${user_failed}%{T-}"
 	fi
 	echo "${system_output}${user_output}"
 }
 
-main
+wayland() {
+	local system_failed user_failed system_count user_count system_tooltip user_tooltip
+	system_failed=$(systemctl --failed --no-legend --no-pager 2> /dev/null | wc -l)
+	user_failed=$(systemctl --user --failed --no-legend --no-pager 2> /dev/null | wc -l)
+
+	if [[ ${system_failed} -gt 0 ]]; then
+		system_count="󰳤${system_failed}"
+		system_tooltip="$(systemctl --failed --no-legend --no-pager 2> /dev/null)"
+	fi
+	if [[ ${user_failed} -gt 0 ]]; then
+		user_count="󰗖${user_failed}"
+		user_tooltip="$(systemctl --user --failed --no-legend --no-pager 2> /dev/null)"
+	fi
+	local text tooltip
+	text="${system_count}${user_count}"
+	tooltip="${system_tooltip}\n${user_tooltip}"
+        echo "{\"text\":\"${text}\",\"tooltip\":\"${tooltip}\"}" | sed ':a;N;$!ba;s/\n/\\n/g' | jq --unbuffered --compact-output
+}
+
+main() {
+	declare display_server="$1"
+	case "${display_server}" in
+		wayland)
+			wayland
+			;;
+		*)
+			xorg
+			;;
+	esac
+}
+
+main $@
 

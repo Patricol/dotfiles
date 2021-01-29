@@ -1,0 +1,7 @@
+[Nemo Action]
+Name=Shred Selected
+Comment=Securely Delete Selected
+Exec=shred --force -u --verbose --zero --iterations=1 %F
+Selection=notnone
+Extensions=any
+EscapeSpaces=true

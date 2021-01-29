@@ -291,8 +291,8 @@ font-10 = Unifont:pixelsize=10:antialias=true;1
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 ;border-size 100
-;height = 13
-height = 1.2%
+height = 13
+;height = 1.2%
 ;height = 2.4%
 fixed-center = true
 
@@ -306,7 +306,7 @@ module-margin-left = 0
 module-margin-right = 0
 
 modules-left = check-other-sessions user-icon time i3-icons keyboard
-;modules-left = user-icon time i3-icons start-terminal start-rofi keyboard
+;modules-left = time i3-icons start-terminal start-rofi keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
@@ -420,9 +420,9 @@ content-background = ${colors.bg}
 content-foreground = ${colors.midvis-fg}
 content-padding = 0
 ; "click-(left|middle|right)" and "scroll-(up|down)" will be executed using "/usr/bin/env sh -c $COMMAND"
-click-left = urxvt &
-click-middle = urxvt -e sh &
-click-right = urxvt -e bash --norc &
+click-left = alacritty &
+click-middle = alacritty -e sh &
+click-right = alacritty -e bash --norc &
 ;scroll-up = echo scroll up
 ;scroll-down = echo scroll down
 
