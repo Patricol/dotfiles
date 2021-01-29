@@ -306,7 +306,7 @@ module-margin-left = 0
 module-margin-right = 0
 
 modules-left = check-other-sessions user-icon time i3-icons keyboard
-;modules-left = time i3-icons start-terminal start-rofi keyboard
+;modules-left = user-icon time i3-icons start-terminal start-rofi keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
