@@ -7,19 +7,28 @@
 
 # AUTOSTART ###################################################################
 
-exec_always --no-startup-id ~/.dot/l/bin/setup-xrandr
 exec_always --no-startup-id ~/.dot/l/bin/start-gui-services
 
 set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services
 
-
+# workspace 1 output DP-1
+# workspace 2 output HDMI-1
+# workspace 3 output DP-2
+# workspace 4 output DP-3
 
 # APPEARANCE ##################################################################
+
+gaps inner 1
+gaps outer 0
+smart_gaps on
 
 #border can be pixel, normal, or none.
 set $def_border pixel 1
 default_border $def_border
 default_floating_border $def_border
+#set $def_border_floating normal 1
+#new_window $def_border
+#new_float $def_border_floating
 
 
 # reminder: use i3prop to get relevant window info
@@ -31,6 +40,7 @@ for_window [class=.*] border $def_border
 for_window [class="Google Play Music Desktop Player" floating] resize set 512 512 
 
 for_window [title="Authy" class="Chromium"] floating enable
+for_window [title="win0" class="jetbrains-idea"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
 
 #Ensure chromium starts on the current workspace. Often opens on workspace 1 first time post login.
@@ -322,14 +332,16 @@ set $screenshot			exec --no-startup-id a screenshot
 set $screenshot-window		exec --no-startup-id a screenshot-window
 set $screenshot-selection       exec --no-startup-id a screenshot-selection
 set $terminal			exec --no-startup-id {TERMINAL}
+set $safe-terminal		exec --no-startup-id {TERMINAL} -e bash --norc --noprofile
 set $chrome			exec chromium --profile-directory="Default"
 set $chrome-h			exec chromium --profile-directory="H"
-set $chrome-altwork		exec chromium --profile-directory="AltWork"
+set $chrome-altwork		exec chromium --profile-directory="Profile 5"
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 set $volume-toggle-mute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 set $text-editor		exec --no-startup-id atom
+set $ide		        exec --no-startup-id intellij-idea-ultimate-edition
 set $type-clipboard		exec --no-startup-id "sh -c 'sleep 1; xdotool type \\"$(xclip -o -selection clipboard)\\"'"
 set $lock			exec --no-startup-id lock
 set $files			exec --no-startup-id nemo
@@ -346,11 +358,13 @@ set $facebook-messenger		exec --no-startup-id caprine
 # LAUNCHING HOTKEYS ###########################################################
 
 bindsym $alt+Return		$terminal
+bindsym $ctrl+$alt+$shift+Return	$safe-terminal
 bindsym $win+Return		$start_main_app
 bindsym $alt+space		$launcher
 bindsym $win+space		$launcher
 bindsym $win+r			$launcher
 bindsym $win+a			$text-editor
+bindsym $win+i			$ide
 bindsym $win+c			$chrome
 bindsym $win+h			$chrome-h
 bindsym $win+d			$chrome-altwork

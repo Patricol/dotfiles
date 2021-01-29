@@ -25,12 +25,16 @@ wpgsetfast() {
 	xrdb "${HOME}/.Xresources"
 }
 
+alias __oomox_cli='oomox-cli --output oomox-wpg --target-dir ${HOME}/.themes --hidpi false --make-opts all ${HOME}/.config/oomox/colors/oomox-wpg'
+
+alias __oomox_materia_cli='oomox-materia-cli --output materia-wpg --hidpi false ${HOME}/.config/oomox/colors/materia-wpg'
+
+alias __oomox="__oomox_cli && __oomox_materia_cli"
+
 wpgset() {
-	declare theme="$1" oomox_dir="${HOME}/.config/oomox/colors"
+	declare theme="$1"
 	wpgsetfast "${theme}"
-	parallel ::: \
-	"oomox-cli --output oomox-wpg --target-dir ${HOME}/.themes --hidpi false --make-opts all ${oomox_dir}/oomox-wpg" \
-	"oomox-materia-cli --output materia-wpg --hidpi false ${oomox_dir}/materia-wpg"
+	__oomox
 }
 
 alias wpg-material='wpgset material'

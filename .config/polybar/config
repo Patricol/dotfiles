@@ -310,6 +310,7 @@ modules-left = user-icon time i3-icons start-terminal start-rofi keyboard
 modules-center = xwindow
 ;modules-center = font-testing
 modules-right = pulseaudio check-status check-updates filesystem memory temperature cpu
+;modules-right = pulseaudio check-status filesystem memory temperature cpu
 
 tray-position = right
 tray-padding = 2
@@ -417,9 +418,9 @@ content-background = ${colors.bg}
 content-foreground = ${colors.midvis-fg}
 content-padding = 0
 ; "click-(left|middle|right)" and "scroll-(up|down)" will be executed using "/usr/bin/env sh -c $COMMAND"
-click-left = urxvt &
-click-middle = urxvt -e sh &
-click-right = urxvt -e bash --norc &
+click-left = alacritty &
+click-middle = alacritty -e sh &
+click-right = alacritty -e bash --norc &
 ;scroll-up = echo scroll up
 ;scroll-down = echo scroll down
 

@@ -1,6 +1,7 @@
 # vim:filetype=sh
 
 alias logs='sudo journalctl -xe'
+alias errors='systemctl --failed --no-legend --no-pager && systemctl --user --failed --no-legend --no-pager'
 
 alias scu='systemctl --user'
 alias scu-dr='systemctl --user daemon-reload'
