@@ -18,10 +18,6 @@ set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services
 
 # APPEARANCE ##################################################################
 
-gaps inner 1
-gaps outer 0
-smart_gaps on
-
 #border can be pixel, normal, or none.
 set $def_border pixel 1
 default_border $def_border
