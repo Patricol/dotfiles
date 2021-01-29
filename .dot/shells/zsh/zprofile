@@ -1,0 +1,2 @@
+export DFG_FILES_SOURCED="${DFG_FILES_SOURCED}zprofile,"
+source ~/.dot/l/shared-profile

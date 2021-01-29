@@ -1,8 +1,8 @@
 [Unit]
-Description=Slack
+Description=Waybar main bar
 
 [Service]
-ExecStart=slack
+ExecStart=waybar
 
 [Install]
 WantedBy=default.target

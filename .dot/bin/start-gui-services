@@ -34,12 +34,10 @@ main() {
 	scur polybar-wss
 	scus wallpaper
 	scur animated-wallpaper
-	scur compton
 	scurs dunst
 	scus redshift-gtk
 	scus udiskie
 	scus indicator-sound-switcher
-	scuss slack
 	case "$(cat /etc/hostname)" in
 		fcdcbda)
 			# scurs "polybar-wss-extra@HDMI-A-0"

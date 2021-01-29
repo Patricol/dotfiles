@@ -118,6 +118,12 @@ mountiso() {
 }
 
 alias umountiso='sudo umount /media/iso'
+# alias fumount='sudo fusermount -uz'
+alias fumount='force_unmount'
+
+force_unmount() {
+	bash --norc --noprofile -c "sudo fusermount -uz /media/$@"
+}
 
 alias fkill='sudo killall -KILL'
 

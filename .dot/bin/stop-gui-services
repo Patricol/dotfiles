@@ -13,7 +13,6 @@ main() {
 	}
 	scux wallpaper
 	scux animated-wallpaper
-	scux compton
 	scux redshift-gtk
 	scux udiskie
 	scux indicator-sound-switcher

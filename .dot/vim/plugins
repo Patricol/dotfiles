@@ -107,7 +107,8 @@ call s:add_plugin('tpope/vim-sensible')
 
 if exists("vimpager")
 else
-	call s:add_plugin('scrooloose/nerdtree')
+	call s:add_plugin('preservim/nerdtree')
+	call s:add_plugin('Xuyuanp/nerdtree-git-plugin')
 	call s:add_plugin('farmergreg/vim-lastplace')
 	call s:add_plugin('tpope/vim-sleuth')
 	call s:add_plugin('airblade/vim-gitgutter')
@@ -124,6 +125,7 @@ else
 	call s:add_plugin('sirver/ultisnips')
 	call s:add_plugin('mbbill/undotree')
 	call s:add_plugin('roxma/vim-paste-easy')
+	call s:add_plugin('ryanoasis/vim-devicons') " Always load the vim-devicons as the very last one.
 	" call s:add_plugin('')
 
 	if crowdai == "yes"

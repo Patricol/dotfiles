@@ -2,6 +2,8 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) for examples
 
+export DFG_FILES_SOURCED="${DFG_FILES_SOURCED}bashrc,"
+
 SHELL="/bin/bash"
 
 # ssh/scp may still source bashrc in a noninteractive session; in a way that could seriously mess up file transfers.

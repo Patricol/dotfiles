@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 
-main() {
-	use_method() {
-		declare program="$1" command="$@"
-		if which "${program}" &> /dev/null; then
-			local found_updates
-			found_updates="$(${command} 2> /dev/null | wc -l)"
-			[[ "${found_updates}" -ge "${updates}" ]] && updates="${found_updates}"
-		fi
-	}
+use_method() {
+	declare program="$1" command="$@"
+	if which "${program}" &> /dev/null; then
+		local found_updates
+		found_updates="$(${command} 2> /dev/null | wc -l)"
+		[[ "${found_updates}" -ge "${updates}" ]] && updates="${found_updates}"
+	fi
+}
 
+xorg() {
 	local updates
 	updates=0
 
@@ -26,5 +26,32 @@ main() {
 	echo "${output}"
 }
 
-main
+wayland() {
+	local updates
+	updates=0
+
+	use_method checkupdates
+	use_method yay -Qu
+
+	if [[ "${updates}" -gt 0 ]]; then
+		local text tooltip
+		text="󰚰${updates}"
+		tooltip="----EXPLICIT\n$(pacman -Que)\n----AUR\n$(yay -Qum)\n----DEPS\n$(pacman -Qud)"
+	fi
+	echo "{\"text\":\"${text}\",\"tooltip\":\"${tooltip}\"}" | sed ':a;N;$!ba;s/\n/\\n/g' | jq --unbuffered --compact-output
+}
+
+main() {
+	declare display_server="$1"
+	case "${display_server}" in
+		wayland)
+			wayland
+			;;
+		*)
+			xorg
+			;;
+	esac
+}
+
+main $@
 

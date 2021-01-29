@@ -12,6 +12,8 @@
 # pwd | tee ~/vncpwd
 cd "${HOME}"
 
+export DFG_FILES_SOURCED="${DFG_FILES_SOURCED}xinitrc,"
+
 if [[ -f "/etc/lightdm/Xsession" ]]; then
 	exec /etc/lightdm/Xsession i3
 else

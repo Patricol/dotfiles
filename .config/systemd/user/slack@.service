@@ -1,9 +1,0 @@
-[Unit]
-Description=Slack
-
-[Service]
-Environment=DISPLAY=:%i
-ExecStart=slack
-
-[Install]
-WantedBy=default.target
