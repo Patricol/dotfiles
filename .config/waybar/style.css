@@ -1,0 +1,172 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family:  Source Sans Pro, Material Design Icons, Unifont, sans-serif;
+    font-size: 12px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: #212121;
+    color: #eeeeee;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #eeeeee;
+}
+*/
+
+/* window#waybar.chromium { */
+/*     background-color: #000000; */
+/*     border: none; */
+/* } */
+
+#workspaces button {
+    background-color: transparent;
+    color: #616161;
+    padding: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: transparent;
+    border: transparent;
+    padding: 0;
+}
+
+#workspaces button.persistent {
+    color: #424242;
+}
+
+#workspaces button.visible {
+    color: #bdbdbd;
+}
+
+/* #workspaces button.current_output { */
+/*     color: #00c853; */
+/* } */
+
+#workspaces button.urgent {
+    background-color: #ff0000;
+}
+
+#workspaces button.focused {
+    color: #ff0000;
+}
+
+#mode {
+    background-color: #64727D;
+}
+
+#battery,
+#memory,
+#temperature,
+#backlight,
+#network,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+
+#clock {
+    color: #bdbdbd;
+}
+
+
+@keyframes blink {
+    to {
+        background-color: #eeeeee;
+        color: #000000;
+    }
+}
+
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    color: #2962ff;
+}
+
+#memory {
+    color: #d50000;
+}
+
+#network {
+    background-color: #2980b9;
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+#pulseaudio {
+    color: #bdbdbd;
+}
+
+#pulseaudio.muted.out {
+    color: #616161;
+}
+
+#temperature {
+    background-color: #212121;
+    color: #ffd600;
+}
+
+#temperature.critical {
+    background-color: #ff00ff;
+    color: #212121;
+}
+
+#tray {
+    background-color: #2980b9;
+}
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+/*
+
+stop hovered workspace from moving around
+
+accent = #ff0000
+warning = #ff00ff
+darkest = #212121
+red = #d50000
+green = #00c853
+yellow = #ffd600
+blue = #2962ff
+magenta = #aa00ff
+cyan = #00b8d4
+bright = #bdbdbd
+dark = #616161
+light_red = #e53935
+light_green = #69f0ae
+light_yellow = #ffff00
+light_blue = #448aff
+light_magenta = #e040fb
+light_cyan = #18ffff
+brightest = #eeeeee
+brighter = #e0e0e0
+brightish = #9e9e9e
+darkish = #757575
+darker = #424242
+*/

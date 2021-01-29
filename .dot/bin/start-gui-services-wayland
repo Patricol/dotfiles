@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+# This is called by sway; and should (re)start services that only make sense to run in a graphical session.
+# Services that contribute to the basic gui, like waybar, should be restarted here; which makes them restart whenever sway does.
+# This is not put in /usr/local/bin because that is the domain of the systemfiles repo, and this functionality should work on computers with only dotfiles installed, not systemfiles. It's practically a part of the sway config, but I split it out so that the sway config file wouldn't need to have many branch-specific differences.
+
+main() {
+	scus() {
+		declare service="$1"
+		systemctl --user start "${service}.service"
+	}
+	scur() {
+		declare service="$1"
+		systemctl --user restart "${service}.service"
+	}
+	# dex -ae i3 # TODO convert this into a service; add a counterpart in stop-gui-services
+	# scur mako # handled in sway config? or elsewhere?
+	# scus udiskie
+}
+
+main
+

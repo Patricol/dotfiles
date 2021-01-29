@@ -2,6 +2,8 @@
 
 #zmodload zsh/zprof #uncomment for profiling (run zprof after exec zsh)
 
+export DFG_FILES_SOURCED="${DFG_FILES_SOURCED}zshrc,"
+
 SHELL="/bin/zsh"
 
 HISTFILE="${HOME}/.history/zsh"

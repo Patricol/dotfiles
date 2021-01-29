@@ -1,0 +1,4 @@
+[output *]
+image=$HOME/.dot/l/wallpapers/animated/boat-skyline.gif
+filter=nearest
+

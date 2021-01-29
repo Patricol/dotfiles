@@ -1,0 +1,2 @@
+" vim:filetype=vim
+set encoding=UTF-8 " No need to set explicitly under Neovim: always uses UTF-8 as the default encoding.

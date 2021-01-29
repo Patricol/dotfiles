@@ -1,0 +1,163 @@
+/*
+TODO:
+fix visuals
+special font for temperature; dark text etc.
+add power menu
+tooltip of exact temperature value
+adjust calendar tooltip font
+*/
+{
+  // "layer": "top", // Waybar at top layer
+  // "position": "top", // Waybar position (top|bottom|left|right)
+  "height": 13,
+  // Choose the order of the modules
+  "modules-left": ["custom/check-other-sessions", "custom/user-icon", "clock", "sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+//  "modules-center": ["custom/font-testing"],
+//  "modules-right": ["pulseaudio#out", "pulseaudio#in", "custom/check-status", "custom/check-updates", "memory", "cpu", "tray"],
+  "modules-right": ["memory", "cpu", "pulseaudio#out", "pulseaudio#in", "custom/check-status", "custom/check-updates", "tray"],
+  "sway/window": {
+    "on-click-middle": "swaymsg kill",
+    "on-click-right": "swaymsg floating toggle"
+  },
+  "sway/workspaces": {
+//    "all-outputs": true,
+    "disable-scroll-wraparound": true,
+    "enable-bar-scroll": true,
+    "smooth-scrolling-threshold": 10,
+//    "format": "{name}: {icon}",
+    "format": "{icon}",
+    "format-icons": {
+	"1": "󰎤",
+	"2": "󰎧",
+	"3": "󰎪",
+	"4": "󰎭",
+	"5": "󰎱",
+	"6": "󰎳",
+	"7": "󰎶",
+	"8": "󰎹",
+	"9": "󰎼",
+	"10": "󰎡",
+	"default": "󰎿"
+    }
+  },
+  "sway/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "custom/font-testing": {
+    "format": "%{{T1}}T1: %{{T2}}T2:I27 %{{T3}}T3:I27 %{{T4}}T4:dfgjlpyIQ27 %{{T5}}T5:󰗖󰄲󰕾󰤂󰀧󰀨󰪥󰝥 %{{T6}}T6:󰈂󰤫 %{{T7}}T7:󰠔󰅙󰔐󰏦󰏥󰋙󰋘 %{{T8}}T8:󰳤󰡨󰭙󰀄󰒝 %{{T9}}T9:󰇅 %{{T10}}T10:1234567890 %{{T11}}T11:Xyj@ %{{T-}}󰋋󰍬󰍭"
+  },
+  "custom/user-icon": {
+    "interval": 60,
+    "return-type": "json",
+    "exec": "~/.dot/l/bin/user-icon wayland",
+    "escape": true
+  },
+  "custom/check-other-sessions": {
+    "interval": 60,
+    "return-type": "json",
+    "exec": "~/.dot/l/bin/check-other-sessions wayland",
+    "on-click": "pkill -SIGRTMIN+6 waybar",
+    "signal": 6,
+    "escape": true
+  },
+  "custom/check-status": {
+    "interval": 60,
+    "return-type": "json",
+    "exec": "~/.dot/l/bin/check-status wayland",
+    "on-click": "pkill -SIGRTMIN+7 waybar",
+    "signal": 7,
+    "escape": true
+  },
+  "custom/check-updates": {
+    "interval": 60,
+    "return-type": "json",
+    "exec": "~/.dot/l/bin/check-updates wayland",
+    "on-click": "alacritty -e $SHELL -c 'yay -Syu --devel'; pkill -SIGRTMIN+8 waybar",
+    "signal": 8
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    }
+  },
+//  "tray": {
+//    "icon-size": 13,
+//    "spacing": 10
+//  },
+  "clock": {
+    "interval": 1,
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+    "format-alt": "{:%H:%M:%S %a %m-%d}"
+  },
+  "cpu": {
+    "interval": 1,
+    "format": "{usage}",
+    "states": {
+    	"low": 10,
+    },
+    /* "format-icons": ["󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥", "󰝥"], */
+    "tooltip": false
+  },
+  "memory": {
+    "interval": 1,
+    "format": "{percentage}"
+  },
+  "temperature": {
+    "thermal-zone": 1, // for options, run: for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+    //        "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+    "critical-threshold": 80,
+    "interval": 1,
+    "format-critical": "HIGH TEMPERATURE: {temperatureC}°C ",
+    "format": "{icon}",
+    "format-icons": ["󰝦", "󰝦", "󰪞", "󰪟", "󰪠", "󰪡", "󰪢", "󰪣", "󰪤", "󰪥", "󰝥"]
+  },
+  "network": {
+    // "interface": "wlp2*", // (Optional) To force the use of this interface
+    "format-wifi": "{essid} ({signalStrength}%) ",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}"
+  },
+  "pulseaudio#out": {
+    "scroll-step": 5, // %, can be a float
+    "format": "{icon}{volume}",
+    "format-muted": "󰝟{volume}",
+    "format-icons": {
+      "headphone": "󰋋",
+      "default": ["󰕾"]
+    },
+    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 70%",
+    "on-click-right": "pavucontrol -t 3"
+  },
+  "pulseaudio#in": {
+    "format": "{format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "󰍬{volume}",
+//    "format-source-muted": "󰍭{volume}",
+    "format-source-muted": "󰍭",
+    "tooltip": false,
+    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+    "on-click-middle": "pactl set-source-volume @DEFAULT_SOURCE@ 38295",
+    "on-click-right": "pavucontrol -t 4"
+
+  }
+/* "custom/media": { */
+/*     "format": "{icon} {}", */
+/*     "return-type": "json", */
+/*     "max-length": 40, */
+/*     "format-icons": { */
+/*         "spotify": "", */
+/*         "default": "🎜" */
+/*     }, */
+/*     "escape": true, */
+/*     "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder */
+/*     // "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null" // Filter player based on name */
+/* } */
+}

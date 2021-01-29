@@ -28,7 +28,7 @@ make_crowdai_aliases() {
 		alias "${ba}sh"="${ba}_sh ; dcf ${unbound} down"
 		alias "${ba}p"="${ba}_sh -c ipython"
 		alias "${ba}lint"="${bc} && ./bin/inca-mypy && ./bin/inca-lint"
-		alias "${ba}tests"="${bc} && INCATEST_COMPOSE_PROJECT_NAME=${ba}test ./bin/inca-test --down" #-x -n 8"
+		alias "${ba}tests"="${bc} && INCATEST_COMPOSE_PROJECT_NAME=${ba}test ./bin/inca-test --clean --pull-aztec --down" #-x -n 8"
 		alias "${ba}test_unit"="${ba}tests inca/t/unit"
 		alias "${ba}test_integration"="${ba}tests inca/t/integration"
 		alias "${ba}test"="${ba}test_unit && ${ba}test_integration"
@@ -50,8 +50,12 @@ alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
 alias tcc='tgcc && tfcc'
 
+alias tf='terraform'
+alias tg='terragrunt'
 alias tga='terragrunt apply'
+alias tgi='terragrunt init'
 alias tgd='terragrunt destroy'
+alias tgunlock='terragrunt force-unlock'
 
 cai_vault_auth() {
 	declare team="$1"
@@ -223,10 +227,12 @@ alias eks-eq="a_eks_switch experiment-queue"
 alias eks-misc="a_eks_switch misc"
 alias eks-bumptest="a_eks_switch bumptest"
 alias eks-local="a_eks_switch_local ../kubeconfig"
+alias eks-vault="a_eks_switch primary-vault"
 
 alias testenv="cdot && scripts/runtime/run testenv test bumped"
-alias prebump="cdo && scripts/runtime/run prebump patrick prebump"
-alias bumped="cdob && sudo scripts/runtime/run bumped patrick bumped"
+alias olmec="cdob && sudo scripts/runtime/run bumped patrick"
+alias olmec-test="cdob && sudo scripts/runtime/run bumped patrick-test"
+alias govcloud="cdob && sudo scripts/runtime/run bumped /home/docker/olmec/awscreds/govcloud"
 
 alias ku="kubectl"
 alias kus="kubectl -n kube-system"
@@ -248,9 +254,10 @@ alias ksdel="kus delete"
 alias kl="ku logs"
 alias ksl="kus logs"
 alias klf="kl -f"
-alias kslf="kl -f"
-alias klscale="kl --namespace=kube-system svc/cluster-autoscaler-aws-cluster-autoscaler"
+alias kslf="ksl -f"
+alias klscale="ksl svc/cluster-autoscaler-aws-cluster-autoscaler"
 
+alias kdelfailedpods='kubectl delete pods $(kubectl get pods --field-selector "status.phase=Failed" | cut -d" " -f1 | tail -n +2 | less)'
 
 # klp() {
 # 	# TODO make this get logs from a pod, pulling its namespace and name.
@@ -285,3 +292,5 @@ maketxz_enclave() {
 	target="$(realpath --relative-to=. "${target}")"
 	tar -cvJf - "${target}" | split -b 200M - "${target}.txz"
 }
+
+alias kdelevicted='kubectl delete pod $(kubectl get pod -o jsonpath="{range .items[*]}{.metadata.name}{\" \"}{end}" --field-selector="status.phase==Failed")'

@@ -28,7 +28,7 @@
   background-gradient-start: #232323;
   background-gradient-end: #232323; }
 
-.expo-workspaces-name-entry#selected, .window-caption:focus, .window-caption#selected, .switcher-list .item-box:selected, .calendar-today, .workspace-graph .workspace:active, .panel-bottom .window-list-item-box:active, .panel-bottom .window-list-item-box:checked, .panel-bottom .window-list-item-box:focus, .panel-bottom .window-list-item-box:running, .modal-dialog-button:pressed, .modal-dialog-button:active, .notification-icon-button:active, .notification-button:active, .keyboard-key:active, .sound-player StButton:active {
+#selected.expo-workspaces-name-entry, .window-caption:focus, #selected.window-caption, .switcher-list .item-box:selected, .calendar-today, .workspace-graph .workspace:active, .panel-bottom .window-list-item-box:active, .panel-bottom .window-list-item-box:checked, .panel-bottom .window-list-item-box:focus, .panel-bottom .window-list-item-box:running, .modal-dialog-button:pressed, .modal-dialog-button:active, .notification-icon-button:active, .notification-button:active, .keyboard-key:active, .sound-player StButton:active {
   background-gradient-direction: vertical;
   background-gradient-start: #ff0000;
   background-gradient-end: #ff0000; }
@@ -1269,7 +1269,7 @@ StScrollView StScrollBar {
   border-radius: 6px;
   color: #ff0000;
   -cinnamon-caption-spacing: 4px; }
-  .window-caption:focus, .window-caption#selected {
+  .window-caption:focus, #selected.window-caption {
     color: #212121;
     border: 1px solid #d70606; }
 
@@ -1296,7 +1296,7 @@ StScrollView StScrollBar {
 
 .expo-workspace-thumbnail-frame {
   border: 1px solid #901111; }
-  .expo-workspace-thumbnail-frame#active {
+  #active.expo-workspace-thumbnail-frame {
     border: 1px solid #d70606; }
 
 .expo-workspaces-name-entry {
@@ -1308,7 +1308,7 @@ StScrollView StScrollBar {
   selection-background-color: #ff0000;
   color: #ff0000;
   text-align: center; }
-  .expo-workspaces-name-entry#selected {
+  #selected.expo-workspaces-name-entry {
     color: #212121;
     selected-color: #ff0000;
     selection-background-color: #ff0000;

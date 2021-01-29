@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
-main() {
-	other_users() {
-		local current_user others
-		current_user="$(id -un)"
-		others="$(w -hs | grep -vE "^${current_user}" | wc -l)"
-		[[ "${others}" -gt 0 ]]
-		return "$?"
-	}
+other_users() {
+	local current_user others
+	current_user="$(id -un)"
+	others="$(w -hs | grep -vE "^${current_user}" | wc -l)"
+	[[ "${others}" -gt 0 ]]
+	return "$?"
+}
 
-	other_sessions() {
-		local others
-		others="$(w -hs | wc -l)"
-		[[ "${others}" -gt 1 ]]
-		return "$?"
-	}
+other_sessions() {
+	local others
+	others="$(w -hs | wc -l)"
+	[[ "${others}" -gt 1 ]]
+	return "$?"
+}
 
+
+xorg() {
 	if other_sessions; then
 		# font index for polybar
 		local material_icons output
@@ -25,5 +26,26 @@ main() {
 	echo "${output}"
 }
 
-main
+wayland() {
+	local text tooltip
+	if other_sessions; then
+		text="󰀎"
+		tooltip="$(w -hs)"
+	fi
+	echo "{\"text\":\"${text}\",\"tooltip\":\"${tooltip}\"}" | sed ':a;N;$!ba;s/\n/\\n/g' | jq --unbuffered --compact-output
+}
+
+main() {
+	declare display_server="$1"
+	case "${display_server}" in
+		wayland)
+			wayland
+			;;
+		*)
+			xorg
+			;;
+	esac
+}
+
+main $@
 
