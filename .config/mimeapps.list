@@ -95,6 +95,8 @@ x-scheme-handler/sgnl=signal-desktop.desktop
 application/x-x509-ca-cert=atom.desktop
 x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/gitkraken=GitKraken.desktop
+text/x.gcode=userapp-prusa-slicer-WE6EW0.desktop
+x-scheme-handler/etcher=balena-etcher-electron.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;chromium.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;
@@ -183,6 +185,8 @@ application/vnd.comicbook+zip=mcomix.desktop;
 application/vnd.comicbook-rar=mcomix.desktop;
 video/x-flv=mpv.desktop;
 application/x-x509-ca-cert=atom.desktop;
+application/x-tgif=userapp-prusa-slicer-WE6EW0.desktop;
+text/x.gcode=userapp-prusa-slicer-WE6EW0.desktop;
 
 [Removed Associations]
 application/vnd.comicbook+zip=calibre-gui.desktop;okularApplication_comicbook.desktop;
