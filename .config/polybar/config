@@ -306,10 +306,12 @@ module-margin-left = 0
 module-margin-right = 0
 
 modules-left = check-other-sessions user-icon time i3-icons keyboard
+;modules-left = user-icon time i3-icons start-terminal start-rofi keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
 modules-right = pulseaudio check-status check-updates filesystem memory temperature cpu
+;modules-right = pulseaudio check-status filesystem memory temperature cpu
 
 tray-position = right
 tray-padding = 2
@@ -399,6 +401,7 @@ interval = 9999
 type = custom/script
 exec = ~/.dot/l/bin/check-updates
 interval = 60
+;interval = 6000
 
 [module/check-status]
 type = custom/script
