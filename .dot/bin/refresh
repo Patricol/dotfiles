@@ -2,6 +2,9 @@
 # For commands that should run before /vnc or /rdp.
 # Runs after dotfiles are updated.
 
+#use this to check what contexts get env variables from this script. To check if they penetrate into i3 through vnc and/or rdp etc.
+#export RAN_REFRESH="STARTED"
+
 ier() {
 	#if exists, run.
 	declare program="$1" command="$@"
@@ -12,22 +15,20 @@ ier() {
 
 source /etc/profile.d/locale.sh
 
-#Update Vim plugins and plugin manager
-vim +MAINTAIN
-
-#reload Xresources in case it was changed when dotfiles were updated.
-ier xrdb ~/.Xresources
-
-ier ~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
-ier ~/.local/share/umake/bin/apm disable spell-check tree-view
-
-#export PATH="/usr/games:/usr/local/games:${PATH}"
 
 export SHELL="bash"
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
 export LANG="en_US.UTF-8"
 
-#use this to check what contexts get env variables from this script. To check if they penetrate into i3 through vnc and/or rdp etc.
-export RAN_REFRESH="YES"
+#Update Vim plugins and plugin manager
+vim +MAINTAIN
 
+#reload Xresources in case it was changed when dotfiles were updated.
+ier xrdb ~/.Xresources # fails basically always? stops subsequent steps from running.
+
+ier ~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy language-docker script sort-lines
+ier ~/.local/share/umake/bin/apm disable spell-check tree-view
+
+
+#export RAN_REFRESH="FINISHED"
