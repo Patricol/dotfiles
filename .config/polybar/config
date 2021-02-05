@@ -291,9 +291,7 @@ font-10 = Unifont:pixelsize=10:antialias=true;1
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 ;border-size 100
-;height = 13
-height = 1.2%
-;height = 2.4%
+height = 13
 fixed-center = true
 
 background = ${colors.bg}
@@ -305,7 +303,7 @@ padding-right = 2
 module-margin-left = 0
 module-margin-right = 0
 
-modules-left = user-icon time i3-icons start-terminal start-rofi keyboard
+modules-left = user-icon time i3-icons start-terminal start-rofi start-app keyboard
 ;wireless-network wired-network powermenu
 modules-center = xwindow
 ;modules-center = font-testing
@@ -434,6 +432,19 @@ content-padding = 0
 click-left = rofi -show combi &
 click-middle = rofi -show window &
 click-right = rofi -show drun &
+;scroll-up = echo scroll up
+;scroll-down = echo scroll down
+
+[module/start-app]
+type = custom/text
+content = ${symbols.media-play}
+content-background = ${colors.bg}
+content-foreground = ${colors.midvis-fg}
+content-padding = 0
+; "click-(left|middle|right)" and "scroll-(up|down)" will be executed using "/usr/bin/env sh -c $COMMAND"
+click-left = startapp &
+click-middle = alacritty -e bash --norc -c /usr/local/bin/startapp &
+click-right = alacritty -e bash -c startapp &
 ;scroll-up = echo scroll up
 ;scroll-down = echo scroll down
 
