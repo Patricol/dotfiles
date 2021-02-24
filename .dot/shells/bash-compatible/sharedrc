@@ -24,6 +24,9 @@ fi
 export EDITOR="vim"
 export VISUAL="vim"
 
+export GOPATH="${HOME}/go"
+export PATH="${GOPATH}/bin:${PATH}"
+
 if which vimpager &> /dev/null; then
 	export PAGER="vimpager"
 	#alias less=${PAGER}

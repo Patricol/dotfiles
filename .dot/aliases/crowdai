@@ -52,9 +52,15 @@ alias tcc='tgcc && tfcc'
 
 alias tf='terraform'
 alias tg='terragrunt'
-alias tga='terragrunt apply'
-alias tgi='terragrunt init'
-alias tgd='terragrunt destroy'
+alias tgs='tg state'
+alias tgsl='tgs list'
+alias tgi='tg init'
+alias tga='tg apply'
+alias tgia='tgi && tga'
+alias tgd='tg destroy'
+alias tgid='tgi && tgd'
+alias tgp='tg plan'
+alias tgip='tgi && tgp'
 alias tgunlock='terragrunt force-unlock'
 
 cai_vault_auth() {
@@ -107,30 +113,6 @@ tfp() {
 	terraform plan
 }
 
-tgp() {
-	tcc
-	terragrunt plan
-}
-
-tgpa() {
-	tcc
-	terragrunt plan-all
-}
-
-# tgta() {
-# 	local resource
-# 	for resource in $(terragrunt state list); do
-# 		terragrunt taint "${resource}"
-# 	done
-# }
-
-# tguta() {
-# 	local resource
-# 	for resource in $(terragrunt state list); do
-# 		terragrunt untaint "${resource}"
-# 	done
-# }
-
 alias tfsp='terraform state pull | less'
 alias tgsp='terragrunt state pull | less'
 
@@ -170,21 +152,6 @@ downgrade_aur() {
 	makepkg -scir --noconfirm
 	cd "${start_dir}"
 	rm -rf "${temp_dir}"
-}
-
-terrdown() {
-	downgrade_aur terragrunt-bin 1d237f33114efcdc0317bd6cd999b07434ec5463
-	downgrade_aur kubernetes-helm d2ed21f2fe6fdd563895c585b88da825349116e0
-	downgrade_aur kubectl-bin 48b01da4624997dd2cd5e371a58c788f5a93ab44
-	echo "CHOOSE 0.11.14"
-	downgrade terraform
-	k8s_plugin_setup "0.0.16" "github.com/ericchiang/terraform-provider-k8s"
-}
-
-terrup() {
-	yay --noconfirm -R terraform terragrunt-bin kubernetes-helm kubectl-bin
-	yay --noconfirm --answerdiff None -S terraform terragrunt-bin kubernetes-helm kubectl-bin
-	k8s_plugin_setup "0.2.0.0" "github.com/crowd-ai/terraform-provider-k8s"
 }
 
 k_cluster() {
@@ -228,6 +195,7 @@ alias eks-misc="a_eks_switch misc"
 alias eks-bumptest="a_eks_switch bumptest"
 alias eks-local="a_eks_switch_local ../kubeconfig"
 alias eks-vault="a_eks_switch primary-vault"
+alias eks-rancher="a_eks_switch_local /home/docker/projects/terraform/terragrunt/rancher/kubeconfig"
 
 alias testenv="cdot && scripts/runtime/run testenv test bumped"
 alias olmec="cdob && sudo scripts/runtime/run bumped patrick"
@@ -256,8 +224,15 @@ alias ksl="kus logs"
 alias klf="kl -f"
 alias kslf="ksl -f"
 alias klscale="ksl svc/cluster-autoscaler-aws-cluster-autoscaler"
+alias kurr="ku rollout restart"
+alias kurrd="kurr deployment"
+alias kurrs="kurr statefulset"
+alias ksn="ku config set-context --current --namespace"
 
-alias kdelfailedpods='kubectl delete pods $(kubectl get pods --field-selector "status.phase=Failed" | cut -d" " -f1 | tail -n +2 | less)'
+alias kdelp='kubectl delete pods'
+alias kdelpods_failed='kdel $(kubectl get pods -o name --field-selector "status.phase=Failed")'
+alias kdelpods_completed='kdel $(kubectl get pods -o name --field-selector "status.phase=Succeeded")'
+alias kdelpods_evicted='kdel $(kubectl get pods -o name --field-selector="status.phase==Failed")' # TODO differentiate
 
 # klp() {
 # 	# TODO make this get logs from a pod, pulling its namespace and name.
@@ -293,4 +268,6 @@ maketxz_enclave() {
 	tar -cvJf - "${target}" | split -b 200M - "${target}.txz"
 }
 
-alias kdelevicted='kubectl delete pod $(kubectl get pod -o jsonpath="{range .items[*]}{.metadata.name}{\" \"}{end}" --field-selector="status.phase==Failed")'
+
+# helm plugin install https://github.com/fabmation-gmbh/helm-whatup
+
