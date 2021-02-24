@@ -97,6 +97,8 @@ x-scheme-handler/postman=Postman.desktop
 x-scheme-handler/gitkraken=GitKraken.desktop
 text/x.gcode=userapp-prusa-slicer-WE6EW0.desktop
 x-scheme-handler/etcher=balena-etcher-electron.desktop
+x-scheme-handler/irc=chromium.desktop
+x-scheme-handler/ircs=chromium.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;chromium.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;
