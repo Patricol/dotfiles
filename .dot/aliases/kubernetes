@@ -1,0 +1,63 @@
+# vim:filetype=sh
+# Kubernetes Alias definitions.
+
+a_eks_switch_local() {
+	declare kubeconfig="$1"
+	if [[ -f "${kubeconfig}" ]]; then
+		ln -sf "$(realpath "${kubeconfig}")" ~/.kube/config
+		kubectl get pods
+		helm list -a
+	else
+		rm -f ~/.kube/config
+		echo "No ${kubeconfig} file found." >&2
+	fi
+}
+
+alias eks-local="a_eks_switch_local ../kubeconfig"
+alias eks-vault="a_eks_switch primary-vault"
+alias eks-rancher="a_eks_switch_local /home/docker/projects/terraform/terragrunt/rancher/kubeconfig"
+
+alias ku="kubectl"
+alias kus="kubectl -n kube-system"
+alias kg="ku get"
+alias ksg="kus get"
+alias kgaa="kg all -A"
+alias kgp="kg pods"
+alias ksgp="ksg pods"
+alias kd="ku describe"
+alias ksd="kus describe"
+alias kdp="kd pods"
+alias ksdp="ksd pods"
+alias ke="ku exec"
+alias kse="kus exec"
+alias kei="ke -i -t"
+alias ksei="kse -i -t"
+alias kdel="ku delete"
+alias ksdel="kus delete"
+alias kl="ku logs"
+alias ksl="kus logs"
+alias klf="kl -f"
+alias kslf="ksl -f"
+alias kurr="ku rollout restart"
+alias kurrd="kurr deployment"
+alias kurrs="kurr statefulset"
+alias ksn="ku config set-context --current --namespace"
+
+alias kdelp='kubectl delete pods'
+alias kdelpods_failed='kdel $(kubectl get pods -o name --field-selector "status.phase=Failed")'
+alias kdelpods_completed='kdel $(kubectl get pods -o name --field-selector "status.phase=Succeeded")'
+alias kdelpods_evicted='kdel $(kubectl get pods -o name --field-selector="status.phase==Failed")' # TODO differentiate
+
+kutoggle() {
+	ku scale --current-replicas=1 --replicas=0 "$@" || \
+	ku scale --current-replicas=0 --replicas=1 "$@"
+}
+
+# klp() {
+# 	# TODO make this get logs from a pod, pulling its namespace and name.
+# 	kgaa | grep -E"\t$1"
+# }
+
+
+# helm plugin install https://github.com/fabmation-gmbh/helm-whatup
+
