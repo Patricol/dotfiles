@@ -49,7 +49,7 @@ alias kdelpods_completed='kdel $(kubectl get pods -o name --field-selector "stat
 alias kdelpods_evicted='kdel $(kubectl get pods -o name --field-selector="status.phase==Failed")' # TODO differentiate
 
 kutoggle() {
-	ku scale --current-replicas=1 --replicas=0 "$@" || echo "Already down; scaling back to 1" && \
+	ku scale --current-replicas=1 --replicas=0 "$@" || \
 	ku scale --current-replicas=0 --replicas=1 "$@"
 }
 
