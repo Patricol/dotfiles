@@ -86,6 +86,11 @@ if [[ -d "${HOME}/files/incoming/screenshots" ]]; then
     export XDG_SCREENSHOTS_DIR="${HOME}/files/incoming/screenshots"
 fi
 
+
+export TF_CLI_ARGS_plan="-parallelism=64"
+export TF_CLI_ARGS_apply="-parallelism=64"
+export TF_CLI_ARGS_destroy="-parallelism=64"
+
 stty -ixon # disable Ctrl-S
 
 ier yay --news # warns me of news I need to know before updating
