@@ -46,23 +46,6 @@ alias cdo='cd ~/files/crowdai/olmec'
 alias cdot='cd /home/docker/olmec/testenv/olmec'
 alias cdob='cd /home/docker/olmec/bumped/olmec'
 
-alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
-alias tfcc='rm -rf $(find -type d -name ".terraform")'
-alias tcc='tgcc && tfcc'
-
-alias tf='terraform'
-alias tg='terragrunt'
-alias tgs='tg state'
-alias tgsl='tgs list'
-alias tgi='tg init'
-alias tga='tg apply'
-alias tgia='tgi && tga'
-alias tgd='tg destroy'
-alias tgid='tgi && tgd'
-alias tgp='tg plan'
-alias tgip='tgi && tgp'
-alias tgunlock='terragrunt force-unlock'
-
 cai_vault_auth() {
 	declare team="$1"
 	rm -f "${HOME}/.vault-token"
@@ -82,40 +65,6 @@ cai_auth() {
 alias caiauth-patrick='cai_auth patrick'
 alias caiauth-test='cai_auth test'
 
-
-oatp() {
-	# olmec all test plan
-	argue_options=("n,no_rebuild_cache,noarg")
-	source "$(which argue)"
-	local d
-	cdo
-	# if [[ -n "${no_rebuild_cache}" ]]
-	tcc
-	for d in $(find terraform/live -name "*.tf" -exec dirname {} \; | uniq); do
-		echo "${d}"
-		cd "${d}"
-		terraform init
-		terraform plan
-		cdo
-	done
-	for d in $(find terragrunt -name "*.tf" -exec dirname {} \; | uniq); do
-		echo "${d}"
-		cd "${d}"
-		terragrunt plan
-		cdo
-	done
-	cd "${startdir}"
-}
-
-tfp() {
-	tcc
-	terraform init
-	terraform plan
-}
-
-alias tfsp='terraform state pull | less'
-alias tgsp='terragrunt state pull | less'
-
 rpdb() {
 	declare container_name="$1"
 	local container_id
@@ -126,19 +75,6 @@ rpdb() {
 }
 
 #alias jupyter='docker run -p 8888:8888 jupyter/scipy-notebook:latest'
-
-k8s_plugin_setup() {
-	declare version="$1" repolink="$2"
-	local gopath
-	gopath="${GOPATH:-${HOME}/go}"
-	go get -u "${repolink}"
-	rm -rf ~/.terraform.d/plugins
-	mkdir -p ~/.terraform.d/plugins
-	k8s_provider="$(find ${gopath} -type f -name "terraform-provider-k8s" | grep "/bin/" | tail -n1)"
-	if [[ -n "${k8s_provider}" ]]; then
-	    ln -s "${k8s_provider}" "${HOME}/.terraform.d/plugins/terraform-provider-k8s_v${version}"
-	fi
-}
 
 downgrade_aur() {
 	declare package="$1" commit="$2"
@@ -176,68 +112,18 @@ a_eks_switch() {
 	cd -
 }
 
-a_eks_switch_local() {
-	declare kubeconfig="$1"
-	if [[ -f "${kubeconfig}" ]]; then
-		ln -sf "$(realpath "${kubeconfig}")" ~/.kube/config
-		kubectl get pods
-		helm list -a
-	else
-		rm -f ~/.kube/config
-		echo "No ${kubeconfig} file found." >&2
-	fi
-}
-
 alias eks-staging="a_eks_switch core-staging"
 alias eks-production="a_eks_switch core-production"
 alias eks-eq="a_eks_switch experiment-queue"
 alias eks-misc="a_eks_switch misc"
 alias eks-bumptest="a_eks_switch bumptest"
-alias eks-local="a_eks_switch_local ../kubeconfig"
-alias eks-vault="a_eks_switch primary-vault"
-alias eks-rancher="a_eks_switch_local /home/docker/projects/terraform/terragrunt/rancher/kubeconfig"
 
 alias testenv="cdot && scripts/runtime/run testenv test bumped"
 alias olmec="cdob && sudo scripts/runtime/run bumped patrick"
 alias olmec-test="cdob && sudo scripts/runtime/run bumped patrick-test"
 alias govcloud="cdob && sudo scripts/runtime/run bumped /home/docker/olmec/awscreds/govcloud"
 
-alias ku="kubectl"
-alias kus="kubectl -n kube-system"
-alias kg="ku get"
-alias ksg="kus get"
-alias kgaa="kg all -A"
-alias kgp="kg pods"
-alias ksgp="ksg pods"
-alias kd="ku describe"
-alias ksd="kus describe"
-alias kdp="kd pods"
-alias ksdp="ksd pods"
-alias ke="ku exec"
-alias kse="kus exec"
-alias kei="ke -i -t"
-alias ksei="kse -i -t"
-alias kdel="ku delete"
-alias ksdel="kus delete"
-alias kl="ku logs"
-alias ksl="kus logs"
-alias klf="kl -f"
-alias kslf="ksl -f"
 alias klscale="ksl svc/cluster-autoscaler-aws-cluster-autoscaler"
-alias kurr="ku rollout restart"
-alias kurrd="kurr deployment"
-alias kurrs="kurr statefulset"
-alias ksn="ku config set-context --current --namespace"
-
-alias kdelp='kubectl delete pods'
-alias kdelpods_failed='kdel $(kubectl get pods -o name --field-selector "status.phase=Failed")'
-alias kdelpods_completed='kdel $(kubectl get pods -o name --field-selector "status.phase=Succeeded")'
-alias kdelpods_evicted='kdel $(kubectl get pods -o name --field-selector="status.phase==Failed")' # TODO differentiate
-
-# klp() {
-# 	# TODO make this get logs from a pod, pulling its namespace and name.
-# 	kgaa | grep -E"\t$1"
-# }
 
 sshc_aws() {
 	declare instance_id="$1"
@@ -267,7 +153,4 @@ maketxz_enclave() {
 	target="$(realpath --relative-to=. "${target}")"
 	tar -cvJf - "${target}" | split -b 200M - "${target}.txz"
 }
-
-
-# helm plugin install https://github.com/fabmation-gmbh/helm-whatup
 
