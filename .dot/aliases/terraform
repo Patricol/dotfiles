@@ -3,7 +3,8 @@
 
 alias tgcc='rm -rf $(find -type d -name ".terragrunt-cache")'
 alias tfcc='rm -rf $(find -type d -name ".terraform")'
-alias tcc='tgcc && tfcc'
+alias tfcl='rm -f $(find -type f -name ".terraform.lock.hcl")'
+alias tcc='tgcc && tfcc && tfcl'
 
 alias tf='terraform'
 alias tg='terragrunt'
