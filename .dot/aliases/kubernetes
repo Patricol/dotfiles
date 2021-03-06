@@ -15,7 +15,8 @@ a_eks_switch_local() {
 
 alias eks-local="a_eks_switch_local ../kubeconfig"
 alias eks-vault="a_eks_switch primary-vault"
-alias eks-rancher="a_eks_switch_local /home/docker/projects/terraform/terragrunt/rancher/kubeconfig"
+alias eks-arcade="a_eks_switch_local /home/docker/projects/terraform/terragrunt/arcade/kubeconfig"
+alias eks-ede="a_eks_switch_local /home/docker/projects/terraform/terragrunt/ede/kubeconfig"
 
 alias ku="kubectl"
 alias kus="kubectl -n kube-system"
