@@ -36,7 +36,7 @@ else
 fi
 
 if [[ -n "$DISPLAY" ]]; then
-	export BROWSER=chromium
+	export BROWSER=brave
 else
 	export BROWSER=lynx
 fi
@@ -73,13 +73,6 @@ unset powerline_shell_theme
 
 if which pyenv &> /dev/null; then
 	eval "$(pyenv init -)"
-fi
-
-# Wayland or X:
-if [[ -n "${WAYLAND_DISPLAY}" ]]; then
-    # NOTE: these don't get evaluated by sway; these are here for the benefit of launching these programs via cli.
-    export _JAVA_AWT_WM_NONREPARENTING=1 # Otherwise JetBrains IDEs have problems opening.
-    export ELM_DISPLAY=wl # So terminology doesn't try X first when DISPLAY is set.
 fi
 
 if [[ -d "${HOME}/files/incoming/screenshots" ]]; then

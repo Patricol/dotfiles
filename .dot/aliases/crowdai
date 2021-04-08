@@ -90,32 +90,20 @@ downgrade_aur() {
 	rm -rf "${temp_dir}"
 }
 
-k_cluster() {
-	declare cluster_name="$1"
-	aws eks update-kubeconfig --name "${cluster_name}"
-	kubectl exec -it "$(kubectl get pods | cut -c1-45 | grep -m 1 "web")" bash
-}
-
 alias kprod="k_cluster core-production"
 alias kstaging="k_cluster core-staging"
 
 a_eks_switch() {
 	declare name="$1"
-	cdc
-	rm -f ~/.kube/config
-	local new_context
-	new_context="$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
-	kubectl config use-context "${new_context}"
-	# kubectl --namespace=kube-system
+	kubectl config use-context "$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
 	kubectl get pods
-	helm list -a
-	cd -
 }
 
 alias eks-staging="a_eks_switch core-staging"
 alias eks-production="a_eks_switch core-production"
 alias eks-eq="a_eks_switch experiment-queue"
 alias eks-misc="a_eks_switch misc"
+alias eks-vault="a_eks_switch primary-vault"
 alias eks-bumptest="a_eks_switch bumptest"
 
 alias testenv="cdot && scripts/runtime/run testenv test bumped"

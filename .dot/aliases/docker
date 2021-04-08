@@ -36,13 +36,13 @@ alias drfsh='docker run --rm -it --entrypoint sh'
 alias drdf='docker run --rm -d'
 alias dpf='docker pull'
 dprf() {
-	declare container="$1" command="$@"
+	declare container="$1" command=$@
 	#Can only use when no options are provided before the container name; fix that later.
 	dpf "${container}"
-	drf "${command}"
+	drf ${command}
 }
 
-alias drfalpine='dprf alpine /bin/ash'
+alias drfalpine='dprf alpine'
 alias alpine='drfalpine'
 
 alias drfubuntu='dprf patricol/riced:ubuntu_rolling'

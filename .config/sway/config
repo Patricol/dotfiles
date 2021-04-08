@@ -331,17 +331,17 @@ set $screenshot-window		exec grimshot save active # Currently active window.
 set $screenshot-selection       exec grimshot save area # Manually select a region.
 set $terminal			exec --no-startup-id alacritty
 set $safe-terminal		exec --no-startup-id alacritty -e bash --norc --noprofile
-set $chrome			exec chromium --profile-directory="Default"
-set $chrome-h			exec chromium --profile-directory="H"
-set $chrome-altwork		exec chromium --profile-directory="Profile 5"
+set $browser			exec brave --profile-directory="Default"
+set $browser-h			exec brave --profile-directory="H"
+set $browser-altwork		exec brave --profile-directory="CrowdAI"
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 set $volume-toggle-mute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 set $text-editor		exec --no-startup-id atom
-set $ide		        exec --no-startup-id env _JAVA_AWT_WM_NONREPARENTING=1 intellij-idea-ultimate-edition
+set $ide		        exec --no-startup-id intellij-idea-ultimate-edition
 set $type-clipboard		exec --no-startup-id type-clipboard -ws
-set $lock			exec --no-startup-id lock
+set $lock			exec --no-startup-id lock-wayland
 set $files			exec --no-startup-id nemo
 set $task-manager		exec --no-startup-id alacritty -e htop
 set $calculator			exec gnome-calculator
@@ -363,9 +363,9 @@ bindsym $win+space		$launcher
 bindsym $win+r			$launcher
 bindsym $win+a			$text-editor
 bindsym $win+i			$ide
-bindsym $win+c			$chrome
-bindsym $win+h			$chrome-h
-bindsym $win+d			$chrome-altwork
+bindsym $win+c			$browser
+bindsym $win+h			$browser-h
+bindsym $win+d			$browser-altwork
 # bindsym $win+s			$notes
 bindsym $win+s			exec env ELM_DISPLAY=wl terminology
 bindsym $win+f			$facebook-messenger
@@ -483,14 +483,14 @@ input type:mouse {
 # output DP-1 dpms on pos 0 1000
 # output DP-2 dpms on pos 5560 0 transform 90
 # output DP-3 dpms on pos 4480 0 transform 270
+output HDMI-A-4 dpms on pos 0 600 transform 270
 output HDMI-A-2 dpms on pos 1720 0 transform 180
-output DP-3 dpms on pos 0 600 transform 270
-output DP-4 dpms on pos 1080 1080 mode 5120x1440@59.977Hz
+output DP-3 dpms on pos 1080 1080 mode 5120x1440@59.977Hz
 output DP-1 dpms on pos 3640 0 transform 180
 
-workspace 1 output DP-3
+workspace 1 output HDMI-A-4
 workspace 2 output HDMI-A-2
-workspace 3 output DP-4
+workspace 3 output DP-3
 workspace 4 output DP-1
 
 bar {

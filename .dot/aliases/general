@@ -29,7 +29,13 @@ alias cloc='curl -L -C - -O' # follow redirects, download as original name, cont
 
 gui_open() {
 	declare program="$@"
-	i3-msg exec "${program}"
+	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
+		echo "using sway"
+		swaymsg exec "${program}"
+	else
+		echo "using i3"
+		i3-msg exec "${program}"
+	fi
 }
 
 gui_sudo_open() {

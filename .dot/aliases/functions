@@ -192,6 +192,7 @@ __make_file_dict() {
     add_name_for_file "mirrorlist" "/etc/pacman.d/mirrorlist"
     add_name_for_file "xinitrc-user" "${HOME}/.dot/l/xinitrc"
     add_name_for_file "xinitrc-system" "/etc/X11/xinit/xinitrc.d/99-systemfiles.sh"
+    add_name_for_file "sysctl" "/etc/sysctl.d/99-systemfiles.conf"
 
     local key print_dict
     if [[ "${print_dict}" ]]; then
