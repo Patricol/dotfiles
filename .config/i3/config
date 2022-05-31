@@ -11,10 +11,10 @@ exec_always --no-startup-id ~/.dot/l/bin/start-gui-services
 
 set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services
 
-# workspace 1 output DP-1
-# workspace 2 output HDMI-1
-# workspace 3 output DP-2
-# workspace 4 output DP-3
+# workspace 1 output HDMI-1-4
+# workspace 2 output HDMI-2
+# workspace 3 output DP-1-3
+# workspace 4 output DP-1
 
 # APPEARANCE ##################################################################
 
@@ -333,9 +333,9 @@ set $screenshot-window		exec --no-startup-id a screenshot-window
 set $screenshot-selection       exec --no-startup-id a screenshot-selection
 set $terminal			exec --no-startup-id alacritty
 set $safe-terminal		exec --no-startup-id alacritty -e bash --norc --noprofile
-set $chrome			exec chromium --profile-directory="Default"
-set $chrome-h			exec chromium --profile-directory="H"
-set $chrome-altwork		exec chromium --profile-directory="Profile 5"
+set $browser			exec brave --profile-directory="Default"
+set $browser-h			exec brave --profile-directory="H"
+set $browser-altwork		exec brave --profile-directory="CrowdAI"
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
@@ -365,9 +365,9 @@ bindsym $win+space		$launcher
 bindsym $win+r			$launcher
 bindsym $win+a			$text-editor
 bindsym $win+i			$ide
-bindsym $win+c			$chrome
-bindsym $win+h			$chrome-h
-bindsym $win+d			$chrome-altwork
+bindsym $win+c			$browser
+bindsym $win+h			$browser-h
+bindsym $win+d			$browser-altwork
 bindsym $win+s			$notes
 bindsym $win+f			$facebook-messenger
 bindsym $win+m			$music

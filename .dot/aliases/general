@@ -29,14 +29,27 @@ alias cloc='curl -L -C - -O' # follow redirects, download as original name, cont
 
 gui_open() {
 	declare program="$@"
-	i3-msg exec "${program}"
+	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
+		echo "using sway"
+		swaymsg exec "${program}"
+	else
+		echo "using i3"
+		i3-msg exec "${program}"
+	fi
 }
 
 gui_sudo_open() {
 	declare as_user="$1" ; shift
 	local program
 	program="$@"
+	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
+		xhost +SI:localuser:root
+	fi
 	gui_open "sudo --askpass --login --user=${as_user} -- env QT_QPA_PLATFORMTHEME=qt5ct ${program}"
+	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
+		# xhost -SI:localuser:root
+		echo "LEFT INSECURE"
+	fi
 }
 
 alias sudo='sudo ' # allows me to use sudo before aliases
@@ -74,7 +87,7 @@ alias view='vim -R'
 alias vimdiff='vim -d'
 
 alias diffdir='diff -r'
-alias diff='diff -s'
+# alias diff='diff -s'
 
 alias greeting='fortune 2> /dev/null | cowsay 2> /dev/null || true'
 
@@ -88,6 +101,9 @@ screenshot() {
 alias screenshot-window='screenshot --focused'
 alias screenshot-selection='screenshot --select'
 alias fscrot='screenshot'
+alias screenshot-window-wayland='grimshot save active'
+alias screenshot-selection-wayland='grimshot save area'
+alias screenshot-wayland='grimshot save screen'
 
 
 alias fp='echo "fixing permissions..."; sudo /usr/local/sbin/fix-permissions'
@@ -259,4 +275,7 @@ loop() {
 	done
 }
 
+alias windirstat='surg baobab /home'
+
 alias tfrun='/home/docker/projects/terraform/scripts/runtime/run terraform'
+xhost -SI:localuser:root
