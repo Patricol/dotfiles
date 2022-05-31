@@ -341,3 +341,7 @@ transfer_sh() {
 }
 
 alias transfer="0x0_st"
+# alias treempv='mpv $(find -type f -name "*.mp4" | sort)'
+treempv() {
+    mpv $(find $1 -type f -iname "*.mp4" | sort)
+}

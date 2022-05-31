@@ -43,8 +43,10 @@ make_crowdai_aliases
 alias cdtg='cd ~/files/crowdai/olmec/terragrunt'
 alias cdtf='cd ~/files/crowdai/olmec/terraform'
 alias cdo='cd ~/files/crowdai/olmec'
-alias cdot='cd /home/docker/olmec/testenv/olmec'
-alias cdob='cd /home/docker/olmec/bumped/olmec'
+alias cdoa='cd /home/docker/olmec'
+alias cdob='cd /home/docker/olmec/bumped'
+alias cdorg='cd /home/docker/olmec/rescue-govcloud'
+alias cdong='cd /home/docker/olmec/newer-govcloud'
 
 cai_vault_auth() {
 	declare team="$1"
@@ -54,8 +56,10 @@ cai_vault_auth() {
 	crowdai-vault-login "${team}"
 	cd -
 }
-alias caiva='cai_vault_auth admin'
-alias caivsa='cai_vault_auth sudo-admin'
+# alias caiva='cai_vault_auth admin'
+# alias caivsa='cai_vault_auth sudo-admin'
+alias caiva='vault login -method=aws role=developer-admin'
+alias caivsa='vault login -method=aws role=developer-admin-sudo'
 
 cai_auth() {
 	declare profile="$1"
@@ -95,21 +99,45 @@ alias kstaging="k_cluster core-staging"
 
 a_eks_switch() {
 	declare name="$1"
+	if [[ -L "${HOME}/.kube/config" ]]; then
+		# Avoid contaminating symlinked files.
+		rm "${HOME}/.kube/config"
+	fi
 	kubectl config use-context "$(aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
+	kubectl get pods
+}
+
+a_eks_govcloud_switch() {
+	declare name="$1"
+	if [[ -L "${HOME}/.kube/config" ]]; then
+		# Avoid contaminating symlinked files.
+		rm "${HOME}/.kube/config"
+	fi
+	kubectl config use-context "$(env AWS_PROFILE=govcloud aws eks update-kubeconfig --name "${name}" | tee /dev/tty | tr ' ' '\n' | grep ":cluster/${name}")"
 	kubectl get pods
 }
 
 alias eks-staging="a_eks_switch core-staging"
 alias eks-production="a_eks_switch core-production"
+alias eks-govcloud="a_eks_govcloud_switch core-production"
+alias eks-govcloud-vault="a_eks_govcloud_switch primary-vault"
 alias eks-eq="a_eks_switch experiment-queue"
 alias eks-misc="a_eks_switch misc"
 alias eks-vault="a_eks_switch primary-vault"
 alias eks-bumptest="a_eks_switch bumptest"
+alias eks-broken-cluster-interview="AWS_PROFILE=sandbox aws eks update-kubeconfig --name broken-cluster-interview"
 
-alias testenv="cdot && scripts/runtime/run testenv test bumped"
-alias olmec="cdob && sudo scripts/runtime/run bumped patrick"
-alias olmec-test="cdob && sudo scripts/runtime/run bumped patrick-test"
-alias govcloud="cdob && sudo scripts/runtime/run bumped /home/docker/olmec/awscreds/govcloud"
+alias a_olmec_bumped="cdob && scripts/runtime/run /home/docker/olmec/bumped ${HOME}/.aws "
+alias olmec="a_olmec_bumped crowdai"
+alias olmec-bumped='/home/docker/olmec/bumped/olmec/scripts/runtime/run'
+alias olmec-sandbox="a_olmec_bumped sandbox"
+alias olmec-test="a_olmec_bumped patrick-test"
+alias olmec-govcloud-old="cdorg && olmec/scripts/runtime/run /home/docker/olmec/rescue-govcloud ${HOME}/.aws govcloud"
+alias olmec-govcloud-new="cdong && olmec/scripts/runtime/run govcloud ${HOME}/.aws"
+alias olmec-green='/home/docker/olmec/green/olmec/scripts/runtime/run'
+alias olmec-blue='/home/docker/olmec/blue/olmec/scripts/runtime/run'
+alias olmec-yellow='/home/docker/olmec/yellow/olmec/scripts/runtime/run'
+alias olmec-red='/home/docker/olmec/red/olmec/scripts/runtime/run'
 
 alias klscale="ksl svc/cluster-autoscaler-aws-cluster-autoscaler"
 

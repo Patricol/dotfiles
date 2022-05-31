@@ -99,6 +99,7 @@ text/x.gcode=userapp-prusa-slicer-WE6EW0.desktop
 x-scheme-handler/etcher=balena-etcher-electron.desktop
 x-scheme-handler/irc=brave.desktop
 x-scheme-handler/ircs=brave.desktop
+x-scheme-handler/standardnotes=standardnotes-desktop.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;brave.desktop;org.kde.showfoto.desktop;org.kde.gwenview.desktop;

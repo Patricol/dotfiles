@@ -12,28 +12,19 @@ if ! [[ -d "${HOME}/.history" ]]; then
     mkdir -p "${HOME}/.history"
 fi
 
-# if [[ -z "${SSH_AUTH_SOCK}" ]]; then
-    # NOTE: starting to use the gnome ssh-agent instead, so keyring can unlock everything.
-    # eval "$(keychain --eval --quiet)"
-    # if [[ -d "${HOME}/.ssh/auto" ]] && ! ssh-add -L > /dev/null; then
-	    # echo "adding keys from ~/.ssh/auto"
-	    # eval "$(keychain --eval --quiet "$(add_ssh_keys $(find "${HOME}/.ssh/auto" ! -type d))")"
-    # fi
-# fi
-
 export EDITOR="vim"
 export VISUAL="vim"
 
 export GOPATH="${HOME}/go"
 export PATH="${GOPATH}/bin:${PATH}"
 
-if which vimpager &> /dev/null; then
-	export PAGER="vimpager"
-	#alias less=${PAGER}
-	#alias zless=${PAGER}
-else
+#if which vimpager &> /dev/null; then
+#	export PAGER="vimpager"
+#	#alias less=${PAGER}
+#	#alias zless=${PAGER}
+#else
 	export PAGER="less"
-fi
+#fi
 
 if [[ -n "$DISPLAY" ]]; then
 	export BROWSER=brave
@@ -42,16 +33,14 @@ else
 fi
 
 export QT_QPA_PLATFORMTHEME="qt5ct"
+export CHROME_EXECUTABLE="brave" # for flutter
 
 export LESSHISTFILE="${HOME}/.history/less"
 
 source ~/.config/wpg/formats/colors-tty.sh || true # do this above neofetch. blanks the terminal; though it only runs if on tty.
 
 
-if [[ -n "${DESKTOP_SESSION}" ]]; then
-    eval $(gnome-keyring-daemon --start)
-    export SSH_AUTH_SOCK
-fi
+source /usr/local/bin/start-ssh-agent
 
 
 #(cat ~/.config/wpg/sequences &) # not needed; overrides custom cursor etc.
@@ -84,7 +73,7 @@ export TF_CLI_ARGS_plan="-parallelism=64"
 export TF_CLI_ARGS_apply="-parallelism=64"
 export TF_CLI_ARGS_destroy="-parallelism=64"
 
-stty -ixon # disable Ctrl-S
+# stty -ixon # disable Ctrl-S # Hangs in i3 for some reason.
 
 ier yay --news # warns me of news I need to know before updating
 

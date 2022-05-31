@@ -89,3 +89,5 @@ source /usr/share/doc/pkgfile/command-not-found.bash
 
 source "${HOME}/.dot/l/shrc/both"
 
+
+complete -C /usr/bin/terraform terraform

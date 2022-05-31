@@ -58,12 +58,28 @@ kueditterminatingpvc() {
 		kubectl edit pvc $(kubectl get pvc | grep Terminating | cut -d' ' -f1)
 	fi
 }
+kupatchterminatingpvc() {
+	if kubectl get pvc | grep Terminating; then
+		kubectl patch pvc $(kubectl get pvc | grep Terminating | cut -d' ' -f1) -p '{"metadata":{"finalizers": []}}' --type=merge
+	fi
+}
+kupatchterminatingpv() {
+	if kubectl get pv | grep Terminating; then
+		kubectl patch pv $(kubectl get pv | grep Terminating | cut -d' ' -f1) -p '{"metadata":{"finalizers": []}}' --type=merge
+	fi
+}
+kupatchterminatingnamespace() {
+	if kubectl get namespace | grep Terminating; then
+		kubectl patch namespace $(kubectl get namespace | grep Terminating | cut -d' ' -f1) -p '{"metadata":{"finalizers": []}}' --type=merge
+	fi
+}
 
 # klp() {
 # 	# TODO make this get logs from a pod, pulling its namespace and name.
 # 	kgaa | grep -E"\t$1"
 # }
 
+alias kgar='kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 -P 64 kubectl get --show-kind --ignore-not-found -o name'
 
 # helm plugin install https://github.com/fabmation-gmbh/helm-whatup
 
