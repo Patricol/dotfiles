@@ -1,5 +1,8 @@
 # used by sh
+# used by greetd
 # also used by LightDM; which otherwise doesn't get any environment from shell etc.
 export RAN_PROFILE=TRUE
 export DFG_FILES_SOURCED="${DFG_FILES_SOURCED}profile,"
-[[ -f "${HOME}/.dot/l/shrc/both" ]] && source "${HOME}/.dot/l/shrc/both"
+# [[ -f "${HOME}/.dot/l/shrc/both" ]] && timeout 30 source "${HOME}/.dot/l/shrc/both" || echo "shrc/both errored"
+[[ -f "${HOME}/.dot/l/shrc/both" ]] && source "${HOME}/.dot/l/shrc/both" || echo "shrc/both errored"
+# NOTE: need to make sure that command above won't cause this whole script to error if it does.

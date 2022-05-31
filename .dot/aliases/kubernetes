@@ -1,7 +1,7 @@
 # vim:filetype=sh
 # Kubernetes Alias definitions.
 
-a_eks_switch_local() {
+a_kubeconfig_switch_local() {
 	declare kubeconfig="$1"
 	if [[ -f "${kubeconfig}" ]]; then
 		ln -sf "$(realpath "${kubeconfig}")" ~/.kube/config
@@ -13,10 +13,10 @@ a_eks_switch_local() {
 	fi
 }
 
-alias eks-local="a_eks_switch_local ../kubeconfig"
-alias eks-vault="a_eks_switch primary-vault"
-alias eks-arcade="a_eks_switch_local /home/docker/projects/terraform/terragrunt/arcade/kubeconfig"
-alias eks-ede="a_eks_switch_local /home/docker/projects/terraform/terragrunt/ede/kubeconfig"
+alias eks-local="a_kubeconfig_switch_local ../kubeconfig"
+alias eks-arcade="a_kubeconfig_switch_local /home/docker/projects/terraform/terragrunt/arcade/kubeconfig"
+alias eks-ede="a_kubeconfig_switch_local /home/docker/projects/terraform/terragrunt/ede/kubeconfig"
+alias eks-zfs="a_kubeconfig_switch_local /home/docker/projects/terraform/terragrunt/zfs/kubeconfig"
 
 alias ku="kubectl"
 alias kus="kubectl -n kube-system"
@@ -53,12 +53,33 @@ kutoggle() {
 	ku scale --current-replicas=1 --replicas=0 "$@" || \
 	ku scale --current-replicas=0 --replicas=1 "$@"
 }
+kueditterminatingpvc() {
+	if kubectl get pvc | grep Terminating; then
+		kubectl edit pvc $(kubectl get pvc | grep Terminating | cut -d' ' -f1)
+	fi
+}
+kupatchterminatingpvc() {
+	if kubectl get pvc | grep Terminating; then
+		kubectl patch pvc $(kubectl get pvc | grep Terminating | cut -d' ' -f1) -p '{"metadata":{"finalizers": []}}' --type=merge
+	fi
+}
+kupatchterminatingpv() {
+	if kubectl get pv | grep Terminating; then
+		kubectl patch pv $(kubectl get pv | grep Terminating | cut -d' ' -f1) -p '{"metadata":{"finalizers": []}}' --type=merge
+	fi
+}
+kupatchterminatingnamespace() {
+	if kubectl get namespace | grep Terminating; then
+		kubectl patch namespace $(kubectl get namespace | grep Terminating | cut -d' ' -f1) -p '{"metadata":{"finalizers": []}}' --type=merge
+	fi
+}
 
 # klp() {
 # 	# TODO make this get logs from a pod, pulling its namespace and name.
 # 	kgaa | grep -E"\t$1"
 # }
 
+alias kgar='kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 -P 64 kubectl get --show-kind --ignore-not-found -o name'
 
 # helm plugin install https://github.com/fabmation-gmbh/helm-whatup
 
