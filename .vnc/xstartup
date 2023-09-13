@@ -1,5 +1,0 @@
-#!/bin/sh
-
-#source /etc/X11/xinit/xinitrc
-source "${HOME}/.xinitrc"
-

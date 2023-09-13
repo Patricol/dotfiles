@@ -29,27 +29,16 @@ alias cloc='curl -L -C - -O' # follow redirects, download as original name, cont
 
 gui_open() {
 	declare program="$@"
-	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
-		echo "using sway"
-		swaymsg exec "${program}"
-	else
-		echo "using i3"
-		i3-msg exec "${program}"
-	fi
+	swaymsg exec "${program}"
 }
 
 gui_sudo_open() {
 	declare as_user="$1" ; shift
 	local program
 	program="$@"
-	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
-		xhost +SI:localuser:root
-	fi
-	gui_open "sudo --askpass --login --user=${as_user} -- env QT_QPA_PLATFORMTHEME=qt5ct ${program}"
-	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
-		# xhost -SI:localuser:root
-		echo "LEFT INSECURE"
-	fi
+	xhost +SI:localuser:root
+	gui_open "sudo --askpass --login --user=${as_user} -- ${program}"
+	xhost -SI:localuser:root
 }
 
 alias sudo='sudo ' # allows me to use sudo before aliases
@@ -67,11 +56,6 @@ alias sur='sudo -i -u root --'
 alias sir='sur'
 alias surg='gui_sudo_open root'
 alias visudo='sudo -- visudo'
-
-alias mnas='mount /media/nas'
-alias umnas='umount /media/nas'
-alias marcade='mount /media/arcade'
-alias umarcade='umount /media/arcade'
 
 alias mnt='tldr'
 alias mnc='cheat'
@@ -128,12 +112,6 @@ alias be='exec "${SHELL}"'
 alias ep='ipython'
 
 
-mountiso() {
-	declare device="$@"
-	sudo mount -o loop "${device}" /media/iso
-}
-
-alias umountiso='sudo umount /media/iso'
 # alias fumount='sudo fusermount -uz'
 alias fumount='force_unmount'
 
@@ -163,19 +141,12 @@ alias cdhome='cd ~'
 alias cdh='cdhome'
 alias cdshared='cd /home/shared'
 alias cds='cdshared'
-alias cdnas='cd /media/nas'
-alias cdn='cdnas'
-alias cdarcade='cd /media/arcade'
-alias cda='cdarcade'
 alias cddots='cd ~/.dot'
 alias cdd='cddots'
 alias cddotsl='cd ~/.dot/l'
 alias cddl='cddotsl'
 alias cdfiles='cd ~/files/'
 alias cdf='cdfiles'
-alias cdforks='cd /home/shared/programming/forks'
-alias cdterraform='cd /home/docker/projects/terraform/'
-alias cdt='cdterraform'
 alias c='clear'
 alias ca='reset' # fully clear scrollback; though this does more than that
 alias cls='clear && ls'
@@ -185,11 +156,6 @@ alias cla='clear && la'
 alias cnf='clear && nf'
 alias nfc='cnf'
 alias x='exit'
-
-alias nas='ssh nas'
-alias arcade='ssh arcade'
-alias ede='ssh ede'
-alias pam='ssh pam'
 
 alias dtf='cdt && scripts/runtime/run terraform gcloud'
 
@@ -219,8 +185,6 @@ alias epochms='date +%s.%N'
 
 
 alias nmo='gui_open nemo "$(pwd)"'
-
-alias dk='a supa mount /media/nas && a supg digikam'
 
 alias aecho='echo '
 
@@ -276,6 +240,3 @@ loop() {
 }
 
 alias windirstat='surg baobab /home'
-
-alias tfrun='/home/docker/projects/terraform/scripts/runtime/run terraform'
-xhost -SI:localuser:root
