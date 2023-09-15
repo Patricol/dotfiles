@@ -168,7 +168,7 @@ alias dfg_mm='dfg_m master'
 dfg_aa() {
 	dfgfixsym
 	dfga -u
-     	for directory in ~/.{themes,dot} ~/.config/{feh,fontconfig,i3,kitty,mpv,neofetch,polybar,powerline,qt5ct,rofi,systemd,wal,wpg}; do
+     	for directory in ~/.dot ~/.config/{feh,fontconfig,mpv,neofetch,powerline,rofi,systemd}; do
 		if [[ -d "${directory}" ]]; then
      			dfga "${directory}"
 		else
