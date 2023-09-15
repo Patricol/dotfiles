@@ -128,12 +128,6 @@ else
 	call s:add_plugin('ryanoasis/vim-devicons') " Always load the vim-devicons as the very last one.
 	" call s:add_plugin('')
 
-	if crowdai == "yes"
-	  " CrowdAI
-	  " call s:add_plugin('neomake/neomake')
-	  call s:add_plugin('sbdchd/neoformat')
-	  call s:add_plugin_for('aykamko/vim-python-pep8-indent', 'python')
-	endif
 	call s:add_plugin('vim-syntastic/syntastic') " Needs flake8 for python support
 
 	function! BuildYCM(info)

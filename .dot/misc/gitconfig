@@ -1,5 +1,5 @@
 [user]
-	email = PatrickCP0@Gmail.com
+	email = patrick.collins@gainbridge.io
 	name = Patrick Collins
 [core]
 	autocrlf = input
@@ -7,10 +7,3 @@
 	keepBackup = false
 [color]
 	ui = auto
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[safe]
-	directory = /opt/flutter
