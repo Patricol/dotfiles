@@ -75,5 +75,5 @@ export TF_CLI_ARGS_destroy="-parallelism=64"
 
 # stty -ixon # disable Ctrl-S # Hangs in i3 for some reason.
 
-ier yay --news # warns me of news I need to know before updating
+# ier yay --news # warns me of news I need to know before updating
 

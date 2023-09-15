@@ -27,6 +27,7 @@ application/x-x509-ca-cert=atom.desktop
 x-scheme-handler/irc=brave.desktop
 x-scheme-handler/ircs=brave.desktop
 x-scheme-handler/standardnotes=standardnotes-desktop.desktop
+x-scheme-handler/msteams=teams.desktop
 
 [Added Associations]
 image/gif=mpv.desktop;brave.desktop;
