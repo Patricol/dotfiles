@@ -34,7 +34,6 @@ for_window [class=.*] border $def_border
 
 for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="win0" class="jetbrains-idea"] floating enable
-for_window [title="win0" class="org-knopflerfish-framework-BundleThread"] floating enable # freeplane startup window
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request"] floating enable
 
@@ -43,12 +42,6 @@ for_window [title="OpenSSH Authentication Passphrase request"] floating enable
 #for_window [urgent="latest" class="^Chromium$"] move window to workspace current
 #Actually causes problems more often than not. Try being more targeted:
 for_window [urgent="latest" instance="chromium" class="Chromium" window_role="browser" window_type="normal" title="Untitled - Chromium"] move window to workspace current
-
-#Hide vncconfig window. closing it could prevent copy/paste from working.
-for_window [title="VNC config"] move scratchpad
-
-
-for_window [title="Audio Recorder" class="Audio-recorder" instance="audio-recorder"] floating disable
 
 font pango:Source Code Pro 8
 font pango:Material Design Icons 8
@@ -329,22 +322,18 @@ set $screenshot-selection       exec grimshot save area # Manually select a regi
 set $terminal			exec --no-startup-id alacritty
 set $safe-terminal		exec --no-startup-id alacritty -e bash --norc --noprofile
 set $browser			exec brave --profile-directory="Default"
-set $browser-h			exec brave --profile-directory="H"
-set $browser-altwork		exec brave --profile-directory="CrowdAI"
 set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ false
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 set $volume-toggle-mute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-set $text-editor		exec --no-startup-id atom
+set $text-editor		exec --no-startup-id code
 set $ide		        exec --no-startup-id intellij-idea-ultimate-edition
 set $type-clipboard		exec --no-startup-id type-clipboard -ws
 set $lock			exec --no-startup-id lock-wayland
 set $files			exec --no-startup-id nemo
 set $task-manager		exec --no-startup-id alacritty -e htop
-set $calculator			exec gnome-calculator
 set $music			exec --no-startup-id spotify
 set $notes			exec --no-startup-id standardnotes-desktop
-set $freeplane   		exec --no-startup-id freeplane
 set $mako-dismiss               exec --no-startup-id makoctl dismiss
 set $mako-restore               exec --no-startup-id makoctl restore
 set $mako-invoke                exec --no-startup-id makoctl invoke
@@ -364,11 +353,7 @@ bindsym $win+r			$launcher
 bindsym $win+a			$text-editor
 bindsym $win+i			$ide
 bindsym $win+c			$browser
-bindsym $win+h			$browser-h
-bindsym $win+d			$browser-altwork
 # bindsym $win+s			$notes
-bindsym $win+s			exec env ELM_DISPLAY=wl terminology
-bindsym $win+f			$freeplane
 bindsym $win+m			$music
 bindsym $win+n			$notes
 bindsym $win+Print		$screenshot-window
@@ -383,7 +368,6 @@ bindsym $alt+Tab		$window_switcher
 bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
 bindsym XF86AudioLowerVolume    $volume-unmute ; $volume-lower
 bindsym XF86AudioMute           $volume-toggle-mute
-bindsym XF86Calculator          $calculator
 
 # win key only to open rofi
 #bindcode $windows-key-code --release $launcher
@@ -470,10 +454,6 @@ input type:mouse {
 # input "Logitech G903" {
 #         pointer_accel -1
 # }
-
-# swaybg_command oguri-swaybg
-# output * background ~/.dot/l/wallpapers/default/animated fill #212121
-# output * background ~/.dot/l/wallpapers/default/fehbg.png fill #212121
 
 bar {
         swaybar_command waybar
