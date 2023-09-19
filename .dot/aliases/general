@@ -25,6 +25,8 @@ alias pager='${PAGER}'
 alias rd='rmdir'
 alias md='mkdir -p'
 
+alias treed='tree -d'
+
 alias cloc='curl -L -C - -O' # follow redirects, download as original name, continue
 
 gui_open() {
@@ -40,6 +42,8 @@ gui_sudo_open() {
 	gui_open "sudo --askpass --login --user=${as_user} -- ${program}"
 	xhost -SI:localuser:root
 }
+
+# alias swaymsg='swaymsg -s $(find /run/user/1000/ -maxdepth 1 -name "sway-ipc*") '
 
 alias sudo='sudo ' # allows me to use sudo before aliases
 alias s='sudo'

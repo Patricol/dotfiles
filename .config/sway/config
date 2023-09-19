@@ -5,8 +5,8 @@
 
 
 # AUTOSTART ###################################################################
-exec export ELM_DISPLAY=wl # TODO this happens in a subshell, right? so doesn't persist? same for xrdb etc?
-exec xrdb ~/.Xresources
+# TODO this happens in a subshell, right? so doesn't persist? same for xrdb etc?
+exec export ELM_DISPLAY=wl
 
 exec mako
 exec_always --no-startup-id ~/.dot/l/bin/start-gui-services-wayland
@@ -164,7 +164,9 @@ bindsym --whole-window $ctrl+$alt+$shift+$mouse-wheel-right	move container to wo
 # KEYBOARD BINDINGS ###########################################################
 
 set $exit_sway			exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg exit' # TODO add options to open emergency terminal and force unmount.
-bindsym $ctrl+$alt+Delete	$exit_sway
+set $screens_on                 output * power on
+bindsym $ctrl+$alt+Delete	$screens_on; $exit_sway
+bindsym $ctrl+$alt+w	        $screens_on
 bindsym $alt+$shift+e		$exit_sway
 
 # Reload the configuration file

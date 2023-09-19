@@ -120,6 +120,14 @@ label:focus {
     color: #616161;
 }
 
+#wireplumber {
+    color: #bdbdbd;
+}
+
+#wireplumber.muted {
+    color: #616161;
+}
+
 #temperature {
     background-color: #212121;
     color: #ffd600;

@@ -184,10 +184,12 @@ __make_file_dict() {
     add_name_for_file "mako" "${HOME}/.config/mako/config"
     add_name_for_file "alacritty" "${HOME}/.config/alacritty/alacritty.yml"
     add_name_for_file "waybar" "${HOME}/.config/waybar/config"
+    add_name_for_file "waybar-style" "${HOME}/.config/waybar/style.css"
     add_name_for_file "vim-plugins" "${HOME}/.dot/l/vim/plugins"
     add_name_for_file "vim" "${HOME}/.dot/l/vimrc"
     add_name_for_file "mirrorlist" "/etc/pacman.d/mirrorlist"
     add_name_for_file "sysctl" "/etc/sysctl.d/99-systemfiles.conf"
+    add_name_for_file "displays" "/etc/sway/config.d/displays"
 
     local key print_dict
     if [[ "${print_dict}" ]]; then
