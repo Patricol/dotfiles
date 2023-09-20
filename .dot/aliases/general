@@ -35,12 +35,13 @@ gui_open() {
 }
 
 gui_sudo_open() {
+	# https://wiki.archlinux.org/title/Running_GUI_applications_as_root#Using_xhost
 	declare as_user="$1" ; shift
 	local program
 	program="$@"
 	xhost +SI:localuser:root
 	gui_open "sudo --askpass --login --user=${as_user} -- ${program}"
-	xhost -SI:localuser:root
+	# xhost -SI:localuser:root # TODO this needs to run after the program is finished; but gui_open returns immediately
 }
 
 # alias swaymsg='swaymsg -s $(find /run/user/1000/ -maxdepth 1 -name "sway-ipc*") '

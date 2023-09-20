@@ -5,11 +5,9 @@
 
 
 # AUTOSTART ###################################################################
-# TODO this happens in a subshell, right? so doesn't persist? same for xrdb etc?
-exec export ELM_DISPLAY=wl
 
-exec mako
-exec_always --no-startup-id ~/.dot/l/bin/start-gui-services-wayland
+# exec mako
+# exec_always --no-startup-id ~/.dot/l/bin/start-gui-services-wayland
 
 set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services-wayland
 
@@ -166,6 +164,7 @@ bindsym --whole-window $ctrl+$alt+$shift+$mouse-wheel-right	move container to wo
 set $exit_sway			exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg exit' # TODO add options to open emergency terminal and force unmount.
 set $screens_on                 output * power on
 bindsym $ctrl+$alt+Delete	$screens_on; $exit_sway
+bindsym $ctrl+$alt+$shift+Delete	exit
 bindsym $ctrl+$alt+w	        $screens_on
 bindsym $alt+$shift+e		$exit_sway
 

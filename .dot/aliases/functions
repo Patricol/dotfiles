@@ -182,6 +182,7 @@ __make_file_dict() {
     add_name_for_file "sway" "${HOME}/.config/sway/config"
     add_name_for_file "rofi" "${HOME}/.config/rofi/config"
     add_name_for_file "mako" "${HOME}/.config/mako/config"
+    add_name_for_file "kanshi" "${HOME}/.config/kanshi/config"
     add_name_for_file "alacritty" "${HOME}/.config/alacritty/alacritty.yml"
     add_name_for_file "waybar" "${HOME}/.config/waybar/config"
     add_name_for_file "waybar-style" "${HOME}/.config/waybar/style.css"
