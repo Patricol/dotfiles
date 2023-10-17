@@ -1,0 +1,23 @@
+# https://github.com/noisetorch/NoiseTorch/wiki/Start-automatically-with-Systemd
+# pactl set-default-source NoiseTorch\ Microphone\ for\ Yeti\ Stereo\ Microphone
+[Unit]
+Description=Noisetorch Noise Cancelling
+# systemctl list-units --type=device
+Requires=sys-devices-pci0000:00-0000:00:14.0-usb1-1\x2d1-1\x2d1.4-1\x2d1.4.2-1\x2d1.4.2.2-1\x2d1.4.2.2:1.0-sound-card2-controlC2.device
+After=sys-devices-pci0000:00-0000:00:14.0-usb1-1\x2d1-1\x2d1.4-1\x2d1.4.2-1\x2d1.4.2.2-1\x2d1.4.2.2:1.0-sound-card2-controlC2.device
+After=pipewire.service
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+# noisetorch -l
+ExecStart=/usr/bin/noisetorch -i -s alsa_input.usb-Blue_Microphones_Yeti_Stereo_Microphone_797_2020_07_14_66549-00.analog-stereo -t 80 
+; ExecStart=/usr/bin/noisetorch -i -s alsa_input.usb-Blue_Microphones_Yeti_Stereo_Microphone_797_2020_07_14_66549-00.3.analog-stereo -t 80
+ExecStop=/usr/bin/noisetorch -u
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=sway-session.target
+# TODO get this working
+UpheldBy=sys-devices-pci0000:00-0000:00:14.0-usb1-1\x2d1-1\x2d1.4-1\x2d1.4.2-1\x2d1.4.2.2-1\x2d1.4.2.2:1.0-sound-card2-controlC2.device

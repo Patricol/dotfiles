@@ -132,7 +132,8 @@ adjust calendar tooltip font
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
     "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%+",
     "on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%-",
-    "on-click-middle": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 70%",
+    "on-click-middle": "pactl set-default-sink alsa_output.usb-Blue_Microphones_Yeti_Stereo_Microphone_797_2020_07_14_66549-00.3.analog-stereo",
+    /* "on-click-middle": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 70%", */
     "on-click-right": "qpwgraph"
 
   },
@@ -145,7 +146,8 @@ adjust calendar tooltip font
       "default": ["󰕾"]
     },
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-    "on-click-middle": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 70%",
+    "on-click-middle": "systemctl --user restart noisetorch.service; pactl set-default-source 'NoiseTorch Microphone for Yeti Stereo Microphone'",
+    /* "on-click-middle": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 70%", */
     "on-click-right": "qpwgraph"
   }
 /* "custom/media": { */

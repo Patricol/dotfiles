@@ -338,6 +338,7 @@ set $notes			exec --no-startup-id standardnotes-desktop
 set $mako-dismiss               exec --no-startup-id makoctl dismiss
 set $mako-restore               exec --no-startup-id makoctl restore
 set $mako-invoke                exec --no-startup-id makoctl invoke
+set $teams                      exec --no-startup-id teams
 
 
 
@@ -354,6 +355,7 @@ bindsym $win+r			$launcher
 bindsym $win+a			$text-editor
 bindsym $win+i			$ide
 bindsym $win+c			$browser
+bindsym $win+t			$teams
 # bindsym $win+s			$notes
 bindsym $win+m			$music
 bindsym $win+n			$notes

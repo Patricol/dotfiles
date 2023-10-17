@@ -1,0 +1,14 @@
+[Unit]
+Description=Efficient animated wallpaper daemon for wayland, controlled at runtime.
+Documentation=man:swww(1)
+BindsTo=sway-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/swww init --no-daemon
+ExecStartPost=/usr/bin/swww img -f Nearest -t none %h/.dot/l/wallpapers/default/current
+RemainAfterExit=yes
+ExecStop=/usr/bin/swww kill
+
+[Install]
+WantedBy=sway-session.target

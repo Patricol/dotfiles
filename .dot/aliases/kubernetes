@@ -14,6 +14,7 @@ a_kubeconfig_switch_local() {
 }
 
 alias eks-local="a_kubeconfig_switch_local ../kubeconfig"
+alias eks-minikube="minikube update-context --profile custom"
 
 alias ku="kubectl"
 alias kus="kubectl -n kube-system"

@@ -5,12 +5,15 @@
 profile laptop {
 	output "BOE 0x0A7D Unknown" enable position 0,0
 #	exec swaymsg workspace 1, move workspace to '"BOE 0x0A7D Unknown"'
+	exec swww img -f Nearest ~/.dot/l/wallpapers/default/current
 }
 profile g9 {
 	output "Samsung Electric Company LC49G95T H4ZN801208" enable mode 5120x1440 position 0,0
+	exec swww img -f Nearest ~/.dot/l/wallpapers/default/current
 }
 profile v244h-left {
 	output 'HP Inc. HP V244h CNK8110PHG' enable mode 1920x1080 position 0,0 transform 180
+	exec swww img -f Nearest ~/.dot/l/wallpapers/default/current
 }
 #profile v244h-right {
 #}
@@ -21,19 +24,23 @@ profile {
 	output "BOE 0x0A7D Unknown" enable position 0,1320
 	output "Samsung Electric Company LC49G95T H4ZN801208" enable mode 5120x1440 position 1920,1080
 	exec sh -c "sleep 3s; swaymsg output '\"Samsung Electric Company LC49G95T H4ZN801208\"' power toggle, output '\"Samsung Electric Company LC49G95T H4ZN801208\"' power on"
+	exec swww img -f Nearest ~/.dot/l/wallpapers/default/current
 }
 profile {
 	output "BOE 0x0A7D Unknown" enable position 0,0
 	output 'HP Inc. HP V244h CNK8110PHG' enable mode 1920x1080 position 1920,0 transform 180
+	exec swww img -f Nearest ~/.dot/l/wallpapers/default/current
 }
 profile {
 	output "Samsung Electric Company LC49G95T H4ZN801208" enable mode 5120x1440 position 1920,1080
 	output 'HP Inc. HP V244h CNK8110PHG' enable mode 1920x1080 position 1920,0 transform 180
 	exec sh -c "sleep 3s; swaymsg output '\"Samsung Electric Company LC49G95T H4ZN801208\"' power toggle, output '\"Samsung Electric Company LC49G95T H4ZN801208\"' power on"
+	exec swww img -f Nearest ~/.dot/l/wallpapers/default/current
 }
 profile {
 	output "BOE 0x0A7D Unknown" enable position 0,1320
 	output "Samsung Electric Company LC49G95T H4ZN801208" enable mode 5120x1440 position 1920,1080
 	output 'HP Inc. HP V244h CNK8110PHG' enable mode 1920x1080 position 1920,0 transform 180
 	exec sh -c "sleep 3s; swaymsg output '\"Samsung Electric Company LC49G95T H4ZN801208\"' power toggle, output '\"Samsung Electric Company LC49G95T H4ZN801208\"' power on"
+	exec swww img -f Nearest ~/.dot/l/wallpapers/default/current
 }

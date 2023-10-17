@@ -5,7 +5,8 @@ if hash crowdai-env 2> /dev/null; then
 	eval "$(crowdai-env)"
 fi
 
-alias cdc='cd ~/files/crowdai'
+alias cdg='cd ~/files/gainbridge'
+alias cdgl='cd ~/files/gainbridge/localdev'
 
 make_crowdai_aliases() {
 	local -A base_commands
@@ -37,37 +38,10 @@ make_crowdai_aliases() {
 	done
 }
 
-alias "aztec"="cd ~/files/crowdai/aztec_platform && dcf build && dcf up -d"
 make_crowdai_aliases
 
-alias cdtg='cd ~/files/crowdai/olmec/terragrunt'
-alias cdtf='cd ~/files/crowdai/olmec/terraform'
-alias cdo='cd ~/files/crowdai/olmec'
-alias cdoa='cd /home/docker/olmec'
-alias cdob='cd /home/docker/olmec/bumped'
-alias cdorg='cd /home/docker/olmec/rescue-govcloud'
-alias cdong='cd /home/docker/olmec/newer-govcloud'
-
-cai_vault_auth() {
-	declare team="$1"
-	rm -f "${HOME}/.vault-token"
-	# need to cd so the python shim works
-	cdc
-	crowdai-vault-login "${team}"
-	cd -
-}
-# alias caiva='cai_vault_auth admin'
-# alias caivsa='cai_vault_auth sudo-admin'
-alias caiva='vault login -method=aws role=developer-admin'
-alias caivsa='vault login -method=aws role=developer-admin-sudo'
-
-cai_auth() {
-	declare profile="$1"
-	ln -sf "credentials-${profile}" "${HOME}/.aws/credentials"
-	caiva
-}
-alias caiauth-patrick='cai_auth patrick'
-alias caiauth-test='cai_auth test'
+alias cdtg='cd ~/files/gainbridge/platform/eks-infra/terragrunt'
+alias cdtf='cd ~/files/gainbridge/platform/eks-infra/terraform'
 
 rpdb() {
 	declare container_name="$1"

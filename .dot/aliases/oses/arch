@@ -27,6 +27,10 @@ alias aurr='echo "use pacr"'
 alias aurrs='echo "use pacrs"'
 
 alias syukeyring='s pacman -S archlinux-keyring'
+# Resetting:
+# s rm -rf /etc/pacman.d/gnupg
+# s pacman-key --init
+# s pacman-key --populate
 
 pq() {
 	declare search="$1"
