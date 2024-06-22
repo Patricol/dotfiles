@@ -19,3 +19,4 @@ progress-color=source #ff0000
 format=%a: %s\n%b
 max-visible=64
 layer=overlay
+anchor=center

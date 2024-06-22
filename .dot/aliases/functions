@@ -74,6 +74,10 @@ maketar() {
 	make_archive_atool "tar" $@
 }
 
+maketgz() {
+	make_archive_atool "tgz" $@
+}
+
 #makezip() {
 	# extracting individual files from zip is faster. zip is also more ubiquitous.
 #}
@@ -185,6 +189,7 @@ __make_file_dict() {
     add_name_for_file "bat" "${HOME}/.config/bat/config"
     add_name_for_file "oguri" "${HOME}/.config/oguri/config"
     add_name_for_file "waybar" "${HOME}/.config/waybar/config"
+    add_name_for_file "kanshi" "${HOME}/.config/kanshi/config"
     add_name_for_file "vim-plugins" "${HOME}/.dot/l/vim/plugins"
     add_name_for_file "vim" "${HOME}/.dot/l/vimrc"
     add_name_for_file "compose/docker-compose.yml" "/root/.dot/l/compose/docker-compose.yml"
@@ -235,14 +240,15 @@ edit_file() {
 }
 
 alias vimc='edit_file svim'
-alias atomc='edit_file satom'
+# alias atomc='edit_file satom'
 
 alias vc='vimc'
-alias ac='atomc'
+# alias ac='atomc'
 
 
 
 i3prop() {
+    # TODO make a similar function for wlprop?
     echo "Click a window to watch its properties."
     echo "Note that window_type value in i3 is one of: (normal|dialog|utility|toolbar|splash|menu|dropdown_menu|popup_menu|tooltip|notification)"
     echo ""
@@ -343,5 +349,5 @@ transfer_sh() {
 alias transfer="0x0_st"
 # alias treempv='mpv $(find -type f -name "*.mp4" | sort)'
 treempv() {
-    mpv $(find $1 -type f -iname "*.mp4" | sort)
+    mpv "$(find $1 -type f -iname "*.mp4" | sort | tr '\n' '\" \"')"
 }

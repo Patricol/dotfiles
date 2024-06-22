@@ -3,7 +3,7 @@
 # Runs after dotfiles are updated.
 
 #use this to check what contexts get env variables from this script. To check if they penetrate into i3 through vnc and/or rdp etc.
-#export RAN_REFRESH="STARTED"
+export RAN_REFRESH="STARTED"
 
 ier() {
 	#if exists, run.
@@ -31,4 +31,4 @@ ier ~/.local/share/umake/bin/apm install file-icons highlight-selected jumpy lan
 ier ~/.local/share/umake/bin/apm disable spell-check tree-view
 
 
-#export RAN_REFRESH="FINISHED"
+export RAN_REFRESH="FINISHED"

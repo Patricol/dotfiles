@@ -17,6 +17,7 @@ export VISUAL="vim"
 
 export GOPATH="${HOME}/go"
 export PATH="${GOPATH}/bin:${PATH}"
+export PATH="${PATH}:${HOME}/.pub-cache/bin"
 
 #if which vimpager &> /dev/null; then
 #	export PAGER="vimpager"
@@ -75,5 +76,5 @@ export TF_CLI_ARGS_destroy="-parallelism=64"
 
 # stty -ixon # disable Ctrl-S # Hangs in i3 for some reason.
 
-ier yay --news # warns me of news I need to know before updating
+# ier yay --news # warns me of news I need to know before updating # TODO causing sudo prompt?
 

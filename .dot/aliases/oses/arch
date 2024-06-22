@@ -9,7 +9,9 @@ alias scu-rd='scu-dr'
 alias sc-dr='sudo systemctl daemon-reload'
 alias sc-rd='sc-dr'
 alias sc-logs='sudo journalctl --lines=10000 --pager-end --unit'
+alias sc-logsf='sudo journalctl --follow --lines=100 --unit'
 alias scu-logs='journalctl --user --lines=10000 --pager-end --unit'
+alias scu-logsf='journalctl --user --follow --lines=100 --unit'
 alias rr='echo "run-regularly..."; sudo systemctl restart run-regularly.service'
 
 alias pacf='yay -Y'
@@ -26,7 +28,8 @@ alias pacrs='yay -Rs'
 alias aurr='echo "use pacr"'
 alias aurrs='echo "use pacrs"'
 
-alias syukeyring='s pacman -S archlinux-keyring'
+alias syukeyring='s pacman -Sy archlinux-keyring && s pacman -Su'
+# If needed, reset all keys as described here: https://wiki.archlinux.org/title/Pacman/Package_signing
 
 pq() {
 	declare search="$1"

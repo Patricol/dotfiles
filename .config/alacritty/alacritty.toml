@@ -1,0 +1,59 @@
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#616161"
+blue = "#448aff"
+cyan = "#18ffff"
+green = "#69f0ae"
+magenta = "#e040fb"
+red = "#e53935"
+white = "#eeeeee"
+yellow = "#ffff00"
+
+[colors.cursor]
+cursor = "#ff0000"
+text = "#212121"
+
+[colors.normal]
+black = "#212121"
+blue = "#2962ff"
+cyan = "#00b8d4"
+green = "#00c853"
+magenta = "#aa00ff"
+red = "#d50000"
+white = "#bdbdbd"
+yellow = "#ffd600"
+
+[colors.primary]
+background = "#212121"
+foreground = "#eeeeee"
+
+[colors.selection]
+background = "#ff0000"
+text = "#212121"
+
+[cursor]
+vi_mode_style = "Block"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 10
+
+[font.normal]
+family = "Source Code Pro"
+
+[scrolling]
+history = 8192
+
+[selection]
+semantic_escape_chars = ''',│`|:"' ()[]{}<>	.&*;=?@^/\'''
+
+[window]
+dynamic_padding = false
+
+[window.padding]
+x = 0
+y = 0

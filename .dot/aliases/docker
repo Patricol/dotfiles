@@ -31,8 +31,10 @@ alias dcf='docker-compose'
 alias dps='docker ps'
 alias dpsa='docker ps -a'
 
-alias drf='docker run --rm -it'
-alias drfsh='docker run --rm -it --entrypoint sh'
+alias drf='docker run --rm -it --dns 8.8.8.8'
+alias drfsh='drf --entrypoint sh'
+alias drfash='drf --entrypoint ash'
+alias drfbash='drf --entrypoint bash'
 alias drdf='docker run --rm -d'
 alias dpf='docker pull'
 dprf() {

@@ -11,6 +11,7 @@ alias tg='terragrunt'
 alias tgs='tg state'
 alias tgsl='tgs list'
 alias tgi='tg init'
+alias tgiu='tgi -upgrade'
 alias tga='tg apply'
 alias tgaaa='tg apply --auto-approve'
 alias tgia='tgi && tga'
@@ -22,6 +23,12 @@ alias tgidaa='tgi && tgdaa'
 alias tgp='tg plan'
 alias tgip='tgi && tgp'
 alias tgunlock='terragrunt force-unlock'
+
+# TODO these have issues with quotes? like targeting a for_each with string indexes?
+tgat() {tga $(printf "%s" "$@" | xargs printf -- " -target=%s")}
+tgdt() {tgd $(printf "%s" "$@" | xargs printf -- " -target=%s")}
+tgaaat() {tgaaa $(printf "%s" "$@" | xargs printf -- " -target=%s")}
+tgdaat() {tgdaa $(printf "%s" "$@" | xargs printf -- " -target=%s")}
 
 oatp() {
 	# olmec all test plan

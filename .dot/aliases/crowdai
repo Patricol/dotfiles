@@ -123,7 +123,7 @@ alias eks-govcloud="a_eks_govcloud_switch core-production"
 alias eks-govcloud-vault="a_eks_govcloud_switch primary-vault"
 alias eks-eq="a_eks_switch experiment-queue"
 alias eks-misc="a_eks_switch misc"
-alias eks-vault="a_eks_switch primary-vault"
+alias eks-vault="a_eks_switch blue-vault"
 alias eks-bumptest="a_eks_switch bumptest"
 alias eks-broken-cluster-interview="AWS_PROFILE=sandbox aws eks update-kubeconfig --name broken-cluster-interview"
 

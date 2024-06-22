@@ -52,6 +52,16 @@ gui_sudo_open() {
 	fi
 }
 
+ydotooldc() {
+	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
+		xhost +SI:localuser:root
+	fi
+	sudo ydotoold --socket-path="${HOME}/.ydotool_socket" --socket-own="$(id -u):$(id -g)"
+	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
+		xhost -SI:localuser:root
+	fi
+}
+
 alias sudo='sudo ' # allows me to use sudo before aliases
 alias s='sudo'
 
@@ -70,7 +80,7 @@ alias visudo='sudo -- visudo'
 
 alias mnas='mount /media/nas'
 alias umnas='umount /media/nas'
-alias marcade='mount /media/arcade'
+alias marcade='mountpoint /media/arcade || mount /media/arcade'
 alias umarcade='umount /media/arcade'
 
 alias mnt='tldr'
@@ -241,8 +251,8 @@ fan() {
 	fa -name $@
 }
 
-alias pingf='ping -c 1 1.1.1.1'
-alias pingl='ping 1.1.1.1'
+alias pingf='ping -c 1 1.0.0.1'
+alias pingl='ping 1.0.0.1'
 
 
 switch_to_vnc_resolution() {

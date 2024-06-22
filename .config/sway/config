@@ -10,6 +10,7 @@ exec export ELM_DISPLAY=wl # TODO this happens in a subshell, right? so doesn't 
 exec xrdb ~/.Xresources
 
 exec mako
+exec kanshi
 exec_always --no-startup-id ~/.dot/l/bin/start-gui-services-wayland
 
 set $stop_services exec --no-startup-id ~/.dot/l/bin/stop-gui-services-wayland
@@ -33,11 +34,13 @@ default_floating_border $def_border
 for_window [class=.*] border $def_border
 #adds border to things like GTK calculator and Chromium
 
+for_window [app_id="AlacrittyFloating"] floating enable
 for_window [title="Authy" class="Chromium"] floating enable
 for_window [title="win0" class="jetbrains-idea"] floating enable
 for_window [title="win0" class="org-knopflerfish-framework-BundleThread"] floating enable # freeplane startup window
 for_window [title="OpenSSH Authentication Passphrase request" class="lxqt-openssh-askpass"] floating enable
 for_window [title="OpenSSH Authentication Passphrase request"] floating enable
+for_window [title="Copying — Dolphin"] floating enable
 
 #Ensure chromium starts on the current workspace. Often opens on workspace 1 first time post login.
 #for_window [urgent="latest" class="^chromium$"] move window to workspace current
@@ -336,7 +339,7 @@ set $volume-unmute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ fals
 set $volume-raise		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
 set $volume-lower		exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
 set $volume-toggle-mute		exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-set $text-editor		exec --no-startup-id atom
+set $text-editor		exec --no-startup-id code
 set $ide		        exec --no-startup-id intellij-idea-ultimate-edition
 set $type-clipboard		exec --no-startup-id type-clipboard -ws
 set $lock			exec --no-startup-id lock-wayland
@@ -350,7 +353,8 @@ set $mako-dismiss               exec --no-startup-id makoctl dismiss
 set $mako-restore               exec --no-startup-id makoctl restore
 set $mako-invoke                exec --no-startup-id makoctl invoke
 
-
+set $clr-start                  exec --no-startup-id touch /home/shared/programming/ydt-rs/mounted/running
+set $clr-stop                   exec --no-startup-id rm -f /home/shared/programming/ydt-rs/mounted/running
 
 
 
@@ -385,6 +389,11 @@ bindsym XF86AudioRaiseVolume    $volume-unmute ; $volume-raise
 bindsym XF86AudioLowerVolume    $volume-unmute ; $volume-lower
 bindsym XF86AudioMute           $volume-toggle-mute
 bindsym XF86Calculator          $calculator
+
+# F21
+bindsym XF86TouchpadToggle      $clr-start
+# F22
+bindsym XF86TouchpadOn          $clr-stop
 
 # win key only to open rofi
 #bindcode $windows-key-code --release $launcher

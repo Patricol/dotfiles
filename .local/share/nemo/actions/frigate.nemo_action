@@ -1,0 +1,11 @@
+[Nemo Action]
+# https://github.com/linuxmint/nemo/blob/master/files/usr/share/nemo/actions/sample.nemo_action
+Name=Frigate-Keep
+Comment=Keep selected
+Exec=/home/shared/programming/MSC/frigate-keep/action.sh %P %F
+# https://specifications.freedesktop.org/icon-naming-spec/latest/ar01s04.html
+Icon-Name=document-save
+Selection=notnone
+Extensions=mp4;
+Dependencies=rsync;
+Conditions=exec sh -c "[[ %P == /media/*/frigate/* ]]";

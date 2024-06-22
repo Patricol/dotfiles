@@ -1,0 +1,8 @@
+[Unit]
+Description=ydt clr
+
+[Service]
+ExecStart=bash /home/shared/programming/ydt-scr/clr.sh
+
+[Install]
+WantedBy=default.target
