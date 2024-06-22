@@ -35,9 +35,25 @@ wayland() {
 	use_method yay -Qu
 
 	if [[ "${updates}" -gt 0 ]]; then
-		local text tooltip
+		local text tooltip expl_pac expl_aur deps_pac deps_aur
 		text="󰚰${updates}"
-		tooltip="----EXPLICIT\n$(pacman -Que)\n----AUR\n$(yay -Qum)\n----DEPS\n$(pacman -Qud)"
+		expl_pac="$(pacman -Quen)"
+		if [[ -n "${expl_pac}" ]]; then
+			expl_pac="----EXPLICIT_PAC\n${expl_pac}\n"
+		fi
+		expl_aur="$(yay -Quem)"
+		if [[ -n "${expl_aur}" ]]; then
+			expl_aur="----EXPLICIT_AUR\n${expl_aur}\n"
+		fi
+		deps_pac="$(pacman -Qudn)"
+		if [[ -n "${deps_pac}" ]]; then
+			deps_pac="----DEPS_PAC\n${deps_pac}\n"
+		fi
+		deps_aur="$(yay -Qudm)"
+		if [[ -n "${deps_aur}" ]]; then
+			deps_aur="----DEPS_AUR\n${deps_aur}\n"
+		fi
+		tooltip="${expl_aur}${expl_pac}${deps_aur}${deps_pac}"
 	fi
 	echo "{\"text\":\"${text}\",\"tooltip\":\"${tooltip}\"}" | sed ':a;N;$!ba;s/\n/\\n/g' | jq --unbuffered --compact-output
 }
@@ -53,6 +69,8 @@ main() {
 			;;
 	esac
 }
+
+# NOTE: to print in terminal, pipe to "jq -r .tooltip"
 
 main $@
 

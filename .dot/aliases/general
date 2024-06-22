@@ -25,6 +25,8 @@ alias pager='${PAGER}'
 alias rd='rmdir'
 alias md='mkdir -p'
 
+alias treed='tree -d'
+
 alias cloc='curl -L -C - -O' # follow redirects, download as original name, continue
 
 gui_open() {
@@ -39,6 +41,7 @@ gui_open() {
 }
 
 gui_sudo_open() {
+	# https://wiki.archlinux.org/title/Running_GUI_applications_as_root#Using_xhost
 	declare as_user="$1" ; shift
 	local program
 	program="$@"
@@ -47,7 +50,7 @@ gui_sudo_open() {
 	fi
 	gui_open "sudo --askpass --login --user=${as_user} -- env QT_QPA_PLATFORMTHEME=qt5ct ${program}"
 	if [[ "${XDG_CURRENT_DESKTOP}" == "sway" ]]; then
-		# xhost -SI:localuser:root
+        	# xhost -SI:localuser:root # TODO this needs to run after the program is finished; but gui_open returns immediately
 		echo "LEFT INSECURE"
 	fi
 }
@@ -61,6 +64,8 @@ ydotooldc() {
 		xhost -SI:localuser:root
 	fi
 }
+
+# alias swaymsg='swaymsg -s $(find /run/user/1000/ -maxdepth 1 -name "sway-ipc*") '
 
 alias sudo='sudo ' # allows me to use sudo before aliases
 alias s='sudo'

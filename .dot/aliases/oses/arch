@@ -30,6 +30,10 @@ alias aurrs='echo "use pacrs"'
 
 alias syukeyring='s pacman -Sy archlinux-keyring && s pacman -Su'
 # If needed, reset all keys as described here: https://wiki.archlinux.org/title/Pacman/Package_signing
+# Resetting:
+# s rm -rf /etc/pacman.d/gnupg
+# s pacman-key --init
+# s pacman-key --populate
 
 pq() {
 	declare search="$1"
@@ -81,7 +85,7 @@ alias pqaur='pacman -Qm'
 
 pcps() {
 	# check package size; also prints the package names
-	pacman -Qi $@ | egrep "^(Name|Description|Installed)" | cut -f2 -d":" | paste - - - | awk -F "\t" '{ print $3 "\t" $1 "\t" $2 }' | sort -k 2,2 -k 1n,1n
+	pacman -Qi $@ | grep -E "^(Name|Description|Installed)" | cut -f2 -d":" | paste - - - | awk -F "\t" '{ print $3 "\t" $1 "\t" $2 }' | sort -k 2,2 -k 1n,1n
 }
 
 
@@ -90,7 +94,7 @@ pcpes() {
 	pcpesnn() {
 		# check package effective size
 		declare package="$1"
-		echo n | yay -Rns "${package}" 2> /dev/null | egrep "^Total Removed Size:" | cut -f2 -d":" | xargs
+		echo n | yay -Rns "${package}" 2> /dev/null | grep -E "^Total Removed Size:" | cut -f2 -d":" | xargs
 	}
 
 	local package

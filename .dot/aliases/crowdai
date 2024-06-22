@@ -37,37 +37,8 @@ make_crowdai_aliases() {
 	done
 }
 
-alias "aztec"="cd ~/files/crowdai/aztec_platform && dcf build && dcf up -d"
 make_crowdai_aliases
 
-alias cdtg='cd ~/files/crowdai/olmec/terragrunt'
-alias cdtf='cd ~/files/crowdai/olmec/terraform'
-alias cdo='cd ~/files/crowdai/olmec'
-alias cdoa='cd /home/docker/olmec'
-alias cdob='cd /home/docker/olmec/bumped'
-alias cdorg='cd /home/docker/olmec/rescue-govcloud'
-alias cdong='cd /home/docker/olmec/newer-govcloud'
-
-cai_vault_auth() {
-	declare team="$1"
-	rm -f "${HOME}/.vault-token"
-	# need to cd so the python shim works
-	cdc
-	crowdai-vault-login "${team}"
-	cd -
-}
-# alias caiva='cai_vault_auth admin'
-# alias caivsa='cai_vault_auth sudo-admin'
-alias caiva='vault login -method=aws role=developer-admin'
-alias caivsa='vault login -method=aws role=developer-admin-sudo'
-
-cai_auth() {
-	declare profile="$1"
-	ln -sf "credentials-${profile}" "${HOME}/.aws/credentials"
-	caiva
-}
-alias caiauth-patrick='cai_auth patrick'
-alias caiauth-test='cai_auth test'
 
 rpdb() {
 	declare container_name="$1"
@@ -117,15 +88,6 @@ a_eks_govcloud_switch() {
 	kubectl get pods
 }
 
-alias eks-staging="a_eks_switch core-staging"
-alias eks-production="a_eks_switch core-production"
-alias eks-govcloud="a_eks_govcloud_switch core-production"
-alias eks-govcloud-vault="a_eks_govcloud_switch primary-vault"
-alias eks-eq="a_eks_switch experiment-queue"
-alias eks-misc="a_eks_switch misc"
-alias eks-vault="a_eks_switch blue-vault"
-alias eks-bumptest="a_eks_switch bumptest"
-alias eks-broken-cluster-interview="AWS_PROFILE=sandbox aws eks update-kubeconfig --name broken-cluster-interview"
 
 alias a_olmec_bumped="cdob && scripts/runtime/run /home/docker/olmec/bumped ${HOME}/.aws "
 alias olmec="a_olmec_bumped crowdai"
@@ -139,7 +101,7 @@ alias olmec-blue='/home/docker/olmec/blue/olmec/scripts/runtime/run'
 alias olmec-yellow='/home/docker/olmec/yellow/olmec/scripts/runtime/run'
 alias olmec-red='/home/docker/olmec/red/olmec/scripts/runtime/run'
 
-alias klscale="ksl svc/cluster-autoscaler-aws-cluster-autoscaler"
+alias klscale="kl -n cluster-autoscaler svc/cluster-autoscaler-aws-cluster-autoscaler"
 
 sshc_aws() {
 	declare instance_id="$1"

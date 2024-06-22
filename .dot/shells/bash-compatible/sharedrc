@@ -38,7 +38,7 @@ export CHROME_EXECUTABLE="brave" # for flutter
 
 export LESSHISTFILE="${HOME}/.history/less"
 
-source ~/.config/wpg/formats/colors-tty.sh || true # do this above neofetch. blanks the terminal; though it only runs if on tty.
+source ~/.dot/bin/colors-tty.sh || true # do this above neofetch. blanks the terminal; though it only runs if on tty.
 
 
 source /usr/local/bin/start-ssh-agent

@@ -14,8 +14,8 @@ adjust calendar tooltip font
   "modules-left": ["custom/check-other-sessions", "custom/user-icon", "clock", "sway/workspaces", "sway/mode"],
   "modules-center": ["sway/window"],
 //  "modules-center": ["custom/font-testing"],
-//  "modules-right": ["pulseaudio#out", "pulseaudio#in", "custom/check-status", "custom/check-updates", "memory", "cpu", "tray"],
-  "modules-right": ["memory", "cpu", "pulseaudio#out", "pulseaudio#in", "custom/check-status", "custom/check-updates", "tray"],
+//  "modules-right": ["wireplumber", "pulseaudio#in", "custom/check-status", "custom/check-updates", "memory", "cpu", "tray"],
+  "modules-right": ["memory", "cpu", "wireplumber", "pulseaudio#in", "custom/check-status", "custom/check-updates", "tray"],
   "sway/window": {
     "on-click-middle": "swaymsg kill",
     "on-click-right": "swaymsg floating toggle"
@@ -122,7 +122,22 @@ adjust calendar tooltip font
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
-  "pulseaudio#out": {
+  "pulseaudio#in": {
+    "format": "{format_source}",
+    "format-muted": "{format_source}",
+    "format-source": "󰍬{volume}",
+//    "format-source-muted": "󰍭{volume}",
+    "format-source-muted": "󰍭",
+    "tooltip": true,
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%+",
+    "on-scroll-down": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SOURCE@ 5%-",
+    "on-click-middle": "pactl set-default-sink alsa_output.usb-Blue_Microphones_Yeti_Stereo_Microphone_797_2020_07_14_66549-00.3.analog-stereo",
+    /* "on-click-middle": "wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 70%", */
+    "on-click-right": "qpwgraph"
+
+  },
+  "wireplumber": {
     "scroll-step": 5, // %, can be a float
     "format": "{icon}{volume}",
     "format-muted": "󰝟{volume}",
@@ -130,23 +145,10 @@ adjust calendar tooltip font
       "headphone": "󰋋",
       "default": ["󰕾"]
     },
-    "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-    "on-click-middle": "pactl set-sink-volume @DEFAULT_SINK@ 70%",
-    "on-click-right": "pavucontrol -t 3"
-  },
-  "pulseaudio#in": {
-    "format": "{format_source}",
-    "format-muted": "{format_source}",
-    "format-source": "󰍬{volume}",
-//    "format-source-muted": "󰍭{volume}",
-    "format-source-muted": "󰍭",
-    "tooltip": false,
-    "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
-    "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
-    "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
-    "on-click-middle": "pactl set-source-volume @DEFAULT_SOURCE@ 38295",
-    "on-click-right": "pavucontrol -t 4"
-
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-middle": "systemctl --user restart noisetorch.service; pactl set-default-source 'NoiseTorch Microphone for Yeti Stereo Microphone'",
+    /* "on-click-middle": "wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 70%", */
+    "on-click-right": "qpwgraph"
   }
 /* "custom/media": { */
 /*     "format": "{icon} {}", */

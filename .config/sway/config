@@ -175,7 +175,10 @@ bindsym --whole-window $ctrl+$alt+$shift+$mouse-wheel-right	move container to wo
 # KEYBOARD BINDINGS ###########################################################
 
 set $exit_sway			exec swaynag -t warning -m 'Exit sway?' -b 'Yes' 'swaymsg exit' # TODO add options to open emergency terminal and force unmount.
-bindsym $ctrl+$alt+Delete	$exit_sway
+set $screens_on                 output * power on
+bindsym $ctrl+$alt+Delete	$screens_on; $exit_sway
+bindsym $ctrl+$alt+$shift+Delete	exit
+bindsym $ctrl+$alt+w	        $screens_on
 bindsym $alt+$shift+e		$exit_sway
 
 # Reload the configuration file
@@ -352,6 +355,7 @@ set $freeplane   		exec --no-startup-id freeplane
 set $mako-dismiss               exec --no-startup-id makoctl dismiss
 set $mako-restore               exec --no-startup-id makoctl restore
 set $mako-invoke                exec --no-startup-id makoctl invoke
+set $teams                      exec --no-startup-id teams
 
 set $clr-start                  exec --no-startup-id touch /home/shared/programming/ydt-rs/mounted/running
 set $clr-stop                   exec --no-startup-id rm -f /home/shared/programming/ydt-rs/mounted/running
@@ -371,6 +375,7 @@ bindsym $win+i			$ide
 bindsym $win+c			$browser
 bindsym $win+h			$browser-h
 bindsym $win+d			$browser-altwork
+bindsym $win+t			$teams
 # bindsym $win+s			$notes
 bindsym $win+s			exec env ELM_DISPLAY=wl terminology
 bindsym $win+f			$freeplane
